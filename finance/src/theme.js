@@ -13,12 +13,12 @@ export const theme = createTheme({
   },
 
   typography: {
-      button: {
-        fontFamily: "Roboto",
-        fontWeight: "bold",
-      },
-      h6: {
-        fontFamily: "Titan One",
-      },
+    button: {
+      fontFamily: "Roboto",
+      fontWeight: "bold",
+    },
+    h6: {
+      fontFamily: "Titan One",
+    },
   },
 });
