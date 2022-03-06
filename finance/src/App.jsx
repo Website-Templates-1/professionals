@@ -11,11 +11,8 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Navbar />
         <Grid container>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Header />
-          </Grid>
-          <Grid item sm={12}>
-            second section
           </Grid>
         </Grid>
       </ThemeProvider>

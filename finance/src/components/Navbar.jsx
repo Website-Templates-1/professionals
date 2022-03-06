@@ -8,7 +8,6 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemText,
 } from "@mui/material";
 import { Call } from "@mui/icons-material";
 
@@ -44,8 +43,8 @@ const Navbar = () => {
   return (
     <AppBar position="fixed" color="transparent">
       <StyledToolBar>
-        <NavbarLargeHeading variant="h6">Financial Services</NavbarLargeHeading>
-        <NavbarSmallHeading variant="h6">Finance</NavbarSmallHeading>
+        <NavbarLargeHeading variant="h6">MintTech Software</NavbarLargeHeading>
+        <NavbarSmallHeading variant="h6">MintTech</NavbarSmallHeading>
 
         <StyledList>
           <ListItem disablePadding>
