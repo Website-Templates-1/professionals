@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { Call } from "@mui/icons-material";
 
 const StyledToolBar = styled(Toolbar)(({ theme }) => ({
@@ -8,31 +8,68 @@ const StyledToolBar = styled(Toolbar)(({ theme }) => ({
   justifyContent: "space-between",
 }));
 
-const TypographyLarge = styled(Typography)(({ theme }) => ({
+const NavbarLargeHeading = styled(Typography)(({ theme }) => ({
   display: "none",
   [theme.breakpoints.up("sm")]: {
     display: "block",
   },
 }));
 
-const TypographySmall = styled(Typography)(({ theme }) => ({
+const NavbarSmallHeading = styled(Typography)(({ theme }) => ({
   display: "none",
   [theme.breakpoints.down("sm")]: {
     display: "block",
   },
 }));
 
+const StyledList = styled(List)(({ theme }) => ({
+    display: "flex",
+    flexDirection: "row",
+}));
+
 const CallButton = styled(Button)(({ theme }) => ({
   display: "flex",
-  justifyContent: "space-between",
 }));
 
 const Navbar = () => {
   return (
     <AppBar position="fixed" color="transparent">
       <StyledToolBar>
-        <TypographyLarge variant="h6">Financial Services</TypographyLarge>
-        <TypographySmall variant="h6">Finance</TypographySmall>
+        <NavbarLargeHeading variant="h6">Financial Services</NavbarLargeHeading>
+        <NavbarSmallHeading variant="h6">Finance</NavbarSmallHeading>
+        
+        <StyledList>
+            <ListItem disablePadding>
+                <ListItemButton>
+                  <Typography variant="button">Home</Typography>
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+                <ListItemButton>
+                  <Typography variant="button">Services</Typography>
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+                <ListItemButton>
+                  <Typography variant="button">About</Typography>
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+                <ListItemButton>
+                  <Typography variant="button">Testimonials</Typography>
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+                <ListItemButton>
+                  <Typography variant="button">Clients</Typography>
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+                <ListItemButton>
+                  <Typography variant="button">Contact</Typography>
+                </ListItemButton>
+            </ListItem>
+        </StyledList>
 
         <CallButton>
           <Button
@@ -41,7 +78,7 @@ const Navbar = () => {
             startIcon={<Call />}
             sx={{ borderRadius: 8 }}
           >
-            Call Now
+          <Typography variant="button">Call Now</Typography>
           </Button>
         </CallButton>
       </StyledToolBar>
