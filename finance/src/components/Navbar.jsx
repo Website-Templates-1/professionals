@@ -33,6 +33,9 @@ const NavbarSmallHeading = styled(Typography)(({ theme }) => ({
 const StyledList = styled(List)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
 }));
 
 const CallButton = styled(Button)(({ theme }) => ({

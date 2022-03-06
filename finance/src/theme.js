@@ -27,6 +27,9 @@ export const theme = createTheme({
       [breakpoints.down("md")]: {
         fontSize: '4.0rem',
       },
+      [breakpoints.down("sm")]: {
+        fontSize: '3.0rem',
+      },
     },
     h2: {
       fontFamily: "Alfa Slab One",
