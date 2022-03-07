@@ -2,6 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { LocalLibrary } from "@mui/icons-material";
 import React from "react";
+
 const StyledMainBox = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(10),
   height: "100vh",
@@ -44,14 +45,14 @@ const Header = () => {
         </Typography>
       </StyledHeadBox>
       <StyledButtonBox>
-        <Button
-          size="medium"
-          variant="contained"
-          startIcon={<LocalLibrary />}
-          sx={{ borderRadius: 8 }}
-        >
-          <Typography variant="button">Learn More</Typography>
-        </Button>
+          <Button
+            size="medium"
+            variant="contained"
+            startIcon={<LocalLibrary />}
+            sx={{ borderRadius: 8 }}
+          >
+            <Typography variant="button">Learn More</Typography>
+          </Button>
       </StyledButtonBox>
     </StyledMainBox>
   );

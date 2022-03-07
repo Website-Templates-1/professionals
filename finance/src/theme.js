@@ -17,6 +17,7 @@ export const theme = createTheme({
   typography: {
     button: {
       fontFamily: "Roboto",
+      display: "inline",
     },
     body1: {
       fontFamily: "Roboto",

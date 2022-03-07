@@ -14,6 +14,9 @@ const App = () => {
           <Grid item xs={12}>
             <Header />
           </Grid>
+          <Grid item xs={12}>
+            <Header />
+          </Grid>
         </Grid>
       </ThemeProvider>
     </div>

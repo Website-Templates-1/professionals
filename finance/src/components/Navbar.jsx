@@ -4,12 +4,16 @@ import {
   AppBar,
   Toolbar,
   Typography,
+  IconButton,
   Button,
   List,
   ListItem,
   ListItemButton,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { Call } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const StyledToolBar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -38,11 +42,32 @@ const StyledList = styled(List)(({ theme }) => ({
   },
 }));
 
-const CallButton = styled(Button)(({ theme }) => ({
+const CallButtonDiv = styled("div")(({ theme }) => ({
   display: "flex",
+  alignItems: "center",
+}));
+
+const MenuButton = styled(IconButton)(({ theme }) => ({
+  display: "none",
+  marginLeft: 10,
+  color: theme.palette.primary.main,
+  [theme.breakpoints.down("md")]: {
+    display: "block",
+  },
 }));
 
 const Navbar = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <AppBar position="fixed" color="transparent">
       <StyledToolBar>
@@ -82,16 +107,51 @@ const Navbar = () => {
           </ListItem>
         </StyledList>
 
-        <CallButton>
-          <Button
+        <CallButtonDiv>
+          <Button size="small" variant="contained" sx={{ borderRadius: 8, maxHeight: '40px' }}>
+            <Typography variant="button">Call now</Typography>
+          </Button>
+
+          <MenuButton
             size="medium"
             variant="contained"
-            startIcon={<Call />}
-            sx={{ borderRadius: 8 }}
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
           >
-            <Typography variant="button">Call Now</Typography>
-          </Button>
-        </CallButton>
+            <MenuIcon />
+          </MenuButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleClose}>
+              <Typography variant="button">Home</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Typography variant="button">Services</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Typography variant="button">About</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Typography variant="button">Testimonials</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Typography variant="button">Clients</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Typography variant="button">Contact</Typography>
+            </MenuItem>
+          </Menu>
+        </CallButtonDiv>
       </StyledToolBar>
     </AppBar>
   );
