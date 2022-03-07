@@ -1,23 +1,20 @@
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "./theme";
-import { Grid } from "@mui/material";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Header from "./components/Header";
+import Home from "./pages/Home";
+import { theme } from "./theme";
 
 const App = () => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Navbar />
-        <Grid container>
-          <Grid item xs={12}>
-            <Header />
-          </Grid>
-          <Grid item xs={12}>
-            <Header />
-          </Grid>
-        </Grid>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+          </Routes>
+        </Router>
       </ThemeProvider>
     </div>
   );

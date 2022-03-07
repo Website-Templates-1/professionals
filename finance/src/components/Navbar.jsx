@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import {
   AppBar,
   Toolbar,
@@ -12,7 +14,6 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { Call } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const StyledToolBar = styled(Toolbar)(({ theme }) => ({
@@ -56,7 +57,18 @@ const MenuButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
+const useStyles = makeStyles((theme) => ({
+  "@global": {
+    ".Link":{
+        color: "inherit",
+        textDecoration: "none",
+    },
+  },
+}));
+
 const Navbar = () => {
+  useStyles();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -77,7 +89,9 @@ const Navbar = () => {
         <StyledList>
           <ListItem disablePadding>
             <ListItemButton>
-              <Typography variant="button">Home</Typography>
+              <Link to="/" className="Link">
+                <Typography variant="button">Home</Typography>
+              </Link>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>

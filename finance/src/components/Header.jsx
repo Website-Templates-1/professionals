@@ -49,7 +49,7 @@ const Header = () => {
             size="medium"
             variant="contained"
             startIcon={<LocalLibrary />}
-            sx={{ borderRadius: 8 }}
+            sx={{ borderRadius: 8, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}
           >
             <Typography variant="button">Learn More</Typography>
           </Button>
