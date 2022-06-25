@@ -1,9 +1,10 @@
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { theme } from "./theme";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import { theme } from "./theme";
+import Services from "./pages/Services";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route exact path="/" element={<Home />} />
+            <Route exact path="/services" element={<Services />} />
           </Routes>
         </Router>
       </ThemeProvider>

@@ -96,7 +96,9 @@ const Navbar = () => {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <Typography variant="button">Services</Typography>
+              <Link to="/services" className="Link">
+                <Typography variant="button">Services</Typography>
+              </Link>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
