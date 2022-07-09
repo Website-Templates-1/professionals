@@ -24,6 +24,30 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+ 
+  <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/integration
+            emailjs.init('IujqhptBVwY6OTejt');
+        })();
+  </script>
+  <script type="text/javascript">
+    window.onload = function() {
+        document.getElementById('contact-us-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // these IDs from the previous steps
+            emailjs.sendForm('contact_service', 'contact_form', this)
+                .then(function() {
+                    console.log('SUCCESS!');
+                }, function(error) {
+                    console.log('FAILED...', error);
+                });
+        });
+    }
+  </script>
+
 </head>
 <body>
 
@@ -412,15 +436,18 @@
             <h2 class="title-section">Drop Us a Line</h2>
             <div class="divider"></div>
             
-            <form action="mailto:siddharth.ahluwalia16@gmail.com" method="POST" enctype="text/plain">
+            <form id="contact-us-form">
               <div class="py-2">
-                <input type="text" class="form-control" placeholder="Full name">
+                <input type="text" id="name" class="form-control" placeholder="Full name">
               </div>
               <div class="py-2">
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="email" id="email" class="form-control" placeholder="Email">
               </div>
               <div class="py-2">
-                <textarea rows="6" class="form-control" placeholder="Enter message"></textarea>
+                <input type="tel" id="phone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Cellphone">
+              </div>
+              <div class="py-2">
+                <textarea rows="6" id="message" class="form-control" placeholder="Enter message"></textarea>
               </div>
               <input type="submit" value="Send Message" class="btn btn-primary rounded-pill mt-4">
               <!-- <input type="reset" value="Reset" class="btn btn-primary rounded-pill mt-4"> -->
