@@ -27,29 +27,31 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
  
   <script type="text/javascript">
-        (function() {
-            // https://dashboard.emailjs.com/admin/integration
-            emailjs.init('IujqhptBVwY6OTejt');
-        })();
+    emailjs.init('IujqhptBVwY6OTejt');
   </script>
+
   <script type="text/javascript">
     window.onload = function() {
-        document.getElementById("contact-us-form").addEventListener('submit', function(event) {
-            event.preventDefault();
+      document.getElementById('contact-us-form')
+      .addEventListener('submit', function(event) {
+        event.preventDefault();
 
-            const serviceID = 'default_service';
-            const templateID = 'template_2935oq1';
+        btn.value = 'Sending...';
 
-            // these IDs from the previous steps
-            emailjs.sendForm(serviceID, templateID, this)
-                .then(function() {
-                    console.log('SUCCESS!');
-                    document.getElementById("contact-us-form").reset();
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    document.getElementById("contact-us-form").reset();
-                });
-        });
+        const serviceID = 'default_service';
+        const templateID = 'template_2935oq1';
+
+        emailjs.sendForm(serviceID, templateID, this)
+          .then(() => {
+            btn.value = 'Send Email';
+            alert('Sent!');
+            document.getElementById("contact-us-form").reset();
+          }, (err) => {
+            btn.value = 'Send Email';
+            alert(JSON.stringify(err));
+            document.getElementById("contact-us-form").reset();
+          });
+      });
     }
   </script>
 
@@ -454,7 +456,7 @@
               <div class="py-2">
                 <textarea rows="6" id="message" class="form-control" placeholder="Enter message"></textarea>
               </div>
-              <input type="submit" value="Send Message" class="btn btn-primary rounded-pill mt-4">
+              <input type="submit" id="button" value="Send Email" class="btn btn-primary rounded-pill mt-4">
               <!-- <input type="reset" value="Reset" class="btn btn-primary rounded-pill mt-4"> -->
             </form>
           </div>
