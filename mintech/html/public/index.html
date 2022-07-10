@@ -34,15 +34,20 @@
   </script>
   <script type="text/javascript">
     window.onload = function() {
-        document.getElementById('contact-us-form').addEventListener('submit', function(event) {
+        document.getElementById("contact-us-form").addEventListener('submit', function(event) {
             event.preventDefault();
 
+            const serviceID = 'default_service';
+            const templateID = 'template_2935oq1';
+
             // these IDs from the previous steps
-            emailjs.sendForm('contact_service', 'contact_form', this)
+            emailjs.sendForm(serviceID, templateID, this)
                 .then(function() {
                     console.log('SUCCESS!');
+                    document.getElementById("contact-us-form").reset();
                 }, function(error) {
                     console.log('FAILED...', error);
+                    document.getElementById("contact-us-form").reset();
                 });
         });
     }
@@ -444,7 +449,7 @@
                 <input type="email" id="email" class="form-control" placeholder="Email">
               </div>
               <div class="py-2">
-                <input type="tel" id="phone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Cellphone">
+                <input type="tel" id="phone" class="form-control" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="Cellphone">
               </div>
               <div class="py-2">
                 <textarea rows="6" id="message" class="form-control" placeholder="Enter message"></textarea>
