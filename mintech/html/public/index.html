@@ -24,36 +24,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
- 
-  <script type="text/javascript">
-    emailjs.init('IujqhptBVwY6OTejt');
-  </script>
 
-  <script type="text/javascript">
-    window.onload = function() {
-      document.getElementById('contact-us-form')
-      .addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        btn.value = 'Sending...';
-
-        const serviceID = 'default_service';
-        const templateID = 'template_2935oq1';
-
-        emailjs.sendForm(serviceID, templateID, this)
-          .then(() => {
-            btn.value = 'Send Email';
-            alert('Sent!');
-            document.getElementById("contact-us-form").reset();
-          }, (err) => {
-            btn.value = 'Send Email';
-            alert(JSON.stringify(err));
-            document.getElementById("contact-us-form").reset();
-          });
-      });
-    }
-  </script>
 
 </head>
 <body>
@@ -444,20 +415,23 @@
             <div class="divider"></div>
             
             <form id="contact-us-form">
-              <div class="py-2">
-                <input type="text" id="name" class="form-control" placeholder="Full name">
+              <div class="field">
+                <label for="name"></label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Full Name">
               </div>
-              <div class="py-2">
-                <input type="email" id="email" class="form-control" placeholder="Email">
+              <div class="field">
+                <label for="email"></label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
               </div>
-              <div class="py-2">
-                <input type="tel" id="phone" class="form-control" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="Cellphone">
+              <div class="field">
+                <label for="phone"></label>
+                <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone">
               </div>
-              <div class="py-2">
-                <textarea rows="6" id="message" class="form-control" placeholder="Enter message"></textarea>
-              </div>
+              <div class="field">
+                <label for="message"></label>
+                <textarea type="text" name="message" id="message" class="form-control" placeholder="Message" rows="6"></textarea>
+              </div>            
               <input type="submit" id="button" value="Send Email" class="btn btn-primary rounded-pill mt-4">
-              <!-- <input type="reset" value="Reset" class="btn btn-primary rounded-pill mt-4"> -->
             </form>
           </div>
         </div>
@@ -542,6 +516,37 @@
 
   <script src="./js/theme.js"></script>
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+ 
+  <script type="text/javascript">
+    emailjs.init('IujqhptBVwY6OTejt');
+  </script>
+
+  <script type="text/javascript">
+    window.onload = function() {
+      document.getElementById('contact-us-form')
+      .addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // btn.value = 'Sending...';
+
+        const serviceID = 'default_service';
+        const templateID = 'template_2935oq1';
+        console.log(this);
+
+        emailjs.sendForm(serviceID, templateID, this)
+          .then(() => {
+            // btn.value = 'Send Email';
+            // alert('Sent!');
+            document.getElementById("contact-us-form").reset();
+          }, (err) => {
+            // btn.value = 'Send Email';
+            // alert(JSON.stringify(err));
+            document.getElementById("contact-us-form").reset();
+          });
+      });
+    }
+  </script>
 
 </body>
 </html>
