@@ -1,0 +1,8 @@
+.gradient {
+    background: -webkit-linear-gradient(left, #6C55F9 , #FF3D85);
+    background: -o-linear-gradient(right, #6C55F9, #FF3D85);
+    background: -moz-linear-gradient(right, #6C55F9, #FF3D85);
+    background: linear-gradient(to right, #6C55F9 , #FF3D85); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
