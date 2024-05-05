@@ -112,7 +112,6 @@ $('document').ready(function() {
   });
 });
 
-
 /*
  *  Counter
  *
@@ -145,4 +144,38 @@ $(document).ready(function() {
   }
 
   counterInit();
+});
+
+/*
+ *  Code to hide and show the content of the tabs
+ *
+ *  Require(" jquery.appear.js ")
+ */
+$(function() {
+  const btn1 = $('#other-features-btn1');
+  const btn2 = $('#other-features-btn2');
+  const btn3 = $('#other-features-btn3');
+
+  btn1.click(function() {
+    $('#other-features-content1').fadeIn(500);
+    $('#other-features-content1').addClass('d-block');
+    $('#other-features-content2').removeClass('d-block');
+    $('#other-features-content3').removeClass('d-block');
+  });
+
+  btn2.click(function() {
+    $('#other-features-content1').removeClass('d-block');
+    $('#other-features-content2').fadeIn(500);
+    $('#other-features-content2').addClass('d-block');
+    $('#other-features-content3').removeClass('d-block');
+  });
+
+  btn3.click(function() {
+    $('#other-features-content1').removeClass('d-block');
+    $('#other-features-content2').removeClass('d-block');
+    $('#other-features-content3').addClass('d-block');
+  });
+
+  $('#other-features-content1').addClass('d-block');
+
 });
