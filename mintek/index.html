@@ -579,6 +579,19 @@
       loop: true
     });
 
+    function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-16650672623/m2-ZCK7arscZEO-z1IM-',
+            'event_callback': callback
+        });
+        return false;
+      }
+
     window.onload = function() {
       document.getElementById('contact-us-form')
       .addEventListener('submit', function(event) {
@@ -588,7 +601,7 @@
 
         const serviceID = 'default_service';
         const templateID = 'template_2935oq1';
-        console.log(this);
+        gtag_report_conversion();
 
         emailjs.sendForm(serviceID, templateID, this)
           .then(() => {
