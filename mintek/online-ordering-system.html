@@ -628,7 +628,61 @@
       </div>
       <!-- section 5 (pricing) end -->
 
-      <div class="page-section" id="contact-us">
+
+      <!-- Our clients section start -->
+      <div class="page-banner home-banner my-0 section">
+        <div class="container text-center w-100">
+          <div
+            class="row wow fadeInRight align-items-center justify-content-center">
+            <div class="col-lg-6 py-3 px-0 text-center w-100">
+              <h1 class="title-section">Our <span
+                  class="gradient">Clients</span></h1>
+
+              <div class="my-24">
+                <div class="card-pricing w-unset">
+
+                  <div class="pricing-main">
+                    <h2>
+                      <b>
+                        Airport Sweets & Tandoori Restaurant
+                      </b>
+                    </h2>
+                  </div>
+
+                  <div class="pricing-body my-50 text-lg">
+                    <div class="header">
+                      <p>
+                        An Indian Restaurant located in Brampton, Ontario.
+                        <b class="gradient">Using our online ordering platform
+                          and targetted ads</b>,
+                        they have seen a <b class="gradient">25% increase in
+                          sales</b> and a <b class="gradient">85%
+                          positive engagement rate</b>.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="pricing-footer d-flex justify-content-around">
+                    <button class="btn btn-primary rounded-pill w-45"
+                      onclick="openPDF()">View report
+                    </button>
+                    <a class="btn btn-outline rounded-pill w-45"
+                      href="https://airportsweetsrestaurant.com/"
+                      target="_blank">Visit Website
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Our clients section end -->
+
+      <!-- contact us section start -->
+      <div class="page-section py-2" id="contact-us">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-6 py-3 wow fadeInUp">
@@ -664,7 +718,8 @@
             </div>
           </div>
         </div> <!-- .container -->
-      </div> <!-- .page-section -->
+      </div>
+      <!-- contact us section end -->
 
     </main>
 
@@ -747,6 +802,10 @@
               document.getElementById("contact-us-form").reset();
             });
         });
+      }
+
+      function openPDF() {
+        window.open('./files/Portfolio.pdf', '_blank');
       }
     </script>
 
