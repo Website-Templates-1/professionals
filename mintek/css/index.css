@@ -83,6 +83,10 @@
 
 /* padding styles start */
 
+.py-8 {
+  padding: 8px 0px !important;
+}
+
 .py-20 {
   padding: 20px 0px !important;
 }
@@ -135,6 +139,11 @@
 
 .absolute {
   position: absolute;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 /* display styles end */
@@ -230,6 +239,10 @@
   display: block;
 }
 
+.client-cta {
+  width: 45%;
+}
+
 @media (max-width: 576px) {
   #section1 {
     margin-top: 0px !important;
@@ -261,6 +274,10 @@
 
   .hidden-mobile {
     display: none;
+  }
+
+  .client-cta {
+    width: auto;
   }
 }
 

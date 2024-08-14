@@ -39,6 +39,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
       rel="stylesheet">
 
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Mintek Software",
+    "url": "https://minteksoftware.com",
+    "logo": "https://minteksoftware.com/logo.png",
+    "description":
+    "Mintek Software offers a robust restaurant online ordering platform designed to enhance customer loyalty and streamline operations. Discover features like real-time order tracking, integrated payments, and personalized promotions.",
+    "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Brampton",
+    "addressRegion": "ON",
+    "addressCountry": "CA"
+    },
+    "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-647-470-4180",
+    "contactType": "Customer Service",
+    "email": "softwarecorp01@gmail.com",
+    "areaServed": "CA",
+    "availableLanguage": "English"
+    }
+    }
+  </script>
+
     <!-- Google tag (gtag.js) -->
     <script async
       src="https://www.googletagmanager.com/gtag/js?id=AW-16650672623">
@@ -93,7 +119,7 @@
             Online ordering
           </span>
           <span class="h5">
-            +
+            🤝
           </span>
           <span class="h5">
             Targetted ads
@@ -664,10 +690,10 @@
                   </div>
 
                   <div class="pricing-footer d-flex justify-content-around">
-                    <button class="btn btn-primary rounded-pill w-45"
+                    <button class="btn btn-primary rounded-pill client-cta"
                       onclick="openPDF()">View report
                     </button>
-                    <a class="btn btn-outline rounded-pill w-45"
+                    <a class="btn btn-outline rounded-pill client-cta"
                       href="https://airportsweetsrestaurant.com/"
                       target="_blank">Visit Website
                     </a>
@@ -738,7 +764,7 @@
           <div class="col-lg-3 py-3">
             <h5>Quick Links</h5>
             <ul class="footer-menu">
-              <li><a href="#contact-us">Get in touch</a></li>
+              <li><a href="#contact-us">Contact Us</a></li>
               <li><a href="#pricing">Pricing</a></li>
             </ul>
           </div>
@@ -766,49 +792,81 @@
 
     <script src="./js/theme.js"></script>
 
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <script type="text/javascript">
-  
-      function gtag_report_conversion(url) {
-          var callback = function () {
-            if (typeof(url) != 'undefined') {
-              window.location = url;
-            }
-          };
-          gtag('event', 'conversion', {
-              'send_to': 'AW-16650672623/m2-ZCK7arscZEO-z1IM-',
-              'event_callback': callback
-          });
-          return false;
-        }
-  
-      window.onload = function() {
-        document.getElementById('contact-us-form')
-        .addEventListener('submit', function(event) {
-          event.preventDefault();
-  
-          // btn.value = 'Sending...';
-  
-          const serviceID = 'default_service';
-          const templateID = 'template_2935oq1';
-          gtag_report_conversion();
-  
-          emailjs.sendForm(serviceID, templateID, this)
-            .then(() => {
-              // btn.value = 'Send Email';
-              // alert('Sent!');
-              document.getElementById("contact-us-form").reset();
-            }, (err) => {
-              // btn.value = 'Send Email';
-              // alert(JSON.stringify(err));
-              document.getElementById("contact-us-form").reset();
-            });
-        });
+      // Initialize EmailJS
+      function initializeEmailJS() {
+        emailjs.init('IujqhptBVwY6OTejt');
       }
 
+      // Initialize Typed.js for dynamic text
+      function initializeTypedText() {
+        const options = {
+          strings: ['small business', 'startup'],
+          typeSpeed: 100,
+          backSpeed: 50,
+          loop: true
+        };
+        new Typed('#element', options);
+      }
+
+      // Handle Google Analytics conversion tracking
+      function gtagReportConversion(url) {
+        var callback = function() {
+          if (typeof(url) !== 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-16650672623/m2-ZCK7arscZEO-z1IM-',
+          'event_callback': callback
+        });
+        return false;
+      }
+
+      // Handle form submission with EmailJS
+      function handleFormSubmission(event) {
+        event.preventDefault();
+        
+        const serviceID = 'default_service';
+        const templateID = 'template_2935oq1';
+        
+        gtagReportConversion(); // Track conversion
+
+        emailjs.sendForm(serviceID, templateID, event.target)
+          .then(() => {
+            alert('Thank you for your message. We will get back to you shortly.');
+            event.target.reset(); // Reset form
+          }, (err) => {
+            alert('An error occurred, please try again later or email us at softwarecorp01@gmail.com');
+            event.target.reset(); // Reset form
+          });
+      }
+
+      // Initialize form event listener
+      function initializeFormListener() {
+        const form = document.getElementById('contact-us-form');
+        if (form) {
+          form.addEventListener('submit', handleFormSubmission);
+        }
+      }
+
+      // Open PDF in a new window
       function openPDF() {
         window.open('./files/Portfolio.pdf', '_blank');
       }
-    </script>
+
+      // Initialize all functionalities on window load
+      window.onload = function() {
+        initializeEmailJS();
+        // initializeTypedText();
+        initializeFormListener();
+      };
+
+  </script>
 
   </body>
 
