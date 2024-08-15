@@ -825,15 +825,17 @@
       }
 
       // Handle Google Analytics conversion tracking
-      function gtagReportConversion(url) {
-        var callback = function() {
-          if (typeof(url) !== 'undefined') {
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
             window.location = url;
           }
         };
         gtag('event', 'conversion', {
-          'send_to': 'AW-16650672623/m2-ZCK7arscZEO-z1IM-',
-          'event_callback': callback
+            'send_to': 'AW-16650672623/VvBHCP_i38oZEO-z1IM-',
+            'value': 1.0,
+            'currency': 'CAD',
+            'event_callback': callback
         });
         return false;
       }
