@@ -846,13 +846,19 @@
         
         const serviceID = 'default_service';
         const templateID = 'template_2935oq1';
+
+        if (event.target.name.value === '' || event.target.email.value === '' || event.target.phone.value === '' || event.target.message.value === '') {
+          alert('Please fill in all fields.');
+          return;
+        }
         
         gtagReportConversion();
         amplitude.track('contact-us-form-submission', {
           name: event.target.name.value,
           email: event.target.email.value,
           phone: event.target.phone.value,
-          message: event.target.message.value
+          message: event.target.message.value,
+          location: 'index.html'
         });
 
         emailjs.sendForm(serviceID, templateID, event.target)

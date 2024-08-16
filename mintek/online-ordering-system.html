@@ -834,8 +834,19 @@
         const serviceID = 'default_service';
         const templateID = 'template_2935oq1';
         
-        gtagReportConversion(); // Track conversion
+        if (event.target.name.value === '' || event.target.email.value === '' || event.target.phone.value === '' || event.target.message.value === '') {
+          alert('Please fill in all fields.');
+          return;
+        }
 
+        gtagReportConversion(); // Track conversion
+        amplitude.track('contact-us-form-submission', {
+          name: event.target.name.value,
+          email: event.target.email.value,
+          phone: event.target.phone.value,
+          message: event.target.message.value,
+          location: 'online-ordering-system.html'
+        });
         emailjs.sendForm(serviceID, templateID, event.target)
           .then(() => {
             alert('Thank you for your message. We will get back to you shortly.');
