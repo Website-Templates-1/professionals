@@ -849,6 +849,13 @@
 
         if (event.target.name.value === '' || event.target.email.value === '' || event.target.phone.value === '' || event.target.message.value === '') {
           alert('Please fill in all fields.');
+          amplitude.track('partial-contact-us-form-submission', {
+            name: event.target.name.value,
+            email: event.target.email.value,
+            phone: event.target.phone.value,
+            message: event.target.message.value,
+            location: 'index.html'
+          });
           return;
         }
         
