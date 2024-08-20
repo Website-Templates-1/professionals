@@ -94,11 +94,11 @@
           </button>
 
           <div class="navbar-collapse collapse" id="navbarContent">
-            <ul class="navbar-nav ml-lg-4 pt-3 pt-lg-0">
+            <!-- <ul class="navbar-nav ml-lg-4 pt-3 pt-lg-0">
               <li class="nav-item">
                 <a href="#pricing" class="nav-link">Pricing</a>
               </li>
-            </ul>
+            </ul> -->
 
             <div class="ml-auto">
               <a href="#contact-us"
@@ -143,14 +143,35 @@
                 Boost your restaurant's bottom line with commission-free
                 ordering directly from your website.
               </p>
-              <a href="#contact-us"
-                class="btn btn-primary rounded-pill" id="cta-btn">Book a demo
-              </a>
             </div>
-            <div class="col-lg-6 py-0 wow zoomIn hidden-mobile">
-              <div class="img-place hidden-mobile">
-                <img src="./img/roi_table.png" alt>
-              </div>
+            <div class="col-lg-6 wow fadeInUp px-0" id="contact-us">
+              <div class="subhead">Curious About Mintek?</div>
+              <form id="contact-us-form">
+                <div class="field">
+                  <label for="name"></label>
+                  <input type="text" name="name" id="name" class="form-control"
+                    placeholder="Full Name*">
+                </div>
+                <div class="field">
+                  <label for="email"></label>
+                  <input type="email" name="email" id="email"
+                    class="form-control" placeholder="Email*">
+                </div>
+                <div class="field">
+                  <label for="phone"></label>
+                  <input type="tel" name="phone" id="phone" class="form-control"
+                    placeholder="Phone">
+                </div>
+                <div class="field">
+                  <label for="message"></label>
+                  <textarea type="text" name="message" id="message"
+                    class="form-control"
+                    placeholder="Hey, I'm interested in learning more about your online ordering system. I have # of locations and # of employees. I am based out of <location> and I do / do not have a website."
+                    rows="6"></textarea>
+                </div>
+                <input type="submit" id="button" value="Submit"
+                  class="btn btn-primary rounded-pill mt-4">
+              </form>
             </div>
           </div>
         </div>
@@ -258,7 +279,7 @@
               </ul>
               <a href="#contact-us"
                 class="btn btn-primary rounded-pill"
-                id="cta-btn">Book a demo
+                id="cta-btn">Learn more
               </a>
             </div>
           </div>
@@ -350,7 +371,7 @@
               </ul>
               <a href="#contact-us"
                 class="btn btn-primary rounded-pill"
-                id="cta-btn">Book a demo
+                id="cta-btn">Learn more
               </a>
             </div>
             <div class="col-lg-6 py-3 px-0" id="section3-image-1">
@@ -577,7 +598,7 @@
       <div class="my-64" id="spacer"></div>
 
       <!-- section 5 (pricing) start -->
-      <div class="section my-0" id="pricing">
+      <!-- <div class="section my-0" id="pricing">
         <div class="container wow fadeInRight">
 
           <div class="row">
@@ -623,7 +644,7 @@
           </div>
 
         </div>
-      </div>
+      </div> -->
       <!-- section 5 (pricing) end -->
 
       <div class="my-64" id="spacer"></div>
@@ -682,7 +703,7 @@
       <!-- Our clients section end -->
 
       <!-- contact us section start -->
-      <div class="page-section py-2" id="contact-us">
+      <div class="page-section py-2">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-6 py-3 wow fadeInUp">
@@ -694,22 +715,23 @@
                 <div class="field">
                   <label for="name"></label>
                   <input type="text" name="name" id="name" class="form-control"
-                    placeholder="Full Name">
+                    placeholder="Full Name*">
                 </div>
                 <div class="field">
                   <label for="email"></label>
                   <input type="email" name="email" id="email"
-                    class="form-control" placeholder="Email">
+                    class="form-control" placeholder="Email*">
                 </div>
-                <!-- <div class="field">
+                <div class="field">
                   <label for="phone"></label>
                   <input type="tel" name="phone" id="phone" class="form-control"
                     placeholder="Phone">
-                </div> -->
+                </div>
                 <div class="field">
                   <label for="message"></label>
                   <textarea type="text" name="message" id="message"
-                    class="form-control" placeholder="Message"
+                    class="form-control"
+                    placeholder="Hey, I'm interested in learning more about your online ordering system. I have # of locations and # of employees. I am based out of <location> and I do / do not have a website."
                     rows="6"></textarea>
                 </div>
                 <input type="submit" id="button" value="Submit"
@@ -738,7 +760,7 @@
             <h5>Quick Links</h5>
             <ul class="footer-menu">
               <li><a href="#contact-us">Contact Us</a></li>
-              <li><a href="#pricing">Pricing</a></li>
+              <!-- <li><a href="#pricing">Pricing</a></li> -->
             </ul>
           </div>
           <div class="col-lg-12 py-2" align="center">
@@ -846,9 +868,11 @@
 
       // Initialize form event listener
       function initializeFormListener() {
-        const form = document.getElementById('contact-us-form');
-        if (form) {
-          form.addEventListener('submit', handleFormSubmission);
+        const forms = document.getElementsByTagName('form');
+        for (let i = 0; i < forms.length; i++) {
+          if (forms[i]) {
+            forms[i].addEventListener('submit', handleFormSubmission);
+          }
         }
       }
 
