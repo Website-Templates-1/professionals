@@ -7,13 +7,13 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useNavigate } from "react-router-dom";
-
+import { scrollToTop } from "../utils/display";
 const NavLinks = ({ linksToRender, handleNavLinkClick }) => {
   const navigate = useNavigate();
 
   const onLinkClick = (path) => {
     handleNavLinkClick(path);
-    navigate(path);
+    scrollToTop();
   };
 
   return (
@@ -52,4 +52,4 @@ const NavLinks = ({ linksToRender, handleNavLinkClick }) => {
   );
 };
 
-export default NavLinks; 
+export default NavLinks;
