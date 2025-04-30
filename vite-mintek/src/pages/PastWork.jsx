@@ -23,34 +23,32 @@ const projectsContent = {
       title: "Google Sheets Powered Website",
       shortDescription:
         "A dynamic comedy club website powered by Google Sheets, enabling non-technical team members to manage content through spreadsheets.",
-      fullDescription: `
-          In 2023, I developed a fully dynamic website for LaaL Button, a rising comedy club and production house based in Toronto. Unlike traditional CMS solutions, this website fetches and renders content directly from Google Sheets, giving non-technical team members full control over everything — from show lineups and performer bios to background images, footers, and more.
-  
-          Key Features:
-          • Event Listings & Lineups: All shows, dates, venues, and artist details are pulled live from Google Sheets
-          • Fully Dynamic Content: From banners to bios, images to footer text — every inch of the site is configurable through a spreadsheet
-          • Instant Updates: No rebuilds or logins. Just update the sheet, and the next site visitor sees the changes
-          • No Backend Needed: All content is retrieved client-side via the Google Sheets API, keeping the site lightweight and fast
-          • User Analytics: Integrated Amplitude to track how users interact with the schedule, lineup, and ticket links
-  
-          Impact & Results:
-          • Saved the LaaL Button team hours of frustration compared to their old WordPress setup
-          • Enabled non-developers to control the website entirely
-          • Provided a smoother user experience across devices, resulting in higher engagement
-          • Reduced operational overhead — no plugins, no logins, no content freezes
-  
-          Technical Challenges:
-          Making a spreadsheet behave like a CMS meant accounting for inconsistent data types, missing fields, and load-time errors — all solved through intelligent parsing, data normalization, and fallback logic. Despite having no backend, the site handles rich, dynamic content seamlessly.
-  
-          Reflections:
-          LaaL Button is a great example of how powerful a no-code/data-driven backend can be when paired with a modern frontend. The creative team was able to ship events quickly without worrying about tech — and I delivered a robust, self-sustaining system that looks and feels great on any device.
-  
-          This project represents the kind of practical, clever engineering I love: elegant, low-maintenance, and tailored to the people who use it.
-        `,
+      fullDescription: `In 2023, I developed a fully dynamic website for LaaL Button, a rising comedy club and production house based in Toronto. Unlike traditional CMS solutions, this website fetches and renders content directly from Google Sheets, giving non-technical team members full control over everything — from show lineups and performer bios to background images, footers, and more.
+
+        Key Features:
+        • Event Listings & Lineups: All shows, dates, venues, and artist details are pulled live from Google Sheets
+        • Fully Dynamic Content: From banners to bios, images to footer text — every inch of the site is configurable through a spreadsheet
+        • Instant Updates: No rebuilds or logins. Just update the sheet, and the next site visitor sees the changes
+        • No Backend Needed: All content is retrieved client-side via the Google Sheets API, keeping the site lightweight and fast
+        • User Analytics: Integrated Amplitude to track how users interact with the schedule, lineup, and ticket links
+
+        Impact & Results:
+        • Saved the LaaL Button team hours of frustration compared to their old WordPress setup
+        • Enabled non-developers to control the website entirely
+        • Provided a smoother user experience across devices, resulting in higher engagement
+        • Reduced operational overhead — no plugins, no logins, no content freezes
+
+        Technical Challenges:
+        Making a spreadsheet behave like a CMS meant accounting for inconsistent data types, missing fields, and load-time errors — all solved through intelligent parsing, data normalization, and fallback logic. Despite having no backend, the site handles rich, dynamic content seamlessly.
+
+        Reflections:
+        LaaL Button is a great example of how powerful a no-code/data-driven backend can be when paired with a modern frontend. The creative team was able to ship events quickly without worrying about tech — and I delivered a robust, self-sustaining system that looks and feels great on any device.
+
+        This project represents the kind of practical, clever engineering I love: elegant, low-maintenance, and tailored to the people who use it.`,
       techStack: ["React", "Google Sheets API", "Amplitude"],
       status: "Live",
       githubUrl: null,
-      liveUrl: "https://laalbutton.com", // Replace with actual URL if different
+      liveUrl: "https://laalbutton.com",
     },
     {
       title: "Online Ordering System",
