@@ -51,6 +51,46 @@ const projectsContent = {
       liveUrl: "https://laalbutton.com",
     },
     {
+      title: "Map - First Marketplace",
+      shortDescription:
+        "A map-first parking rental marketplace enabling users to rent out their unused parking spaces, built with modern tech stack and sophisticated mapping integration.",
+      fullDescription: `
+        In 2024, I designed and built Rent a Parking, a location-based marketplace that lets everyday people rent out their unused driveways, garages, or parking spots. Inspired by platforms like Airbnb, but purpose-built for parking, this app prioritized a map-first user experience, allowing users to explore listings visually and connect directly with space owners.
+
+        Key Features:
+        • Map-First UX: Dynamic Mapbox-powered map interface with real-time filter updates
+        • Listing Portal for Hosts: Easy-to-use interface for posting parking spaces with detailed information
+        • Robust Search & Filters: Advanced filtering system including location proximity and space type
+        • Off-Platform Messaging: Streamlined communication between renters and hosts
+        • Responsive, Mobile-Optimized Design: Seamless experience across all devices
+
+        Technical Challenges:
+        • Complex UI coordination between map events, search filters, and component reactivity
+        • Sophisticated state management for data flow between listings and map markers
+        • Edge case handling for overlapping listings and geolocation inaccuracies
+        • Performance optimization for smooth map interactions
+
+        Impact & Results:
+        • 100+ listings across major urban neighborhoods
+        • 10 daily active users at its early peak
+        • Zero marketing spend — all growth was organic
+        • Built with enterprise-grade care and strong foundation for future scaling
+
+        Reflections:
+        Rent a Parking represents the pinnacle of my full-stack development capabilities, combining thoughtful architecture, clean code, and strong UX sensibility. The project demonstrates my ability to build sophisticated, production-ready applications that solve real-world problems.
+      `,
+      techStack: [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Mapbox GL JS",
+      ],
+      status: "Live",
+      liveUrl: "http://rentaparking.ca",
+    },
+    {
       title: "Online Ordering System",
       shortDescription:
         "A fully custom online ordering system with integrated payments, real-time order management, and SMS marketing capabilities.",
@@ -89,45 +129,6 @@ const projectsContent = {
       status: "Completed",
       githubUrl: null,
       liveUrl: null,
-    },
-    {
-      title: "Map - First Marketplace",
-      shortDescription:
-        "A map-first parking rental marketplace enabling users to rent out their unused parking spaces, built with modern tech stack and sophisticated mapping integration.",
-      fullDescription: `
-        In 2024, I designed and built Rent a Parking, a location-based marketplace that lets everyday people rent out their unused driveways, garages, or parking spots. Inspired by platforms like Airbnb, but purpose-built for parking, this app prioritized a map-first user experience, allowing users to explore listings visually and connect directly with space owners.
-
-        Key Features:
-        • Map-First UX: Dynamic Mapbox-powered map interface with real-time filter updates
-        • Listing Portal for Hosts: Easy-to-use interface for posting parking spaces with detailed information
-        • Robust Search & Filters: Advanced filtering system including location proximity and space type
-        • Off-Platform Messaging: Streamlined communication between renters and hosts
-        • Responsive, Mobile-Optimized Design: Seamless experience across all devices
-
-        Technical Challenges:
-        • Complex UI coordination between map events, search filters, and component reactivity
-        • Sophisticated state management for data flow between listings and map markers
-        • Edge case handling for overlapping listings and geolocation inaccuracies
-        • Performance optimization for smooth map interactions
-
-        Impact & Results:
-        • 100+ listings across major urban neighborhoods
-        • 10 daily active users at its early peak
-        • Zero marketing spend — all growth was organic
-        • Built with enterprise-grade care and strong foundation for future scaling
-
-        Reflections:
-        Rent a Parking represents the pinnacle of my full-stack development capabilities, combining thoughtful architecture, clean code, and strong UX sensibility. The project demonstrates my ability to build sophisticated, production-ready applications that solve real-world problems.
-      `,
-      techStack: [
-        "React",
-        "TypeScript",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "Mapbox GL JS",
-      ],
-      status: "Live",
     },
   ],
 };
@@ -457,8 +458,8 @@ const PastWork = () => {
                   height: "100%",
                   cursor: "pointer",
                   transition: "all 0.3s ease-in-out",
-                  display: 'flex',
-                  flexDirection: 'column',
+                  display: "flex",
+                  flexDirection: "column",
                   "&:hover": {
                     transform: "translateY(-8px)",
                     boxShadow: "0 12px 24px -10px rgba(108, 85, 249, 0.2)",
@@ -466,15 +467,15 @@ const PastWork = () => {
                 }}
                 onClick={() => handleProjectClick(project)}
               >
-                <CardContent 
-                  sx={{ 
+                <CardContent
+                  sx={{
                     p: 4,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
                   }}
                 >
-                  <Box sx={{ mb: 'auto' }}>
+                  <Box sx={{ mb: "auto" }}>
                     <Typography
                       variant="h5"
                       sx={{
@@ -492,7 +493,7 @@ const PastWork = () => {
                       {project.shortDescription}
                     </Typography>
                   </Box>
-                  
+
                   <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                     {project.techStack.slice(0, 3).map((tech, index) => (
                       <Chip
