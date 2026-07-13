@@ -1,0 +1,7 @@
+# Netlify redirects/rewrites.
+# Legacy path -> canonical (permanent redirect).
+/past-work    /case-studies    301!
+
+# Prerendered pages are served directly; this is a client-routing safety net
+# for any path without a matching static file.
+/*    /index.html    200

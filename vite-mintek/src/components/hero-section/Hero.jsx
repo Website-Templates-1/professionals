@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, Button, Stack } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -73,11 +73,11 @@ const Hero = () => {
             },
           }}
         >
-          Join the MinTek family
+          Custom Software and Website Development for Growing Businesses
         </Typography>
         <Typography
           variant="h5"
-          component="h5"
+          component="p"
           sx={{
             mb: 6,
             color: "text.secondary",
@@ -87,8 +87,35 @@ const Hero = () => {
             zIndex: 5,
           }}
         >
-          Transform your business with cutting-edge technology
+          Mintek Software builds custom websites, internal business applications
+          and software solutions that streamline operations and help businesses
+          grow.
         </Typography>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          justifyContent="center"
+          sx={{ position: "relative", zIndex: 5 }}
+        >
+          <Button
+            component={RouterLink}
+            to="/contact"
+            variant="contained"
+            size="large"
+            color="primary"
+          >
+            Request a consultation
+          </Button>
+          <Button
+            component={RouterLink}
+            to="/case-studies"
+            variant="outlined"
+            size="large"
+            color="primary"
+          >
+            See our work
+          </Button>
+        </Stack>
       </Container>
 
       {/* Scroll Prompt */}

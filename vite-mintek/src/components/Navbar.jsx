@@ -1,19 +1,16 @@
 import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import RightFullPageDrawer from "./RightFullPageDrawer";
 import NavLinks from "./NavLinks";
 import MenuIcon from "@mui/icons-material/Menu";
-import logo from "../assets/logo2.png"; // Make sure to add the logo to your assets folder
+import logo from "../assets/logo2.png";
+import { primaryNav, site } from "../config/siteConfig";
 
 function Navbar() {
-  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const menuItems = [
-    { name: "Home", path: "/" },
-    { name: "Past Work", path: "/past-work" },
-  ];
+  const menuItems = primaryNav;
 
   const handleDrawerClose = () => {
     setDrawerOpen(false);
@@ -23,8 +20,7 @@ function Navbar() {
     setDrawerOpen(true);
   };
 
-  const handleNavLinkClick = (path) => {
-    navigate(path);
+  const handleNavLinkClick = () => {
     handleDrawerClose();
   };
 
@@ -33,19 +29,22 @@ function Navbar() {
       <AppBar position="fixed" color="inherit">
         <Toolbar>
           <Box
+            component={RouterLink}
+            to="/"
+            aria-label={`${site.brand} home`}
             sx={{
               display: "flex",
               alignItems: "center",
               flexGrow: 1,
               gap: 0.5,
               cursor: "pointer",
+              textDecoration: "none",
             }}
-            onClick={() => navigate("/")}
           >
             <Box
               component="img"
               src={logo}
-              alt="Mintek Logo"
+              alt={`${site.brand} logo`}
               sx={{
                 height: 24,
                 width: "auto",
@@ -53,13 +52,13 @@ function Navbar() {
             />
             <Typography
               variant="h6"
-              component="div"
+              component="span"
               sx={{
                 fontWeight: "bold",
                 color: "text.primary",
               }}
             >
-              Mintek Software
+              {site.brand}
             </Typography>
           </Box>
 

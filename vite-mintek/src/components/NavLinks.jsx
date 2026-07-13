@@ -6,39 +6,24 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { useNavigate } from "react-router-dom";
-import { scrollToTop } from "../utils/display";
+import { Link as RouterLink } from "react-router-dom";
+
 const NavLinks = ({ linksToRender, handleNavLinkClick }) => {
-  const navigate = useNavigate();
-
-  const onLinkClick = (path) => {
-    handleNavLinkClick(path);
-    scrollToTop();
-  };
-
   return (
     <Box sx={{ bgcolor: "background.paper" }}>
       <nav aria-label="main navigation">
         <List>
-          {linksToRender.map((navbarLink, index) => (
-            <Box key={index}>
-              <ListItem
-                disablePadding
-                onClick={() => {
-                  onLinkClick(navbarLink.path);
-                }}
-              >
+          {linksToRender.map((navbarLink) => (
+            <Box key={navbarLink.path}>
+              <ListItem disablePadding>
                 <ListItemButton
-                  sx={{
-                    px: 0,
-                  }}
+                  component={RouterLink}
+                  to={navbarLink.path}
+                  onClick={() => handleNavLinkClick(navbarLink.path)}
+                  sx={{ px: 0 }}
                 >
                   <ListItemText primary={navbarLink.name} />
-                  <ListItemIcon
-                    sx={{
-                      minWidth: "unset",
-                    }}
-                  >
+                  <ListItemIcon sx={{ minWidth: "unset" }}>
                     <ChevronRightIcon sx={{ color: "primary.main" }} />
                   </ListItemIcon>
                 </ListItemButton>

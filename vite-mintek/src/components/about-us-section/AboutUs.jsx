@@ -3,9 +3,9 @@ import { Container, Typography, Grid, Box } from "@mui/material";
 
 const aboutUsContent = {
   overline: "ABOUT US",
-  title: "Innovating the Future of Technology",
+  title: "Software built for how your business works",
   description:
-    "At MinTek Solutions, we're more than just a technology company. We're innovators, problem-solvers, and digital craftsmen dedicated to transforming businesses through cutting-edge solutions.",
+    "Mintek Software is a Brampton-based software and web development studio serving businesses across the Greater Toronto Area and remotely. We build custom websites, internal business applications and automation that remove manual work, so growing teams can operate faster and make better decisions.",
   stats: [
     {
       number: "10+",

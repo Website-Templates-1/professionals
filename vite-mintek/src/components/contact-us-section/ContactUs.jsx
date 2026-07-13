@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Container, Typography, Grid, Button, Snackbar, Alert, CircularProgress } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
-import emailjs from '@emailjs/browser';
+import { site } from "../../config/siteConfig";
 
 const contactContent = {
   overline: "GET IN TOUCH",
@@ -13,12 +13,12 @@ const contactContent = {
       {
         icon: <LocationOnIcon />,
         title: "Our Location",
-        text: "Brampton, Ontario, Canada",
+        text: `${site.address.locality}, ${site.address.regionName}, ${site.address.countryName}`,
       },
       {
         icon: <EmailIcon />,
         title: "Email Address",
-        text: "minteksoftware@gmail.com",
+        text: site.email,
       },
     ],
   },
@@ -77,6 +77,7 @@ const ContactUs = () => {
     setIsLoading(true);
 
     try {
+      const { default: emailjs } = await import('@emailjs/browser');
       await emailjs.sendForm(
         'service_775ddm4',
         'template_2935oq1',
