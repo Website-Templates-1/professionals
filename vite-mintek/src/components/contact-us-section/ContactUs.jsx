@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Box, Container, Typography, Grid, Button, Snackbar, Alert, CircularProgress } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
+import PhoneIcon from "@mui/icons-material/Phone";
 import { site } from "../../config/siteConfig";
 
 const contactContent = {
@@ -19,6 +20,11 @@ const contactContent = {
         icon: <EmailIcon />,
         title: "Email Address",
         text: site.email,
+      },
+      {
+        icon: <PhoneIcon />,
+        title: "Phone Number",
+        text: site.phone,
       },
     ],
   },

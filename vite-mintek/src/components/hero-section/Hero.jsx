@@ -7,16 +7,9 @@ const Hero = () => {
       sx={{
         position: "relative",
         overflow: "hidden",
-        pt: { xs: 12, md: 24 },
-        pb: { xs: 16, md: 32 },
+        pt: { xs: 10, md: 24 },
+        pb: { xs: 10, md: 28 },
         bgcolor: "background.paper",
-        backgroundImage: `
-        radial-gradient(#B4B2C5 1px, transparent 1px), 
-        radial-gradient(#B4B2C5 1px, transparent 1px)
-      `,
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 20px 20px",
-        backgroundRepeat: "repeat",
         "@keyframes moveDown": {
           "0%": {
             transform: "translateY(-100%)",
@@ -27,18 +20,43 @@ const Hero = () => {
         },
       }}
     >
-      {/* Moving Lines */}
+      {/* Dot pattern background (faded toward the center so it never competes
+          with the text, and lighter/sparser on mobile) */}
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+          backgroundImage: `
+            radial-gradient(#B4B2C5 1px, transparent 1px),
+            radial-gradient(#B4B2C5 1px, transparent 1px)
+          `,
+          backgroundSize: { xs: "26px 26px", md: "22px 22px" },
+          backgroundPosition: { xs: "0 0, 13px 13px", md: "0 0, 11px 11px" },
+          opacity: { xs: 0.3, md: 0.55 },
+          maskImage:
+            "radial-gradient(ellipse 75% 65% at 50% 45%, transparent 0%, #000 82%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 75% 65% at 50% 45%, transparent 0%, #000 82%)",
+        }}
+      />
+
+      {/* Moving Lines (decorative, desktop only) */}
       {[...Array(3)].map((_, i) => (
         <Box
           key={`line-${i}`}
+          aria-hidden
           sx={{
+            display: { xs: "none", md: "block" },
             position: "absolute",
             left: `${10 + i * 40}%`,
             width: "2px",
             height: "100px",
             background: "linear-gradient(180deg, #6C55F9 0%, transparent 100%)",
             animation: `moveDown ${3 + i / 2}s linear infinite`,
-            opacity: 0.5,
+            opacity: 0.35,
           }}
         />
       ))}
@@ -55,19 +73,23 @@ const Hero = () => {
           variant="h1"
           component="h1"
           sx={{
-            mb: 3,
+            mb: { xs: 3.5, md: 3 },
             fontWeight: "bold",
             color: "text.primary",
             textAlign: "center",
             position: "relative",
+            fontSize: { xs: "1.9rem", sm: "2.6rem", md: "3.5rem" },
+            lineHeight: { xs: 1.25, md: 1.167 },
+            px: { xs: 1, md: 0 },
             "&::before": {
               content: '""',
               position: "absolute",
-              bottom: "-10px",
+              bottom: { xs: "-14px", md: "-10px" },
               left: "50%",
               transform: "translateX(-50%)",
-              width: "100px",
+              width: { xs: "72px", md: "100px" },
               height: "4px",
+              borderRadius: "2px",
               background:
                 "linear-gradient(90deg, transparent, #6C55F9, transparent)",
             },
@@ -79,12 +101,14 @@ const Hero = () => {
           variant="h5"
           component="p"
           sx={{
-            mb: 6,
+            mb: { xs: 4, md: 6 },
             color: "text.secondary",
             textAlign: "center",
-            maxWidth: "800px",
+            maxWidth: "760px",
             mx: "auto",
-            zIndex: 5,
+            px: { xs: 1, md: 0 },
+            fontSize: { xs: "1rem", md: "1.5rem" },
+            lineHeight: 1.6,
           }}
         >
           Mintek Software builds custom websites, internal business applications
@@ -95,7 +119,8 @@ const Hero = () => {
           direction={{ xs: "column", sm: "row" }}
           spacing={2}
           justifyContent="center"
-          sx={{ position: "relative", zIndex: 5 }}
+          alignItems="center"
+          sx={{ position: "relative", zIndex: 5, px: { xs: 2, sm: 0 } }}
         >
           <Button
             component={RouterLink}
@@ -103,6 +128,7 @@ const Hero = () => {
             variant="contained"
             size="large"
             color="primary"
+            sx={{ width: { xs: "100%", sm: "auto" } }}
           >
             Request a consultation
           </Button>
@@ -112,20 +138,22 @@ const Hero = () => {
             variant="outlined"
             size="large"
             color="primary"
+            sx={{ width: { xs: "100%", sm: "auto" } }}
           >
             See our work
           </Button>
         </Stack>
       </Container>
 
-      {/* Scroll Prompt */}
+      {/* Scroll Prompt (desktop only) */}
       <Box
         sx={{
           position: "absolute",
           bottom: "60px",
           left: "50%",
           transform: "translateX(-50%)",
-          display: "flex",
+          zIndex: 5,
+          display: { xs: "none", md: "flex" },
           flexDirection: "column",
           alignItems: "center",
           gap: 1,
