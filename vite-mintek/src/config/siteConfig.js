@@ -1545,7 +1545,11 @@ export const getCaseStudyFaqs = (slug) => caseStudyFaqs[slug] || [];
 // fabricated endorsement. `sampleTestimonials` are obviously-fictional design
 // placeholders (NOT real clients) shown only when the preview flag is set.
 // ---------------------------------------------------------------------------
-export const testimonials = [
+export const testimonials = [];
+
+// Fictional personas for local design preview only. Never presented as real
+// clients and never included in a normal production build.
+export const sampleTestimonials = [
   {
     id: "software",
     tag: "software",
@@ -1578,10 +1582,19 @@ export const testimonials = [
   },
 ];
 
+const showSampleTestimonials =
+  typeof import.meta !== "undefined" &&
+  import.meta.env &&
+  import.meta.env.VITE_SHOW_SAMPLE_TESTIMONIALS === "true";
+
 // Returns approved testimonials (optionally filtered by tag). Falls back to
 // fictional samples only when the preview flag is explicitly enabled.
 export const getTestimonials = ({ tag, limit } = {}) => {
-  const source = testimonials;
+  const source = testimonials.length
+    ? testimonials
+    : showSampleTestimonials
+      ? sampleTestimonials
+      : [];
   const filtered = tag ? source.filter((t) => t.tag === tag) : source;
   return typeof limit === "number" ? filtered.slice(0, limit) : filtered;
 };
