@@ -165,6 +165,7 @@ export const services = [
       "Custom software projects generally start at CAD $5,000. Final pricing depends on functionality, integrations, user roles, security requirements and ongoing support.",
     offersFrom: 5000,
     title: "Custom Software Development",
+    navLabel: "Custom Software",
     metaTitle: "Custom Software Development | Mintek Software",
     metaDescription:
       "Custom software development for growing businesses. Mintek Software designs and builds tailored applications, dashboards and internal tools that streamline operations and scale with you.",
@@ -246,6 +247,7 @@ export const services = [
       "Web application projects generally start at CAD $5,000, depending on functionality, integrations, user roles and ongoing support.",
     offersFrom: 5000,
     title: "Web Application Development",
+    navLabel: "Web Applications",
     metaTitle: "Web Application Development | Mintek Software",
     metaDescription:
       "Custom web application development with React and Node. Mintek Software builds fast, data-driven web apps, portals and marketplaces that run in the browser.",
@@ -286,6 +288,7 @@ export const services = [
     pricing: "Business website projects start at CAD $1,500.",
     offersFrom: 1500,
     title: "Website Development",
+    navLabel: "Websites",
     metaTitle: "Website Development & Design | Mintek Software",
     metaDescription:
       "Fast, responsive, SEO-friendly website development. Mintek Software designs and builds websites that load quickly, rank well and convert visitors into customers.",
@@ -360,6 +363,7 @@ export const services = [
     pricing: "Google Sheets-powered websites start at CAD $1,500.",
     offersFrom: 1500,
     title: "Google Sheets Website Development",
+    navLabel: "Google Sheets Websites",
     metaTitle: "Google Sheets Website Development | Mintek Software",
     metaDescription:
       "Websites and web apps that let your team manage live content through Google Sheets. Ideal for events, menus, catalogues and directories that change often.",
@@ -427,6 +431,7 @@ export const services = [
     group: "software",
     budgetType: "software",
     title: "Mobile App Development",
+    navLabel: "Mobile Apps",
     metaTitle: "Mobile App Development | Mintek Software",
     metaDescription:
       "Cross-platform mobile app development. Mintek Software builds fast, reliable iOS and Android apps from a single codebase for a great user experience.",
@@ -462,6 +467,7 @@ export const services = [
       "Custom software projects generally start at CAD $5,000, scoped after a short discovery call.",
     offersFrom: 5000,
     title: "Custom Software Development Toronto",
+    navLabel: "Custom Software (Toronto)",
     metaTitle: "Custom Software Development Toronto | Mintek Software",
     metaDescription:
       "Custom software development for Toronto and GTA businesses. Mintek Software builds tailored applications, dashboards and internal tools, based in Brampton with in-person meetings available.",
@@ -495,6 +501,7 @@ export const services = [
       "Small, clearly defined automation projects start at CAD $3,000; larger integrations are quoted after discovery.",
     offersFrom: 3000,
     title: "Business Automation Toronto",
+    navLabel: "Automation (Toronto)",
     metaTitle: "Business Automation Toronto | Mintek Software",
     metaDescription:
       "Business process automation for Toronto and GTA companies. Mintek Software automates reporting, data syncing and manual workflows to save hours every week.",
@@ -526,6 +533,7 @@ export const services = [
     pricing: "Small-business website projects start at CAD $1,500.",
     offersFrom: 1500,
     title: "Web Design Brampton",
+    navLabel: "Brampton",
     metaTitle: "Web Design Brampton | Mintek Software",
     metaDescription:
       "Web design in Brampton for small businesses. Mintek Software builds fast, mobile-friendly, lead-generating websites for Brampton businesses. Based locally in Brampton.",
@@ -557,6 +565,7 @@ export const services = [
     pricing: "Small-business website projects start at CAD $1,500.",
     offersFrom: 1500,
     title: "Web Design Mississauga",
+    navLabel: "Mississauga",
     metaTitle: "Web Design Mississauga | Mintek Software",
     metaDescription:
       "Web design in Mississauga for small businesses. Mintek Software builds fast, mobile-friendly, conversion-focused websites for Mississauga businesses.",
@@ -588,6 +597,7 @@ export const services = [
     pricing: "Restaurant and cafe website projects start at CAD $1,500.",
     offersFrom: 1500,
     title: "Restaurant Website Design",
+    navLabel: "Restaurant Websites",
     metaTitle: "Restaurant & Cafe Website Design | Mintek Software",
     metaDescription:
       "Restaurant and cafe website design that shows your menu, drives calls and directions, and handles catering enquiries. Mobile-first sites built to convert diners.",
@@ -619,6 +629,7 @@ export const services = [
     pricing: "Business website projects start at CAD $1,500.",
     offersFrom: 1500,
     title: "Web Design Toronto",
+    navLabel: "Toronto",
     metaTitle: "Web Design Toronto | Mintek Software",
     metaDescription:
       "Web design in Toronto for small and growing businesses. Mintek Software builds fast, mobile-friendly, conversion-focused websites for Toronto businesses.",
@@ -1024,52 +1035,91 @@ export const caseStudyRedirects = [
 // ---------------------------------------------------------------------------
 // Navigation
 // ---------------------------------------------------------------------------
+// Short, human-friendly drawer label for a service (falls back to full title).
+const navItem = (slug) => {
+  const s = getService(slug);
+  return { name: s?.navLabel || s?.title || slug, path: `/${slug}` };
+};
+
+// Full, keyword-rich footer label for a service (better anchor text for SEO).
+const footerItem = (slug) => {
+  const s = getService(slug);
+  return { name: s?.title || slug, path: `/${slug}` };
+};
+
+const companyLinks = [
+  { name: "Case Studies", path: "/case-studies" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+];
+
+// Drawer navigation: concise labels, grouped by meaning. `layout: "grid"`
+// renders short clusters in two columns to save vertical space.
 export const navGroups = [
   { heading: null, links: [{ name: "Home", path: "/" }] },
   {
     heading: "Services",
     links: [
-      ...servicesByGroup("software").map((s) => ({ name: s.title, path: `/${s.slug}` })),
-      ...servicesByGroup("data").map((s) => ({ name: s.title, path: `/${s.slug}` })),
-      ...servicesByGroup("website").map((s) => ({ name: s.title, path: `/${s.slug}` })),
+      navItem("custom-software-development"),
+      navItem("business-automation"),
+      navItem("web-application-development"),
+      navItem("marketplace-development"),
+      navItem("mobile-app-development"),
     ],
   },
   {
-    heading: "Locations",
-    links: servicesByGroup("local").map((s) => ({ name: s.title, path: `/${s.slug}` })),
-  },
-  {
-    heading: "Company",
+    heading: "Websites & Data",
     links: [
-      { name: "Case Studies", path: "/case-studies" },
-      { name: "About", path: "/about" },
-      { name: "Contact", path: "/contact" },
+      navItem("website-development"),
+      navItem("google-sheets-website-development"),
+      navItem("spreadsheet-automation"),
+      navItem("restaurant-website-design"),
     ],
   },
+  {
+    heading: "Web Design by City",
+    layout: "grid",
+    links: [
+      navItem("web-design-brampton"),
+      navItem("web-design-mississauga"),
+      navItem("web-design-toronto"),
+    ],
+  },
+  { heading: "Company", links: companyLinks },
 ];
 
+// Footer navigation: specific, service-line headings with full descriptive
+// anchor text. Location pages sit under the service they belong to (e.g. city
+// web-design pages under "Web Design"), so every heading matches its links.
 export const footerNav = [
   {
     heading: "Software & Apps",
-    links: servicesByGroup("software").map((s) => ({ name: s.title, path: `/${s.slug}` })),
-  },
-  {
-    heading: "Data & Websites",
     links: [
-      ...servicesByGroup("data").map((s) => ({ name: s.title, path: `/${s.slug}` })),
-      ...servicesByGroup("website").map((s) => ({ name: s.title, path: `/${s.slug}` })),
-    ],
+      "custom-software-development",
+      "web-application-development",
+      "marketplace-development",
+      "mobile-app-development",
+      "custom-software-development-toronto",
+    ].map(footerItem),
   },
   {
-    heading: "Locations",
-    links: servicesByGroup("local").map((s) => ({ name: s.title, path: `/${s.slug}` })),
-  },
-  {
-    heading: "Company",
+    heading: "Automation & Data",
     links: [
-      { name: "Case Studies", path: "/case-studies" },
-      { name: "About", path: "/about" },
-      { name: "Contact", path: "/contact" },
-    ],
+      "business-automation",
+      "spreadsheet-automation",
+      "google-sheets-website-development",
+      "business-automation-toronto",
+    ].map(footerItem),
   },
+  {
+    heading: "Web Design",
+    links: [
+      "website-development",
+      "web-design-brampton",
+      "web-design-mississauga",
+      "web-design-toronto",
+      "restaurant-website-design",
+    ].map(footerItem),
+  },
+  { heading: "Company", links: companyLinks },
 ];

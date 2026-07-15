@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, IconButton, Button } from "@mui/material";
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import RightFullPageDrawer from "./RightFullPageDrawer";
@@ -85,6 +85,19 @@ function Navbar() {
         drawerClose={handleDrawerClose}
         drawerTitle="Menu"
         allowOverflow={true}
+        footer={
+          <Button
+            component={RouterLink}
+            to="/contact"
+            variant="contained"
+            color="primary"
+            fullWidth
+            size="large"
+            onClick={handleDrawerClose}
+          >
+            Request a consultation
+          </Button>
+        }
       >
         <NavLinks
           groups={navGroups}

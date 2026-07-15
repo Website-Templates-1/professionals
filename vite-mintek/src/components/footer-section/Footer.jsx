@@ -17,44 +17,42 @@ const Footer = () => {
       }}
     >
       <Container>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
-              {site.brand}
+        {/* Brand + contact block */}
+        <Box sx={{ mb: 6, maxWidth: 420 }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+            {site.brand}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            {site.description}
+          </Typography>
+          <Stack spacing={0.5}>
+            <Typography variant="body2" color="text.secondary">
+              {site.address.locality}, {site.address.regionName},{" "}
+              {site.address.countryName}
             </Typography>
-            <Typography
+            <Link
+              href={`mailto:${site.email}`}
               variant="body2"
               color="text.secondary"
-              sx={{ mb: 2, maxWidth: 320 }}
+              underline="hover"
             >
-              {site.description}
-            </Typography>
-            <Stack spacing={0.5}>
-              <Typography variant="body2" color="text.secondary">
-                {site.address.locality}, {site.address.regionName},{" "}
-                {site.address.countryName}
-              </Typography>
-              <Link
-                href={`mailto:${site.email}`}
-                variant="body2"
-                color="text.secondary"
-                underline="hover"
-              >
-                {site.email}
-              </Link>
-              <Link
-                href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}
-                variant="body2"
-                color="text.secondary"
-                underline="hover"
-              >
-                {site.phone}
-              </Link>
-            </Stack>
-          </Grid>
+              {site.email}
+            </Link>
+            <Link
+              href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}
+              variant="body2"
+              color="text.secondary"
+              underline="hover"
+            >
+              {site.phone}
+            </Link>
+          </Stack>
+        </Box>
 
+        {/* Service-line link columns */}
+        <Grid container spacing={4}>
           {footerNav.map((group) => (
-            <Grid item xs={6} sm={3} md key={group.heading}>
+            <Grid item xs={6} md={3} key={group.heading}>
               <Typography
                 variant="subtitle2"
                 sx={{ fontWeight: "bold", mb: 2 }}
