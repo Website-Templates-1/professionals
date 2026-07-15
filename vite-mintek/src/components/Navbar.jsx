@@ -5,12 +5,10 @@ import RightFullPageDrawer from "./RightFullPageDrawer";
 import NavLinks from "./NavLinks";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../assets/logo2.png";
-import { primaryNav, site } from "../config/siteConfig";
+import { navGroups, site } from "../config/siteConfig";
 
 function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const menuItems = primaryNav;
 
   const handleDrawerClose = () => {
     setDrawerOpen(false);
@@ -89,7 +87,7 @@ function Navbar() {
         allowOverflow={true}
       >
         <NavLinks
-          linksToRender={menuItems}
+          groups={navGroups}
           handleNavLinkClick={handleNavLinkClick}
         />
       </RightFullPageDrawer>

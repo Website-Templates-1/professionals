@@ -3,7 +3,9 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/past-work", "destination": "/case-studies", "permanent": true }
+    { "source": "/past-work", "destination": "/case-studies", "permanent": true },
+    { "source": "/case-studies/map-first-parking-marketplace", "destination": "/case-studies/parking-marketplace-platform", "permanent": true },
+    { "source": "/case-studies/google-sheets-powered-website", "destination": "/case-studies/google-sheets-event-discovery-app", "permanent": true }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

@@ -7,7 +7,7 @@ import CaseStudyDetail from "./pages/CaseStudyDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import { services, caseStudies } from "./config/siteConfig";
+import { services, caseStudies, caseStudyRedirects } from "./config/siteConfig";
 
 export const routes = [
   {
@@ -32,6 +32,12 @@ export const routes = [
 
       // Legacy path -> canonical case studies URL.
       { path: "past-work", element: <Navigate to="/case-studies" replace /> },
+
+      // Renamed case study slugs -> new canonical URLs.
+      ...caseStudyRedirects.map((r) => ({
+        path: `case-studies/${r.from}`,
+        element: <Navigate to={`/case-studies/${r.to}`} replace />,
+      })),
 
       { path: "*", element: <NotFound /> },
     ],

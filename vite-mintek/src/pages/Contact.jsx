@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
+import { useSearchParams } from "react-router-dom";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import ContactUs from "../components/contact-us-section/ContactUs";
@@ -6,6 +7,8 @@ import { BreadcrumbSchema } from "../components/seo/StructuredData";
 import { site } from "../config/siteConfig";
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const service = searchParams.get("service") || "";
   const breadcrumbItems = [
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
@@ -37,7 +40,7 @@ const Contact = () => {
         </Container>
       </Box>
 
-      <ContactUs />
+      <ContactUs defaultService={service} />
     </>
   );
 };

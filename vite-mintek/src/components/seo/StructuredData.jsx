@@ -93,6 +93,20 @@ export const ServiceSchema = ({ service }) => (
         url: site.domain,
       },
       areaServed: site.areaServed,
+      ...(service.offersFrom
+        ? {
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "CAD",
+              price: service.offersFrom,
+              priceSpecification: {
+                "@type": "PriceSpecification",
+                priceCurrency: "CAD",
+                minPrice: service.offersFrom,
+              },
+            },
+          }
+        : {}),
     }}
   />
 );

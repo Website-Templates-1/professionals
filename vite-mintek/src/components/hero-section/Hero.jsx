@@ -111,9 +111,9 @@ const Hero = () => {
             lineHeight: 1.6,
           }}
         >
-          Mintek Software builds custom websites, internal business applications
-          and software solutions that streamline operations and help businesses
-          grow.
+          Mintek Software builds custom software, business automation and
+          high-performing websites that streamline operations and help
+          businesses grow.
         </Typography>
         <Stack
           direction={{ xs: "column", sm: "row" }}

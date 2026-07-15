@@ -10,6 +10,25 @@
          components, so no static <title>/description is set here to avoid duplicates. -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
       rel="stylesheet">
+    <!-- Analytics scaffold. Stays completely inert until a real GA4 Measurement
+         ID is set below (e.g. "G-XXXXXXXXXX"). Lead events pushed via
+         src/utils/analytics.js land in dataLayer regardless, so a tag manager
+         can pick them up later. Nothing loads or tracks while the ID is empty. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.MINTEK_GA4_ID = ""; // TODO: set GA4 Measurement ID to enable analytics
+      (function () {
+        var id = window.MINTEK_GA4_ID;
+        if (!id) return;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+        document.head.appendChild(s);
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", id);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

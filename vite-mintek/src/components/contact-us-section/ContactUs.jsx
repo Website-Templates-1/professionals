@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Container, Typography, Grid, Button, Snackbar, Alert, CircularProgress } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
-import { site } from "../../config/siteConfig";
+import {
+  site,
+  projectTypes,
+  budgetPresets,
+  projectTypeForService,
+} from "../../config/siteConfig";
+import { trackLead } from "../../utils/analytics";
 
 const contactContent = {
   overline: "GET IN TOUCH",
@@ -28,54 +34,66 @@ const contactContent = {
       },
     ],
   },
-  form: {
-    fields: [
-      {
-        label: "Name",
-        type: "text",
-        name: "name",
-        placeholder: "John Doe",
-      },
-      {
-        label: "Email",
-        type: "email",
-        name: "email",
-        placeholder: "john@example.com",
-      },
-      {
-        label: "Message",
-        type: "textarea",
-        name: "message",
-        placeholder: "Your message...",
-      },
-    ],
-    submitButton: "Send Message",
+};
+
+const inputSx = {
+  width: "100%",
+  p: 1.5,
+  border: "1px solid",
+  borderColor: "divider",
+  borderRadius: 1,
+  fontFamily: "inherit",
+  fontSize: "1rem",
+  bgcolor: "white",
+  "&:focus": {
+    outline: "none",
+    borderColor: "primary.main",
   },
 };
 
-const ContactUs = () => {
+const ContactUs = ({ defaultService = "" }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [projectType, setProjectType] = useState(
+    projectTypeForService(defaultService)
+  );
+  const [budget, setBudget] = useState("");
   const [snackbar, setSnackbar] = useState({
     open: false,
-    message: '',
-    severity: 'success'
+    message: "",
+    severity: "success",
   });
 
+  // Prefill (or update) the project type when arriving via ?service=<slug>.
+  useEffect(() => {
+    if (defaultService) {
+      setProjectType(projectTypeForService(defaultService));
+    }
+  }, [defaultService]);
+
+  // Reset budget when the project type changes, since the ranges differ.
+  useEffect(() => {
+    setBudget("");
+  }, [projectType]);
+
+  const budgetType =
+    projectTypes.find((t) => t.value === projectType)?.budgetType || "general";
+  const budgetOptions = budgetPresets[budgetType] || budgetPresets.general;
+
   const handleCloseSnackbar = () => {
-    setSnackbar(prev => ({ ...prev, open: false }));
+    setSnackbar((prev) => ({ ...prev, open: false }));
   };
 
   const handleFormSubmission = async (event) => {
     event.preventDefault();
-    
+
     const form = event.target;
     const { name, email, message } = form.elements;
 
     if (!name.value || !email.value || !message.value) {
       setSnackbar({
         open: true,
-        message: 'Please fill in all fields',
-        severity: 'error'
+        message: "Please fill in your name, email and a short message",
+        severity: "error",
       });
       return;
     }
@@ -83,26 +101,35 @@ const ContactUs = () => {
     setIsLoading(true);
 
     try {
-      const { default: emailjs } = await import('@emailjs/browser');
+      const { default: emailjs } = await import("@emailjs/browser");
       await emailjs.sendForm(
-        'service_775ddm4',
-        'template_2935oq1',
+        "service_775ddm4",
+        "template_2935oq1",
         form,
-        'IujqhptBVwY6OTejt'
+        "IujqhptBVwY6OTejt"
       );
-      
+
+      trackLead({
+        project_type:
+          projectTypes.find((t) => t.value === projectType)?.label || "Unspecified",
+        budget: budget || "Unspecified",
+      });
+
       setSnackbar({
         open: true,
-        message: 'Thank you for your message. We will get back to you shortly.',
-        severity: 'success'
+        message: "Thank you for your message. We will get back to you shortly.",
+        severity: "success",
       });
       form.reset();
+      setProjectType(projectTypeForService(defaultService));
+      setBudget("");
     } catch (error) {
-      console.error('Failed to send email:', error);
+      console.error("Failed to send email:", error);
       setSnackbar({
         open: true,
-        message: 'An error occurred. Please email us directly at our email address above.',
-        severity: 'error'
+        message:
+          "An error occurred. Please email us directly at the email address above.",
+        severity: "error",
       });
     } finally {
       setIsLoading(false);
@@ -168,11 +195,7 @@ const ContactUs = () => {
             >
               <Typography
                 variant="h5"
-                sx={{
-                  fontWeight: "bold",
-                  mb: 4,
-                  color: "text.primary",
-                }}
+                sx={{ fontWeight: "bold", mb: 4, color: "text.primary" }}
               >
                 {contactContent.contactInfo.title}
               </Typography>
@@ -223,53 +246,83 @@ const ContactUs = () => {
               }}
             >
               <Grid container spacing={3}>
-                {contactContent.form.fields.map((field, index) => (
-                  <Grid item xs={12} key={index}>
-                    <Typography variant="subtitle2" sx={{ mb: 1 }}>
-                      {field.label}
-                    </Typography>
-                    {field.type === "textarea" ? (
-                      <Box
-                        component="textarea"
-                        name={field.name}
-                        placeholder={field.placeholder}
-                        rows={6}
-                        sx={{
-                          width: "100%",
-                          p: 1.5,
-                          border: "1px solid",
-                          borderColor: "divider",
-                          borderRadius: 1,
-                          minHeight: 120,
-                          resize: "vertical",
-                          fontFamily: "inherit",
-                          "&:focus": {
-                            outline: "none",
-                            borderColor: "primary.main",
-                          },
-                        }}
-                      />
-                    ) : (
-                      <Box
-                        component="input"
-                        type={field.type}
-                        name={field.name}
-                        placeholder={field.placeholder}
-                        sx={{
-                          width: "100%",
-                          p: 1.5,
-                          border: "1px solid",
-                          borderColor: "divider",
-                          borderRadius: 1,
-                          "&:focus": {
-                            outline: "none",
-                            borderColor: "primary.main",
-                          },
-                        }}
-                      />
-                    )}
-                  </Grid>
-                ))}
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                    Name
+                  </Typography>
+                  <Box
+                    component="input"
+                    type="text"
+                    name="name"
+                    placeholder="John Doe"
+                    sx={inputSx}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                    Email
+                  </Typography>
+                  <Box
+                    component="input"
+                    type="email"
+                    name="email"
+                    placeholder="john@example.com"
+                    sx={inputSx}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                    Project type
+                  </Typography>
+                  <Box
+                    component="select"
+                    name="project_type"
+                    value={projectType}
+                    onChange={(e) => setProjectType(e.target.value)}
+                    sx={inputSx}
+                  >
+                    <option value="">Select a project type</option>
+                    {projectTypes.map((type) => (
+                      <option key={type.value} value={type.value}>
+                        {type.label}
+                      </option>
+                    ))}
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                    Estimated budget
+                  </Typography>
+                  <Box
+                    component="select"
+                    name="budget"
+                    value={budget}
+                    onChange={(e) => setBudget(e.target.value)}
+                    sx={inputSx}
+                  >
+                    <option value="">Select a budget range</option>
+                    {budgetOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </Box>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                    Message
+                  </Typography>
+                  <Box
+                    component="textarea"
+                    name="message"
+                    placeholder="Tell us about your project, goals and timeline..."
+                    rows={6}
+                    sx={{ ...inputSx, minHeight: 120, resize: "vertical" }}
+                  />
+                </Grid>
+
                 <Grid item xs={12}>
                   <Button
                     type="submit"
@@ -286,16 +339,16 @@ const ContactUs = () => {
                         transform: "translateY(-2px)",
                         boxShadow: "0 8px 16px -4px rgba(108, 85, 249, 0.3)",
                       },
-                      position: 'relative'
+                      position: "relative",
                     }}
                   >
                     {isLoading ? (
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                         <CircularProgress size={20} color="inherit" />
                         <span>Sending...</span>
                       </Box>
                     ) : (
-                      contactContent.form.submitButton
+                      "Send Message"
                     )}
                   </Button>
                 </Grid>
@@ -309,13 +362,13 @@ const ContactUs = () => {
         open={snackbar.open}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert 
-          onClose={handleCloseSnackbar} 
+        <Alert
+          onClose={handleCloseSnackbar}
           severity={snackbar.severity}
           variant="filled"
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
         >
           {snackbar.message}
         </Alert>

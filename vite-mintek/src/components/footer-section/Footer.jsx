@@ -54,7 +54,7 @@ const Footer = () => {
           </Grid>
 
           {footerNav.map((group) => (
-            <Grid item xs={6} md={4} key={group.heading}>
+            <Grid item xs={6} sm={3} md key={group.heading}>
               <Typography
                 variant="subtitle2"
                 sx={{ fontWeight: "bold", mb: 2 }}

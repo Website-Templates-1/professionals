@@ -2,6 +2,10 @@
 # Legacy path -> canonical (permanent redirect).
 /past-work    /case-studies    301!
 
+# Renamed case study slugs -> new canonical URLs.
+/case-studies/map-first-parking-marketplace    /case-studies/parking-marketplace-platform    301!
+/case-studies/google-sheets-powered-website    /case-studies/google-sheets-event-discovery-app    301!
+
 # Prerendered pages are served directly; this is a client-routing safety net
 # for any path without a matching static file.
 /*    /index.html    200

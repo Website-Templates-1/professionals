@@ -12,13 +12,17 @@ import CodeIcon from "@mui/icons-material/Code";
 import LanguageIcon from "@mui/icons-material/Language";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import DevicesIcon from "@mui/icons-material/Devices";
-import { services } from "../../config/siteConfig";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import { homepageServices } from "../../config/siteConfig";
 
 const iconMap = {
   Code: CodeIcon,
   Language: LanguageIcon,
   AutoAwesome: AutoAwesomeIcon,
   Devices: DevicesIcon,
+  Dashboard: DashboardIcon,
+  Storefront: StorefrontIcon,
 };
 
 const OurServices = () => {
@@ -73,13 +77,14 @@ const OurServices = () => {
             color="text.secondary"
             sx={{ maxWidth: "600px", mx: "auto" }}
           >
-            Custom software, websites, automation and mobile apps that turn
-            manual work into measurable results.
+            Custom software, business automation and web applications that turn
+            manual work into measurable results, plus the websites that support
+            them.
           </Typography>
         </Box>
 
         <Grid container spacing={4}>
-          {services.map((service) => {
+          {homepageServices.map((service) => {
             const Icon = iconMap[service.icon] || CodeIcon;
             return (
               <Grid item xs={12} sm={6} md={3} key={service.slug}>

@@ -3,12 +3,12 @@ import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
 import { BreadcrumbSchema } from "../components/seo/StructuredData";
-import { site } from "../config/siteConfig";
+import { site, caseStudies } from "../config/siteConfig";
 
 const stats = [
-  { number: "10+", label: "Projects delivered" },
-  { number: "20+", label: "Clients served" },
-  { number: "2022", label: "Building since" },
+  { number: `${caseStudies.length}`, label: "Documented projects" },
+  { number: String(site.foundingYear), label: "Building since" },
+  { number: "GTA", label: "+ remote clients" },
 ];
 
 const values = [
@@ -114,9 +114,8 @@ const About = () => {
           Where we work
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 2, lineHeight: 1.9 }}>
-          We are based in {site.address.locality} and work with clients across
-          the Greater Toronto Area, including Mississauga and Toronto, as well as
-          remote clients elsewhere.
+          {site.serviceAreaStatement} We also work with remote clients beyond the
+          Greater Toronto Area.
         </Typography>
         <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
           {site.areaServed.map((area) => (

@@ -14,7 +14,7 @@ import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
 import { BreadcrumbSchema } from "../components/seo/StructuredData";
-import { caseStudies, site } from "../config/siteConfig";
+import { orderedCaseStudies, site } from "../config/siteConfig";
 
 const CaseStudiesIndex = () => {
   const breadcrumbItems = [
@@ -46,7 +46,7 @@ const CaseStudiesIndex = () => {
 
       <Container sx={{ pb: { xs: 6, md: 10 } }}>
         <Grid container spacing={4}>
-          {caseStudies.map((study) => (
+          {orderedCaseStudies.map((study) => (
             <Grid item xs={12} md={4} key={study.slug}>
               <Card sx={{ height: "100%" }}>
                 <CardActionArea
@@ -56,6 +56,15 @@ const CaseStudiesIndex = () => {
                 >
                   <CardContent sx={{ p: 4, display: "flex", flexDirection: "column", height: "100%" }}>
                     <Box sx={{ mb: "auto" }}>
+                      <Stack direction="row" spacing={1} sx={{ mb: 1.5 }} flexWrap="wrap" useFlexGap>
+                        <Chip label={study.label} size="small" color="primary" variant="outlined" />
+                        {study.kind === "concept" && (
+                          <Chip label="Concept" size="small" color="warning" />
+                        )}
+                        {study.kind === "prototype" && (
+                          <Chip label="Prototype" size="small" color="warning" />
+                        )}
+                      </Stack>
                       <Typography variant="overline" color="text.secondary">
                         {study.client} &middot; {study.year}
                       </Typography>

@@ -13,6 +13,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
@@ -45,6 +46,14 @@ const Panel = ({ title, accent = "primary.main", children }) => (
   </Box>
 );
 
+// How to present the project's origin without misrepresenting it.
+const eyebrowFor = (study) => {
+  if (study.kind === "concept") return "Design concept";
+  if (study.kind === "product") return `${study.client} (product)`;
+  if (study.kind === "prototype") return `${study.client} (prototype)`;
+  return study.client; // client work
+};
+
 const CaseStudyDetail = ({ slug }) => {
   const study = getCaseStudy(slug);
   if (!study) return <NotFound />;
@@ -55,7 +64,10 @@ const CaseStudyDetail = ({ slug }) => {
     { name: "Case Studies", path: "/case-studies" },
     { name: study.title, path },
   ];
-  const relatedServices = (study.services || []).map(getService).filter(Boolean);
+  const relatedServices = (study.services || [])
+    .map(getService)
+    .filter((s) => s && !s.hidden);
+  const shownMetrics = (study.metrics || []).filter((m) => m.value);
 
   return (
     <>
@@ -65,8 +77,17 @@ const CaseStudyDetail = ({ slug }) => {
       <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 4, md: 6 } }}>
         <Container maxWidth="md">
           <Breadcrumbs items={breadcrumbItems} />
+          <Stack direction="row" spacing={1} sx={{ mb: 1 }} flexWrap="wrap" useFlexGap>
+            <Chip label={study.label} size="small" color="primary" variant="outlined" />
+            {study.kind === "concept" && (
+              <Chip label="Concept, not a client project" size="small" color="warning" />
+            )}
+            {study.kind === "prototype" && (
+              <Chip label="Prototype" size="small" color="warning" />
+            )}
+          </Stack>
           <Typography variant="overline" color="text.secondary">
-            {study.client} &middot; {study.year} &middot; {study.status}
+            {eyebrowFor(study)} &middot; {study.year}
           </Typography>
           <Typography
             variant="h1"
@@ -75,7 +96,7 @@ const CaseStudyDetail = ({ slug }) => {
           >
             {study.title}
           </Typography>
-          {study.liveUrl && (
+          {study.liveUrl ? (
             <Button
               variant="contained"
               color="primary"
@@ -84,60 +105,145 @@ const CaseStudyDetail = ({ slug }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              View live
+              View live site
             </Button>
-          )}
+          ) : study.previewUrl ? (
+            <Box>
+              <Button
+                variant="outlined"
+                color="primary"
+                startIcon={<OpenInNewIcon />}
+                href={study.previewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View preview (temporary)
+              </Button>
+              <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 1 }}>
+                Temporary preview link, not the final production domain.
+              </Typography>
+            </Box>
+          ) : null}
         </Container>
       </Box>
 
       <Container maxWidth="md" sx={{ pb: { xs: 4, md: 8 } }}>
+        {shownMetrics.length > 0 && (
+          <Grid container spacing={2} sx={{ mb: 5 }}>
+            {shownMetrics.map((metric) => (
+              <Grid item xs={6} sm={4} key={metric.label}>
+                <Box
+                  sx={{
+                    p: 3,
+                    height: "100%",
+                    borderRadius: 2,
+                    bgcolor: "background.default",
+                    border: "1px solid",
+                    borderColor: "divider",
+                  }}
+                >
+                  <Typography variant="h4" sx={{ fontWeight: "bold", color: "primary.main" }}>
+                    {metric.value}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {metric.label}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        )}
+
         <Panel title="Overview">
           <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.9 }}>
             {study.summary}
           </Typography>
         </Panel>
 
-        <Panel title="Key features" accent="secondary.main">
-          <Grid container spacing={2}>
-            {study.features.map((feature, index) => (
-              <Grid item xs={12} sm={6} key={index}>
-                <Box
-                  sx={{
-                    p: 2,
-                    height: "100%",
-                    borderRadius: 2,
-                    border: "1px solid",
-                    borderColor: "divider",
-                    bgcolor: "background.paper",
-                  }}
-                >
-                  <Typography variant="body2">{feature}</Typography>
+        {study.problem && (
+          <Panel title="The challenge" accent="warning.main">
+            <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.9 }}>
+              {study.problem}
+            </Typography>
+          </Panel>
+        )}
+
+        {study.solution && (
+          <Panel title="What we built" accent="primary.main">
+            <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.9 }}>
+              {study.solution}
+            </Typography>
+          </Panel>
+        )}
+
+        {study.features?.length > 0 && (
+          <Panel title="Key features" accent="secondary.main">
+            <Grid container spacing={2}>
+              {study.features.map((feature, index) => (
+                <Grid item xs={12} sm={6} key={index}>
+                  <Box
+                    sx={{
+                      p: 2,
+                      height: "100%",
+                      borderRadius: 2,
+                      border: "1px solid",
+                      borderColor: "divider",
+                      bgcolor: "background.paper",
+                    }}
+                  >
+                    <Typography variant="body2">{feature}</Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Panel>
+        )}
+
+        {study.results?.length > 0 && (
+          <Panel title="Impact & results" accent="success.main">
+            <Stack spacing={1.5}>
+              {study.results.map((result, index) => (
+                <Box key={index} sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
+                  <CheckCircleOutlineIcon color="success" sx={{ mt: 0.25 }} fontSize="small" />
+                  <Typography variant="body1" color="text.secondary">
+                    {result}
+                  </Typography>
                 </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Panel>
+              ))}
+            </Stack>
+          </Panel>
+        )}
 
-        <Panel title="Impact & results" accent="success.main">
-          <Stack spacing={1.5}>
-            {study.results.map((result, index) => (
-              <Box key={index} sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
-                <CheckCircleOutlineIcon color="success" sx={{ mt: 0.25 }} fontSize="small" />
-                <Typography variant="body1" color="text.secondary">
-                  {result}
-                </Typography>
-              </Box>
-            ))}
-          </Stack>
-        </Panel>
+        {study.note && (
+          <Box
+            sx={{
+              mb: 5,
+              p: 2.5,
+              borderRadius: 2,
+              bgcolor: "background.default",
+              border: "1px solid",
+              borderColor: "divider",
+              display: "flex",
+              gap: 1.5,
+              alignItems: "flex-start",
+            }}
+          >
+            <InfoOutlinedIcon color="info" fontSize="small" sx={{ mt: 0.25 }} />
+            <Typography variant="body2" color="text.secondary">
+              {study.note}
+            </Typography>
+          </Box>
+        )}
 
-        <Panel title="Tech stack" accent="info.main">
-          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-            {study.techStack.map((tech) => (
-              <Chip key={tech} label={tech} variant="outlined" color="primary" />
-            ))}
-          </Stack>
-        </Panel>
+        {study.techStack?.length > 0 && (
+          <Panel title="Tech stack" accent="info.main">
+            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+              {study.techStack.map((tech) => (
+                <Chip key={tech} label={tech} variant="outlined" color="primary" />
+              ))}
+            </Stack>
+          </Panel>
+        )}
 
         {relatedServices.length > 0 && (
           <Panel title="Services used">
