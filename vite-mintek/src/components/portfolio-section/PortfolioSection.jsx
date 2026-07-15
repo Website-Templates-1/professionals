@@ -75,26 +75,7 @@ const PortfolioSection = () => {
                       loading="lazy"
                       sx={{ width: "100%", height: 180, objectFit: "cover", display: "block" }}
                     />
-                  ) : (
-                    <Box
-                      aria-hidden="true"
-                      sx={{
-                        height: 140,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        px: 3,
-                        textAlign: "center",
-                        color: "white",
-                        background:
-                          "linear-gradient(135deg, #6C55F9 0%, #8875fa 60%, #FF3D85 140%)",
-                      }}
-                    >
-                      <Typography variant="subtitle2" sx={{ fontWeight: 700, letterSpacing: 0.5 }}>
-                        {study.label}
-                      </Typography>
-                    </Box>
-                  )}
+                  ): null}
                   <CardContent sx={{ p: 4, height: "100%", display: "flex", flexDirection: "column" }}>
                     <Stack direction="row" spacing={1} sx={{ mb: 2 }} flexWrap="wrap" useFlexGap>
                       <Chip label={study.label} size="small" color="primary" variant="outlined" />
