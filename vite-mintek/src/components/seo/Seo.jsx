@@ -23,7 +23,7 @@ const Seo = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      {noindex && <meta name="robots" content="noindex, follow" />}
 
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={site.brand} />

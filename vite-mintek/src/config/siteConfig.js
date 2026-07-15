@@ -120,21 +120,22 @@ export const budgetPresets = {
     "Not sure",
   ],
   general: [
-    "Not sure yet",
-    "Under $5,000",
-    "$5,000 – $15,000",
-    "$15,000 – $30,000",
+    "Under $3,000",
+    "$3,000 – $10,000",
+    "$10,000 – $30,000",
     "$30,000+",
+    "Not sure",
   ],
 };
 
 // Contact-form project types. `budgetType` selects which budget list to show.
+// Order matches the site's positioning: software and automation first.
 export const projectTypes = [
   { value: "custom-software", label: "Custom software", budgetType: "software" },
   { value: "automation", label: "Business automation", budgetType: "automation" },
-  { value: "marketplace", label: "Marketplace / web application", budgetType: "software" },
-  { value: "website", label: "Website / web design", budgetType: "website" },
-  { value: "other", label: "Something else / not sure", budgetType: "general" },
+  { value: "website", label: "Website development", budgetType: "website" },
+  { value: "web-application", label: "Web application", budgetType: "software" },
+  { value: "other", label: "Other / not sure", budgetType: "general" },
 ];
 
 // Maps a service slug to a contact-form project type (for ?service= prefill).
@@ -142,7 +143,7 @@ export const projectTypeForService = (slug) => {
   if (!slug) return "";
   if (/custom-software|mobile-app/.test(slug)) return "custom-software";
   if (/automation/.test(slug)) return "automation";
-  if (/marketplace|web-application/.test(slug)) return "marketplace";
+  if (/marketplace|web-application/.test(slug)) return "web-application";
   if (/website|web-design|google-sheets|restaurant-website/.test(slug)) return "website";
   return "other";
 };
@@ -420,7 +421,7 @@ export const services = [
     outcome:
       "Reports and data that update themselves, with fewer errors and hours handed back to your team.",
     note:
-      "We prioritise this page with real, named or anonymized automation examples as engagements are completed.",
+      "Automation projects can be delivered as standalone workflows or integrated into your existing business systems.",
     relatedServices: ["business-automation", "google-sheets-website-development", "custom-software-development"],
     relatedCaseStudies: ["restaurant-online-ordering-system"],
   },
@@ -561,6 +562,11 @@ export const services = [
     icon: "Language",
     color: "#FF3D85",
     group: "local",
+    // Deferred from indexing: currently too similar to the Brampton/Toronto
+    // pages. ServicePage emits `noindex, follow` and the sitemap excludes it
+    // until it has unique Mississauga-specific proof and content. Keep a
+    // self-referencing canonical (Seo sets it) and do not redirect it.
+    hidden: true,
     budgetType: "website",
     pricing: "Small-business website projects start at CAD $1,500.",
     offersFrom: 1500,
@@ -819,7 +825,7 @@ export const caseStudies = [
     slug: "pawpals",
     kind: "client",
     label: "Lead-Generation Website",
-    homepageOrder: 3,
+    homepageOrder: 4,
     title: "Creating a Brampton Dog Daycare Website and Waitlist Funnel",
     client: "PawPals",
     year: "2024",
@@ -861,7 +867,7 @@ export const caseStudies = [
     slug: "doaba-junction",
     kind: "client",
     label: "Restaurant Website",
-    homepageOrder: 4,
+    homepageOrder: 5,
     title: "Restaurant Website Design for Doaba Junction",
     client: "Doaba Junction",
     year: "2024",
@@ -901,7 +907,7 @@ export const caseStudies = [
     slug: "relax-cafe",
     kind: "client",
     label: "Hospitality Website",
-    homepageOrder: 5,
+    homepageOrder: 6,
     title: "Cafe Website Design for an Australian Hospitality Business",
     client: "Relax Cafe",
     year: "2024",
@@ -940,7 +946,7 @@ export const caseStudies = [
     slug: "aloe-accounting",
     kind: "concept",
     label: "Design Concept",
-    homepageOrder: 6,
+    homepageOrder: null,
     title: "Accounting Website Design Concept",
     client: "ALOE Accounting",
     year: "2024",
@@ -973,7 +979,7 @@ export const caseStudies = [
     slug: "restaurant-online-ordering-system",
     kind: "client",
     label: "Custom Software",
-    homepageOrder: null,
+    homepageOrder: 3,
     title: "Restaurant Online Ordering System",
     client: "Airport Sweets and Tandoori",
     year: "2022",
@@ -1113,10 +1119,10 @@ export const footerNav = [
   },
   {
     heading: "Web Design",
+    // web-design-mississauga is intentionally omitted while noindexed.
     links: [
       "website-development",
       "web-design-brampton",
-      "web-design-mississauga",
       "web-design-toronto",
       "restaurant-website-design",
     ].map(footerItem),

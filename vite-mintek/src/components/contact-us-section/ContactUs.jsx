@@ -1,5 +1,16 @@
-import { useState, useEffect } from "react";
-import { Box, Container, Typography, Grid, Button, Snackbar, Alert, CircularProgress } from "@mui/material";
+import { useState, useEffect, useRef } from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Button,
+  Stack,
+  Snackbar,
+  Alert,
+  CircularProgress,
+} from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -9,11 +20,13 @@ import {
   budgetPresets,
   projectTypeForService,
 } from "../../config/siteConfig";
-import { trackLead } from "../../utils/analytics";
+import { trackEvent, trackLead } from "../../utils/analytics";
 
 const contactContent = {
   overline: "GET IN TOUCH",
-  title: "Let's Build Something Great Together",
+  title: "Tell Us What You Want to Build or Automate",
+  subtitle:
+    "Share the business problem, current process or website you want to improve. We will review the request and recommend a practical next step.",
   contactInfo: {
     title: "Contact Information",
     items: [
@@ -36,6 +49,13 @@ const contactContent = {
   },
 };
 
+// Quick-start enquiry links (crawlable) that prefill the form's project type.
+const enquiryLinks = [
+  { label: "Custom software", service: "custom-software-development" },
+  { label: "Automation", service: "business-automation" },
+  { label: "Website estimate", service: "website-development" },
+];
+
 const inputSx = {
   width: "100%",
   p: 1.5,
@@ -46,10 +66,14 @@ const inputSx = {
   fontSize: "1rem",
   bgcolor: "white",
   "&:focus": {
-    outline: "none",
+    outline: "2px solid",
+    outlineColor: "primary.main",
+    outlineOffset: "-1px",
     borderColor: "primary.main",
   },
 };
+
+const labelSx = { display: "block", mb: 1, fontWeight: 600 };
 
 const ContactUs = ({ defaultService = "" }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -57,6 +81,8 @@ const ContactUs = ({ defaultService = "" }) => {
     projectTypeForService(defaultService)
   );
   const [budget, setBudget] = useState("");
+  const [errors, setErrors] = useState({});
+  const startedRef = useRef(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
@@ -70,7 +96,8 @@ const ContactUs = ({ defaultService = "" }) => {
     }
   }, [defaultService]);
 
-  // Reset budget when the project type changes, since the ranges differ.
+  // Reset budget when the project type changes, since the ranges differ. This
+  // also prevents submitting a stale budget belonging to another project type.
   useEffect(() => {
     setBudget("");
   }, [projectType]);
@@ -83,21 +110,44 @@ const ContactUs = ({ defaultService = "" }) => {
     setSnackbar((prev) => ({ ...prev, open: false }));
   };
 
+  // Fire a single "form started" event on first interaction.
+  const handleFormStart = () => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackEvent("form_start", { form: "contact" });
+    }
+  };
+
   const handleFormSubmission = async (event) => {
     event.preventDefault();
 
     const form = event.target;
     const { name, email, message } = form.elements;
 
-    if (!name.value || !email.value || !message.value) {
+    const nextErrors = {};
+    if (!name.value.trim()) nextErrors.name = "Please enter your name.";
+    if (!email.value.trim()) nextErrors.email = "Please enter your email address.";
+    if (!message.value.trim()) nextErrors.message = "Please tell us a little about your project.";
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      trackEvent("form_error", {
+        form: "contact",
+        fields: Object.keys(nextErrors).join(","),
+      });
       setSnackbar({
         open: true,
-        message: "Please fill in your name, email and a short message",
+        message: "Please fill in your name, email and a short message.",
         severity: "error",
       });
+      const firstInvalid = form.elements[Object.keys(nextErrors)[0]];
+      if (firstInvalid && typeof firstInvalid.focus === "function") {
+        firstInvalid.focus();
+      }
       return;
     }
 
+    setErrors({});
     setIsLoading(true);
 
     try {
@@ -121,6 +171,7 @@ const ContactUs = ({ defaultService = "" }) => {
         severity: "success",
       });
       form.reset();
+      startedRef.current = false;
       setProjectType(projectTypeForService(defaultService));
       setBudget("");
     } catch (error) {
@@ -171,7 +222,7 @@ const ContactUs = ({ defaultService = "" }) => {
           component="h2"
           sx={{
             textAlign: "center",
-            mb: 8,
+            mb: 2,
             fontWeight: "bold",
             background: "linear-gradient(45deg, #6C55F9, #8875fa)",
             backgroundClip: "text",
@@ -180,6 +231,33 @@ const ContactUs = ({ defaultService = "" }) => {
         >
           {contactContent.title}
         </Typography>
+        <Typography
+          variant="h6"
+          component="p"
+          color="text.secondary"
+          sx={{ textAlign: "center", maxWidth: 720, mx: "auto", mb: 4 }}
+        >
+          {contactContent.subtitle}
+        </Typography>
+
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          justifyContent="center"
+          sx={{ mb: 8 }}
+        >
+          {enquiryLinks.map((link) => (
+            <Button
+              key={link.service}
+              component={RouterLink}
+              to={`/contact?service=${link.service}`}
+              variant="outlined"
+              color="primary"
+            >
+              {link.label}
+            </Button>
+          ))}
+        </Stack>
 
         <Grid container spacing={6}>
           {/* Contact Information */}
@@ -195,6 +273,7 @@ const ContactUs = ({ defaultService = "" }) => {
             >
               <Typography
                 variant="h5"
+                component="h3"
                 sx={{ fontWeight: "bold", mb: 4, color: "text.primary" }}
               >
                 {contactContent.contactInfo.title}
@@ -206,6 +285,7 @@ const ContactUs = ({ defaultService = "" }) => {
                     sx={{ display: "flex", alignItems: "center", gap: 2 }}
                   >
                     <Box
+                      aria-hidden="true"
                       sx={{
                         minWidth: 48,
                         minHeight: 48,
@@ -220,7 +300,7 @@ const ContactUs = ({ defaultService = "" }) => {
                       {item.icon}
                     </Box>
                     <Box>
-                      <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                      <Typography variant="subtitle2" component="p" sx={{ mb: 0.5 }}>
                         {item.title}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
@@ -237,7 +317,10 @@ const ContactUs = ({ defaultService = "" }) => {
           <Grid item xs={12} md={7}>
             <Box
               component="form"
+              noValidate
               onSubmit={handleFormSubmission}
+              onFocus={handleFormStart}
+              onChange={handleFormStart}
               sx={{
                 p: 4,
                 bgcolor: "white",
@@ -247,39 +330,75 @@ const ContactUs = ({ defaultService = "" }) => {
             >
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
-                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
-                    Name
+                  <Typography component="label" htmlFor="contact-name" variant="subtitle2" sx={labelSx}>
+                    Name <Box component="span" aria-hidden="true">*</Box>
                   </Typography>
                   <Box
                     component="input"
+                    id="contact-name"
                     type="text"
                     name="name"
                     placeholder="John Doe"
+                    aria-required="true"
+                    aria-invalid={errors.name ? "true" : undefined}
+                    aria-describedby={errors.name ? "contact-name-error" : undefined}
                     sx={inputSx}
                   />
+                  {errors.name && (
+                    <Typography
+                      id="contact-name-error"
+                      role="alert"
+                      variant="caption"
+                      color="error"
+                      sx={{ mt: 0.5, display: "block" }}
+                    >
+                      {errors.name}
+                    </Typography>
+                  )}
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
-                    Email
+                  <Typography component="label" htmlFor="contact-email" variant="subtitle2" sx={labelSx}>
+                    Email address <Box component="span" aria-hidden="true">*</Box>
                   </Typography>
                   <Box
                     component="input"
+                    id="contact-email"
                     type="email"
                     name="email"
                     placeholder="john@example.com"
+                    aria-required="true"
+                    aria-invalid={errors.email ? "true" : undefined}
+                    aria-describedby={errors.email ? "contact-email-error" : undefined}
                     sx={inputSx}
                   />
+                  {errors.email && (
+                    <Typography
+                      id="contact-email-error"
+                      role="alert"
+                      variant="caption"
+                      color="error"
+                      sx={{ mt: 0.5, display: "block" }}
+                    >
+                      {errors.email}
+                    </Typography>
+                  )}
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                  <Typography component="label" htmlFor="contact-project-type" variant="subtitle2" sx={labelSx}>
                     Project type
                   </Typography>
                   <Box
                     component="select"
+                    id="contact-project-type"
                     name="project_type"
                     value={projectType}
-                    onChange={(e) => setProjectType(e.target.value)}
+                    onChange={(e) => {
+                      setProjectType(e.target.value);
+                      if (e.target.value) {
+                        trackEvent("select_project_type", { project_type: e.target.value });
+                      }
+                    }}
                     sx={inputSx}
                   >
                     <option value="">Select a project type</option>
@@ -291,14 +410,20 @@ const ContactUs = ({ defaultService = "" }) => {
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                  <Typography component="label" htmlFor="contact-budget" variant="subtitle2" sx={labelSx}>
                     Estimated budget
                   </Typography>
                   <Box
                     component="select"
+                    id="contact-budget"
                     name="budget"
                     value={budget}
-                    onChange={(e) => setBudget(e.target.value)}
+                    onChange={(e) => {
+                      setBudget(e.target.value);
+                      if (e.target.value) {
+                        trackEvent("select_budget", { budget: e.target.value });
+                      }
+                    }}
                     sx={inputSx}
                   >
                     <option value="">Select a budget range</option>
@@ -311,16 +436,31 @@ const ContactUs = ({ defaultService = "" }) => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
-                    Message
+                  <Typography component="label" htmlFor="contact-message" variant="subtitle2" sx={labelSx}>
+                    Message <Box component="span" aria-hidden="true">*</Box>
                   </Typography>
                   <Box
                     component="textarea"
+                    id="contact-message"
                     name="message"
                     placeholder="Tell us about your project, goals and timeline..."
                     rows={6}
+                    aria-required="true"
+                    aria-invalid={errors.message ? "true" : undefined}
+                    aria-describedby={errors.message ? "contact-message-error" : undefined}
                     sx={{ ...inputSx, minHeight: 120, resize: "vertical" }}
                   />
+                  {errors.message && (
+                    <Typography
+                      id="contact-message-error"
+                      role="alert"
+                      variant="caption"
+                      color="error"
+                      sx={{ mt: 0.5, display: "block" }}
+                    >
+                      {errors.message}
+                    </Typography>
+                  )}
                 </Grid>
 
                 <Grid item xs={12}>

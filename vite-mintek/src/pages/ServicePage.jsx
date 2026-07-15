@@ -157,7 +157,9 @@ const ServicePage = ({ slug }) => {
                 >
                   <Typography
                     variant="h6"
-                    sx={{ color: "primary.main", fontWeight: "bold", mb: 1 }}
+                    component="span"
+                    aria-hidden="true"
+                    sx={{ color: "primary.main", fontWeight: "bold", mb: 1, display: "block" }}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </Typography>

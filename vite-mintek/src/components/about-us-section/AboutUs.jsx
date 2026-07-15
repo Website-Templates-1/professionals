@@ -1,23 +1,24 @@
 import React from "react";
 import { Container, Typography, Grid, Box } from "@mui/material";
+import { caseStudies, site } from "../../config/siteConfig";
 
 const aboutUsContent = {
   overline: "ABOUT US",
   title: "Software built for how your business works",
   description:
-    "Mintek Software is a Brampton-based software and web development studio serving businesses across the Greater Toronto Area and remotely. We build custom websites, internal business applications and automation that remove manual work, so growing teams can operate faster and make better decisions.",
+    "Mintek Software is a Brampton-based software and web development studio serving businesses across the Greater Toronto Area and remotely. We build custom websites, internal business applications and automation that remove manual work, so growing teams can operate faster and make better decisions. In-person meetings are available across the GTA.",
   stats: [
     {
-      number: "10+",
-      label: "Projects Completed",
+      number: String(site.foundingYear),
+      label: "Building projects since",
     },
     {
-      number: "20+",
-      label: "Happy Clients",
+      number: `${caseStudies.length}`,
+      label: "Documented projects",
     },
     {
-      number: "5",
-      label: "Team Experts",
+      number: "GTA",
+      label: "Serving the Greater Toronto Area",
     },
   ],
   features: [
@@ -96,6 +97,7 @@ const AboutUs = () => {
               <Box key={index}>
                 <Typography
                   variant="h4"
+                  component="div"
                   sx={{
                     fontWeight: "bold",
                     color: "primary.main",
@@ -132,6 +134,7 @@ const AboutUs = () => {
                 >
                   <Typography
                     variant="h6"
+                    component="h3"
                     sx={{
                       fontWeight: "bold",
                       mb: 1,

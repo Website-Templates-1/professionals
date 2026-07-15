@@ -95,7 +95,7 @@ const Hero = () => {
             },
           }}
         >
-          Custom Software and Website Development for Growing Businesses
+          Custom Software and Business Automation for Growing Companies
         </Typography>
         <Typography
           variant="h5"
@@ -111,9 +111,10 @@ const Hero = () => {
             lineHeight: 1.6,
           }}
         >
-          Mintek Software builds custom software, business automation and
-          high-performing websites that streamline operations and help
-          businesses grow.
+          Mintek Software builds web applications, internal tools and automated
+          workflows that reduce manual work and help businesses operate more
+          efficiently. We also design high-performance business websites for
+          companies across Brampton and the Greater Toronto Area.
         </Typography>
         <Stack
           direction={{ xs: "column", sm: "row" }}
@@ -124,23 +125,23 @@ const Hero = () => {
         >
           <Button
             component={RouterLink}
-            to="/contact"
+            to="/contact?service=custom-software-development"
             variant="contained"
             size="large"
             color="primary"
             sx={{ width: { xs: "100%", sm: "auto" } }}
           >
-            Request a consultation
+            Discuss Your Software Project
           </Button>
           <Button
             component={RouterLink}
-            to="/case-studies"
+            to="/contact?service=website-development"
             variant="outlined"
             size="large"
             color="primary"
             sx={{ width: { xs: "100%", sm: "auto" } }}
           >
-            See our work
+            Get a Website Estimate
           </Button>
         </Stack>
       </Container>

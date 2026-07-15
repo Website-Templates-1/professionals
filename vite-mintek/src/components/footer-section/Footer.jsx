@@ -19,7 +19,7 @@ const Footer = () => {
       <Container>
         {/* Brand + contact block */}
         <Box sx={{ mb: 6, maxWidth: 420 }}>
-          <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+          <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: 1 }}>
             {site.brand}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
@@ -50,29 +50,36 @@ const Footer = () => {
         </Box>
 
         {/* Service-line link columns */}
+        <Typography variant="h2" sx={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap" }}>
+          Footer navigation
+        </Typography>
         <Grid container spacing={4}>
           {footerNav.map((group) => (
             <Grid item xs={6} md={3} key={group.heading}>
-              <Typography
-                variant="subtitle2"
-                sx={{ fontWeight: "bold", mb: 2 }}
-              >
-                {group.heading}
-              </Typography>
-              <Stack spacing={1}>
-                {group.links.map((link) => (
-                  <Link
-                    key={link.path}
-                    component={RouterLink}
-                    to={link.path}
-                    variant="body2"
-                    color="text.secondary"
-                    underline="hover"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </Stack>
+              <Box component="nav" aria-label={group.heading}>
+                <Typography
+                  variant="subtitle2"
+                  component="p"
+                  sx={{ fontWeight: "bold", mb: 2 }}
+                >
+                  {group.heading}
+                </Typography>
+                <Stack spacing={1}>
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.path}
+                      component={RouterLink}
+                      to={link.path}
+                      variant="body2"
+                      color="text.secondary"
+                      underline="hover"
+                      sx={{ display: "block" }}
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </Stack>
+              </Box>
             </Grid>
           ))}
         </Grid>

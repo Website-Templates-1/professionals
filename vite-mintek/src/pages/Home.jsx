@@ -12,8 +12,8 @@ const Home = () => {
   return (
     <>
       <Seo
-        title={`Custom Software, Automation & Website Development | ${site.brand}`}
-        description="Mintek Software builds custom software, business automation and high-performing websites that streamline operations and support business growth. Request a consultation."
+        title={`Custom Software & Business Automation | ${site.brand}`}
+        description="Mintek Software builds custom business software, web applications and automated workflows for companies across Brampton and the GTA. Website projects start at $1,500."
         path="/"
       />
       <Hero />

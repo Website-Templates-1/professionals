@@ -81,6 +81,15 @@ const OurServices = () => {
             manual work into measurable results, plus the websites that support
             them.
           </Typography>
+          <Typography
+            variant="body2"
+            component="p"
+            color="text.secondary"
+            sx={{ maxWidth: "600px", mx: "auto", mt: 2 }}
+          >
+            Business website projects start at CAD $1,500. Custom software and
+            automation projects are quoted after discovery.
+          </Typography>
         </Box>
 
         <Grid container spacing={4}>

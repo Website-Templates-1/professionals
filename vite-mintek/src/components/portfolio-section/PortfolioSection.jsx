@@ -11,6 +11,7 @@ import {
   Button,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { homepageCaseStudies } from "../../config/siteConfig";
 
 const PortfolioSection = () => {
@@ -43,7 +44,9 @@ const PortfolioSection = () => {
         </Box>
 
         <Grid container spacing={4}>
-          {homepageCaseStudies.map((study) => (
+          {homepageCaseStudies.map((study) => {
+            const highlight = study.features?.[0] || study.results?.[0];
+            return (
             <Grid item xs={12} sm={6} md={4} key={study.slug}>
               <Card
                 sx={{
@@ -51,6 +54,7 @@ const PortfolioSection = () => {
                   borderRadius: 4,
                   border: "1px solid",
                   borderColor: "divider",
+                  overflow: "hidden",
                   transition: "all 0.3s ease-in-out",
                   "&:hover": {
                     transform: "translateY(-8px)",
@@ -61,8 +65,36 @@ const PortfolioSection = () => {
                 <CardActionArea
                   component={RouterLink}
                   to={`/case-studies/${study.slug}`}
-                  sx={{ height: "100%" }}
+                  sx={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "stretch" }}
                 >
+                  {study.image ? (
+                    <Box
+                      component="img"
+                      src={study.image}
+                      alt={study.imageAlt || `${study.title} — ${study.label} by Mintek Software`}
+                      loading="lazy"
+                      sx={{ width: "100%", height: 180, objectFit: "cover", display: "block" }}
+                    />
+                  ) : (
+                    <Box
+                      aria-hidden="true"
+                      sx={{
+                        height: 140,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        px: 3,
+                        textAlign: "center",
+                        color: "white",
+                        background:
+                          "linear-gradient(135deg, #6C55F9 0%, #8875fa 60%, #FF3D85 140%)",
+                      }}
+                    >
+                      <Typography variant="subtitle2" sx={{ fontWeight: 700, letterSpacing: 0.5 }}>
+                        {study.label}
+                      </Typography>
+                    </Box>
+                  )}
                   <CardContent sx={{ p: 4, height: "100%", display: "flex", flexDirection: "column" }}>
                     <Stack direction="row" spacing={1} sx={{ mb: 2 }} flexWrap="wrap" useFlexGap>
                       <Chip label={study.label} size="small" color="primary" variant="outlined" />
@@ -73,14 +105,28 @@ const PortfolioSection = () => {
                     <Typography variant="h6" component="h3" sx={{ fontWeight: "bold", mb: 1 }}>
                       {study.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: highlight ? 2 : 0 }}>
                       {study.shortDescription}
                     </Typography>
+                    {highlight && (
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        alignItems="flex-start"
+                        sx={{ mt: "auto", pt: 1 }}
+                      >
+                        <CheckCircleOutlineIcon color="success" fontSize="small" sx={{ mt: 0.2 }} />
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                          {highlight}
+                        </Typography>
+                      </Stack>
+                    )}
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
-          ))}
+            );
+          })}
         </Grid>
 
         <Box sx={{ textAlign: "center", mt: { xs: 5, md: 7 } }}>
