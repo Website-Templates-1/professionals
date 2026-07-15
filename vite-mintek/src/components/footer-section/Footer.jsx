@@ -1,4 +1,5 @@
 import { Box, Container, Typography, Grid, Link, Stack } from "@mui/material";
+import { visuallyHidden } from "@mui/utils";
 import { Link as RouterLink } from "react-router-dom";
 import { site, footerNav } from "../../config/siteConfig";
 
@@ -50,7 +51,7 @@ const Footer = () => {
         </Box>
 
         {/* Service-line link columns */}
-        <Typography variant="h2" sx={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap" }}>
+        <Typography variant="h2" sx={visuallyHidden}>
           Footer navigation
         </Typography>
         <Grid container spacing={4}>
