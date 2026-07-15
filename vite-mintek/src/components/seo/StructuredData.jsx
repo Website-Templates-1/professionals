@@ -111,6 +111,60 @@ export const ServiceSchema = ({ service }) => (
   />
 );
 
+// A portfolio case study modelled as a CreativeWork (accurate for project
+// write-ups, and avoids Article rich-result warnings we can't satisfy without
+// per-project images). Uses only truthful fields from the case study config.
+export const CaseStudySchema = ({ study }) => {
+  const path = `/case-studies/${study.slug}`;
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: study.title,
+        headline: study.title,
+        description: study.metaDescription || study.shortDescription,
+        url: canonical(path),
+        image: absoluteUrl(site.logo),
+        ...(study.year ? { datePublished: String(study.year) } : {}),
+        inLanguage: "en",
+        creator: {
+          "@type": "Organization",
+          name: site.brand,
+          url: site.domain,
+        },
+        ...(study.client && study.kind !== "concept"
+          ? { about: { "@type": "Organization", name: study.client } }
+          : {}),
+        ...(study.techStack?.length
+          ? { keywords: study.techStack.join(", ") }
+          : {}),
+        isPartOf: {
+          "@type": "WebSite",
+          name: site.brand,
+          url: site.domain,
+        },
+      }}
+    />
+  );
+};
+
+// The case studies index as an ordered ItemList of the individual projects.
+export const CaseStudyListSchema = ({ studies }) => (
+  <JsonLd
+    data={{
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: studies.map((study, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: study.title,
+        url: canonical(`/case-studies/${study.slug}`),
+      })),
+    }}
+  />
+);
+
 // items: [{ name, path }]
 export const BreadcrumbSchema = ({ items }) => (
   <JsonLd

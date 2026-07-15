@@ -13,7 +13,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
-import { BreadcrumbSchema } from "../components/seo/StructuredData";
+import { BreadcrumbSchema, CaseStudyListSchema } from "../components/seo/StructuredData";
 import { orderedCaseStudies, site } from "../config/siteConfig";
 
 const CaseStudiesIndex = () => {
@@ -30,6 +30,7 @@ const CaseStudiesIndex = () => {
         path="/case-studies"
       />
       <BreadcrumbSchema items={breadcrumbItems} />
+      <CaseStudyListSchema studies={orderedCaseStudies} />
 
       <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 4, md: 6 } }}>
         <Container>

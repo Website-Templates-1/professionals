@@ -18,7 +18,7 @@ import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
 import Faq from "../components/common/Faq";
-import { BreadcrumbSchema } from "../components/seo/StructuredData";
+import { BreadcrumbSchema, CaseStudySchema } from "../components/seo/StructuredData";
 import { getCaseStudy, getService, getCaseStudyFaqs } from "../config/siteConfig";
 import NotFound from "./NotFound";
 
@@ -75,6 +75,7 @@ const CaseStudyDetail = ({ slug }) => {
     <>
       <Seo title={study.metaTitle} description={study.metaDescription} path={path} />
       <BreadcrumbSchema items={breadcrumbItems} />
+      <CaseStudySchema study={study} />
 
       <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 4, md: 6 } }}>
         <Container maxWidth="md">
