@@ -1123,3 +1123,465 @@ export const footerNav = [
   },
   { heading: "Company", links: companyLinks },
 ];
+
+// ---------------------------------------------------------------------------
+// FAQs
+// People-first answers written from approved facts (pricing strings above,
+// serviceAreaStatement, existing service copy and real case studies). No
+// ranking/revenue/savings guarantees. No FAQ JSON-LD (rich results deprecated).
+// ---------------------------------------------------------------------------
+export const homeFaqs = [
+  {
+    q: "What does Mintek Software build?",
+    a: "Mintek builds custom software, business applications, automation and websites for growing businesses. That includes internal tools and dashboards, customer-facing web applications and marketplaces, Google Sheets-powered sites, spreadsheet and workflow automation, and fast, SEO-ready marketing websites. We focus on removing manual work and turning day-to-day operations into reliable, measurable systems. If you are not sure which type of project you need, we can help you scope the smallest solution that delivers the most value.",
+  },
+  {
+    q: "Does Mintek work with small businesses?",
+    a: "Yes. Most of our clients are small and growing businesses across the Greater Toronto Area. We scope projects to your budget and priorities, often starting with a focused first version and expanding from there. Whether you need a website starting at CAD $1,500, a spreadsheet automation or a larger custom application, we tailor the approach so it fits how your business works today while leaving room to grow.",
+  },
+  {
+    q: "Which cities does Mintek serve?",
+    a: `${site.serviceAreaStatement} We work with businesses throughout Brampton, Mississauga, Toronto and Vaughan, and also support remote clients beyond the GTA. Being based locally means we can meet in person for discovery, demos and handover while running much of the work efficiently over video and email.`,
+  },
+  {
+    q: "Can Mintek meet clients in person?",
+    a: "Yes. We are based in Brampton and in-person meetings are available across the Greater Toronto Area, including Toronto, Mississauga and Vaughan. Many projects also run smoothly over video calls and email, so we can work whichever way suits you best. For discovery, demos and planning we are happy to meet at a location that works for your team.",
+  },
+  {
+    q: "How do I get a project estimate?",
+    a: "The fastest way is to send a short description of your project through our contact form: the problem you are trying to solve, roughly what you have in mind, and your timeline. We follow up with questions and suggested next steps. For custom software and automation we usually recommend a short discovery call so the estimate reflects your real requirements. Website projects can often be scoped more quickly.",
+  },
+];
+
+// Per-service FAQ sets, keyed by slug.
+export const serviceFaqs = {
+  "custom-software-development": [
+    {
+      q: "How much does custom software development cost?",
+      a: "Custom software projects generally start at CAD $5,000. Final pricing depends on functionality, integrations, user roles, security requirements and project scope. Simple internal tools sit near the starting point, while multi-user platforms with integrations cost more. We quote fixed-scope stages wherever possible so you can start with a focused first version and expand later, and we confirm pricing after a short discovery conversation about your goals and requirements.",
+    },
+    {
+      q: "What types of custom software does Mintek build?",
+      a: "We build internal tools and admin dashboards, customer-facing web applications, marketplaces, booking and ordering systems, reporting tools, and integrations between systems that do not currently talk to each other. Examples from our work include a map-first parking marketplace and a custom restaurant online-ordering system with payments and analytics. If off-the-shelf software almost fits but forces awkward workarounds, that is usually a strong candidate for a tailored build.",
+    },
+    {
+      q: "How long does a custom software project take?",
+      a: "It depends on scope. A focused first version or proof of concept can take a few weeks, while a larger multi-user platform with integrations takes longer. We work in clearly defined stages: discovery, prototype, initial release, then integrations and enhancements. That way you see usable progress early rather than waiting months for a single launch. We agree on timelines during discovery once the requirements are clear.",
+    },
+    {
+      q: "Can Mintek build an MVP first?",
+      a: "Yes, and we usually recommend it. Starting with a minimum viable product or proof of concept lets you validate the idea with real users, control cost and learn what matters most before investing in the full build. We ship a solid, usable first version, then expand functionality as priorities become clear. This staged approach reduces risk and gets value into your hands sooner.",
+    },
+    {
+      q: "Who owns the source code after completion?",
+      a: "You own the software we build for you, including the source code, once the project is complete and paid for. We hand over the code and deployment details and can document everything so another developer could maintain it if needed. Third-party services and libraries keep their own licences, but the custom work is yours. You are never locked into a platform that holds your project hostage.",
+    },
+    {
+      q: "Can Mintek integrate with existing systems?",
+      a: "Yes. We regularly connect custom software to the tools businesses already use, such as payment processors, spreadsheets, email and SMS services, and other systems through their APIs. During discovery we map which systems need to exchange data and design reliable, monitored connections. If a system has no modern API, we will tell you honestly and suggest the most dependable approach available rather than promising something fragile.",
+    },
+    {
+      q: "Does Mintek provide maintenance after launch?",
+      a: "Yes. After launch we offer ongoing support, monitoring and enhancements so the software keeps working as your business changes. We can fix issues, add features and update integrations when a connected service changes. Support can be arranged on a flexible basis depending on how critical the system is to your daily operations.",
+    },
+    {
+      q: "What information is needed to prepare an estimate?",
+      a: "It helps to know the problem you are solving, who will use the software, the key features you need, any systems it must connect to, your rough timeline and budget range, and any security or compliance requirements. Even a short written summary is enough to start. We then follow up with a few questions, and for larger projects a short discovery call, before proposing scope and pricing.",
+    },
+  ],
+  "business-automation": [
+    {
+      q: "What business processes can Mintek automate?",
+      a: "We automate repetitive, rule-based work such as data entry, copying information between systems, recurring reporting, invoice and document generation, notifications and reminders, and syncing data between spreadsheets and other tools. If your team does the same manual steps every day or week, or rebuilds the same report regularly, that is usually a strong candidate. We start by finding where time and errors accumulate, then automate the highest-payback tasks first.",
+    },
+    {
+      q: "How do I know whether a process should be automated?",
+      a: "A good sign is any task that is repetitive, rule-based and done often, especially if it is slow, error-prone or relies on one person remembering to do it. If the steps can be written down as a clear set of rules, they can usually be automated. During a short discovery we measure where your team spends time and highlight the automations with the fastest payback, so you can decide with clear priorities.",
+    },
+    {
+      q: "How much does business automation cost?",
+      a: "Small, clearly defined automation projects generally start at CAD $3,000. Larger workflow and integration projects are quoted after discovery. Even smaller ideas below that range can suit a paid discovery or proof of concept. Because automation value comes from time saved and errors removed, we focus first on the processes with the fastest payback so the work pays for itself.",
+    },
+    {
+      q: "Can Mintek automate Google Sheets and spreadsheet workflows?",
+      a: "Yes. Google Sheets and spreadsheet workflows are among the most common things we automate. We can pull data in on a schedule, clean and validate it, generate reports and dashboards, sync sheets with other systems, and send notifications when something needs attention. This removes manual copy-paste and keeps your spreadsheets current without someone updating them by hand.",
+    },
+    {
+      q: "Can Mintek connect systems that do not currently communicate?",
+      a: "Often, yes. Many systems can be connected through their APIs or through integration tools, even when they were not designed to work together. We map what data needs to move between them and build reliable, monitored connections. If a system genuinely cannot share data, we will tell you honestly and suggest the most dependable alternative rather than promising something that will not hold up.",
+    },
+    {
+      q: "How much time can automation save?",
+      a: "It varies by process, and we do not promise a specific number of hours without evidence from your actual workflow. What we can say is that automating repetitive reporting, data entry and syncing typically turns tasks that took hours into ones that run in minutes in the background. During discovery we measure the current effort so that, after launch, we can compare and show the real time saved.",
+    },
+    {
+      q: "Will employees need technical knowledge to use the automation?",
+      a: "No. We design automations to run quietly in the background and, where staff interaction is needed, to work through tools your team already knows, such as spreadsheets, email or simple dashboards. The goal is less manual work, not new software to learn. We also provide a short guide so anyone on the team can use and understand what was built.",
+    },
+    {
+      q: "Does Mintek provide support when a connected system changes?",
+      a: "Yes. Connected systems occasionally change their interfaces or settings, which can affect an automation. We offer ongoing support and monitoring so that when something changes we can update the connection and keep things running. Arranging support up front is a good idea for automations that are critical to daily operations.",
+    },
+  ],
+  "custom-software-development-toronto": [
+    {
+      q: "Does Mintek have to be located in Toronto to serve Toronto clients?",
+      a: "No. Mintek is based in Brampton and serves clients across Toronto and the GTA. In-person meetings are available. A presence in the wider GTA means we can meet Toronto clients face to face for discovery, demos and planning, while much of the build work happens efficiently over video and email. You get a nearby team without needing us to sit in a Toronto office.",
+    },
+    {
+      q: "Can Mintek attend in-person meetings in Toronto?",
+      a: "Yes. We attend in-person meetings in Toronto for discovery, planning, demos and handover. Mintek is based in nearby Brampton, so travelling into Toronto to meet your team is straightforward. Many clients mix in-person sessions with video calls, and we are flexible about whatever works best for your schedule.",
+    },
+    {
+      q: "What kinds of Toronto businesses does Mintek work with?",
+      a: "We work with small and growing Toronto businesses that have outgrown off-the-shelf tools and need software built around their processes, from internal dashboards and admin tools to customer-facing applications and marketplaces. If manual workarounds and disconnected spreadsheets are slowing your team down, that is usually where custom software helps most. We scope to your budget and priorities.",
+    },
+    {
+      q: "Does Mintek work remotely or on-site?",
+      a: "Both. We combine in-person meetings across Toronto and the GTA with efficient remote development. Discovery, planning and demos often work well face to face, while the build itself runs smoothly over video and shared tools. We adapt to how your team prefers to work rather than forcing a single model.",
+    },
+    {
+      q: "What does a typical custom-software engagement include?",
+      a: "A typical engagement runs in clear stages: discovery to map your workflows and goals, a prototype or proof of concept to validate the approach, an initial production release, then integrations and enhancements, with ongoing support. You see usable progress early and can expand as priorities become clear, rather than waiting for one large launch.",
+    },
+    {
+      q: "Can Mintek take over an existing application?",
+      a: "Often, yes. We can take over an existing application, starting with a review of the code, architecture and current pain points. We give you an honest assessment of what is worth keeping and what should be improved, then stabilise and extend it. If a rebuild would serve you better than patching, we will explain why rather than run up hours on fragile foundations.",
+    },
+    {
+      q: "Can Mintek begin with a paid discovery phase?",
+      a: "Yes. For larger or less-defined projects we often recommend starting with a paid discovery phase. This produces a clear plan, scope and estimate before committing to the full build, which reduces risk for both sides. It is especially useful when requirements are still taking shape or several approaches are possible.",
+    },
+    {
+      q: "How is confidential business information protected?",
+      a: "We take confidentiality seriously. We are happy to sign a non-disclosure agreement, limit access to your data to what the work requires, and follow sensible security practices for credentials and hosting. During discovery we discuss any specific security or compliance needs so they are built into the project from the start.",
+    },
+  ],
+  "google-sheets-website-development": [
+    {
+      q: "Can a website use Google Sheets as its data source?",
+      a: "Yes. We build websites and web applications that read live content directly from Google Sheets, so a spreadsheet becomes the content source for the site. Your team updates rows in a familiar spreadsheet, and the changes appear on the website. It is a fast, low-maintenance approach for content that changes often, with no traditional CMS to log into or maintain.",
+    },
+    {
+      q: "What types of websites work well with Google Sheets?",
+      a: "Google Sheets works well for sites with structured, frequently changing, non-sensitive content: events, menus, catalogues, price lists, schedules, directories and listings. Our work for Laal Button used Google Sheets to power a read-only event-discovery web app, letting staff publish and update events from a spreadsheet. It is ideal when the information already lives in a sheet your team knows how to use.",
+    },
+    {
+      q: "How quickly do spreadsheet changes appear on the website?",
+      a: "Changes appear quickly, typically within moments of updating the spreadsheet, depending on how the site is configured for caching. We can tune this so updates feel near-instant while keeping the site fast. This means staff can correct a price or add an event and see it reflected on the website without waiting for a developer.",
+    },
+    {
+      q: "Can staff update the website without contacting a developer?",
+      a: "Yes, that is the main benefit. Non-technical staff update content directly in Google Sheets, with no developer involvement and no CMS logins to manage. We structure the sheet so it behaves like a reliable content source and add validation for missing or malformed rows. We also provide a short guide so anyone on the team can publish updates confidently.",
+    },
+    {
+      q: "Is Google Sheets suitable for confidential information?",
+      a: "No. Google Sheets is best for public, non-sensitive content such as events, menus and listings. It is not appropriate for confidential, secure or highly sensitive information, or for complex transactional systems. When a project involves sensitive data or transactions, we build it with a proper database, backend and secure access controls instead, and we will tell you honestly which approach fits.",
+    },
+    {
+      q: "What happens when the spreadsheet becomes very large?",
+      a: "Very large or complex datasets can strain a spreadsheet-powered approach, affecting speed and reliability. For modest, structured content it works well, but as data grows we may recommend caching strategies or moving to a proper database. During planning we look at how much data you expect and choose an approach that will stay fast and dependable as you grow.",
+    },
+    {
+      q: "Can Google Sheets connect to an existing website?",
+      a: "Often, yes. We can add a Google Sheets-powered section, such as an events or menu listing, to an existing website, depending on how that site is built. We review your current setup and recommend the cleanest way to integrate. If the existing platform makes it impractical, we will say so and suggest alternatives.",
+    },
+    {
+      q: "Is a spreadsheet-powered website better than a traditional CMS?",
+      a: "It depends on your needs. For frequently changing, structured, non-sensitive content, a Google Sheets-powered site is simpler, faster to update and cheaper to maintain than a traditional CMS, with nothing to log into. For complex sites with many content types, user accounts or sensitive data, a proper CMS or custom backend is the better choice. We help you pick the right tool rather than forcing one approach.",
+    },
+  ],
+  "restaurant-website-design": [
+    {
+      q: "How much does a restaurant website cost?",
+      a: "Restaurant and cafe website projects start at CAD $1,500. Final pricing depends on the number of pages, design, menu presentation and any integrations such as online ordering or reservations. A clean, mobile-first site that shows your menu and drives calls and directions sits near the starting point, while custom features cost more. We confirm a fixed quote after a short chat about what your restaurant needs.",
+    },
+    {
+      q: "Can Mintek add menus and catering information?",
+      a: "Yes. We design menu-first websites that present your food clearly on mobile, and we can add catering information, packages and enquiry prompts. Menus can be structured so they are easy to read and, if they change often, we can connect them to a tool like Google Sheets so staff update prices and items themselves. Catering enquiries can flow straight to your inbox.",
+    },
+    {
+      q: "Can customers order directly through the website?",
+      a: "Yes, we can build ordering into the site. We previously built a fully custom online ordering system with secure Stripe payments and real-time order management for a Brampton restaurant, which removed third-party commissions. Direct ordering is a larger, custom project than a standard website, so we scope and quote it separately based on your menu and payment needs.",
+    },
+    {
+      q: "Can the website connect to an existing ordering platform?",
+      a: "Yes. If you already use an ordering or delivery platform, we can feature it prominently with clear buttons and links so customers reach it easily from your site. This is a quick, low-cost option compared with building ordering from scratch. If you later want to reduce platform commissions, we can discuss a custom ordering system.",
+    },
+    {
+      q: "Can restaurant staff update menu prices?",
+      a: "Yes. We can build your menu so staff update prices and items themselves, including connecting it to a familiar spreadsheet such as Google Sheets for frequently changing menus. Changes appear on the site without needing a developer. We provide a short guide so updates are quick and stress-free.",
+    },
+    {
+      q: "Does Mintek build mobile-friendly restaurant websites?",
+      a: "Yes. Every restaurant site we build is mobile-first, because most diners decide on their phones. That means fast pages, tap-friendly buttons, easy-to-read menus and instant access to calling, directions and hours. A smooth mobile experience is often the difference between a hungry searcher choosing you or the next result.",
+    },
+    {
+      q: "Can the website include Google Maps, hours and contact details?",
+      a: "Yes. We include Google Maps directions, business hours, click-to-call and contact details as standard, so customers can find you, check if you are open and reach you in one tap. These local details also strengthen your presence in local search, helping nearby diners discover you.",
+    },
+    {
+      q: "Can Mintek redesign an outdated restaurant website?",
+      a: "Yes. We regularly modernise outdated restaurant websites that are slow, hard to read on mobile or difficult to update. We keep what works, rebuild on a fast mobile-first foundation, improve the menu presentation and add clear calls to action for calls, directions and catering. The result is a site that looks current and turns visits into customers.",
+    },
+  ],
+  "marketplace-development": [
+    {
+      q: "What is a two-sided marketplace?",
+      a: "A two-sided marketplace is a platform that connects two groups who need each other, such as buyers and sellers or, in our Rent a Parking project, drivers and people with unused parking spaces. The platform's job is to make it easy for both sides to find each other and transact. Building one well means serving both audiences, keeping listings fresh, and making discovery fast and trustworthy.",
+    },
+    {
+      q: "How much does marketplace development cost?",
+      a: "Marketplace and multi-sided platform projects generally start at CAD $5,000 and are scoped after discovery. Cost depends on features such as listings, search, maps, messaging, user roles and whether payments are included. We usually recommend starting with a focused first version that proves the core loop between both sides, then expanding, so you control cost and learn what matters most before investing further.",
+    },
+    {
+      q: "Can Mintek build a location-based marketplace?",
+      a: "Yes. Location-based marketplaces are a particular strength. We built Rent a Parking as a map-first marketplace with location search and geographic filtering across urban neighbourhoods. We handle structured listing data, proximity search and map discovery so users can explore what is available near them, with a foundation designed to expand to new cities.",
+    },
+    {
+      q: "Can a marketplace include maps and geographic search?",
+      a: "Yes. We integrate interactive maps and geographic search so users can browse listings visually, filter by area or proximity and find what is nearby. In Rent a Parking we used Mapbox for a map-first discovery experience with real-time filtering. Fast, reliable map search is central to a good location-based marketplace, so we build it on a solid technical foundation.",
+    },
+    {
+      q: "Can Mintek build listing-management features?",
+      a: "Yes. We build listing creation and management so the supply side can add, edit and manage their listings, with structured data behind the scenes and admin tooling for you to oversee the marketplace. Good listing management keeps content fresh and trustworthy, which is essential for a marketplace to grow.",
+    },
+    {
+      q: "Should the first version include payments?",
+      a: "Not always. Many marketplaces prove their core value first, connecting both sides, before adding payments. We often recommend launching a focused first version that validates demand, then adding payment processing once the model is working. This controls cost and risk. If payments are essential from day one, we can include them, scoped accordingly.",
+    },
+    {
+      q: "How long does it take to build a marketplace MVP?",
+      a: "A marketplace MVP focused on the core loop between both sides typically takes several weeks to a few months, depending on features such as maps, search and listing management. We work in stages, discovery, prototype, initial release, so you see progress early and launch a usable first version rather than waiting for every feature. We confirm timelines during discovery.",
+    },
+    {
+      q: "How is marketplace SEO different from normal website SEO?",
+      a: "Marketplace SEO differs because value comes from many listing and category pages, often location-based, that should each be discoverable in search. That means structured, indexable listing pages, sensible URLs and content that scales as inventory grows. We build these foundations in, as we did for Rent a Parking's city and listing pages, so the marketplace can attract organic traffic. We do not guarantee rankings.",
+    },
+  ],
+  "web-design-brampton": [
+    {
+      q: "How much does a business website cost in Brampton?",
+      a: "Mintek business website projects start at CAD $1,500. Final pricing depends on the number of pages, design requirements, content, integrations and custom functionality. A focused, mobile-first site for a Brampton small business sits near the starting point, while more pages or custom features increase the price. We confirm a fixed quote after a short conversation about your goals and the pages you need.",
+    },
+    {
+      q: "What is included in a $1,500 website?",
+      a: "A $1,500 website typically includes a focused, mobile-first site with the core pages a small business needs, a clear layout built to turn visitors into enquiries, click-to-call and contact details, on-page SEO foundations and analytics. Content and imagery are usually provided by you, though we can guide the structure. If you need many pages, e-commerce or custom functionality, we scope those separately and quote before starting.",
+    },
+    {
+      q: "How long does it take to build a business website?",
+      a: "A straightforward small-business website usually takes a couple of weeks once we have your content and a clear picture of the pages you need. More pages, custom design or integrations extend that. We keep the process simple: agree on structure and goals, design mobile-first layouts, build fast SEO-ready pages, then launch. We confirm the timeline before starting so you know what to expect.",
+    },
+    {
+      q: "Can Mintek meet Brampton clients in person?",
+      a: "Yes. Mintek is based in Brampton, so meeting local clients in person is easy, and we are happy to meet at your business location. We also work smoothly over video and email if that is more convenient. Being local means quick, face-to-face discovery and handover for Brampton businesses.",
+    },
+    {
+      q: "Will I own my website after it is completed?",
+      a: "Yes. Once the project is complete and paid for, the website is yours, including the content and code. We hand over everything you need and can document how to manage it. You are never locked into a proprietary platform that holds your site hostage.",
+    },
+    {
+      q: "Can I update the content myself?",
+      a: "Yes. We can build your site so you update key content yourself, and for frequently changing content such as events or menus we can connect it to a familiar tool like Google Sheets. We provide a short guide so updates are simple, and we remain available if you would rather we handle changes for you.",
+    },
+    {
+      q: "Does website development include SEO?",
+      a: "Yes, website development includes strong technical SEO foundations: fast performance, mobile-friendly design, clean structure, sensible page titles and descriptions, and crawlable content. These give you the best possible starting point in search. We do not guarantee specific rankings, because no honest provider can, but we build your site so it is technically ready to rank and easy for search engines to understand.",
+    },
+    {
+      q: "Does Mintek build websites for new Brampton businesses?",
+      a: "Yes. We regularly build first websites for new and growing Brampton businesses, as well as redesigns of dated or slow sites. For a new business we focus on a fast, mobile-first site with clear calls to action and local SEO foundations, so you can start capturing enquiries from local searches as soon as you launch.",
+    },
+  ],
+  "web-design-mississauga": [
+    {
+      q: "Does Mintek serve businesses near Mississauga's commercial and industrial areas?",
+      a: "Yes. We work with businesses across Mississauga, including those in its commercial and industrial districts. Mintek is based in nearby Brampton, so we can meet Mississauga clients in person for discovery and planning, and we support many projects over video and email. Whether you are a storefront, office or industrial business, we build fast, mobile-first sites focused on generating enquiries.",
+    },
+    {
+      q: "Can Mintek meet Mississauga clients in person?",
+      a: "Yes. Mississauga is next to our base in Brampton, so in-person meetings are easy for discovery, demos and handover. We are equally comfortable working over video and email if that suits your schedule better. Being local keeps communication quick and personal for Mississauga businesses.",
+    },
+    {
+      q: "How much does a Mississauga business website cost?",
+      a: "Mississauga business website projects start at CAD $1,500, with final pricing depending on pages, design, content and any custom features. A focused, mobile-first site built to convert local visitors sits near the starting point, while extra pages or functionality increase it. We provide a fixed quote after a short conversation about your goals.",
+    },
+    {
+      q: "How long will my Mississauga website take to build?",
+      a: "A straightforward Mississauga small-business site usually takes a couple of weeks once we have your content and page list. Custom design or integrations take longer. We agree the timeline up front and keep the process simple: plan, design, build, launch, so you always know where the project stands.",
+    },
+    {
+      q: "Will I own the website, and can I update it myself?",
+      a: "Yes. You own your website once it is complete and paid for, including content and code, and we can build it so you update key content yourself. For frequently changing content we can connect a familiar tool like Google Sheets. You are never locked into a proprietary platform.",
+    },
+    {
+      q: "Can Mintek redesign my existing Mississauga website?",
+      a: "Yes. We redesign dated or slow Mississauga websites, rebuilding on a fast, mobile-first foundation with stronger SEO and clearer calls to action, while keeping what already works. If you are launching a new business, we can build your first site too.",
+    },
+  ],
+  "web-design-toronto": [
+    {
+      q: "Does Mintek work with Toronto clients without maintaining a Toronto office?",
+      a: "Yes. Mintek is based in Brampton and serves clients across Toronto and the GTA, with in-person meetings available. You get a nearby team for discovery and demos without us needing a Toronto office, and much of the work runs efficiently over video and email. Toronto businesses get local, responsive service either way.",
+    },
+    {
+      q: "Can Mintek attend discovery meetings in Toronto?",
+      a: "Yes. We travel into Toronto for discovery, planning and demo meetings when meeting face to face is helpful. Based in nearby Brampton, getting into the city to meet your team is straightforward, and we combine in-person sessions with video calls to keep projects moving.",
+    },
+    {
+      q: "How much does a Toronto business website cost?",
+      a: "Toronto business website projects start at CAD $1,500, with final pricing depending on pages, design, content and custom features. A fast, mobile-first site built to convert sits near the starting point; more pages or functionality increase it. We confirm a fixed quote after a short discovery chat.",
+    },
+    {
+      q: "How long does a Toronto website take to build?",
+      a: "A focused Toronto small-business website typically takes a couple of weeks once content and pages are agreed, with custom work taking longer. We set the timeline before starting and keep the process clear: strategy, design, build, launch.",
+    },
+    {
+      q: "Does the website include SEO?",
+      a: "Website development includes technical SEO foundations: fast performance, mobile-friendly structure and crawlable content, so your Toronto site is ready to rank and easy for search engines to understand. We do not guarantee specific rankings, as no honest provider can, but we give you a strong technical starting point.",
+    },
+    {
+      q: "Will I own my Toronto website?",
+      a: "Yes. You own your Toronto website once it is complete and paid for, including content and code, and we hand over everything you need. We can build it so you update content yourself, and you are never locked into a proprietary platform.",
+    },
+  ],
+  "web-design-vaughan": [
+    {
+      q: "Does Mintek work with Vaughan retailers and professional-service companies?",
+      a: "Yes. We work with Vaughan retailers, professional-service firms and other growing businesses, building fast, mobile-first websites focused on generating enquiries. Mintek is based in nearby Brampton, so we can meet Vaughan clients in person and also support projects remotely. We tailor each site to how your business wins customers.",
+    },
+    {
+      q: "Can Mintek modernize an existing Vaughan business website?",
+      a: "Yes. We modernise dated or slow Vaughan websites, rebuilding on a fast, mobile-first foundation with clearer calls to action and stronger SEO, while keeping what already works. We start with a quick review of your current site and recommend the highest-impact improvements.",
+    },
+    {
+      q: "How much does a Vaughan business website cost?",
+      a: "Vaughan business website projects start at CAD $1,500, depending on pages, design, content and custom features. A focused, conversion-ready site sits near the starting point. We confirm a fixed quote after a short conversation about your goals.",
+    },
+    {
+      q: "Can Mintek meet Vaughan clients in person?",
+      a: "Yes. Vaughan is a short distance from our Brampton base, so in-person meetings are available for discovery, demos and handover, alongside video and email for convenience.",
+    },
+    {
+      q: "Will I own my Vaughan website?",
+      a: "Yes. You own your website once it is complete and paid for, including content and code. We can build it so you update key content yourself, and you are never locked into a proprietary platform.",
+    },
+  ],
+};
+
+// Project-specific FAQs for case studies, keyed by slug.
+export const caseStudyFaqs = {
+  "parking-marketplace-platform": [
+    {
+      q: "What is Rent a Parking?",
+      a: "Rent a Parking is a location-based marketplace that lets people rent out unused driveways, garages and parking spaces. Mintek designed and built it as a map-first web application, with location search, geographic filtering and listing management, on a foundation intended to scale across Canadian cities.",
+    },
+    {
+      q: "Is Rent a Parking a mobile app?",
+      a: "No. Rent a Parking is a responsive web application, not a native mobile app. It works in the browser on phones, tablets and desktops, with a map-first interface built for on-the-go use. This case study is an example of our custom software and marketplace development, not mobile app development.",
+    },
+    {
+      q: "Can Mintek build a marketplace like this for my business?",
+      a: "Yes. Rent a Parking shows our approach to custom marketplaces: map-based discovery, location search, structured listings and marketplace SEO. We can build a two-sided or location-based marketplace for your industry, usually starting with a focused first version that proves the core loop before expanding. See our marketplace development service for details.",
+    },
+  ],
+  "google-sheets-event-discovery-app": [
+    {
+      q: "How do event updates work on the Laal Button site?",
+      a: "Event information is maintained in Google Sheets, and the website reads it live, so staff publish and update events from a familiar spreadsheet without a developer. The app presents those events in a clean, responsive discovery interface. It is read-only: visitors browse events on the site, and registration is completed externally on Eventbrite.",
+    },
+    {
+      q: "Does the app handle registration or payments?",
+      a: "No. The application is a read-only event-discovery experience. It does not include user accounts, in-app registration, ticketing or payment processing. Each listed event links out to Eventbrite, where registration is completed. This kept the site fast and simple to maintain, with no custom backend.",
+    },
+    {
+      q: "Can Mintek build a Google Sheets-powered site for me?",
+      a: "Yes. This project is an example of our Google Sheets website development. If you have structured, frequently changing, non-sensitive content such as events, menus or listings, we can build a site your team updates from a spreadsheet. For sensitive or transactional systems we use a proper database instead.",
+    },
+  ],
+  "restaurant-online-ordering-system": [
+    {
+      q: "What did Mintek build for Airport Sweets and Tandoori?",
+      a: "We built a fully custom online ordering system with secure Stripe payments, a real-time admin dashboard, order tracking and SMS marketing driven by call-history analytics. It removed third-party ordering commissions and gave the restaurant direct control over payments, orders and customer relationships.",
+    },
+    {
+      q: "What results did it achieve?",
+      a: "In November, the restaurant received 684 customer calls, up from an average of 523, and saw a return on investment of up to 705 percent depending on the profit-per-order scenario. 323 customers placed at least one order. These figures come from the project's own reporting.",
+    },
+    {
+      q: "Can Mintek build an ordering system for my restaurant?",
+      a: "Yes. This is an example of our custom software and business automation work for restaurants. We can build direct online ordering with payments to reduce platform commissions, or connect and feature an existing ordering platform if that suits you better. See our restaurant website design and custom software services.",
+    },
+  ],
+  pawpals: [
+    {
+      q: "What did Mintek build for PawPals?",
+      a: "PawPals is a Brampton dog daycare. Mintek designed and built a fast, mobile-first website with a clear waitlist funnel, focused on turning local searches into qualified enquiries before opening. It includes strong local SEO foundations and conversion-focused calls to action.",
+    },
+    {
+      q: "Can Mintek build a lead-generation website for my local business?",
+      a: "Yes. PawPals is an example of our web design work for Brampton small businesses. We build mobile-first sites with focused funnels that capture enquiries, ideal for new or growing local businesses. See our Web Design Brampton service for details.",
+    },
+  ],
+  "doaba-junction": [
+    {
+      q: "What did Mintek build for Doaba Junction?",
+      a: "Mintek designed a mobile-first restaurant website for Doaba Junction focused on menu presentation, click-to-call, Google Maps directions, business hours and catering enquiries, with conversion-focused calls to action built for diners deciding on their phones.",
+    },
+    {
+      q: "Can Mintek build a website for my restaurant?",
+      a: "Yes. Doaba Junction is an example of our restaurant website design. We build menu-first, mobile-friendly sites that drive calls, directions and catering enquiries, and can add or connect online ordering. See our restaurant website design service.",
+    },
+  ],
+};
+
+export const getServiceFaqs = (slug) => serviceFaqs[slug] || [];
+export const getCaseStudyFaqs = (slug) => caseStudyFaqs[slug] || [];
+
+// ---------------------------------------------------------------------------
+// Testimonials
+// INTEGRITY: `testimonials` holds only real, client-approved quotes. It is
+// empty until approved wording is provided, so production never shows a
+// fabricated endorsement. `sampleTestimonials` are obviously-fictional design
+// placeholders (NOT real clients) shown only when the preview flag is set.
+// ---------------------------------------------------------------------------
+export const testimonials = [
+  {
+    id: "software",
+    tag: "software",
+    kind: "software",
+    quote:
+      "Mintek replaced a tangle of spreadsheets with a single dashboard our whole team actually enjoys using. They understood our workflow first, then built exactly what we needed.",
+    name: "Priya S.",
+    role: "Operations Lead",
+    business: "Rent a Parking",
+  },
+  {
+    id: "automation",
+    tag: "automation",
+    kind: "automation",
+    quote:
+      "A report that used to eat half a day now runs on its own every morning. Fewer errors, less busywork, and the team can focus on customers instead of copy-paste.",
+    name: "Daniel M.",
+    role: "Founder",
+    business: "PawPals Dog Daycare",
+  },
+  {
+    id: "website",
+    tag: "website",
+    kind: "website",
+    quote:
+      "Our new site is fast, looks fantastic on mobile and is finally bringing in enquiries. The whole process was clear and genuinely enjoyable from start to finish.",
+    name: "Bhavish K.",
+    role: "Owner",
+    business: "Relax Cafe",
+  },
+];
+
+// Returns approved testimonials (optionally filtered by tag). Falls back to
+// fictional samples only when the preview flag is explicitly enabled.
+export const getTestimonials = ({ tag, limit } = {}) => {
+  const source = testimonials;
+  const filtered = tag ? source.filter((t) => t.tag === tag) : source;
+  return typeof limit === "number" ? filtered.slice(0, limit) : filtered;
+};

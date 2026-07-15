@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import ContactUs from "../components/contact-us-section/ContactUs";
+import Testimonials from "../components/common/Testimonials";
 import { BreadcrumbSchema } from "../components/seo/StructuredData";
 import { site } from "../config/siteConfig";
 
@@ -39,6 +40,8 @@ const Contact = () => {
           </Typography>
         </Container>
       </Box>
+
+      <Testimonials limit={2} columns={2} title={null} />
 
       <ContactUs defaultService={service} />
     </>

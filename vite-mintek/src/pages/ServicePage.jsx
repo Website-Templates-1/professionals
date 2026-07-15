@@ -16,12 +16,29 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
+import Faq from "../components/common/Faq";
+import Testimonials from "../components/common/Testimonials";
 import {
   ServiceSchema,
   BreadcrumbSchema,
 } from "../components/seo/StructuredData";
-import { getService, getCaseStudy, projectStages } from "../config/siteConfig";
+import {
+  getService,
+  getCaseStudy,
+  getServiceFaqs,
+  projectStages,
+} from "../config/siteConfig";
 import NotFound from "./NotFound";
+
+// Which testimonial theme a service page should request.
+const testimonialTagForService = (service) => {
+  if (service.group === "data") return "automation";
+  if (service.group === "website") return "website";
+  if (service.group === "software") return "software";
+  if (/web-design|restaurant/.test(service.slug)) return "website";
+  if (/automation/.test(service.slug)) return "automation";
+  return "software";
+};
 
 const Section = ({ overline, title, children }) => (
   <Box sx={{ mb: 6 }}>
@@ -56,6 +73,7 @@ const ServicePage = ({ slug }) => {
   const relatedServices = (service.relatedServices || [])
     .map(getService)
     .filter((s) => s && !s.hidden);
+  const faqs = getServiceFaqs(service.slug);
 
   return (
     <>
@@ -294,6 +312,10 @@ const ServicePage = ({ slug }) => {
           </Section>
         )}
       </Container>
+
+      <Testimonials tag={testimonialTagForService(service)} limit={3} />
+
+      <Faq items={faqs} />
 
       <CTASection
         title={`Let's talk about your ${service.title.toLowerCase()} project`}

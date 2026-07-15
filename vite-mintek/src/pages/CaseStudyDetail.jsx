@@ -17,8 +17,9 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
+import Faq from "../components/common/Faq";
 import { BreadcrumbSchema } from "../components/seo/StructuredData";
-import { getCaseStudy, getService } from "../config/siteConfig";
+import { getCaseStudy, getService, getCaseStudyFaqs } from "../config/siteConfig";
 import NotFound from "./NotFound";
 
 const Panel = ({ title, accent = "primary.main", children }) => (
@@ -68,6 +69,7 @@ const CaseStudyDetail = ({ slug }) => {
     .map(getService)
     .filter((s) => s && !s.hidden);
   const shownMetrics = (study.metrics || []).filter((m) => m.value);
+  const faqs = getCaseStudyFaqs(study.slug);
 
   return (
     <>
@@ -272,6 +274,10 @@ const CaseStudyDetail = ({ slug }) => {
           </Panel>
         )}
       </Container>
+
+      {faqs.length > 0 && (
+        <Faq items={faqs} title="Project FAQs" disableGutters={false} />
+      )}
 
       <CTASection title="Have a project like this in mind?" />
     </>

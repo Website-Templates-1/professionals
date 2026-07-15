@@ -4,7 +4,9 @@ import OurServices from "../components/our-service-section/OurServices";
 import PortfolioSection from "../components/portfolio-section/PortfolioSection";
 import ContactUs from "../components/contact-us-section/ContactUs";
 import Seo from "../components/seo/Seo";
-import { site } from "../config/siteConfig";
+import Faq from "../components/common/Faq";
+import Testimonials from "../components/common/Testimonials";
+import { site, homeFaqs } from "../config/siteConfig";
 
 const Home = () => {
   return (
@@ -17,7 +19,12 @@ const Home = () => {
       <Hero />
       <OurServices />
       <PortfolioSection />
+      <Testimonials limit={3} />
       <AboutUs />
+      <Faq
+        items={homeFaqs}
+        subtitle="Answers to common questions about how we work with businesses across the Greater Toronto Area."
+      />
       <ContactUs />
     </>
   );
