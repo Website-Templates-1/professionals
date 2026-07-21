@@ -1055,6 +1055,7 @@ const footerItem = (slug) => {
 
 const companyLinks = [
   { name: "Case Studies", path: "/case-studies" },
+  { name: "Blog", path: "/blog" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];

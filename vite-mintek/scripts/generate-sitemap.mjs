@@ -4,16 +4,21 @@ import { writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { site, services, caseStudies } from "../src/config/siteConfig.js";
+import { readBlogPosts, isPublished } from "./blog-posts.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = join(__dirname, "..", "public");
 
-const staticPaths = ["/", "/case-studies", "/about", "/contact"];
+const staticPaths = ["/", "/case-studies", "/blog", "/about", "/contact"];
 // Exclude hidden/deferred service pages (e.g. noindex location pages).
 const servicePaths = services.filter((s) => !s.hidden).map((s) => `/${s.slug}`);
 const caseStudyPaths = caseStudies.map((c) => `/case-studies/${c.slug}`);
+// Only include published (non-draft, non-future) blog posts.
+const blogPaths = readBlogPosts()
+  .filter((post) => isPublished(post.data))
+  .map((post) => `/blog/${post.slug}`);
 
-const paths = [...staticPaths, ...servicePaths, ...caseStudyPaths];
+const paths = [...staticPaths, ...servicePaths, ...caseStudyPaths, ...blogPaths];
 
 const today = new Date().toISOString().split("T")[0];
 

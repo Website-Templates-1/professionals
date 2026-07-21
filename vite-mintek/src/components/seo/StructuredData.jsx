@@ -165,6 +165,66 @@ export const CaseStudyListSchema = ({ studies }) => (
   />
 );
 
+// A blog post modelled as BlogPosting. Uses only truthful frontmatter fields;
+// falls back to the site logo when a post has no cover image.
+export const ArticleSchema = ({ post }) => {
+  const path = `/blog/${post.slug}`;
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.metaDescription,
+        url: canonical(path),
+        mainEntityOfPage: canonical(path),
+        image: absoluteUrl(post.coverImage || site.logo),
+        inLanguage: "en",
+        ...(post.date ? { datePublished: post.date } : {}),
+        ...(post.updated || post.date
+          ? { dateModified: post.updated || post.date }
+          : {}),
+        author: {
+          "@type": "Organization",
+          name: post.author || site.brand,
+          url: site.domain,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: site.brand,
+          url: site.domain,
+          logo: {
+            "@type": "ImageObject",
+            url: absoluteUrl(site.logo),
+          },
+        },
+        ...(post.tags?.length ? { keywords: post.tags.join(", ") } : {}),
+        isPartOf: {
+          "@type": "Blog",
+          name: `${site.brand} Blog`,
+          url: canonical("/blog"),
+        },
+      }}
+    />
+  );
+};
+
+// The blog index as an ordered ItemList of the individual posts.
+export const BlogListSchema = ({ posts }) => (
+  <JsonLd
+    data={{
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: posts.map((post, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: post.title,
+        url: canonical(`/blog/${post.slug}`),
+      })),
+    }}
+  />
+);
+
 // items: [{ name, path }]
 export const BreadcrumbSchema = ({ items }) => (
   <JsonLd

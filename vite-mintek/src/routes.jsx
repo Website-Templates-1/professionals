@@ -4,10 +4,13 @@ import Home from "./pages/Home";
 import ServicePage from "./pages/ServicePage";
 import CaseStudiesIndex from "./pages/CaseStudiesIndex";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
+import BlogIndex from "./pages/BlogIndex";
+import BlogPost from "./pages/BlogPost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import { services, caseStudies, caseStudyRedirects } from "./config/siteConfig";
+import { getAllPosts } from "./config/blog";
 
 export const routes = [
   {
@@ -25,6 +28,12 @@ export const routes = [
       ...caseStudies.map((study) => ({
         path: `case-studies/${study.slug}`,
         element: <CaseStudyDetail slug={study.slug} />,
+      })),
+
+      { path: "blog", element: <BlogIndex /> },
+      ...getAllPosts().map((post) => ({
+        path: `blog/${post.slug}`,
+        element: <BlogPost slug={post.slug} />,
       })),
 
       { path: "about", element: <About /> },

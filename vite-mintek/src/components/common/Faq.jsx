@@ -18,6 +18,7 @@ const Faq = ({
   title = "Frequently asked questions",
   subtitle,
   disableGutters = false,
+  align = "center",
 }) => {
   if (!items.length) return null;
 
@@ -27,7 +28,7 @@ const Faq = ({
         <Typography
           variant="h4"
           component="h2"
-          sx={{ fontWeight: "bold", mb: subtitle ? 1 : 3, textAlign: "center" }}
+          sx={{ fontWeight: "bold", mb: subtitle ? 1 : 3, textAlign: align }}
         >
           {title}
         </Typography>
@@ -36,13 +37,18 @@ const Faq = ({
         <Typography
           variant="body1"
           color="text.secondary"
-          sx={{ mb: 3, textAlign: "center", maxWidth: 680, mx: "auto" }}
+          sx={{
+            mb: 3,
+            textAlign: align,
+            maxWidth: 680,
+            mx: align === "center" ? "auto" : 0,
+          }}
         >
           {subtitle}
         </Typography>
       )}
 
-      <Box sx={{ maxWidth: 820, mx: "auto" }}>
+      <Box sx={{ maxWidth: 820, mx: align === "center" ? "auto" : 0 }}>
         {items.map((item, index) => (
           <Accordion
             key={item.q}
@@ -75,13 +81,20 @@ const Faq = ({
               </Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ pt: 0 }}>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{ lineHeight: 1.8 }}
-              >
-                {item.a}
-              </Typography>
+              {typeof item.a === "string" ? (
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{ lineHeight: 1.8 }}
+                >
+                  {item.a}
+                </Typography>
+              ) : (
+                // Rich (React node) answers, e.g. rendered Markdown, are wrapped
+                // in a Box rather than a Typography so a nested <p> does not end
+                // up inside another <p> (invalid HTML / SSG hydration mismatch).
+                <Box sx={{ color: "text.secondary" }}>{item.a}</Box>
+              )}
             </AccordionDetails>
           </Accordion>
         ))}
