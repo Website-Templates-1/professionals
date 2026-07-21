@@ -51,8 +51,9 @@ src/config/blog.js               <- registry: import.meta.glob raw -> parsed pos
                                     (getAllPosts, getPost, getPostsByTag,
                                      getRelatedPosts, orderedPosts, allTags)
 src/pages/BlogIndex.jsx          <- /blog  (card grid + tag filter, featured first)
-src/pages/BlogPost.jsx           <- /blog/:slug (renders Markdown, related posts, CTA)
+src/pages/BlogPost.jsx           <- /blog/:slug (Markdown body, FAQ accordion, related posts, CTA)
 src/components/blog/markdownComponents.jsx  <- MUI styling map for react-markdown
+src/components/common/Faq.jsx    <- shared FAQ accordion (blog posts + service/case pages)
 src/utils/blogFormat.js          <- deterministic "Month D, YYYY" date formatter
 
 src/routes.jsx                   <- maps getAllPosts() -> /blog/:slug routes
@@ -74,7 +75,9 @@ build scripts via `scripts/blog-posts.mjs`, so app and scripts never drift.
 Rendering: posts are plain Markdown rendered with `react-markdown` + `remark-gfm`
 (GitHub-flavoured Markdown: tables, etc.). **There is no MDX** — you cannot embed
 React components in a post body. Styling comes from `markdownComponents.jsx`,
-which maps each element to MUI + theme tokens.
+which maps each element to MUI + theme tokens. Below the body, `BlogPost.jsx`
+renders the optional `faqs` accordion (via the shared `Faq` component, with a
+slim Markdown map for answers) before the related-posts section.
 
 ---
 
@@ -159,7 +162,13 @@ would break its URL and lose SEO); if a rename is truly needed, add a redirect i
     `/case-studies/restaurant-online-ordering-system`, `/case-studies/pawpals`,
     `/case-studies/doaba-junction`, `/case-studies/relax-cafe`,
     `/case-studies/aloe-accounting`.
+  - Cross-link to related posts via `/blog/<slug>` too (all three live posts do
+    this) to build topical clusters. Verify the target slug exists.
   - Always verify a slug exists in `siteConfig.js` before linking.
+- **FAQs (recommended):** add an optional `faqs` block of ~3-6 Q&As targeting
+  real "People Also Ask"-style queries for the topic. Keep each answer to a
+  single paragraph (folded scalar `>-`), and use inline Markdown links to the
+  relevant service, case-study or post. All three live posts include one.
 - **External links** open in a new tab automatically (handled by the renderer).
 - **CTA:** end with a low-pressure invitation to `/contact`, matching the tone of
   the existing three posts.
@@ -177,13 +186,17 @@ would break its URL and lose SEO); if a rename is truly needed, add a redirect i
 - The sitemap auto-includes `/blog` and every **published** post on build.
 - `coverImage` is used as the OG/Twitter/BlogPosting image; without it, the site
   logo is the fallback.
+- `faqs` render as an accessible, crawlable accordion (answers stay in the
+  prerendered DOM, first item expanded) and count toward reading time. No FAQ
+  JSON-LD is emitted by design (Google deprecated FAQ rich results); the value is
+  usefulness and on-page SEO.
 
 ---
 
 ## 8. Commands
 
 ```bash
-npm run validate:blog   # checks frontmatter + unique kebab-case slugs
+npm run validate:blog   # checks frontmatter (incl. faqs shape) + unique kebab-case slugs
 npm run dev             # preview (drafts + future-dated posts ARE visible here)
 npm run build           # SSG build; prebuild runs validate + sitemap; drafts/future hidden
 npm run lint            # must pass with 0 warnings
