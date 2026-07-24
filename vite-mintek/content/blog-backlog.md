@@ -19,11 +19,11 @@ Columns: Working title | Target keyword | Intent | Primary internal link(s)
 - How Much Does a Business Website Cost in the GTA? | business website cost GTA | commercial/research | `/website-development`, `/web-design-brampton`
 - Custom Software vs Off-the-Shelf: How to Choose | custom software vs off the shelf | research | `/custom-software-development`, `/case-studies/parking-marketplace-platform`
 - 5 Repetitive Tasks You Can Automate with Google Sheets | google sheets automation for business | how-to | `/spreadsheet-automation`, `/google-sheets-website-development`, `/case-studies/google-sheets-event-discovery-app`
+- Do You Need a Website or a Web Application? | website vs web application | research | `/website-development`, `/web-application-development`
 
 ## Queued
 
 - What Is Business Process Automation (and When Is It Worth It)? | business process automation small business | research | `/business-automation`, `/case-studies/google-sheets-event-discovery-app`
-- Do You Need a Website or a Web Application? | website vs web application | research | `/website-development`, `/web-application-development`
 - How to Scope a Custom Software Project (a Practical Checklist) | how to scope software project | how-to | `/custom-software-development`
 - Signs Your Business Has Outgrown Spreadsheets | outgrown spreadsheets business software | research | `/spreadsheet-automation`, `/web-application-development`
 - What Goes Into a High-Converting Restaurant Website | restaurant website design | commercial | `/restaurant-website-design`, `/case-studies/restaurant-online-ordering-system`
