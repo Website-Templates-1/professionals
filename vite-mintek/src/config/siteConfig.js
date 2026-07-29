@@ -758,8 +758,8 @@ export const caseStudies = [
     ],
     techStack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Mapbox GL JS"],
     status: "Live",
-    liveUrl: null,
-    previewUrl: "http://rentaparking.ca",
+    liveUrl: "https://parkbnb-frontend.onrender.com/",
+    previewUrl: null,
     githubUrl: null,
   },
   {
