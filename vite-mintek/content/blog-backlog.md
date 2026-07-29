@@ -23,11 +23,11 @@ Columns: Working title | Target keyword | Intent | Primary internal link(s)
 - What Is Business Process Automation (and When Is It Worth It)? | business process automation small business | research | `/business-automation`, `/case-studies/restaurant-online-ordering-system`, `/case-studies/google-sheets-event-discovery-app`
 - What Goes Into a High-Converting Restaurant Website | restaurant website design | commercial | `/restaurant-website-design`, `/case-studies/doaba-junction`, `/case-studies/relax-cafe`
 - How Online Ordering Systems Work for Independent Restaurants | restaurant online ordering system | commercial/how-to | `/restaurant-website-design`, `/case-studies/restaurant-online-ordering-system`
+- Signs Your Business Has Outgrown Spreadsheets | outgrown spreadsheets business software | research | `/spreadsheet-automation`, `/web-application-development`
 
 ## Queued
 
 - How to Scope a Custom Software Project (a Practical Checklist) | how to scope software project | how-to | `/custom-software-development`
-- Signs Your Business Has Outgrown Spreadsheets | outgrown spreadsheets business software | research | `/spreadsheet-automation`, `/web-application-development`
 - Building a Marketplace: What to Plan Before You Start | how to build a marketplace | research | `/marketplace-development`, `/case-studies/parking-marketplace-platform`
 - Choosing a Web Developer in Brampton: Questions to Ask | web developer brampton | commercial | `/web-design-brampton`, `/website-development`
 - MVP First: Why We Recommend Starting Small | build an mvp first | research | `/custom-software-development`, `/web-application-development`
