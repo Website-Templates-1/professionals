@@ -18,8 +18,10 @@ import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
 import Faq from "../components/common/Faq";
+import RelatedContent from "../components/common/RelatedContent";
 import { BreadcrumbSchema, CaseStudySchema } from "../components/seo/StructuredData";
 import { getCaseStudy, getService, getCaseStudyFaqs } from "../config/siteConfig";
+import { getCaseStudyRelated } from "../config/relatedContent";
 import NotFound from "./NotFound";
 
 const Panel = ({ title, accent = "primary.main", children }) => (
@@ -70,6 +72,7 @@ const CaseStudyDetail = ({ slug }) => {
     .filter((s) => s && !s.hidden);
   const shownMetrics = (study.metrics || []).filter((m) => m.value);
   const faqs = getCaseStudyFaqs(study.slug);
+  const related = getCaseStudyRelated(study.slug);
 
   return (
     <>
@@ -275,6 +278,12 @@ const CaseStudyDetail = ({ slug }) => {
           </Panel>
         )}
       </Container>
+
+      {related.length > 0 && (
+        <Container maxWidth="md" sx={{ pb: { xs: 4, md: 8 } }}>
+          <RelatedContent items={related} />
+        </Container>
+      )}
 
       {faqs.length > 0 && (
         <Faq items={faqs} title="Project FAQs" disableGutters={false} />

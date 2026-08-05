@@ -50,10 +50,13 @@ src/config/frontmatter.js        <- isomorphic YAML frontmatter parser (js-yaml)
 src/config/blog.js               <- registry: import.meta.glob raw -> parsed posts
                                     (getAllPosts, getPost, getPostsByTag,
                                      getRelatedPosts, orderedPosts, allTags)
+src/config/topicMap.js           <- tag -> service/case-study slug map (dep-free; used by app + scripts)
+src/config/relatedContent.js     <- "People also search for" resolver (getBlogRelated / getCaseStudyRelated)
 src/pages/BlogIndex.jsx          <- /blog  (card grid + tag filter, featured first)
-src/pages/BlogPost.jsx           <- /blog/:slug (Markdown body, FAQ accordion, related posts, CTA)
+src/pages/BlogPost.jsx           <- /blog/:slug (Markdown body, FAQ accordion, related content, CTA)
 src/components/blog/markdownComponents.jsx  <- MUI styling map for react-markdown
 src/components/common/Faq.jsx    <- shared FAQ accordion (blog posts + service/case pages)
+src/components/common/RelatedContent.jsx  <- "People also search for" card grid
 src/utils/blogFormat.js          <- deterministic "Month D, YYYY" date formatter
 
 src/routes.jsx                   <- maps getAllPosts() -> /blog/:slug routes
@@ -62,6 +65,7 @@ src/config/siteConfig.js         <- companyLinks has the "Blog" nav/footer entry
 
 scripts/blog-posts.mjs           <- Node reader (shared by build scripts)
 scripts/validate-blog.mjs        <- frontmatter/slug validator (runs in prebuild)
+scripts/validate-related.mjs     <- topic-map integrity validator (runs in prebuild)
 scripts/generate-sitemap.mjs     <- includes /blog + published posts
 
 content/blog-backlog.md          <- topic queue for autonomous content
@@ -95,6 +99,8 @@ category: "Guides"                  # optional — chip on cards/header
 coverImage: "/blog/my-cover.png"    # optional — absolute /public path; falls back to site logo
 featured: false                     # optional — featured posts surface first on /blog
 draft: false                        # optional — visible in dev, excluded from prod build
+relatedServices: []                 # optional — "People also search for" override (service slugs)
+relatedCaseStudies: []              # optional — "People also search for" override (case study slugs)
 faqs:                               # optional — renders a FAQ accordion below the article
   - q: "A question a reader would search?"
     a: >-
@@ -108,6 +114,13 @@ faqs:                               # optional — renders a FAQ accordion below
   scalars (`>-`). No FAQ JSON-LD is emitted (Google deprecated FAQ rich results);
   the value is usefulness and on-page SEO. FAQ text is counted toward reading time.
 
+- `relatedServices` / `relatedCaseStudies` are optional overrides for the
+  "People also search for" section (see section 7). Usually leave them empty: a
+  post's `tags` already resolve to related services/case studies via the central
+  topic map (`src/config/topicMap.js`). Set them only to pin a specific link;
+  pinned items appear first and the map fills the rest. Slugs are shape-checked
+  by `validate-blog.mjs` and existence-checked by `validate-related.mjs`; never
+  point them at a hidden service.
 - `slug` defaults to the filename (`my-post.md` -> `/blog/my-post`). Slugs must be
   lowercase kebab-case; the validator enforces this and rejects duplicates.
 - Body starts after the closing `---`. Use `##`/`###` for structure (the title is
@@ -190,16 +203,24 @@ would break its URL and lose SEO); if a rename is truly needed, add a redirect i
   prerendered DOM, first item expanded) and count toward reading time. No FAQ
   JSON-LD is emitted by design (Google deprecated FAQ rich results); the value is
   usefulness and on-page SEO.
+- Every post ends with a **"People also search for"** section (via
+  `RelatedContent`) that cross-links related posts, case studies and services to
+  build topic clusters. Links are resolved from the post's `tags` through the
+  central topic map (`src/config/topicMap.js`), with optional per-post overrides.
+  When adding a post on a brand-new topic, add its tag(s) to the topic map (or to
+  `IGNORED_TAGS`) so the section has links; `validate-related.mjs` warns about
+  unmapped tags. No schema is emitted here — plain crawlable internal links.
 
 ---
 
 ## 8. Commands
 
 ```bash
-npm run validate:blog   # checks frontmatter (incl. faqs shape) + unique kebab-case slugs
-npm run dev             # preview (drafts + future-dated posts ARE visible here)
-npm run build           # SSG build; prebuild runs validate + sitemap; drafts/future hidden
-npm run lint            # must pass with 0 warnings
+npm run validate:blog     # checks frontmatter (incl. faqs shape) + unique kebab-case slugs
+npm run validate:related  # checks topic-map slugs resolve; warns on unmapped tags
+npm run dev               # preview (drafts + future-dated posts ARE visible here)
+npm run build             # SSG build; prebuild runs both validators + sitemap; drafts/future hidden
+npm run lint              # must pass with 0 warnings
 ```
 
 Definition of done for any blog change: `npm run lint` clean, `npm run build`

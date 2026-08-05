@@ -4,6 +4,7 @@ import { readBlogPosts } from "./blog-posts.mjs";
 
 const REQUIRED_STRING_FIELDS = ["title", "metaDescription"];
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 const errors = [];
 const seenSlugs = new Map();
@@ -47,7 +48,25 @@ for (const { file, slug, data } of posts) {
     }
   }
 
-  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+  // Optional "People also search for" overrides: lists of slugs. Existence of
+  // each slug is validated separately against the topic map / config in
+  // scripts/validate-related.mjs; here we only enforce shape.
+  for (const field of ["relatedServices", "relatedCaseStudies"]) {
+    if (data[field] === undefined) continue;
+    if (!Array.isArray(data[field])) {
+      errors.push(`${where}: "${field}" must be a list of slugs`);
+    } else {
+      data[field].forEach((slug, i) => {
+        if (typeof slug !== "string" || !SLUG_RE.test(slug)) {
+          errors.push(
+            `${where}: ${field}[${i}] must be a lowercase kebab-case slug`
+          );
+        }
+      });
+    }
+  }
+
+  if (!SLUG_RE.test(slug)) {
     errors.push(
       `${where}: slug "${slug}" must be lowercase kebab-case (a-z, 0-9, hyphens)`
     );

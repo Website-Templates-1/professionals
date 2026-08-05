@@ -17,6 +17,14 @@ coverImage: "" # absolute path in /public, e.g. "/blog/my-post.png". Falls back 
 featured: false # featured posts surface first on the blog index
 draft: true # drafts are visible in `npm run dev` but excluded from production builds
 
+# Optional "People also search for" overrides. Usually unnecessary: the post's
+# tags already resolve to related services/case studies via the central topic
+# map (src/config/topicMap.js). Set these only to pin a specific link; pinned
+# items appear first and the map fills the remaining slots. Slugs must be real
+# (validated in the build) and must not point at hidden services.
+relatedServices: [] # e.g. ["custom-software-development"]
+relatedCaseStudies: [] # e.g. ["restaurant-online-ordering-system"]
+
 # Optional FAQ accordion, rendered by the shared Faq component below the article.
 # Answers support inline Markdown (bold, italic, and [internal links](/contact)).
 # Use folded block scalars (">-") for single-paragraph answers; each answer must

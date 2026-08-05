@@ -55,6 +55,14 @@ const buildPost = (path, raw) => {
     author: data.author || "Mintek Software",
     tags: Array.isArray(data.tags) ? data.tags : [],
     category: data.category || null,
+    // Optional "People also search for" overrides (service / case study slugs).
+    // The topic map covers posts that omit these; overrides just fine-tune.
+    relatedServices: Array.isArray(data.relatedServices)
+      ? data.relatedServices
+      : [],
+    relatedCaseStudies: Array.isArray(data.relatedCaseStudies)
+      ? data.relatedCaseStudies
+      : [],
     coverImage: data.coverImage || null,
     featured: Boolean(data.featured),
     draft: Boolean(data.draft),

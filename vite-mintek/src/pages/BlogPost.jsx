@@ -5,10 +5,6 @@ import {
   Stack,
   Chip,
   Divider,
-  Grid,
-  Card,
-  CardActionArea,
-  CardContent,
   Link,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
@@ -18,9 +14,11 @@ import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
 import Faq from "../components/common/Faq";
+import RelatedContent from "../components/common/RelatedContent";
 import { BreadcrumbSchema, ArticleSchema } from "../components/seo/StructuredData";
 import { markdownComponents } from "../components/blog/markdownComponents";
-import { getPost, getRelatedPosts } from "../config/blog";
+import { getPost } from "../config/blog";
+import { getBlogRelated } from "../config/relatedContent";
 import { formatPostDate } from "../utils/blogFormat";
 import NotFound from "./NotFound";
 
@@ -99,7 +97,7 @@ const BlogPost = ({ slug }) => {
     { name: "Blog", path: "/blog" },
     { name: post.title, path },
   ];
-  const related = getRelatedPosts(post.slug);
+  const related = getBlogRelated(post.slug);
 
   return (
     <>
@@ -173,39 +171,7 @@ const BlogPost = ({ slug }) => {
           </>
         )}
 
-        {related.length > 0 && (
-          <>
-            <Divider sx={{ my: 5 }} />
-            <Typography variant="h5" component="h2" sx={{ fontWeight: "bold", mb: 3 }}>
-              Related posts
-            </Typography>
-            <Grid container spacing={3}>
-              {related.map((item) => (
-                <Grid item xs={12} sm={related.length > 1 ? 6 : 12} key={item.slug}>
-                  <Card sx={{ height: "100%" }}>
-                    <CardActionArea
-                      component={RouterLink}
-                      to={`/blog/${item.slug}`}
-                      sx={{ height: "100%" }}
-                    >
-                      <CardContent sx={{ p: 3 }}>
-                        <Typography variant="overline" color="text.secondary">
-                          {formatPostDate(item.date)} &middot; {item.readingTime} min read
-                        </Typography>
-                        <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
-                          {item.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {item.metaDescription}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </>
-        )}
+        <RelatedContent items={related} />
       </Container>
 
       <CTASection title="Ready to put these ideas to work?" />
