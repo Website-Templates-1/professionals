@@ -2,7 +2,7 @@
 title: "Custom Software vs Off-the-Shelf: How to Choose"
 metaDescription: "When should a growing business buy off-the-shelf software, and when is a custom build the smarter investment? A practical framework, comparison table and real example."
 date: "2026-06-09"
-updated: "2026-07-20"
+updated: "2026-08-04"
 author: "Mintek Software"
 tags: ["custom software", "small business", "strategy"]
 category: "Guides"
@@ -101,16 +101,22 @@ platforms. We built a
 with its own payments and order management, which removed those per-order
 commissions and gave the owner direct control over customer relationships. The
 off-the-shelf option was cheaper to start, but it was quietly charging rent on
-every sale.
+every sale. Our
+[case-study deep-dive](/blog/custom-online-ordering-system-case-study) walks
+through what we built and the results it reported.
 
 ## Custom doesn't have to mean big
 
 Choosing custom does not mean commissioning a giant platform on day one. We
-usually recommend starting with a focused first version, an MVP that solves the
-single most painful problem, and expanding from there once it is proven. That
-keeps cost and risk down while getting value into your hands sooner. Custom
-software projects with Mintek generally start from **CAD $5,000**, with final
-pricing depending on scope, and we quote fixed-scope stages wherever possible.
+usually recommend starting with a focused first version, an
+[MVP that solves the single most painful problem](/blog/mvp-first-why-start-small),
+and expanding from there once it is proven. That keeps cost and risk down while
+getting value into your hands sooner. Custom software projects with Mintek
+generally start from **CAD $5,000**, with final pricing depending on scope, and we
+quote fixed-scope stages wherever possible. If you decide custom is the way, our
+guides on [how to scope a project](/blog/how-to-scope-a-custom-software-project)
+and [what to expect during a build](/blog/what-to-expect-building-custom-software)
+walk through the next steps.
 
 For a sense of what a purpose-built system can look like, our
 [map-first parking marketplace case study](/case-studies/parking-marketplace-platform)

@@ -2,6 +2,7 @@
 title: "How Online Ordering Systems Work for Independent Restaurants"
 metaDescription: "How restaurant online ordering systems actually work, third-party apps vs your own, what they cost you in commissions, and when a custom system pays off."
 date: "2026-07-27"
+updated: "2026-08-04"
 author: "Mintek Software"
 tags: ["restaurants", "online ordering", "custom software"]
 category: "Guides"
@@ -99,7 +100,9 @@ dashboard for menu and orders, and SMS marketing driven by call-history analytic
 It removed third-party commissions and gave the owner direct control over payments
 and customer relationships. According to the project's own reporting, it drove a
 strong return during its peak month, largely by turning existing customers into
-repeat, direct orders.
+repeat, direct orders. Our
+[case-study deep-dive](/blog/custom-online-ordering-system-case-study) breaks down
+what went into it and how to read those results honestly.
 
 A custom system is a [custom software](/blog/custom-software-vs-off-the-shelf)
 project, not a standard website, so it is scoped to your menu, payment needs and

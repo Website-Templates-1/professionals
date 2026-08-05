@@ -24,12 +24,18 @@ Columns: Working title | Target keyword | Intent | Primary internal link(s)
 - What Goes Into a High-Converting Restaurant Website | restaurant website design | commercial | `/restaurant-website-design`, `/case-studies/doaba-junction`, `/case-studies/relax-cafe`
 - How Online Ordering Systems Work for Independent Restaurants | restaurant online ordering system | commercial/how-to | `/restaurant-website-design`, `/case-studies/restaurant-online-ordering-system`
 - Signs Your Business Has Outgrown Spreadsheets | outgrown spreadsheets business software | research | `/spreadsheet-automation`, `/web-application-development`
+- How a Custom Online Ordering System Paid Off for a Brampton Restaurant | custom online ordering system case study | commercial/proof | `/case-studies/restaurant-online-ordering-system`, `/custom-software-development`
+- How to Scope a Custom Software Project (a Practical Checklist) | how to scope software project | how-to | `/custom-software-development`
+- MVP First: Why We Recommend Starting Small | build an mvp first | research | `/custom-software-development`, `/web-application-development`
+- What to Expect When You Build Custom Software | custom software development process | research | `/custom-software-development`
+- Building a Marketplace: What to Plan Before You Start | how to build a marketplace | research | `/marketplace-development`, `/case-studies/parking-marketplace-platform`
+- Native vs Web App for Your First Mobile Product | native vs web app | research | `/mobile-app-development`, `/web-application-development`
+- Choosing a Software or Web Developer in the GTA: Questions to Ask | choosing a software developer | commercial | `/web-design-brampton`, `/custom-software-development`
 
 ## Queued
 
-- How to Scope a Custom Software Project (a Practical Checklist) | how to scope software project | how-to | `/custom-software-development`
-- Building a Marketplace: What to Plan Before You Start | how to build a marketplace | research | `/marketplace-development`, `/case-studies/parking-marketplace-platform`
-- Choosing a Web Developer in Brampton: Questions to Ask | web developer brampton | commercial | `/web-design-brampton`, `/website-development`
-- MVP First: Why We Recommend Starting Small | build an mvp first | research | `/custom-software-development`, `/web-application-development`
-- Native vs Web App for Your First Mobile Product | native vs web app | research | `/mobile-app-development`, `/web-application-development`
 - How Local SEO Works for GTA Service Businesses | local seo greater toronto area | how-to | `/website-development`, `/web-design-toronto`
+- How Much Does Custom Software Cost? A GTA Budgeting Guide | custom software cost | commercial/research | `/custom-software-development`, `/web-application-development`
+- Do You Own Your Code? Why It Matters for Custom Software | who owns custom software code | research | `/custom-software-development`
+- Signs You've Outgrown Off-the-Shelf Software | outgrown off the shelf software | research | `/custom-software-development`, `/business-automation`
+- How to Get Your Team to Actually Use New Software | software adoption small business | how-to | `/custom-software-development`

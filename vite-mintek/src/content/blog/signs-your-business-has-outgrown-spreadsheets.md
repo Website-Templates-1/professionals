@@ -2,6 +2,7 @@
 title: "Signs Your Business Has Outgrown Spreadsheets"
 metaDescription: "Seven clear signs your business has outgrown spreadsheets, and what to do next. When to automate, when to move to a proper database, and how to avoid overbuilding."
 date: "2026-07-29"
+updated: "2026-08-04"
 author: "Mintek Software"
 tags: ["automation", "spreadsheets", "small business"]
 category: "Guides"
@@ -124,9 +125,11 @@ big platform. The opposite, usually. The smart path is incremental:
 
 - **Automate the worst task first.** Often the fastest relief is automating the
   single most painful, repetitive job, the manual report, the copy-paste, the
-  reminders, while the spreadsheet stays in place. Our
-  [spreadsheet automation](/spreadsheet-automation) service is built for exactly
-  this.
+  reminders, while the spreadsheet stays in place. If that is where you are, our
+  overview of [business process automation](/blog/what-is-business-process-automation)
+  and our [spreadsheet automation](/spreadsheet-automation) service are built for
+  exactly this. This is the fix when the *tasks around* the sheet hurt, rather
+  than the sheet itself.
 - **Connect your tools.** If the pain is data living in two places, integrations
   can keep them in sync so nobody retypes anything.
 - **Move to a real application when access and scale demand it.** When many people

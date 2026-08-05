@@ -2,6 +2,7 @@
 title: "Do You Need a Website or a Web Application?"
 metaDescription: "Website or web application? A plain-English guide to the difference, how to tell which one your business needs, what each costs, and how to avoid overbuilding."
 date: "2026-07-21"
+updated: "2026-08-04"
 author: "Mintek Software"
 tags: ["websites", "web applications", "small business"]
 category: "Guides"
@@ -108,7 +109,8 @@ load:
   personalised list, anything driven by *who is looking* and *what they have
   done*, is application behaviour.
 - **You are running a process, not publishing a page.** Bookings, online ordering,
-  search-and-filter over lots of records, or a two-sided marketplace are all real
+  search-and-filter over lots of records, or a
+  [two-sided marketplace](/blog/building-a-marketplace-what-to-plan) are all real
   systems with their own logic and edge cases.
 - **You need live, reliable data.** When the value is in up-to-date information
   and the actions people take on it, you have outgrown a static site.

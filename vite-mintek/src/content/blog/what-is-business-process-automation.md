@@ -2,6 +2,7 @@
 title: "What Is Business Process Automation (and When Is It Worth It)?"
 metaDescription: "A plain-English guide to business process automation for small businesses: what it means, which tasks are worth automating, what it costs, and how to spot the payback."
 date: "2026-07-25"
+updated: "2026-08-04"
 author: "Mintek Software"
 tags: ["automation", "business process automation", "small business"]
 category: "Guides"
@@ -97,9 +98,12 @@ Invoices, quotes and confirmations often start as rows in a spreadsheet. Instead
 copying each one into a document by hand, they can be generated automatically:
 consistent formatting, no typos, no missed fields.
 
-For a deeper look at these, our guide on
-[repetitive tasks you can automate with Google Sheets](/blog/automate-repetitive-tasks-with-google-sheets)
-walks through concrete examples.
+This guide is the big-picture overview. For the hands-on version, our companion
+post on [repetitive tasks you can automate with Google Sheets](/blog/automate-repetitive-tasks-with-google-sheets)
+shows how to wire these up inside a spreadsheet, and
+[signs your business has outgrown spreadsheets](/blog/signs-your-business-has-outgrown-spreadsheets)
+covers the point where automation is no longer enough and it is time to move to a
+proper system.
 
 ## When is it worth it? A simple payback test
 
