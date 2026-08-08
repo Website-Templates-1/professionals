@@ -32,10 +32,10 @@ Columns: Working title | Target keyword | Intent | Primary internal link(s)
 - Native vs Web App for Your First Mobile Product | native vs web app | research | `/mobile-app-development`, `/web-application-development`
 - Choosing a Software or Web Developer in the GTA: Questions to Ask | choosing a software developer | commercial | `/web-design-brampton`, `/custom-software-development`
 - How Local SEO Works for GTA Service Businesses | local seo greater toronto area | how-to | `/website-development`, `/web-design-toronto`, `/web-design-brampton`, `/case-studies/pawpals`, `/case-studies/doaba-junction`
+- How Much Does Custom Software Cost? A GTA Budgeting Guide | custom software cost | commercial/research | `/custom-software-development`, `/web-application-development`
 
 ## Queued
 
-- How Much Does Custom Software Cost? A GTA Budgeting Guide | custom software cost | commercial/research | `/custom-software-development`, `/web-application-development`
 - How to Get Your Team to Actually Use New Software | software adoption small business | how-to | `/custom-software-development`
 
 ## Rejected (covered elsewhere)
