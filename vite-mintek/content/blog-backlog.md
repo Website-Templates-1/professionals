@@ -31,11 +31,14 @@ Columns: Working title | Target keyword | Intent | Primary internal link(s)
 - Building a Marketplace: What to Plan Before You Start | how to build a marketplace | research | `/marketplace-development`, `/case-studies/parking-marketplace-platform`
 - Native vs Web App for Your First Mobile Product | native vs web app | research | `/mobile-app-development`, `/web-application-development`
 - Choosing a Software or Web Developer in the GTA: Questions to Ask | choosing a software developer | commercial | `/web-design-brampton`, `/custom-software-development`
+- How Local SEO Works for GTA Service Businesses | local seo greater toronto area | how-to | `/website-development`, `/web-design-toronto`, `/web-design-brampton`, `/case-studies/pawpals`, `/case-studies/doaba-junction`
 
 ## Queued
 
-- How Local SEO Works for GTA Service Businesses | local seo greater toronto area | how-to | `/website-development`, `/web-design-toronto`
 - How Much Does Custom Software Cost? A GTA Budgeting Guide | custom software cost | commercial/research | `/custom-software-development`, `/web-application-development`
-- Do You Own Your Code? Why It Matters for Custom Software | who owns custom software code | research | `/custom-software-development`
-- Signs You've Outgrown Off-the-Shelf Software | outgrown off the shelf software | research | `/custom-software-development`, `/business-automation`
 - How to Get Your Team to Actually Use New Software | software adoption small business | how-to | `/custom-software-development`
+
+## Rejected (covered elsewhere)
+
+- Signs You've Outgrown Off-the-Shelf Software | duplicates the "Consider custom when..." section and FAQ in `custom-software-vs-off-the-shelf.md`, and collides in format/intent with the live "Signs Your Business Has Outgrown Spreadsheets" post. Fold any unique angle into those posts instead of publishing a separate article.
+- Do You Own Your Code? Why It Matters for Custom Software | code ownership is already an FAQ in `custom-software-vs-off-the-shelf.md` and `what-to-expect-building-custom-software.md`, and a core section of `choosing-a-software-developer-in-the-gta.md`. Too thin as a standalone; would cannibalize the "choosing a developer" post.
