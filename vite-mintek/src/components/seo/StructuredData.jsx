@@ -225,6 +225,37 @@ export const BlogListSchema = ({ posts }) => (
   />
 );
 
+// About page: an AboutPage whose mainEntity is the Organization, with the
+// founder modelled as a Person. Truthful fields only.
+export const AboutPageSchema = ({ founder }) => (
+  <JsonLd
+    data={{
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: `About ${site.brand}`,
+      url: canonical("/about"),
+      mainEntity: {
+        "@type": "Organization",
+        name: site.brand,
+        legalName: site.legalName,
+        url: site.domain,
+        logo: absoluteUrl(site.logo),
+        foundingDate: String(site.foundingYear),
+        ...(founder
+          ? {
+              founder: {
+                "@type": "Person",
+                name: founder.name,
+                jobTitle: founder.jobTitle,
+                worksFor: { "@type": "Organization", name: site.brand },
+              },
+            }
+          : {}),
+      },
+    }}
+  />
+);
+
 // items: [{ name, path }]
 export const BreadcrumbSchema = ({ items }) => (
   <JsonLd
