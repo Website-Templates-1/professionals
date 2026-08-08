@@ -37,6 +37,8 @@ Columns: Working title | Target keyword | Intent | Primary internal link(s)
 ## Queued
 
 - How to Get Your Team to Actually Use New Software | software adoption small business | how-to | `/custom-software-development`
+- Online Booking Software for Barbers, Makeup Artists and Small Studios | online booking software for barbers | commercial | `/web-application-development`, `/case-studies/bookme-scheduling-platform`
+- How to Stop No-Shows and Double-Bookings at Your Salon or Studio | reduce no-shows salon booking | how-to | `/web-application-development`, `/case-studies/bookme-scheduling-platform`
 
 ## Rejected (covered elsewhere)
 

@@ -194,6 +194,7 @@ export const services = [
     relatedCaseStudies: [
       "parking-marketplace-platform",
       "restaurant-online-ordering-system",
+      "bookme-scheduling-platform",
     ],
   },
   {
@@ -276,6 +277,7 @@ export const services = [
     relatedCaseStudies: [
       "parking-marketplace-platform",
       "google-sheets-event-discovery-app",
+      "bookme-scheduling-platform",
     ],
   },
   {
@@ -1019,6 +1021,58 @@ export const caseStudies = [
     previewUrl: null,
     githubUrl: null,
   },
+  {
+    slug: "bookme-scheduling-platform",
+    kind: "prototype",
+    label: "Scheduling Platform",
+    homepageOrder: null,
+    title: "Building a Calendly-Style Booking Platform for Service Providers",
+    client: "BookMe",
+    year: "2026",
+    metaTitle: "Case Study: BookMe Scheduling Platform | Mintek Software",
+    metaDescription:
+      "How Mintek Software designed and built BookMe, a Calendly-style multi-staff booking platform with a timezone-correct availability engine, no-double-booking safeguards and Google Calendar sync.",
+    shortDescription:
+      "A Calendly-style, multi-staff booking platform with a timezone-correct availability engine, Google Calendar sync and automated reminders, built on the MERN stack with TypeScript.",
+    summary:
+      "BookMe is a booking platform for independent service providers such as barbers, makeup artists and small studios. Each business gets a shareable booking page where clients self-schedule, while owners manage team, services and availability from a dashboard. Mintek built it as a lean MVP with a React and TypeScript front end and a Node, Express and MongoDB backend, with optional Google Calendar sync and email/SMS notifications.",
+    problem:
+      "Service businesses lose time and revenue to manual scheduling: DMs, phone tag, double-bookings and no-shows. Off-the-shelf tools are often over-priced or not built for multi-staff shops. The goal was a focused, self-serve booking experience a small business could stand up in minutes.",
+    solution:
+      "Mintek built a branded public booking flow (pick a service, choose a team member, select a date and time, confirm) backed by a real-time availability engine, plus an owner dashboard for bookings, a service catalogue, a visual weekly availability editor and team management. Google Calendar, email and SMS integrations are all optional, so the app runs fully without any third-party accounts.",
+    services: ["web-application-development", "custom-software-development"],
+    features: [
+      "Branded, mobile-friendly public booking page per business",
+      "Guided multi-step flow: service, team member, date and time, confirm",
+      "Timezone-correct availability engine with configurable duration and buffers",
+      "No double-bookings, enforced by a unique database index (not just a UI check)",
+      "Per-staff Google Calendar sync: writes bookings and reads back busy times",
+      "Automated email and SMS confirmations plus 24-hour and 1-hour reminders",
+      "Owner dashboard: bookings, service catalogue, availability editor, team management",
+      "JWT auth with role-based access, request validation and encrypted OAuth tokens",
+    ],
+    results: [
+      "Delivered a production-ready MVP verified end-to-end: availability, booking, concurrency safeguards, auth and notifications",
+      "Concurrency-safe by design: two clients racing for one slot can never both succeed",
+      "Graceful degradation: email, SMS and calendar integrations are optional, keeping local dev and demos friction-free",
+      "Containerized MongoDB for local development and one-click cloud deploy via a Render Blueprint backed by MongoDB Atlas",
+    ],
+    metrics: [],
+    techStack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Google Calendar API",
+    ],
+    status: "Live",
+    liveUrl: "https://bookme-web.onrender.com/",
+    previewUrl: null,
+    githubUrl: null,
+  },
 ];
 
 export const getCaseStudy = (slug) => caseStudies.find((c) => c.slug === slug);
@@ -1538,6 +1592,20 @@ export const caseStudyFaqs = {
     {
       q: "Can Mintek build a website for my restaurant?",
       a: "Yes. Doaba Junction is an example of our restaurant website design. We build menu-first, mobile-friendly sites that drive calls, directions and catering enquiries, and can add or connect online ordering. See our restaurant website design service.",
+    },
+  ],
+  "bookme-scheduling-platform": [
+    {
+      q: "What is BookMe?",
+      a: "BookMe is a Calendly-style booking platform built as a prototype for independent service providers such as barbers, makeup artists and small studios. Each business gets a shareable booking page where clients self-schedule, while owners manage their team, services and availability from a dashboard. It is a demonstration of our web application and custom software work, not a paid client engagement.",
+    },
+    {
+      q: "How does BookMe prevent double-bookings?",
+      a: "Concurrency is enforced at the database level with a unique index, not just a check in the interface. That means if two people race for the same slot, only one can ever succeed. The availability engine also computes bookable times in the business's timezone, subtracting existing bookings and, when connected, external calendar busy times, with configurable service durations and buffers.",
+    },
+    {
+      q: "Can Mintek build a booking platform for my business?",
+      a: "Yes. BookMe shows our approach to booking and scheduling software: a self-serve public booking flow, a real-time availability engine, an owner dashboard and optional Google Calendar, email and SMS integrations. We can build a tailored version for your industry, usually starting with a focused first version that proves the core booking loop before expanding. See our web application development and custom software development services.",
     },
   ],
 };

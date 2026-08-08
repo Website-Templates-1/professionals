@@ -77,6 +77,10 @@ export const TOPIC_MAP = {
     services: ["website-development", "web-design-brampton", "web-design-toronto"],
     caseStudies: ["pawpals", "doaba-junction"],
   },
+  scheduling: {
+    services: ["web-application-development", "custom-software-development"],
+    caseStudies: ["bookme-scheduling-platform"],
+  },
 };
 
 // Tags too broad to imply a specific service or case study.
