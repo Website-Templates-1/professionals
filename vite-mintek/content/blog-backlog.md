@@ -36,7 +36,7 @@ Columns: Working title | Target keyword | Intent | Primary internal link(s)
 
 ## Queued
 
-- How to Get Your Team to Actually Use New Software | software adoption small business | how-to | `/custom-software-development`
+- How We Built a Local Food Marketplace Connecting GTA Farmers and Shoppers | local food marketplace GTA | commercial/proof | `/marketplace-development`, `/custom-software-development`, `/web-application-development`, `/website-development`, `/case-studies/parking-marketplace-platform`, `/blog/building-a-marketplace-what-to-plan` — NOTE: GTA Farm Market is a Mintek-built product currently PENDING ONBOARDING on a live URL (gta-farm-market.onrender.com). Frame as a capability/build showcase spanning marketplace + web application + website skills, NOT a client case study. There are no farms, customers, sales, or results yet — do NOT fabricate metrics, testimonials, or partner names. Only describe features actually visible on the site (direct farmer-to-customer produce/dairy/eggs, choice of delivery or farm pickup at checkout, "meet the farms" profiles) and treat the URL as "preview (temporary)". Angle: how a two-sided local food marketplace is designed (both sides, listings, location/pickup logic, marketplace SEO) to showcase Mintek's software/website/marketplace range for GTA businesses.
 - Online Booking Software for Barbers, Makeup Artists and Small Studios | online booking software for barbers | commercial | `/web-application-development`, `/case-studies/bookme-scheduling-platform`
 - How to Stop No-Shows and Double-Bookings at Your Salon or Studio | reduce no-shows salon booking | how-to | `/web-application-development`, `/case-studies/bookme-scheduling-platform`
 
