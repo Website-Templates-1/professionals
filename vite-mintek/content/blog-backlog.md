@@ -34,10 +34,10 @@ Columns: Working title | Target keyword | Intent | Primary internal link(s)
 - How Local SEO Works for GTA Service Businesses | local seo greater toronto area | how-to | `/website-development`, `/web-design-toronto`, `/web-design-brampton`, `/case-studies/pawpals`, `/case-studies/doaba-junction`
 - How Much Does Custom Software Cost? A GTA Budgeting Guide | custom software cost | commercial/research | `/custom-software-development`, `/web-application-development`
 - How We Built a Local Food Marketplace Connecting GTA Farmers and Shoppers | local food marketplace GTA | commercial/proof | `/marketplace-development`, `/web-application-development`, `/website-development`, `/case-studies/parking-marketplace-platform`, `/blog/building-a-marketplace-what-to-plan` — Published as `how-we-built-a-local-food-marketplace-for-the-gta.md`. Framed as a capability/build showcase of GTA Farm Market (an early preview build, pending onboarding), NOT a client case study. Only visible features described (produce/dairy/eggs storefront, delivery-or-farm-pickup at checkout, "meet the farms" profiles); no metrics, testimonials, or partner names fabricated; preview URL labelled temporary.
+- Online Booking Software for Barbers, Makeup Artists and Small Studios | online booking software for barbers | commercial | `/web-application-development`, `/case-studies/bookme-scheduling-platform` — Published as `online-booking-software-for-barbers-and-studios.md`. Framed BookMe as a demonstration/prototype of web application work (not a paid client engagement). Only features and safeguards from siteConfig described; no fabricated no-show %, adoption, or revenue claims. Tags: scheduling, web applications, small business (scheduling already in TOPIC_MAP).
 
 ## Queued
 
-- Online Booking Software for Barbers, Makeup Artists and Small Studios | online booking software for barbers | commercial | `/web-application-development`, `/case-studies/bookme-scheduling-platform`
 - How to Stop No-Shows and Double-Bookings at Your Salon or Studio | reduce no-shows salon booking | how-to | `/web-application-development`, `/case-studies/bookme-scheduling-platform`
 
 ## Rejected (covered elsewhere)
