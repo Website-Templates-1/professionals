@@ -1,6 +1,7 @@
 import Hero from "../components/hero-section/Hero";
 import AboutUs from "../components/about-us-section/AboutUs";
 import OurServices from "../components/our-service-section/OurServices";
+import LocalServices from "../components/local-services-section/LocalServices";
 import PortfolioSection from "../components/portfolio-section/PortfolioSection";
 import ContactUs from "../components/contact-us-section/ContactUs";
 import Seo from "../components/seo/Seo";
@@ -18,6 +19,7 @@ const Home = () => {
       />
       <Hero />
       <OurServices />
+      <LocalServices />
       <PortfolioSection />
       <Testimonials limit={3} />
       <AboutUs />

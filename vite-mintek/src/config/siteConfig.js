@@ -542,7 +542,11 @@ export const services = [
       "Web design in Brampton for small businesses. Mintek Software builds fast, mobile-friendly, lead-generating websites for Brampton businesses. Based locally in Brampton.",
     short:
       "Fast, mobile-friendly, lead-generating websites for Brampton businesses.",
-    hero: "Web design for Brampton small businesses.",
+    hero: "Web design in Brampton for small businesses",
+    localAreas: [
+      "Downtown Brampton", "Bramalea", "Heart Lake", "Springdale",
+      "Mount Pleasant", "Castlemore", "Fletcher's Meadow", "Sandalwood",
+    ],
     problem:
       "Brampton small businesses need a professional website that brings in enquiries, but many end up with slow, template sites that do not convert.",
     solution:

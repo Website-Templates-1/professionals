@@ -22,6 +22,16 @@ import {
 } from "../../config/siteConfig";
 import { trackEvent, trackLead } from "../../utils/analytics";
 
+// Public config (safe to ship in browser code — same trust model as the old
+// EmailJS public key). The formId can only submit this one form to a fixed inbox.
+const EMAIL_SERVICE_URL = import.meta.env.VITE_EMAIL_SERVICE_URL;
+const CONTACT_FORM_ID = import.meta.env.VITE_CONTACT_FORM_ID;
+if (!EMAIL_SERVICE_URL || !CONTACT_FORM_ID) {
+  console.error(
+    "Contact form is not configured: set VITE_EMAIL_SERVICE_URL and VITE_CONTACT_FORM_ID"
+  );
+}
+
 const contactContent = {
   overline: "GET IN TOUCH",
   title: "Tell Us What You Want to Build or Automate",
@@ -151,13 +161,36 @@ const ContactUs = ({ defaultService = "" }) => {
     setIsLoading(true);
 
     try {
-      const { default: emailjs } = await import("@emailjs/browser");
-      await emailjs.sendForm(
-        "service_775ddm4",
-        "template_2935oq1",
-        form,
-        "IujqhptBVwY6OTejt"
-      );
+      // Generous timeout so a cold-started service (first submit after idle) can
+      // wake instead of hanging forever.
+      const ctrl = new AbortController();
+      const timeout = setTimeout(() => ctrl.abort(), 60000);
+      let res;
+      try {
+        res = await fetch(
+          `${EMAIL_SERVICE_URL}/v1/forms/${CONTACT_FORM_ID}/submit`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            signal: ctrl.signal,
+            body: JSON.stringify({
+              name: name.value.trim(),
+              email: email.value.trim(),
+              message: message.value.trim(),
+              fields: {
+                projectType:
+                  projectTypes.find((t) => t.value === projectType)?.label ||
+                  "Unspecified",
+                budget: budget || "Unspecified",
+              },
+              _gotcha: form.elements._gotcha?.value || "",
+            }),
+          }
+        );
+      } finally {
+        clearTimeout(timeout);
+      }
+      if (!res.ok) throw new Error(`Submit failed: ${res.status}`);
 
       trackLead({
         project_type:
@@ -329,6 +362,14 @@ const ContactUs = ({ defaultService = "" }) => {
               }}
             >
               <Grid container spacing={3}>
+                {/* Honeypot: hidden from humans/AT; bots that fill it are dropped
+                    server-side. Off-screen wrapper keeps it out of layout flow. */}
+                <Box
+                  aria-hidden="true"
+                  sx={{ position: "absolute", top: "-9999px", left: "-9999px" }}
+                >
+                  <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+                </Box>
                 <Grid item xs={12} sm={6}>
                   <Typography component="label" htmlFor="contact-name" variant="subtitle2" sx={labelSx}>
                     Name <Box component="span" aria-hidden="true">*</Box>

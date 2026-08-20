@@ -232,6 +232,20 @@ const ServicePage = ({ slug }) => {
           </Box>
         </Section>
 
+        {service.localAreas && service.localAreas.length > 0 && (
+          <Section overline="LOCAL COVERAGE" title="Areas we serve">
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+              We're based in Brampton and work with businesses right across the
+              city and its neighbourhoods, in person or online.
+            </Typography>
+            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+              {service.localAreas.map((area) => (
+                <Chip key={area} label={area} variant="outlined" color="primary" />
+              ))}
+            </Stack>
+          </Section>
+        )}
+
         {service.pricing && (
           <Box
             sx={{
