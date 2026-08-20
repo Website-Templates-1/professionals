@@ -217,6 +217,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://minteksoftware.com/blog/how-to-stop-no-shows-and-double-bookings-at-your-salon</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://minteksoftware.com/blog/how-we-built-a-local-food-marketplace-for-the-gta</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://minteksoftware.com/blog/mvp-first-why-start-small</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -224,6 +236,12 @@
   </url>
   <url>
     <loc>https://minteksoftware.com/blog/native-vs-web-app-first-mobile-product</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://minteksoftware.com/blog/online-booking-software-for-barbers-and-studios</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -254,6 +272,12 @@
   </url>
   <url>
     <loc>https://minteksoftware.com/blog/what-to-expect-building-custom-software</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://minteksoftware.com/blog/when-google-sheets-is-enough-to-run-your-website</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

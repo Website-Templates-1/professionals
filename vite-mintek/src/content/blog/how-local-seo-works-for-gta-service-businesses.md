@@ -93,7 +93,7 @@ service pages, your location and service area in plain text, and content that
 matches how people actually search. City-specific pages can help *when they carry
 genuinely useful, distinct content*, thin, near-duplicate pages for every town do
 more harm than good. Our [Toronto](/web-design-toronto) and
-[Brampton](/web-design-brampton) pages are examples of location pages built around
+[Brampton web design](/web-design-brampton) pages are examples of location pages built around
 real, specific content rather than filler.
 
 ### Reviews and reputation
