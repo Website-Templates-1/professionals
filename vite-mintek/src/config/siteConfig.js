@@ -332,6 +332,7 @@ export const services = [
       "Marketplace and multi-sided platform projects generally start at CAD $5,000 and are scoped after discovery.",
     offersFrom: 5000,
     title: "Marketplace Development",
+    navLabel: "Marketplace",
     metaTitle: "Marketplace Development Company Toronto | Mintek Software",
     metaDescription:
       "Custom marketplace development: listings, search, maps, location data and marketplace SEO. Mintek Software builds two-sided and location-based marketplaces.",
@@ -403,6 +404,7 @@ export const services = [
       "Spreadsheet automation projects start at CAD $3,000. Smaller, well-defined tasks can suit a paid discovery or proof of concept.",
     offersFrom: 3000,
     title: "Spreadsheet Automation",
+    navLabel: "Spreadsheets",
     metaTitle: "Spreadsheet Automation & Integrations | Mintek Software",
     metaDescription:
       "Automate reporting, data syncing and spreadsheet workflows. Mintek Software turns manual spreadsheet operations into reliable, scheduled, automated processes.",
@@ -510,20 +512,20 @@ export const services = [
       "Business process automation for Toronto and GTA companies. Mintek Software automates reporting, data syncing and manual workflows to save hours every week.",
     short:
       "Automate manual workflows for Toronto and GTA businesses.",
-    hero: "Business automation for Toronto companies.",
+    hero: "Business automation for Toronto & GTA businesses.",
     problem:
-      "Growing Toronto businesses lose hours to manual data entry, repeated reporting and disconnected tools that do not talk to each other.",
+      "Established Toronto and GTA operators such as trades, clinics, property managers, wholesalers and professional-services firms often run on a patchwork of spreadsheets, email inboxes and off-the-shelf tools that were never connected. Staff re-key the same order, invoice or client record into three systems, month-end reporting eats a full day, and details slip through when someone is out. As the business grows, that manual overhead scales with headcount instead of shrinking.",
     solution:
-      "We help Toronto and GTA businesses automate their highest-cost manual processes with reliable workflows, integrations and dashboards. Based in Brampton, with in-person meetings available across the GTA.",
+      "We work with Toronto and GTA businesses in person, on-site where it helps, to map the actual day-to-day workflow before writing a line of code. Because we are based in Brampton, we can sit down with your team in Toronto, Mississauga, Vaughan or Markham to watch how quotes, dispatch, intake or reconciliation really happen, then automate the highest-cost steps: syncing your CRM with QuickBooks, turning inbox requests into tracked jobs, auto-generating the reports a GTA operations manager rebuilds by hand each week, and wiring your existing tools together with monitored integrations. We start with a small, clearly scoped process so you see a payback before committing to a larger rollout.",
     process: [
-      "Audit: measure where time and errors accumulate.",
-      "Prioritize: target the fastest-payback automations.",
-      "Build: connect your tools with monitored workflows.",
-      "Measure: track hours saved after launch.",
+      "Audit: meet on-site or over a call to map the real GTA workflow and measure where hours and errors accumulate.",
+      "Prioritize: target the automations with the fastest local payback and lowest disruption to your team.",
+      "Build: connect your existing tools with reliable, monitored workflows and integrations.",
+      "Measure: track hours saved and error rates after launch, and iterate on the next process.",
     ],
-    tech: ["Node.js", "REST APIs", "Webhooks", "SQL", "Google Sheets API"],
+    tech: ["Node.js", "REST APIs", "Webhooks", "SQL", "Cloud Functions", "Google Sheets API", "QuickBooks API"],
     outcome:
-      "Fewer manual hours and more reliable operations for your Toronto business.",
+      "Your team stops re-keying data between systems, month-end reporting drops from hours to minutes, and operations keep running the same way whether or not a key person is in that day, with a local partner you can meet face to face when something needs a change.",
     relatedServices: ["business-automation", "spreadsheet-automation", "custom-software-development-toronto"],
     relatedCaseStudies: ["restaurant-online-ordering-system"],
   },
@@ -561,7 +563,11 @@ export const services = [
     outcome:
       "A professional, fast Brampton website that turns local searches into enquiries.",
     relatedServices: ["website-development", "web-design-mississauga", "restaurant-website-design"],
-    relatedCaseStudies: ["pawpals"],
+    relatedCaseStudies: ["pawpals", "doaba-junction"],
+    relatedPosts: [
+      "how-local-seo-works-for-gta-service-businesses",
+      "how-much-does-a-business-website-cost-in-the-gta",
+    ],
   },
   {
     slug: "web-design-mississauga",
@@ -695,6 +701,39 @@ export const services = [
     outcome: "A fast, credible Vaughan website built to convert.",
     relatedServices: ["website-development", "web-design-brampton"],
     relatedCaseStudies: [],
+  },
+  {
+    slug: "local-seo-gta",
+    icon: "Language",
+    color: "#FF3D85",
+    group: "local",
+    budgetType: "website",
+    title: "Local SEO Services (GTA)",
+    navLabel: "Local SEO",
+    metaTitle: "GTA SEO & Local SEO Services | Mintek Software",
+    metaDescription:
+      "Local SEO and GTA SEO services from Mintek Software. We audit your site, fix on-page and technical SEO, optimize your Google Business Profile and report on progress for GTA businesses.",
+    short:
+      "SEO audits, on-page, technical and local SEO for GTA and Toronto businesses.",
+    hero: "SEO services for GTA & Toronto businesses.",
+    localAreas: [
+      "Toronto", "Brampton", "Mississauga", "Vaughan", "Markham",
+    ],
+    problem:
+      "Many GTA businesses have a website that never shows up when local customers search. Pages are slow, titles and headings are not written for the terms people actually type, Google Business Profiles are incomplete, and there is no clear reporting on what is working. Without a structured SEO foundation, even a good-looking site stays invisible in local results.",
+    solution:
+      "We provide full local SEO services for GTA businesses: we audit your current site, fix on-page and technical SEO, optimize your Google Business Profile and local listings, and build content and reporting so you can see progress over time. Based in Brampton, we can meet in person across Toronto, Mississauga, Vaughan and Markham to understand your market before we start. We focus on the fundamentals that make a site eligible to rank, rather than promising positions we cannot control.",
+    process: [
+      "Audit: review your site, current rankings, technical health and local search presence.",
+      "On-page & technical SEO: improve titles, headings, structure, site speed, crawlability and structured data.",
+      "Local SEO & Google Business Profile: optimize your profile, categories, listings and local landing pages.",
+      "Content & reporting: plan content around real search terms and report on rankings, traffic and actions taken.",
+    ],
+    tech: ["Google Search Console", "Google Business Profile", "Google Analytics", "Structured Data", "Core Web Vitals"],
+    outcome:
+      "A technically sound, well-structured site and a fully optimized local presence, with clear reporting so you can see exactly what we changed and how your search visibility is developing.",
+    relatedServices: ["web-design-brampton", "web-design-toronto", "website-development"],
+    relatedCaseStudies: ["pawpals", "doaba-junction"],
   },
 ];
 
@@ -989,9 +1028,9 @@ export const caseStudies = [
     title: "Restaurant Online Ordering System",
     client: "Airport Sweets and Tandoori",
     year: "2022",
-    metaTitle: "Case Study: Restaurant Online Ordering System | Mintek Software",
+    metaTitle: "Brampton Restaurant Online Ordering System | Mintek Software",
     metaDescription:
-      "How Mintek Software built a custom online ordering system with Stripe payments and SMS marketing for a Brampton restaurant, driving up to 705% ROI in a month.",
+      "How Mintek Software built a commission-free custom online ordering system for a Brampton restaurant, with Stripe payments and SMS marketing driving up to 705% ROI in a month.",
     shortDescription:
       "A fully custom online ordering system with integrated payments, real-time order management, and SMS marketing.",
     summary:
@@ -1018,6 +1057,8 @@ export const caseStudies = [
       { label: "Peak monthly calls", value: "684" },
       { label: "Max monthly ROI", value: "705%" },
       { label: "Customers who ordered", value: "323" },
+      { label: "Repeat customers (3+ orders)", value: "18" },
+      { label: "Orders in promo periods", value: "173 of 290" },
     ],
     techStack: ["React", "Node.js", "Express", "SQL", "Stripe", "SMS API", "Google Analytics"],
     status: "Completed",
@@ -1099,17 +1140,21 @@ export const caseStudyRedirects = [
 // ---------------------------------------------------------------------------
 // Navigation
 // ---------------------------------------------------------------------------
-// Short, human-friendly drawer label for a service (falls back to full title).
-const navItem = (slug) => {
-  const s = getService(slug);
-  return { name: s?.navLabel || s?.title || slug, path: `/${slug}` };
-};
+// Short, human-friendly drawer labels for services (fall back to full title),
+// with hidden/noindex services filtered out so they can never leak into nav.
+const navItems = (slugs) =>
+  slugs
+    .map(getService)
+    .filter((s) => s && !s.hidden)
+    .map((s) => ({ name: s.navLabel || s.title, path: `/${s.slug}` }));
 
-// Full, keyword-rich footer label for a service (better anchor text for SEO).
-const footerItem = (slug) => {
-  const s = getService(slug);
-  return { name: s?.title || slug, path: `/${slug}` };
-};
+// Full, keyword-rich footer labels for services (better anchor text for SEO),
+// with hidden/noindex services filtered out so they can never leak into footer.
+const footerItems = (slugs) =>
+  slugs
+    .map(getService)
+    .filter((s) => s && !s.hidden)
+    .map((s) => ({ name: s.title, path: `/${s.slug}` }));
 
 const companyLinks = [
   { name: "Case Studies", path: "/case-studies" },
@@ -1118,37 +1163,36 @@ const companyLinks = [
   { name: "Contact", path: "/contact" },
 ];
 
-// Drawer navigation: concise labels, grouped by meaning. `layout: "grid"`
-// renders short clusters in two columns to save vertical space.
+// Drawer navigation: concise labels, grouped by meaning, local-first order.
+// Hidden/noindex services are auto-filtered by navItems.
 export const navGroups = [
   { heading: null, links: [{ name: "Home", path: "/" }] },
   {
-    heading: "Services",
-    links: [
-      navItem("custom-software-development"),
-      navItem("business-automation"),
-      navItem("web-application-development"),
-      navItem("marketplace-development"),
-      navItem("mobile-app-development"),
-    ],
+    heading: "Web Design & Local SEO",
+    links: navItems([
+      "web-design-brampton",
+      "web-design-toronto",
+      "website-development",
+      "restaurant-website-design",
+      "local-seo-gta",
+    ]),
   },
   {
-    heading: "Websites & Data",
-    links: [
-      navItem("website-development"),
-      navItem("google-sheets-website-development"),
-      navItem("spreadsheet-automation"),
-      navItem("restaurant-website-design"),
-    ],
+    heading: "Software & Apps",
+    links: navItems([
+      "custom-software-development",
+      "web-application-development",
+      "marketplace-development",
+      "mobile-app-development",
+    ]),
   },
   {
-    heading: "Web Design by City",
-    layout: "grid",
-    links: [
-      navItem("web-design-brampton"),
-      navItem("web-design-mississauga"),
-      navItem("web-design-toronto"),
-    ],
+    heading: "Automation & Data",
+    links: navItems([
+      "business-automation",
+      "spreadsheet-automation",
+      "google-sheets-website-development",
+    ]),
   },
   { heading: "Company", links: companyLinks },
 ];
@@ -1159,32 +1203,37 @@ export const navGroups = [
 export const footerNav = [
   {
     heading: "Software & Apps",
-    links: [
+    links: footerItems([
       "custom-software-development",
       "web-application-development",
       "marketplace-development",
       "mobile-app-development",
       "custom-software-development-toronto",
-    ].map(footerItem),
+    ]),
   },
   {
     heading: "Automation & Data",
-    links: [
+    links: footerItems([
       "business-automation",
       "spreadsheet-automation",
       "google-sheets-website-development",
       "business-automation-toronto",
-    ].map(footerItem),
+    ]),
   },
   {
     heading: "Web Design",
-    // web-design-mississauga is intentionally omitted while noindexed.
-    links: [
+    // Hidden/noindex city pages (e.g. web-design-mississauga) are filtered out
+    // automatically by footerItems, so they never appear here.
+    links: footerItems([
       "website-development",
       "web-design-brampton",
       "web-design-toronto",
       "restaurant-website-design",
-    ].map(footerItem),
+    ]),
+  },
+  {
+    heading: "SEO & Marketing",
+    links: footerItems(["local-seo-gta"]),
   },
   { heading: "Company", links: companyLinks },
 ];
@@ -1286,6 +1335,36 @@ export const serviceFaqs = {
     {
       q: "Does Mintek provide support when a connected system changes?",
       a: "Yes. Connected systems occasionally change their interfaces or settings, which can affect an automation. We offer ongoing support and monitoring so that when something changes we can update the connection and keep things running. Arranging support up front is a good idea for automations that are critical to daily operations.",
+    },
+  ],
+  "business-automation-toronto": [
+    {
+      q: "Does Mintek need to be in Toronto to automate our processes?",
+      a: "No. Mintek is based in Brampton and works with businesses across Toronto and the GTA, with in-person meetings available. Being in the wider GTA means we can visit your Toronto office for discovery and walkthroughs when it helps, while the build and monitoring happen efficiently over video and shared tools. You get a local partner without needing us to sit in a downtown office.",
+    },
+    {
+      q: "Can you meet in person to map our workflow?",
+      a: "Yes. For automation work it often helps to sit with your team and watch how a process actually runs before we change anything. We can meet on-site or nearby across Toronto, Mississauga, Vaughan and Markham to map the real steps, then confirm the details over follow-up calls. Seeing the workflow first-hand usually surfaces edge cases a checklist would miss.",
+    },
+    {
+      q: "Which GTA industries do you automate for?",
+      a: "We work with a range of GTA operators, including trades and field services, clinics and professional-services firms, property management, wholesale and small e-commerce. The common thread is repetitive, rule-based work spread across spreadsheets, email and disconnected tools. We are not tied to one vertical, so during discovery we focus on your specific processes rather than a fixed template.",
+    },
+    {
+      q: "How does this differ from your general business automation service?",
+      a: "The work itself is the same discipline; the difference is how we deliver it locally. For GTA clients we lean on in-person discovery, walkthroughs and handover, and we tailor examples to the operational realities of Toronto-area businesses. If you prefer a fully remote engagement, our general business automation service covers the same capabilities without the in-person component.",
+    },
+    {
+      q: "Do you work remotely or on-site?",
+      a: "Both. We combine in-person meetings across the GTA with efficient remote development. Discovery, walkthroughs and handover often work well face to face, while building and monitoring the automations runs smoothly over video and shared tools. We adapt to how your team prefers to work rather than forcing a single model.",
+    },
+    {
+      q: "How much does business automation cost for a GTA business?",
+      a: "Small, clearly defined automation projects generally start at CAD $3,000, and larger workflow or integration projects are quoted after discovery. Smaller ideas below that range can suit a paid discovery or proof of concept. Because the value comes from time saved and errors removed, we prioritise the processes with the fastest payback so the work pays for itself.",
+    },
+    {
+      q: "How much time can automation save us?",
+      a: "It varies by process, and we do not promise a specific number of hours without evidence from your actual workflow. What we can say is that automating recurring reporting, data entry and syncing typically turns tasks that took hours into ones that run in minutes in the background. During discovery we measure the current effort so that, after launch, we can show the real time saved.",
     },
   ],
   "custom-software-development-toronto": [
@@ -1530,6 +1609,40 @@ export const serviceFaqs = {
     {
       q: "Will I own my Vaughan website?",
       a: "Yes. You own your website once it is complete and paid for, including content and code. We can build it so you update key content yourself, and you are never locked into a proprietary platform.",
+    },
+  ],
+  "local-seo-gta": [
+    {
+      q: "What does local SEO include?",
+      a: "Our local SEO work covers an audit of your current site and search presence, on-page SEO such as titles, headings and content structure, technical SEO like site speed, crawlability and structured data, and local signals including your Google Business Profile, categories, listings and local landing pages. We also set up reporting so you can see what was changed and how visibility develops. It is a set of fundamentals that make a site eligible to rank locally, not a single trick.",
+    },
+    {
+      q: "How long does SEO take to show results?",
+      a: "SEO is a gradual process rather than an instant switch. Technical and on-page fixes can be implemented quickly, but search engines take time to re-crawl a site and reflect changes, and competitive local terms take longer than niche ones. We focus on doing the right work and reporting on it honestly, rather than promising a specific timeframe we cannot control.",
+    },
+    {
+      q: "Can you guarantee first-page or #1 Google rankings?",
+      a: "No, and we would be cautious of anyone who does. Rankings are decided by Google's algorithms and by what your competitors are doing, none of which any agency controls. What we can commit to is doing the work that gives a site the best chance to rank: a clean technical foundation, well-structured on-page content, an optimized local presence and clear reporting so you can see exactly what we changed.",
+    },
+    {
+      q: "Do you serve the whole GTA?",
+      a: "Yes. We work with businesses across the GTA, including Toronto, Brampton, Mississauga, Vaughan and Markham. Being based in Brampton means we can also meet in person to understand your local market before starting. Local SEO itself is delivered the same way wherever you are, since it centres on your website, your listings and the areas you want to reach.",
+    },
+    {
+      q: "Do I need a new website for SEO to work?",
+      a: "Not always. In many cases we improve the site you already have by fixing technical issues, restructuring pages and strengthening content. If a site is very slow, hard to edit or built on a platform that blocks good SEO, we will tell you honestly and can rebuild it, but a new website is a recommendation we only make when it is genuinely warranted.",
+    },
+    {
+      q: "How is local SEO priced?",
+      a: "Pricing depends on the size of your site, the competitiveness of your market and whether you want a one-off audit and fixes or ongoing work. We scope this after an initial conversation and audit so you know what is included before committing. We keep the work transparent, with reporting on what was done, rather than charging for vague retainers.",
+    },
+    {
+      q: "Do you optimize Google Business Profiles?",
+      a: "Yes. Optimizing your Google Business Profile is a core part of local SEO. We review and complete your profile, choose accurate categories, keep your business information consistent across listings, and align it with your website and local landing pages. A well-maintained profile helps you show up in local map results and gives searchers the details they need to contact you.",
+    },
+    {
+      q: "How do you report on SEO work?",
+      a: "We set up reporting so you can see the state of your search presence and what we have changed. Using tools such as Google Search Console and Google Analytics, we track visibility, traffic and the actions taken on the site, and we summarise the work in plain language. The goal is that you always know what was done and why, rather than paying for activity you cannot see.",
     },
   ],
 };

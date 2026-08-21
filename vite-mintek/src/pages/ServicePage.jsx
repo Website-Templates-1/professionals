@@ -18,6 +18,7 @@ import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
 import Faq from "../components/common/Faq";
 import Testimonials from "../components/common/Testimonials";
+import RelatedContent from "../components/common/RelatedContent";
 import {
   ServiceSchema,
   BreadcrumbSchema,
@@ -28,6 +29,7 @@ import {
   getServiceFaqs,
   projectStages,
 } from "../config/siteConfig";
+import { getServiceRelated } from "../config/relatedContent";
 import NotFound from "./NotFound";
 
 // Which testimonial theme a service page should request.
@@ -74,6 +76,7 @@ const ServicePage = ({ slug }) => {
     .map(getService)
     .filter((s) => s && !s.hidden);
   const faqs = getServiceFaqs(service.slug);
+  const related = getServiceRelated(service.slug);
 
   return (
     <>
@@ -328,6 +331,12 @@ const ServicePage = ({ slug }) => {
           </Section>
         )}
       </Container>
+
+      {related.length > 0 && (
+        <Container maxWidth="md" sx={{ pb: { xs: 4, md: 8 } }}>
+          <RelatedContent items={related} />
+        </Container>
+      )}
 
       <Testimonials tag={testimonialTagForService(service)} limit={3} />
 

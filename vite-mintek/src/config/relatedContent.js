@@ -168,3 +168,59 @@ export const getCaseStudyRelated = (slug) => {
     { items: articleItems, quota: QUOTA.article },
   ]);
 };
+
+// Related items for a service. Purely ADDITIVE to what ServicePage already
+// renders: it draws service.relatedCaseStudies as cards and service.relatedServices
+// as chips in its own sections, so this cross-linker EXCLUDES those to avoid
+// repeating them on one page. Articles are the point and always show: related
+// posts (overrides, then the inverse topic map).
+export const getServiceRelated = (slug) => {
+  const service = getService(slug);
+  if (!service || service.hidden) return [];
+
+  // Posts related via the inverse topic map: a post whose mapped services
+  // include this service. Overrides (service.relatedPosts) seed the list first.
+  const inferredPosts = getAllPosts().filter((post) =>
+    mappedSlugsForPost(post).services.includes(slug)
+  );
+  const articleItems = uniq([
+    ...(service.relatedPosts || []),
+    ...inferredPosts.map((p) => p.slug),
+  ])
+    .map(getPost)
+    .map(toArticleItem);
+
+  // Shared-service case studies inferred from config, non-concept/non-prototype
+  // first, then prototypes, then concepts, in declaration order. Excludes the
+  // current page and any study already rendered as a card by ServicePage via
+  // service.relatedCaseStudies, so the same study never appears twice on a page.
+  const alreadyCarded = new Set(service.relatedCaseStudies || []);
+  const sharedByService = caseStudies.filter(
+    (c) => (c.services || []).includes(slug) && !alreadyCarded.has(c.slug)
+  );
+  const sharedOrdered = [
+    ...sharedByService.filter(
+      (c) => c.kind !== "concept" && c.kind !== "prototype"
+    ),
+    ...sharedByService.filter((c) => c.kind === "prototype"),
+    ...sharedByService.filter((c) => c.kind === "concept"),
+  ];
+  const caseStudyItems = uniq(sharedOrdered.map((c) => c.slug))
+    .map(getCaseStudy)
+    .map(toCaseStudyItem);
+
+  // Sibling services: ServicePage already renders service.relatedServices as
+  // chips, so those are excluded here to avoid repeating them. This bucket only
+  // draws from relatedServices today, so it is typically empty (expected).
+  const alreadyChipped = new Set([slug, ...(service.relatedServices || [])]);
+  const serviceItems = (service.relatedServices || [])
+    .filter((s) => !alreadyChipped.has(s))
+    .map(getService)
+    .map(toServiceItem);
+
+  return compose([
+    { items: articleItems, quota: QUOTA.article },
+    { items: caseStudyItems, quota: QUOTA.caseStudy },
+    { items: serviceItems, quota: QUOTA.service },
+  ]);
+};

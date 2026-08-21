@@ -66,15 +66,15 @@ export const TOPIC_MAP = {
     caseStudies: ["google-sheets-event-discovery-app"],
   },
   pricing: {
-    services: ["website-development"],
+    services: ["website-development", "web-design-brampton"],
     caseStudies: [],
   },
   seo: {
-    services: ["website-development", "web-design-toronto", "web-design-brampton"],
+    services: ["website-development", "web-design-toronto", "web-design-brampton", "local-seo-gta"],
     caseStudies: ["pawpals", "doaba-junction"],
   },
   "local seo": {
-    services: ["website-development", "web-design-brampton", "web-design-toronto"],
+    services: ["website-development", "web-design-brampton", "web-design-toronto", "local-seo-gta"],
     caseStudies: ["pawpals", "doaba-junction"],
   },
   scheduling: {

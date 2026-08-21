@@ -35,6 +35,35 @@ for (const [tag, entry] of Object.entries(TOPIC_MAP)) {
   }
 }
 
+// Every service's explicit related overrides must resolve to real content. The
+// render path (toServiceItem) drops hidden services, so hidden relatedServices
+// refs are legal here and must not error.
+const blogSlugs = new Set(readBlogPosts().map(({ slug }) => slug));
+
+for (const service of services) {
+  for (const slug of service.relatedServices || []) {
+    if (!serviceBySlug.has(slug)) {
+      errors.push(
+        `services["${service.slug}"].relatedServices: unknown service "${slug}"`
+      );
+    }
+  }
+  for (const slug of service.relatedCaseStudies || []) {
+    if (!caseStudySlugs.has(slug)) {
+      errors.push(
+        `services["${service.slug}"].relatedCaseStudies: unknown case study "${slug}"`
+      );
+    }
+  }
+  for (const slug of service.relatedPosts || []) {
+    if (!blogSlugs.has(slug)) {
+      errors.push(
+        `services["${service.slug}"].relatedPosts: unknown blog post "${slug}"`
+      );
+    }
+  }
+}
+
 if (errors.length > 0) {
   console.error(`\nRelated-content validation failed (${errors.length} issue(s)):`);
   for (const e of errors) console.error(`  - ${e}`);
