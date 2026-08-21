@@ -165,6 +165,22 @@ export const CaseStudyListSchema = ({ studies }) => (
   />
 );
 
+// The services hub as an ordered ItemList of the individual service pages.
+export const ServiceListSchema = ({ services }) => (
+  <JsonLd
+    data={{
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: services.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: service.title,
+        url: canonical(`/${service.slug}`),
+      })),
+    }}
+  />
+);
+
 // A blog post modelled as BlogPosting. Uses only truthful frontmatter fields;
 // falls back to the site logo when a post has no cover image.
 export const ArticleSchema = ({ post }) => {

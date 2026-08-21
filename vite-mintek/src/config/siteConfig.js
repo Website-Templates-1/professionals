@@ -1166,7 +1166,13 @@ const companyLinks = [
 // Drawer navigation: concise labels, grouped by meaning, local-first order.
 // Hidden/noindex services are auto-filtered by navItems.
 export const navGroups = [
-  { heading: null, links: [{ name: "Home", path: "/" }] },
+  {
+    heading: null,
+    links: [
+      { name: "Home", path: "/" },
+      { name: "Services", path: "/services" },
+    ],
+  },
   {
     heading: "Web Design & Local SEO",
     links: navItems([
@@ -1235,7 +1241,10 @@ export const footerNav = [
     heading: "SEO & Marketing",
     links: footerItems(["local-seo-gta"]),
   },
-  { heading: "Company", links: companyLinks },
+  {
+    heading: "Company",
+    links: [...companyLinks, { name: "Services", path: "/services" }],
+  },
 ];
 
 // ---------------------------------------------------------------------------

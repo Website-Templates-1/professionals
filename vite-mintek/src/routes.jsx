@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 import ServicePage from "./pages/ServicePage";
+import ServicesIndex from "./pages/ServicesIndex";
 import CaseStudiesIndex from "./pages/CaseStudiesIndex";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import BlogIndex from "./pages/BlogIndex";
@@ -18,6 +19,8 @@ export const routes = [
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
+
+      { path: "services", element: <ServicesIndex /> },
 
       ...services.map((service) => ({
         path: service.slug,

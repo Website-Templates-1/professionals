@@ -67,6 +67,7 @@ const ServicePage = ({ slug }) => {
   const contactPath = `/contact?service=${service.slug}`;
   const breadcrumbItems = [
     { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
     { name: service.title, path },
   ];
   const relatedStudies = (service.relatedCaseStudies || [])
