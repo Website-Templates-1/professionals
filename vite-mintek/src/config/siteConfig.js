@@ -1158,28 +1158,23 @@ const footerItems = (slugs) =>
 
 const companyLinks = [
   { name: "Case Studies", path: "/case-studies" },
-  { name: "Blog", path: "/blog" },
-  { name: "About", path: "/about" },
+  { name: "Services", path: "/services" },
   { name: "Contact", path: "/contact" },
+  { name: "About", path: "/about" },
+  { name: "Blog", path: "/blog" },
 ];
 
 // Drawer navigation: concise labels, grouped by meaning, local-first order.
 // Hidden/noindex services are auto-filtered by navItems.
 export const navGroups = [
-  {
-    heading: null,
-    links: [
-      { name: "Home", path: "/" },
-      { name: "Services", path: "/services" },
-    ],
-  },
+  { heading: null, links: [{ name: "Home", path: "/" }] },
   {
     heading: "Web Design & Local SEO",
     links: navItems([
+      "restaurant-website-design",
+      "website-development",
       "web-design-brampton",
       "web-design-toronto",
-      "website-development",
-      "restaurant-website-design",
       "local-seo-gta",
     ]),
   },
@@ -1195,9 +1190,9 @@ export const navGroups = [
   {
     heading: "Automation & Data",
     links: navItems([
+      "google-sheets-website-development",
       "business-automation",
       "spreadsheet-automation",
-      "google-sheets-website-development",
     ]),
   },
   { heading: "Company", links: companyLinks },
@@ -1210,20 +1205,20 @@ export const footerNav = [
   {
     heading: "Software & Apps",
     links: footerItems([
+      "custom-software-development-toronto",
       "custom-software-development",
       "web-application-development",
       "marketplace-development",
       "mobile-app-development",
-      "custom-software-development-toronto",
     ]),
   },
   {
     heading: "Automation & Data",
     links: footerItems([
-      "business-automation",
-      "spreadsheet-automation",
       "google-sheets-website-development",
       "business-automation-toronto",
+      "spreadsheet-automation",
+      "business-automation",
     ]),
   },
   {
@@ -1231,20 +1226,17 @@ export const footerNav = [
     // Hidden/noindex city pages (e.g. web-design-mississauga) are filtered out
     // automatically by footerItems, so they never appear here.
     links: footerItems([
+      "restaurant-website-design",
       "website-development",
       "web-design-brampton",
       "web-design-toronto",
-      "restaurant-website-design",
     ]),
   },
   {
     heading: "SEO & Marketing",
     links: footerItems(["local-seo-gta"]),
   },
-  {
-    heading: "Company",
-    links: [...companyLinks, { name: "Services", path: "/services" }],
-  },
+  { heading: "Company", links: companyLinks },
 ];
 
 // ---------------------------------------------------------------------------
