@@ -26,8 +26,8 @@ export const site = {
     "Based in Brampton and serving businesses across Toronto, Mississauga, Vaughan and the Greater Toronto Area. In-person meetings are available.",
   email: "minteksoftware@gmail.com",
   phone: "+1-647-470-4180",
-  logo: "/logo2.png",
-  ogImage: "/logo2.png",
+  logo: "/og-image.webp",
+  ogImage: "/og-image.webp",
   address: {
     locality: "Brampton",
     region: "ON",

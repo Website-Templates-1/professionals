@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -30,7 +31,9 @@ const Layout = () => {
       >
         <Navbar />
         <Box component="main" sx={{ flex: 1 }}>
-          <Outlet />
+          <Suspense fallback={<Box sx={{ minHeight: "60vh" }} />}>
+            <Outlet />
+          </Suspense>
         </Box>
         <Footer />
       </Box>

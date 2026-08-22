@@ -1,0 +1,50 @@
+# Mintek Software
+
+> Custom software, automation and websites for growing businesses
+
+Mintek Software builds custom software, business automation and high-performing websites that streamline operations and support business growth. Based in Brampton and serving businesses across Toronto, Mississauga, Vaughan and the Greater Toronto Area. In-person meetings are available.
+
+## Services
+
+- [All Services](https://minteksoftware.com/services): Overview of everything Mintek Software builds.
+- [Custom Software Development](https://minteksoftware.com/custom-software-development): Tailored applications, dashboards and internal tools built around your exact workflows.
+- [Business Automation](https://minteksoftware.com/business-automation): Automate repetitive manual work so your team can focus on what matters.
+- [Web Application Development](https://minteksoftware.com/web-application-development): Fast, data-driven web apps, portals and dashboards that run in any browser.
+- [Website Development](https://minteksoftware.com/website-development): Fast, responsive, SEO-ready websites that turn visitors into customers.
+- [Marketplace Development](https://minteksoftware.com/marketplace-development): Two-sided and location-based marketplaces with listings, search and maps.
+- [Google Sheets Website Development](https://minteksoftware.com/google-sheets-website-development): Websites and web apps your team updates through a familiar spreadsheet.
+- [Spreadsheet Automation](https://minteksoftware.com/spreadsheet-automation): Turn manual spreadsheet work into automated reporting, syncing and dashboards.
+- [Mobile App Development](https://minteksoftware.com/mobile-app-development): Cross-platform mobile apps that deliver a great experience on iOS and Android.
+- [Custom Software Development Toronto](https://minteksoftware.com/custom-software-development-toronto): Custom applications and internal tools for Toronto and GTA businesses.
+- [Business Automation Toronto](https://minteksoftware.com/business-automation-toronto): Automate manual workflows for Toronto and GTA businesses.
+- [Web Design Brampton](https://minteksoftware.com/web-design-brampton): Fast, mobile-friendly, lead-generating websites for Brampton businesses.
+- [Restaurant Website Design](https://minteksoftware.com/restaurant-website-design): Menu-first, mobile-friendly websites that turn diners into calls and visits.
+- [Web Design Toronto](https://minteksoftware.com/web-design-toronto): Fast, conversion-focused websites for Toronto businesses.
+- [Local SEO Services (GTA)](https://minteksoftware.com/local-seo-gta): SEO audits, on-page, technical and local SEO for GTA and Toronto businesses.
+
+## Case Studies
+
+- [Case Studies](https://minteksoftware.com/case-studies): Selected projects and outcomes.
+- [Building a Map-First Parking Marketplace for Canadian Cities](https://minteksoftware.com/case-studies/parking-marketplace-platform): A map-first parking marketplace with location search, listings and geographic filtering, built with React, TypeScript, Node and Mapbox.
+- [Building a Google Sheets-Powered Event Discovery Web App](https://minteksoftware.com/case-studies/google-sheets-event-discovery-app): A read-only event-discovery web app powered by Google Sheets, with registration handled externally on Eventbrite.
+- [Restaurant Online Ordering System](https://minteksoftware.com/case-studies/restaurant-online-ordering-system): A fully custom online ordering system with integrated payments, real-time order management, and SMS marketing.
+- [Creating a Brampton Dog Daycare Website and Waitlist Funnel](https://minteksoftware.com/case-studies/pawpals): A Brampton dog daycare website with a waitlist funnel built to convert local, mobile visitors into enquiries.
+- [Restaurant Website Design for Doaba Junction](https://minteksoftware.com/case-studies/doaba-junction): A mobile-first restaurant website focused on menu presentation, calls, directions and catering enquiries.
+- [Cafe Website Design for an Australian Hospitality Business](https://minteksoftware.com/case-studies/relax-cafe): A mobile-first cafe website for an Australian hospitality business, demonstrating international client delivery.
+- [Building a Calendly-Style Booking Platform for Service Providers](https://minteksoftware.com/case-studies/bookme-scheduling-platform): A Calendly-style, multi-staff booking platform with a timezone-correct availability engine, Google Calendar sync and automated reminders, built on the MERN stack with TypeScript.
+
+## Guides
+
+- [Blog](https://minteksoftware.com/blog): Practical guides for GTA businesses on software, automation and websites.
+- [How Much Does a Business Website Cost in the GTA?](https://minteksoftware.com/blog/how-much-does-a-business-website-cost-in-the-gta): A clear, no-nonsense guide to business website costs in the Greater Toronto Area: typical price ranges, what drives the price up or down, and how to budget with confidence.
+- [Brampton Small-Business Website Checklist](https://minteksoftware.com/blog/brampton-small-business-website-checklist): A practical Brampton small business website checklist: the foundations, local SEO, content and technical must-haves that turn visitors into local customers.
+- [How to Choose a Web Designer in Brampton](https://minteksoftware.com/blog/how-to-choose-a-web-designer-in-brampton): How to choose a web designer in Brampton: compare local designers, agencies and DIY builders, the questions to ask, and what a small-business site should cost.
+- [When Google Sheets Is Enough to Run Your Website](https://minteksoftware.com/blog/when-google-sheets-is-enough-to-run-your-website): When a Google Sheets–powered website is the right fit for events, menus, catalogues and directories — and when you need a proper CMS or database instead.
+- [How to Stop No-Shows and Double-Bookings at Your Salon or Studio](https://minteksoftware.com/blog/how-to-stop-no-shows-and-double-bookings-at-your-salon): How salons and studios cut no-shows and double-bookings: confirmations, reminders, buffers, concurrency-safe slots, and when custom booking software fits.
+- [Online Booking Software for Barbers, Makeup Artists and Small Studios](https://minteksoftware.com/blog/online-booking-software-for-barbers-and-studios): What online booking software needs for barbers, makeup artists and small studios: self-serve booking, multi-staff calendars, no double-bookings and when custom fits.
+
+## Company
+
+- [Home](https://minteksoftware.com/): Custom software, automation and websites for growing businesses
+- [About](https://minteksoftware.com/about): Who Mintek Software is and how we work.
+- [Contact](https://minteksoftware.com/contact): Start a project or ask a question.

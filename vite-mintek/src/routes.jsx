@@ -1,15 +1,19 @@
+import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
-import ServicePage from "./pages/ServicePage";
-import ServicesIndex from "./pages/ServicesIndex";
-import CaseStudiesIndex from "./pages/CaseStudiesIndex";
-import CaseStudyDetail from "./pages/CaseStudyDetail";
-import BlogIndex from "./pages/BlogIndex";
-import BlogPost from "./pages/BlogPost";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
+
+// Secondary pages are code-split so each route ships only its own JS.
+// vite-react-ssg awaits these dynamic imports during prerender.
+const ServicePage = lazy(() => import("./pages/ServicePage"));
+const ServicesIndex = lazy(() => import("./pages/ServicesIndex"));
+const CaseStudiesIndex = lazy(() => import("./pages/CaseStudiesIndex"));
+const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
+const BlogIndex = lazy(() => import("./pages/BlogIndex"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 import { services, caseStudies, caseStudyRedirects } from "./config/siteConfig";
 import { getAllPosts } from "./config/blog";
 

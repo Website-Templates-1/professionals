@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import RightFullPageDrawer from "./RightFullPageDrawer";
 import NavLinks from "./NavLinks";
 import MenuIcon from "@mui/icons-material/Menu";
-import logo from "../assets/logo2.png";
+import logo from "../assets/logo2-nav.png";
 import { navGroups, site } from "../config/siteConfig";
 
 function Navbar() {
@@ -39,13 +39,15 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            <Box
-              component="img"
+            <img
               src={logo}
               alt={`${site.brand} logo`}
-              sx={{
+              width={28}
+              height={24}
+              style={{
                 height: 24,
                 width: "auto",
+                display: "block",
               }}
             />
             <Typography

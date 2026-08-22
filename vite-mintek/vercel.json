@@ -7,5 +7,13 @@
     { "source": "/case-studies/map-first-parking-marketplace", "destination": "/case-studies/parking-marketplace-platform", "permanent": true },
     { "source": "/case-studies/google-sheets-powered-website", "destination": "/case-studies/google-sheets-event-discovery-app", "permanent": true }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
 }
