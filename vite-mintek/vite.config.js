@@ -9,6 +9,9 @@ export default defineConfig(({ isSsrBuild }) => ({
     // "Legacy JavaScript" audit). es2020 is widely supported by all evergreen
     // browsers and safe for our deploy target.
     target: 'es2020',
+    // Skip the gzip-size reporting pass; it adds build time and we don't
+    // rely on the printed compressed sizes.
+    reportCompressedSize: false,
     rollupOptions: {
       output: {
         // Split heavy vendors into their own long-term-cacheable chunks so app

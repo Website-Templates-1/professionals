@@ -2,9 +2,10 @@
 // list of key pages always matches the routes. Runs automatically before build.
 // The file is curated (key pages, not every blog post) and deterministic.
 //
-// Note: vercel.json's catch-all rewrite serves index.html for unknown paths,
-// but static files in public/ are served directly and bypass the rewrite, so
-// /llms.txt returns this file rather than homepage HTML.
+// Note: public/_redirects' catch-all rule (/* /index.html 200) serves
+// index.html for unknown paths, but static files in public/ are served
+// directly and bypass the rewrite, so /llms.txt returns this file rather
+// than homepage HTML.
 import { writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
