@@ -37,11 +37,11 @@ Mintek Software builds custom software, business automation and high-performing 
 
 - [Blog](https://minteksoftware.com/blog): Practical guides for GTA businesses on software, automation and websites.
 - [How Much Does a Business Website Cost in the GTA?](https://minteksoftware.com/blog/how-much-does-a-business-website-cost-in-the-gta): A clear, no-nonsense guide to business website costs in the Greater Toronto Area: typical price ranges, what drives the price up or down, and how to budget with confidence.
+- [Should You Redesign or Rebuild Your Business Website?](https://minteksoftware.com/blog/should-you-redesign-or-rebuild-your-website): Redesign or rebuild? A plain-English guide to when a refresh is enough, when a full rebuild is smarter, and how GTA small businesses can decide without wasting budget.
 - [How Much Does Business Automation Cost?](https://minteksoftware.com/blog/how-much-does-business-automation-cost): What business automation really costs for a GTA small business: starting prices, realistic budget bands, what drives the price, and how to judge whether the payback is there.
 - [How to Get Your Team to Actually Use New Software](https://minteksoftware.com/blog/how-to-get-your-team-to-actually-use-new-software): New software fails when nobody uses it. Practical steps to get a small-business team on board: involve them early, start small, train lightly, and measure what sticks.
 - [Brampton Small-Business Website Checklist](https://minteksoftware.com/blog/brampton-small-business-website-checklist): A practical Brampton small business website checklist: the foundations, local SEO, content and technical must-haves that turn visitors into local customers.
 - [How to Choose a Web Designer in Brampton](https://minteksoftware.com/blog/how-to-choose-a-web-designer-in-brampton): How to choose a web designer in Brampton: compare local designers, agencies and DIY builders, the questions to ask, and what a small-business site should cost.
-- [When Google Sheets Is Enough to Run Your Website](https://minteksoftware.com/blog/when-google-sheets-is-enough-to-run-your-website): When a Google Sheets–powered website is the right fit for events, menus, catalogues and directories — and when you need a proper CMS or database instead.
 
 ## Company
 
