@@ -124,8 +124,9 @@ The site going live is the start, not the finish line.
 > your customers are hitting the same wall.
 
 For a full picture of what a professional build should include end to end, see our
-[website development](/website-development) service, and if you are still comparing
-providers, our guide to
+[website development](/website-development) service. If you are still comparing
+providers, [comparing web design companies in Brampton](/blog/comparing-web-design-companies-in-brampton)
+covers the types of firm you will actually find, and
 [choosing a web designer in Brampton](/blog/how-to-choose-a-web-designer-in-brampton)
 walks through the questions worth asking before you commit.
 
@@ -169,5 +170,6 @@ owned. Work through the list above with whoever builds your site, and you will
 avoid the mistakes that quietly cost Brampton businesses customers every day.
 
 If you would like a local team based right here in Brampton to handle the whole
-list for you, [get in touch](/contact). We are happy to talk through scope,
+list for you, start with [web design in Brampton](/web-design-brampton) or
+[get in touch](/contact). We are happy to talk through scope,
 timeline and cost before you commit to anything.

@@ -7,12 +7,12 @@ import {
   Stack,
   Button,
   Card,
-  CardActionArea,
   CardContent,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
@@ -144,6 +144,42 @@ const ServicePage = ({ slug }) => {
             </Box>
           )}
         </Section>
+
+        {service.audiences?.length > 0 && (
+          <Section
+            overline="WHO THIS IS FOR"
+            title="Brampton businesses we actually build for"
+          >
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
+              These are the local patterns we see, not invented industries. If
+              your work looks like one of them, the site should be built around
+              that job — not a generic template.
+            </Typography>
+            <Grid container spacing={2}>
+              {service.audiences.map((item) => (
+                <Grid item xs={12} sm={6} key={item.title}>
+                  <Box
+                    sx={{
+                      p: 3,
+                      height: "100%",
+                      borderRadius: 2,
+                      border: "1px solid",
+                      borderColor: "divider",
+                      bgcolor: "background.paper",
+                    }}
+                  >
+                    <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                      {item.body}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Section>
+        )}
 
         <Section overline="HOW WE WORK" title="Our process">
           <Grid container spacing={2}>
@@ -285,32 +321,145 @@ const ServicePage = ({ slug }) => {
           </Box>
         )}
 
+        {service.packages?.length > 0 && (
+          <Section overline="COMPARE" title="Packages at a glance">
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
+              These bands match what we already publish in our GTA website cost
+              guide. They are planning ranges, not a menu you order from without
+              a conversation.
+            </Typography>
+            <Grid container spacing={2}>
+              {service.packages.map((pkg) => (
+                <Grid item xs={12} md={4} key={pkg.name}>
+                  <Box
+                    sx={{
+                      p: 3,
+                      height: "100%",
+                      borderRadius: 2,
+                      border: "1px solid",
+                      borderColor: "divider",
+                      bgcolor: "background.paper",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography variant="overline" color="primary.main" sx={{ fontWeight: 600 }}>
+                      {pkg.price}
+                    </Typography>
+                    <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                      {pkg.name}
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 600, mb: 1.5 }}>
+                      {pkg.fit}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                      {pkg.includes}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Section>
+        )}
+
+        {(service.extraSections || []).map((block) => (
+          <Section key={block.title} overline={block.overline} title={block.title}>
+            <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.9, mb: block.links?.length ? 2 : 0 }}>
+              {block.body}
+            </Typography>
+            {block.links?.length > 0 && (
+              <Stack spacing={1}>
+                {block.links.map((link) => (
+                  <Typography
+                    key={link.to}
+                    component={RouterLink}
+                    to={link.to}
+                    variant="body2"
+                    sx={{ color: "primary.main", fontWeight: 600, textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+                  >
+                    {link.label}
+                  </Typography>
+                ))}
+              </Stack>
+            )}
+          </Section>
+        ))}
+
         {relatedStudies.length > 0 && (
-          <Section overline="PROOF" title="Related case studies">
+          <Section overline="PROOF" title="Named clients and published results">
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
+              These are real businesses, named. We only repeat outcomes already
+              published on the case-study pages, and we do not invent
+              testimonials or metrics. Where a public URL exists, you can open
+              the live site.
+            </Typography>
             <Grid container spacing={3}>
-              {relatedStudies.map((study) => (
-                <Grid item xs={12} sm={6} key={study.slug}>
-                  <Card sx={{ height: "100%" }}>
-                    <CardActionArea
-                      component={RouterLink}
-                      to={`/case-studies/${study.slug}`}
-                      sx={{ height: "100%" }}
-                    >
+              {relatedStudies.map((study) => {
+                const shownResults = (study.results || []).filter(Boolean);
+                const shownMetrics = (study.metrics || []).filter((m) => m.value);
+                return (
+                  <Grid item xs={12} key={study.slug}>
+                    <Card>
                       <CardContent sx={{ p: 3 }}>
                         <Typography variant="overline" color="text.secondary">
-                          {study.label}
+                          {study.client} · {study.label} · {study.year}
                         </Typography>
                         <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
                           {study.title}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
                           {study.shortDescription}
                         </Typography>
+                        {shownMetrics.length > 0 && (
+                          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
+                            {shownMetrics.map((metric) => (
+                              <Chip
+                                key={metric.label}
+                                label={`${metric.value} ${metric.label}`}
+                                color="primary"
+                                variant="outlined"
+                                size="small"
+                              />
+                            ))}
+                          </Stack>
+                        )}
+                        {shownResults.length > 0 && (
+                          <Stack spacing={1} sx={{ mb: 2 }}>
+                            {shownResults.map((result) => (
+                              <Box key={result} sx={{ display: "flex", gap: 1, alignItems: "flex-start" }}>
+                                <CheckCircleOutlineIcon color="success" fontSize="small" sx={{ mt: 0.25 }} />
+                                <Typography variant="body2">{result}</Typography>
+                              </Box>
+                            ))}
+                          </Stack>
+                        )}
+                        <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
+                          <Button
+                            component={RouterLink}
+                            to={`/case-studies/${study.slug}`}
+                            size="small"
+                            variant="contained"
+                          >
+                            Read the case study
+                          </Button>
+                          {study.liveUrl && (
+                            <Button
+                              href={study.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              size="small"
+                              variant="outlined"
+                              endIcon={<OpenInNewIcon />}
+                            >
+                              View live site
+                            </Button>
+                          )}
+                        </Stack>
                       </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              ))}
+                    </Card>
+                  </Grid>
+                );
+              })}
             </Grid>
           </Section>
         )}
@@ -321,7 +470,7 @@ const ServicePage = ({ slug }) => {
               {relatedServices.map((s) => (
                 <Chip
                   key={s.slug}
-                  label={s.title}
+                  label={s.anchorText || s.title}
                   component={RouterLink}
                   to={`/${s.slug}`}
                   clickable

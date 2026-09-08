@@ -142,7 +142,7 @@ We are based in Brampton and work with businesses across Toronto, Mississauga,
 Vaughan and the wider GTA, with in-person meetings available. If you want a
 straight answer on redesign versus rebuild, our
 [website development](/website-development),
-[Brampton web design](/web-design-brampton) and
+[web design in Brampton](/web-design-brampton) and
 [Toronto web design](/web-design-toronto) pages are a good place to start.
 
 [Tell us what is wrong with the current site](/contact) — slow, dated, hard to

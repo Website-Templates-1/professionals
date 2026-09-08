@@ -4,6 +4,7 @@ metaDescription: "A real case study: how a custom online ordering system with St
 date: "2026-07-30"
 author: "Mintek Software"
 tags: ["custom software", "restaurants", "case study"]
+relatedServices: ["web-design-brampton", "custom-software-development", "restaurant-website-design"]
 category: "Case Studies"
 faqs:
   - q: "What did the custom ordering system actually do?"
@@ -127,7 +128,9 @@ your margin. If you are earlier than that, presenting your menu well and linking
 to a platform you already use is often the smarter start.
 
 We are a Brampton-based studio building custom software for businesses across the
-GTA, with in-person meetings available. If takeout is a serious part of your
+GTA, with in-person meetings available. The restaurant also needed a public site
+people could use; that side of the work lives under
+[web design in Brampton](/web-design-brampton). If takeout is a serious part of your
 revenue and you are tired of paying commission on every order,
 [tell us how your ordering works today](/contact) and we will suggest the
 smallest step that improves it — without overbuilding.

@@ -43,6 +43,17 @@ export const site = {
     "Greater Toronto Area",
     "Ontario",
   ],
+  // Google Business Profile / Maps listing. Used on /contact, hasMap and sameAs.
+  placeId: "ChIJ6cEXlgKG4aQR3MG_z_YD3X8",
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=Mintek%20Software&query_place_id=ChIJ6cEXlgKG4aQR3MG_z_YD3X8",
+  // Official /maps/embed?pb= URL (place_id + output=embed 404s and will not iframe).
+  mapsEmbedSrc:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.5!2d-79.7278208!3d43.7563589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa4e186029617c1e9%3A0x7fdd03f6cfbfc1dc!2sMintek%20Software!5e0!3m2!1sen!2sca!4v1",
+  geo: {
+    latitude: 43.7563589,
+    longitude: -79.7278208,
+  },
   social: {
     // Add real profiles when available; used in Organization schema `sameAs`.
     linkedin: "",
@@ -315,7 +326,10 @@ export const services = [
       "google-sheets-website-development",
       "web-design-brampton",
       "restaurant-website-design",
+      "small-business-website-design-brampton",
+      "web-design-services-brampton",
     ],
+    anchorText: "Website development",
     relatedCaseStudies: [
       "google-sheets-event-discovery-app",
       "pawpals",
@@ -539,35 +553,273 @@ export const services = [
     offersFrom: 1500,
     title: "Web Design Brampton",
     navLabel: "Brampton",
+    anchorText: "Web design in Brampton",
     metaTitle: "Web Design Brampton | Mintek Software",
     metaDescription:
-      "Web design in Brampton for small businesses. Mintek Software builds fast, mobile-friendly, lead-generating websites for Brampton businesses. Based locally in Brampton.",
+      "Web design in Brampton for small businesses. Fast, mobile-first sites with local SEO foundations, clear packages from CAD $1,500, and real Brampton work including PawPals and Doaba Junction.",
     short:
       "Fast, mobile-friendly, lead-generating websites for Brampton businesses.",
     hero: "Web design in Brampton for small businesses",
+    schemaTypes: ["ProfessionalService"],
+    schemaAreaServed: ["Brampton"],
     localAreas: [
       "Downtown Brampton", "Bramalea", "Heart Lake", "Springdale",
       "Mount Pleasant", "Castlemore", "Fletcher's Meadow", "Sandalwood",
     ],
     problem:
-      "Brampton small businesses need a professional website that brings in enquiries, but many end up with slow, template sites that do not convert.",
+      "A Brampton small business does not lose customers because it lacks a logo. It loses them in the two seconds after someone nearby searches on a phone: a slow page, a buried phone number, hours that do not match Google, or a template that looks like every other contractor in Peel. Trades, clinics, daycares, independent restaurants and professional-service firms here compete on trust and convenience, not on having a website for its own sake. Many owners already paid once for a builder site that is painful to update and invisible for the searches that actually matter — “near me,” a neighbourhood name, or a service plus Brampton.",
     solution:
-      "As a Brampton-based studio, we design and build fast, mobile-first websites focused on turning local visitors into leads, with clear calls to action and strong local SEO foundations.",
+      "We are based in Brampton, so the work starts with how local customers actually decide: tap to call, get directions, join a waitlist, check a menu, or send a catering enquiry. We design and build fast, mobile-first sites with clear next steps, on-page local SEO (titles, headings, NAP consistency, crawlable pages) and analytics. You own the site when it is paid for. In-person meetings are available across the city. For the long-tail searches people use when they are ready to hire, see our pages on small business website design in Brampton, web design services in Brampton, and website hosting in Brampton — they sit under this hub rather than repeating it.",
     process: [
-      "Strategy: clarify your local audience and the action you want them to take.",
-      "Design: clean, mobile-first layouts built to convert.",
-      "Build: fast, accessible, SEO-ready code.",
-      "Launch: local search setup and handover.",
+      "Strategy: name the local audience, the one action the site must produce, and the pages that earn their keep.",
+      "Design: mobile-first layouts that put calls, forms and directions where thumbs actually land.",
+      "Build: fast, accessible, SEO-ready code with analytics — not a bloated page-builder export.",
+      "Launch: Google Business Profile alignment, handover, and optional hosting and support so the site stays yours.",
     ],
     tech: ["React", "Vite", "Analytics"],
     outcome:
-      "A professional, fast Brampton website that turns local searches into enquiries.",
-    relatedServices: ["website-development", "web-design-mississauga", "restaurant-website-design"],
-    relatedCaseStudies: ["pawpals", "doaba-junction"],
+      "A professional, fast Brampton website that turns local searches into enquiries, with a local team you can meet in person.",
+    audiences: [
+      {
+        title: "Trades and home services",
+        body: "Electricians, HVAC, landscapers and similar crews need click-to-call, service lists that match how people search, and a site that loads in a driveway on a phone — not a 12-page brochure.",
+      },
+      {
+        title: "Clinics, studios and professional services",
+        body: "Dentists, physio, accountants and consultants need credibility, clear services, and an enquiry path that does not dump people into a generic contact form with no context.",
+      },
+      {
+        title: "Daycares, pet care and local consumer services",
+        body: "Capacity is often the constraint. PawPals, a Brampton dog daycare, needed a waitlist funnel and local SEO foundations so nearby owners could enquire before opening — not a blog they would never write.",
+      },
+      {
+        title: "Independent restaurants and cafes",
+        body: "Diners decide on phones. Menu, hours, maps and catering have to work in one thumb-reach. Doaba Junction is the restaurant example; a custom ordering system is a separate, larger project when commissions actually hurt.",
+      },
+    ],
+    packages: [
+      {
+        name: "Starter site",
+        price: "CAD $1,500 – $3,000",
+        fit: "New or small Brampton businesses that need a proper first site.",
+        includes:
+          "Homepage, services, about and a working contact path; mobile-first layout; click-to-call; on-page SEO foundations; analytics. Content and photos usually supplied by you.",
+      },
+      {
+        name: "Established presence",
+        price: "CAD $3,000 – $6,000",
+        fit: "Businesses that need more pages, stronger local content, or a redesign that is still a marketing site.",
+        includes:
+          "More templates (services, locations, proof), richer on-page SEO, a blog if you will actually use it, and a more tailored design. Same ownership and handover.",
+      },
+      {
+        name: "Custom or hospitality-led",
+        price: "CAD $6,000+",
+        fit: "Menus and location-heavy restaurant sites, booking-style flows, or sites that start behaving like applications.",
+        includes:
+          "Scoped after a short conversation. Restaurant sites start at CAD $1,500 when they stay menu-and-enquiry focused; online ordering, logins or marketplaces are quoted as software, not as a brochure upgrade.",
+      },
+    ],
+    extraSections: [
+      {
+        overline: "LONG-TAIL",
+        title: "Small business website design in Brampton",
+        body: "If you are searching that phrase, you are usually comparing a local studio with a builder template. The decision is whether the site will generate enquiries from nearby searches, not whether it has a slider. We build focused first versions from CAD $1,500 and expand only when the extra pages earn their keep.",
+        links: [
+          {
+            to: "/small-business-website-design-brampton",
+            label: "Small business website design in Brampton",
+          },
+        ],
+      },
+      {
+        overline: "SERVICES",
+        title: "Web design services in Brampton",
+        body: "The hub is the location page. The services around it are specific jobs: a new marketing site, a restaurant site, a Google Sheets–updated site, a rebuild, or local SEO on what you already have. Pick the job, not a generic “web design package” that hides the scope.",
+        links: [
+          {
+            to: "/web-design-services-brampton",
+            label: "Web design services in Brampton",
+          },
+        ],
+      },
+      {
+        overline: "LAUNCH",
+        title: "Website hosting in Brampton",
+        body: "Hosting is not a separate product we resell with invented monthly fees. When we launch a site we deploy it, put HTTPS in place, and hand over the accounts so you are not locked to a proprietary platform. Domain, DNS and ongoing updates are planned in the open.",
+        links: [
+          {
+            to: "/website-hosting-brampton",
+            label: "Website hosting in Brampton",
+          },
+        ],
+      },
+    ],
+    relatedServices: [
+      "website-development",
+      "restaurant-website-design",
+      "small-business-website-design-brampton",
+      "web-design-services-brampton",
+      "website-hosting-brampton",
+    ],
+    relatedCaseStudies: ["pawpals", "doaba-junction", "restaurant-online-ordering-system"],
     relatedPosts: [
+      "comparing-web-design-companies-in-brampton",
+      "how-to-choose-a-web-designer-in-brampton",
       "how-local-seo-works-for-gta-service-businesses",
       "how-much-does-a-business-website-cost-in-the-gta",
+      "brampton-small-business-website-checklist",
     ],
+  },
+  {
+    slug: "small-business-website-design-brampton",
+    icon: "Language",
+    color: "#FF3D85",
+    group: "local",
+    budgetType: "website",
+    pricing: "Small-business website projects start at CAD $1,500.",
+    offersFrom: 1500,
+    title: "Small Business Website Design Brampton",
+    navLabel: "Small business (Brampton)",
+    anchorText: "Small business website design in Brampton",
+    metaTitle: "Small Business Website Design Brampton | Mintek Software",
+    metaDescription:
+      "Small business website design in Brampton: a focused, mobile-first site from CAD $1,500 that turns local searches into calls and enquiries. Built by a Brampton studio.",
+    short:
+      "Focused first websites for Brampton small businesses — built to convert local searches, not to look like a template.",
+    hero: "Small business website design in Brampton",
+    schemaTypes: ["ProfessionalService"],
+    schemaAreaServed: ["Brampton"],
+    problem:
+      "Owners of Brampton shops, trades, clinics and new storefronts are often told they need “a website” and then handed a theme with stock photos. The site exists, but it does not answer the questions a nearby customer actually has: can I tap to call, are you open, do you do this service, can I get on a list? Paying for pages you will not maintain is how small budgets get wasted.",
+    solution:
+      "Small business website design, for us, means the smallest set of pages that produces a lead: a clear homepage, what you offer, who you are, and a contact path that works on a phone. We are based in Brampton and can meet in person. Technical SEO, speed and local details are built in, not bolted on. This page is the small-business spoke; the full Brampton practice — packages, neighbourhoods and case studies — lives on our web design in Brampton hub.",
+    process: [
+      "Scope: agree the pages and the one conversion (call, form, waitlist, directions).",
+      "Design: mobile-first, readable, with your real services and location in the copy.",
+      "Build: a fast site you own, with analytics so you can see if enquiries actually arrive.",
+      "Handover: how to update, how hosting and the domain are set up, and what to do next for local search.",
+    ],
+    tech: ["React", "Vite", "Analytics"],
+    outcome:
+      "A first version a Brampton small business can launch without overbuilding, then extend when the extra work is justified.",
+    relatedServices: [
+      "web-design-brampton",
+      "website-development",
+      "web-design-services-brampton",
+    ],
+    relatedCaseStudies: ["pawpals"],
+    relatedPosts: [
+      "comparing-web-design-companies-in-brampton",
+      "brampton-small-business-website-checklist",
+      "how-to-choose-a-web-designer-in-brampton",
+      "how-much-does-a-business-website-cost-in-the-gta",
+    ],
+  },
+  {
+    slug: "web-design-services-brampton",
+    icon: "Language",
+    color: "#FF3D85",
+    group: "local",
+    budgetType: "website",
+    pricing: "Business website projects start at CAD $1,500.",
+    offersFrom: 1500,
+    title: "Web Design Services Brampton",
+    navLabel: "Web design services",
+    anchorText: "Web design services in Brampton",
+    metaTitle: "Web Design Services Brampton | Mintek Software",
+    metaDescription:
+      "Web design services in Brampton: new sites, rebuilds, restaurant websites, Google Sheets sites and local SEO. Scoped from CAD $1,500 by a Brampton-based studio.",
+    short:
+      "The specific web design jobs we do for Brampton businesses — not a vague “full service” menu.",
+    hero: "Web design services in Brampton",
+    schemaTypes: ["ProfessionalService"],
+    schemaAreaServed: ["Brampton"],
+    problem:
+      "“Web design services” is a search people use when they know they need help but not which product to buy. Agencies often answer with a bundled retainer. Small Brampton businesses need a map: new site vs rebuild, restaurant vs professional services, marketing site vs something that updates from a spreadsheet.",
+    solution:
+      "We list the actual services and send you to the page that matches the job. A standard marketing site is website development. Location-specific small-business work is the Brampton hub. Restaurants get a menu-first build. Frequently changing, non-sensitive content can live in Google Sheets. Local SEO is for visibility after the site is technically sound. Hosting and launch are documented separately so they are not hidden inside a mystery monthly fee.",
+    process: [
+      "Match the job: new site, rebuild, restaurant, data-driven content, or SEO on an existing site.",
+      "Scope a first version with a published starting price where we have one.",
+      "Build and launch with ownership and analytics.",
+      "Only then talk about extras — ordering systems, apps, or ongoing SEO work.",
+    ],
+    tech: ["React", "Vite", "Analytics", "Google Sheets API"],
+    outcome:
+      "You hire for a named service with a clear starting price, instead of a generic web-design bundle.",
+    extraSections: [
+      {
+        overline: "THE MENU",
+        title: "Which Brampton web design service you actually need",
+        body: "Use this as a filter. If two could apply, start with the smaller marketing site; we will say so if the project is really software.",
+        links: [
+          { to: "/web-design-brampton", label: "Web design in Brampton (hub)" },
+          { to: "/website-development", label: "Website development" },
+          { to: "/restaurant-website-design", label: "Restaurant website design" },
+          {
+            to: "/google-sheets-website-development",
+            label: "Google Sheets website development",
+          },
+          { to: "/local-seo-gta", label: "Local SEO for GTA businesses" },
+          { to: "/website-hosting-brampton", label: "Website hosting in Brampton" },
+        ],
+      },
+    ],
+    relatedServices: [
+      "web-design-brampton",
+      "website-development",
+      "restaurant-website-design",
+      "website-hosting-brampton",
+    ],
+    relatedCaseStudies: ["pawpals", "doaba-junction"],
+    relatedPosts: [
+      "comparing-web-design-companies-in-brampton",
+      "should-you-redesign-or-rebuild-your-website",
+      "how-to-choose-a-web-designer-in-brampton",
+    ],
+  },
+  {
+    slug: "website-hosting-brampton",
+    icon: "Language",
+    color: "#FF3D85",
+    group: "local",
+    budgetType: "website",
+    pricing:
+      "Hosting is arranged as part of launch. We do not publish a separate hosting menu or hourly rate.",
+    title: "Website Hosting Brampton",
+    navLabel: "Hosting (Brampton)",
+    anchorText: "Website hosting in Brampton",
+    metaTitle: "Website Hosting Brampton | Mintek Software",
+    metaDescription:
+      "Website hosting in Brampton explained: how Mintek deploys your site, HTTPS, domains and ownership. Launch is part of the build; no invented monthly hosting packages.",
+    short:
+      "How we host and launch Brampton business websites — deployment, HTTPS and accounts you control.",
+    hero: "Website hosting in Brampton, without a lock-in story",
+    schemaTypes: ["ProfessionalService"],
+    schemaAreaServed: ["Brampton"],
+    problem:
+      "Hosting is where a cheap website becomes expensive: a proprietary platform, an expired card, no one who knows the DNS, or a site that only the original designer can log into. Brampton owners searching “website hosting Brampton” are usually trying to avoid that, or to understand what they will pay after the build.",
+    solution:
+      "We are not a generic hosting reseller with a secret monthly price list. When we build your site we deploy it to modern hosting, enable HTTPS, and document the domain and DNS so you (or another developer) can keep it. You own the site once it is paid for. Optional support and content updates are separate from the build, as our GTA website cost guide already states. For what the site itself should do, use the web design in Brampton hub — hosting is the launch and upkeep layer, not a substitute for a converting site.",
+    process: [
+      "Domain: you register it (or we help); it stays in an account you control.",
+      "Deploy: we ship the site to reliable hosting with HTTPS and a sensible cache.",
+      "Handover: login paths, DNS notes, and how updates get published.",
+      "After launch: optional support if you want us to handle changes; you are not required to stay.",
+    ],
+    tech: ["HTTPS / TLS", "CDN / static hosting", "DNS", "Analytics"],
+    outcome:
+      "A live Brampton website on hosting you can actually take with you, with no platform holding the files hostage.",
+    note:
+      "We do not quote a public monthly hosting fee because it depends on the domain registrar, email, and whether you want ongoing support. Budget for a domain and hosting as running costs; we will itemise them when we scope the project rather than bury them in a vague retainer.",
+    relatedServices: [
+      "web-design-brampton",
+      "website-development",
+      "web-design-services-brampton",
+    ],
+    relatedCaseStudies: ["pawpals"],
+    relatedPosts: ["how-much-does-a-business-website-cost-in-the-gta"],
   },
   {
     slug: "web-design-mississauga",
@@ -635,7 +887,13 @@ export const services = [
     tech: ["React", "Vite", "Google Maps", "Analytics"],
     outcome:
       "A mobile-first restaurant website that turns hungry searchers into calls, visits and catering enquiries.",
-    relatedServices: ["website-development", "web-design-brampton", "web-design-toronto"],
+    anchorText: "Restaurant website design",
+    relatedServices: [
+      "website-development",
+      "web-design-brampton",
+      "web-design-services-brampton",
+      "web-design-toronto",
+    ],
     relatedCaseStudies: ["doaba-junction", "relax-cafe"],
   },
   {
@@ -885,7 +1143,11 @@ export const caseStudies = [
       "A new local daycare needed to build demand before opening and capture interested pet owners in a structured waitlist rather than scattered messages.",
     solution:
       "Mintek built a mobile-first lead-generation website with a focused waitlist funnel, clear calls to action and local SEO foundations for Brampton searches.",
-    services: ["website-development", "web-design-brampton"],
+    services: ["website-development", "web-design-brampton", "small-business-website-design-brampton"],
+    relatedPosts: [
+      "brampton-small-business-website-checklist",
+      "how-to-choose-a-web-designer-in-brampton",
+    ],
     features: [
       "Mobile-first design tuned for local, on-the-go visitors",
       "Waitlist funnel with a focused signup flow",
@@ -927,7 +1189,13 @@ export const caseStudies = [
       "Diners decide on their phones. Doaba Junction needed a website that made the menu, hours, location and contact options instantly accessible on mobile.",
     solution:
       "Mintek built a menu-first, mobile-friendly website with click-to-call, Google Maps directions, clear business hours, catering enquiries and conversion-focused calls to action.",
-    services: ["website-development", "restaurant-website-design", "web-design-toronto"],
+    services: [
+      "website-development",
+      "restaurant-website-design",
+      "web-design-brampton",
+      "web-design-toronto",
+    ],
+    relatedPosts: ["high-converting-restaurant-website"],
     features: [
       "Menu presentation optimised for mobile",
       "Click-to-call and Google Maps directions",
@@ -1039,7 +1307,12 @@ export const caseStudies = [
       "The restaurant was losing margin to third-party ordering commissions and had no direct control over orders or customer relationships.",
     solution:
       "Mintek built a custom online ordering system with secure Stripe payments, a real-time admin dashboard, order tracking and SMS retargeting driven by call-history analytics.",
-    services: ["custom-software-development", "business-automation"],
+    services: [
+      "custom-software-development",
+      "business-automation",
+      "web-design-brampton",
+      "restaurant-website-design",
+    ],
     features: [
       "Real-time online ordering with cart, tracking and payments",
       "Secure Stripe integration with promo-code handling",
@@ -1171,11 +1444,12 @@ export const navGroups = [
   {
     heading: "Web Design & Local SEO",
     links: navItems([
+      "small-business-website-design-brampton",
       "restaurant-website-design",
+      "local-seo-gta",
       "website-development",
       "web-design-brampton",
       "web-design-toronto",
-      "local-seo-gta",
     ]),
   },
   {
@@ -1226,7 +1500,8 @@ export const footerNav = [
     // Hidden/noindex city pages (e.g. web-design-mississauga) are filtered out
     // automatically by footerItems, so they never appear here.
     links: footerItems([
-      "restaurant-website-design",
+      "web-design-services-brampton",
+      "website-hosting-brampton",
       "website-development",
       "web-design-brampton",
       "web-design-toronto",
@@ -1536,6 +1811,44 @@ export const serviceFaqs = {
     {
       q: "Does Mintek build websites for new Brampton businesses?",
       a: "Yes. We regularly build first websites for new and growing Brampton businesses, as well as redesigns of dated or slow sites. For a new business we focus on a fast, mobile-first site with clear calls to action and local SEO foundations, so you can start capturing enquiries from local searches as soon as you launch.",
+    },
+    {
+      q: "Do you host the website after launch?",
+      a: "We deploy the site, enable HTTPS, and hand over the hosting and domain details so you control the accounts. Hosting is a running cost (domain plus hosting), not a hidden platform fee, and you are not required to keep us as the only people who can log in. See our website hosting in Brampton page for the practical details.",
+    },
+  ],
+  "small-business-website-design-brampton": [
+    {
+      q: "What does a small-business website in Brampton include at CAD $1,500?",
+      a: "A focused, mobile-first site with the core pages you need, a layout built to produce enquiries, click-to-call, on-page SEO foundations and analytics. Photos and copy are usually yours. Extra pages, e-commerce or custom apps are scoped separately. The Brampton hub page has the package comparison.",
+    },
+    {
+      q: "Is this different from your main Brampton web design page?",
+      a: "This page is for owners specifically shopping small-business website design: first sites, tight scope, local enquiries. The web design in Brampton hub is the full practice page with neighbourhoods, packages and case studies. Both describe the same studio and starting price; they are linked so you can move between the overview and this tighter brief.",
+    },
+  ],
+  "web-design-services-brampton": [
+    {
+      q: "What web design services do you offer in Brampton?",
+      a: "New marketing websites from CAD $1,500, restaurant and cafe sites, Google Sheets–updated sites, rebuilds versus redesigns, local SEO, and launch hosting with handover. Custom software, ordering systems and apps are separate services with their own starting prices.",
+    },
+    {
+      q: "Should I start here or on web design in Brampton?",
+      a: "Start here if you need to pick a job (restaurant vs rebuild vs SEO). Use the web design in Brampton hub if you already know you want a local small-business site and want packages, neighbourhoods and proof in one place.",
+    },
+  ],
+  "website-hosting-brampton": [
+    {
+      q: "How much does website hosting cost with Mintek?",
+      a: "We do not publish a separate hosting price list. Domain registration and hosting are real running costs that we itemise when we scope the project. We do not lock the site to a proprietary platform, and ongoing support is optional rather than a required hosting bundle.",
+    },
+    {
+      q: "Will I own the hosting account?",
+      a: "Yes. We set the site up so you control the domain and hosting logins, and we hand over how to publish updates. You can keep us for support or take the site elsewhere.",
+    },
+    {
+      q: "Is hosting included in the CAD $1,500 website?",
+      a: "The starting price is for the design and build of a focused marketing site. Launch includes deployment and HTTPS. Registrar and hosting bills, and any paid support after handover, sit outside that figure and are spelled out before work starts.",
     },
   ],
   "web-design-mississauga": [

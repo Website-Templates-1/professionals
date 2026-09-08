@@ -253,6 +253,19 @@ const CaseStudyDetail = ({ slug }) => {
 
         {relatedServices.length > 0 && (
           <Panel title="Services used">
+            {study.services?.includes("web-design-brampton") && (
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
+                This project is part of our{" "}
+                <Box
+                  component={RouterLink}
+                  to="/web-design-brampton"
+                  sx={{ color: "primary.main", fontWeight: 600, textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+                >
+                  web design in Brampton
+                </Box>{" "}
+                work — the hub for local small-business sites, packages and related services.
+              </Typography>
+            )}
             <Grid container spacing={2}>
               {relatedServices.map((service) => (
                 <Grid item xs={12} sm={6} key={service.slug}>

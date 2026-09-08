@@ -31,7 +31,7 @@ export const TOPIC_MAP = {
     ],
   },
   websites: {
-    services: ["website-development"],
+    services: ["website-development", "web-design-brampton"],
     caseStudies: ["pawpals", "doaba-junction", "relax-cafe"],
   },
   "web applications": {

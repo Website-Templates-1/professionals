@@ -8,7 +8,10 @@ const JsonLd = ({ data }) => (
   </Head>
 );
 
-const sameAs = Object.values(site.social).filter(Boolean);
+const sameAs = [
+  ...Object.values(site.social).filter(Boolean),
+  site.mapsUrl,
+].filter(Boolean);
 
 export const OrganizationSchema = () => (
   <JsonLd
@@ -58,6 +61,7 @@ export const LocalBusinessSchema = () => (
     data={{
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
+      "@id": `${site.domain}/#localbusiness`,
       name: site.brand,
       image: absoluteUrl(site.logo),
       url: site.domain,
@@ -74,42 +78,90 @@ export const LocalBusinessSchema = () => (
         "@type": "Place",
         name,
       })),
+      hasMap: site.mapsUrl,
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: site.geo.latitude,
+        longitude: site.geo.longitude,
+      },
+      identifier: {
+        "@type": "PropertyValue",
+        name: "Google Place ID",
+        propertyID: "placeId",
+        value: site.placeId,
+      },
+      ...(sameAs.length ? { sameAs } : {}),
     }}
   />
 );
 
-export const ServiceSchema = ({ service }) => (
+export const ContactPageSchema = () => (
   <JsonLd
     data={{
       "@context": "https://schema.org",
-      "@type": "Service",
-      serviceType: service.title,
-      name: service.title,
-      description: service.metaDescription,
-      url: canonical(`/${service.slug}`),
-      provider: {
-        "@type": "Organization",
-        name: site.brand,
-        url: site.domain,
-      },
-      areaServed: site.areaServed,
-      ...(service.offersFrom
-        ? {
-            offers: {
-              "@type": "Offer",
-              priceCurrency: "CAD",
-              price: service.offersFrom,
-              priceSpecification: {
-                "@type": "PriceSpecification",
-                priceCurrency: "CAD",
-                minPrice: service.offersFrom,
-              },
-            },
-          }
-        : {}),
+      "@type": "ContactPage",
+      name: `Contact ${site.brand}`,
+      url: canonical("/contact"),
+      description:
+        "Contact Mintek Software in Brampton, Ontario. Serving Brampton and the Greater Toronto Area.",
+      mainEntity: { "@id": `${site.domain}/#localbusiness` },
     }}
   />
 );
+
+export const ServiceSchema = ({ service }) => {
+  const areaNames = service.schemaAreaServed || site.areaServed;
+  const providerType = service.schemaTypes?.includes("ProfessionalService")
+    ? "ProfessionalService"
+    : "Organization";
+  const areaServed = areaNames.map((name) =>
+    name === "Brampton"
+      ? { "@type": "City", name }
+      : { "@type": "Place", name }
+  );
+
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "Service",
+        serviceType: service.title,
+        name: service.title,
+        description: service.metaDescription,
+        url: canonical(`/${service.slug}`),
+        provider: {
+          "@type": providerType,
+          name: site.brand,
+          url: site.domain,
+          telephone: site.phone,
+          email: site.email,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: site.address.locality,
+            addressRegion: site.address.region,
+            addressCountry: site.address.country,
+          },
+          areaServed,
+        },
+        areaServed,
+        ...(service.offersFrom
+          ? {
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "CAD",
+                price: service.offersFrom,
+                priceSpecification: {
+                  "@type": "PriceSpecification",
+                  priceCurrency: "CAD",
+                  minPrice: service.offersFrom,
+                },
+              },
+            }
+          : {}),
+      }}
+    />
+  );
+};
 
 // A portfolio case study modelled as a CreativeWork (accurate for project
 // write-ups, and avoids Article rich-result warnings we can't satisfy without

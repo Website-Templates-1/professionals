@@ -174,6 +174,11 @@ customers. Get clear on that outcome, ask the direct questions above, compare
 prices with scope in mind, and you will avoid the expensive mistakes most
 first-time buyers make.
 
+If you are still weighing studio types against agencies and template shops, our
+guide to [comparing web design companies in Brampton](/blog/comparing-web-design-companies-in-brampton)
+covers what each kind of provider usually leaves out.
+
 If you would like to talk it through with a local team based right here in
-Brampton, [get in touch](/contact). We are happy to give you a straight answer on
+Brampton, read [web design in Brampton](/web-design-brampton) or
+[get in touch](/contact). We are happy to give you a straight answer on
 scope, timeline and cost before you commit to anything.

@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Button, Stack } from "@mui/material";
+import { Box, Container, Typography, Button, Stack, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 const Hero = () => {
@@ -113,8 +113,17 @@ const Hero = () => {
         >
           Mintek Software builds web applications, internal tools and automated
           workflows that reduce manual work and help businesses operate more
-          efficiently. We also design high-performance business websites for
-          companies across Brampton and the Greater Toronto Area.
+          efficiently. We also offer{" "}
+          <Link
+            component={RouterLink}
+            to="/web-design-brampton"
+            underline="hover"
+            sx={{ fontWeight: 600 }}
+          >
+            web design in Brampton
+          </Link>{" "}
+          and high-performance business websites for companies across the
+          Greater Toronto Area.
         </Typography>
         <Stack
           direction={{ xs: "column", sm: "row" }}

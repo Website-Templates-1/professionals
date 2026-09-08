@@ -1,11 +1,45 @@
-import { Box, Container, Typography } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
+import { Box, Container, Typography, Grid, Stack, Link, Chip } from "@mui/material";
+import { Link as RouterLink, useSearchParams } from "react-router-dom";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import ContactUs from "../components/contact-us-section/ContactUs";
-import Testimonials from "../components/common/Testimonials";
-import { BreadcrumbSchema } from "../components/seo/StructuredData";
-import { site } from "../config/siteConfig";
+import { BreadcrumbSchema, ContactPageSchema } from "../components/seo/StructuredData";
+import { site, getService } from "../config/siteConfig";
+
+const serviceLinks = [
+  {
+    slug: "web-design-brampton",
+    label: "Web design in Brampton",
+  },
+  {
+    slug: "small-business-website-design-brampton",
+    label: "Small business website design in Brampton",
+  },
+  {
+    slug: "web-design-services-brampton",
+    label: "Web design services in Brampton",
+  },
+  {
+    slug: "website-hosting-brampton",
+    label: "Website hosting in Brampton",
+  },
+  {
+    slug: "website-development",
+    label: "Website development",
+  },
+  {
+    slug: "restaurant-website-design",
+    label: "Restaurant website design",
+  },
+  {
+    slug: "custom-software-development",
+    label: "Custom software development",
+  },
+  {
+    slug: "local-seo-gta",
+    label: "Local SEO for GTA businesses",
+  },
+];
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
@@ -14,36 +48,137 @@ const Contact = () => {
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
   ];
+  const napLine = `${site.brand}, ${site.address.locality}, ${site.address.regionName}, ${site.address.countryName}`;
 
   return (
     <>
       <Seo
         title={`Contact | ${site.brand}`}
-        description="Get in touch with Mintek Software about custom software, website development or business automation. Based in Brampton, serving the Greater Toronto Area."
+        description="Contact Mintek Software in Brampton, Ontario. Serving Brampton and the GTA with web design, custom software and automation. Phone, email and a city map — not a copy of the homepage form."
         path="/contact"
       />
       <BreadcrumbSchema items={breadcrumbItems} />
+      <ContactPageSchema />
 
-      <Box sx={{ pt: { xs: 12, md: 16 }, pb: 2 }}>
-        <Container maxWidth="lg">
+      <Box sx={{ pt: { xs: 12, md: 16 } }}>
+        <Container maxWidth="md">
           <Breadcrumbs items={breadcrumbItems} />
           <Typography
             variant="h1"
             component="h1"
             sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2.25rem", md: "3rem" } }}
           >
-            Contact Mintek Software
+            Contact a Brampton studio serving the GTA
           </Typography>
-          <Typography variant="h6" component="p" color="text.secondary" sx={{ maxWidth: 700 }}>
-            Tell us about your project and we'll get back to you shortly. You can
-            also email us directly at {site.email}.
+          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720, lineHeight: 1.9, mb: 3 }}>
+            Mintek Software is based in Brampton and works with businesses across
+            the Greater Toronto Area: Toronto, Mississauga, Vaughan and nearby
+            cities.
+          </Typography>
+          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
+            <strong>Name:</strong> {site.brand}
+          </Typography>
+          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
+            <strong>Address:</strong> {site.address.locality}, {site.address.regionName},{" "}
+            {site.address.countryName}
+          </Typography>
+          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
+            <strong>Phone:</strong>{" "}
+            <Link href={`tel:${site.phone.replace(/[^+\d]/g, "")}`} underline="hover">
+              {site.phone}
+            </Link>
+          </Typography>
+          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 3 }}>
+            <strong>Email:</strong>{" "}
+            <Link href={`mailto:${site.email}`} underline="hover">
+              {site.email}
+            </Link>
           </Typography>
         </Container>
       </Box>
 
-      <Testimonials limit={2} columns={2} title={null} />
+      <Container maxWidth="md" sx={{ pb: { xs: 4, md: 6 } }}>
+        <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
+          Service area
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
+          We take on work throughout these places.
+        </Typography>
+        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 5 }}>
+          {site.areaServed.map((area) => (
+            <Chip key={area} label={area} variant="outlined" color="primary" />
+          ))}
+        </Stack>
 
-      <ContactUs defaultService={service} />
+        <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
+          What to contact us about
+        </Typography>
+        <Grid container spacing={1.5} sx={{ mb: 5 }}>
+          {serviceLinks.map((item) => {
+            const resolved = getService(item.slug);
+            if (!resolved || resolved.hidden) return null;
+            return (
+              <Grid item xs={12} sm={6} key={item.slug}>
+                <Link
+                  component={RouterLink}
+                  to={`/${item.slug}`}
+                  underline="hover"
+                >
+                  {item.label}
+                </Link>
+              </Grid>
+            );
+          })}
+        </Grid>
+
+        <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
+          Find Mintek Software on Google Maps
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
+          This is our Google Business listing in Brampton, not a generic city pin.{" "}
+          <Link href={site.mapsUrl} target="_blank" rel="noopener noreferrer" underline="hover">
+            Open Mintek Software in Google Maps
+          </Link>
+          .
+        </Typography>
+        <Box
+          sx={{
+            borderRadius: 2,
+            overflow: "hidden",
+            border: "1px solid",
+            borderColor: "divider",
+            height: { xs: 280, md: 380 },
+            mb: 2,
+          }}
+        >
+          <Box
+            component="iframe"
+            title="Google Maps listing for Mintek Software, Brampton"
+            src={site.mapsEmbedSrc}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            sx={{ border: 0, width: "100%", height: "100%", display: "block" }}
+          />
+        </Box>
+      </Container>
+
+      <Box sx={{ pb: { xs: 2, md: 4 } }}>
+        <Container maxWidth="md">
+          <Typography
+            variant="h2"
+            sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}
+          >
+            Send a project note
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
+            Tell us the problem, the kind of site or software you need, and a
+            rough timeline. We reply to the email you provide.
+          </Typography>
+        </Container>
+      </Box>
+
+      <ContactUs defaultService={service} showIntro={false} />
     </>
   );
 };

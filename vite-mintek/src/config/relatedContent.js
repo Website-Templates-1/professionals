@@ -54,7 +54,7 @@ const toServiceItem = (service) =>
     ? {
         type: "Service",
         key: `Service:${service.slug}`,
-        title: service.title,
+        title: service.anchorText || service.title,
         description: service.short,
         to: `/${service.slug}`,
       }

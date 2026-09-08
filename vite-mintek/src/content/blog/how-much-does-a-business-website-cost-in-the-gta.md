@@ -140,7 +140,9 @@ We are based in Brampton and work with businesses across Toronto, Mississauga,
 Vaughan, and the wider GTA, with in-person meetings available. If you want a
 website designed and built specifically for a local business, our
 [website development](/website-development) and
-[Brampton web design](/web-design-brampton) services are a good place to start.
+[web design in Brampton](/web-design-brampton) pages are the right next step —
+including [small business website design in Brampton](/small-business-website-design-brampton)
+if you want a focused first site rather than a large rebuild.
 
 Once your site is live, it's worth understanding
 [how local SEO works for GTA service businesses](/blog/how-local-seo-works-for-gta-service-businesses)

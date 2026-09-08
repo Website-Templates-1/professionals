@@ -4,6 +4,7 @@ metaDescription: "What actually makes a restaurant website convert: a mobile-fir
 date: "2026-07-26"
 author: "Mintek Software"
 tags: ["restaurants", "websites", "small business"]
+relatedServices: ["restaurant-website-design", "web-design-brampton"]
 category: "Guides"
 faqs:
   - q: "What is the most important part of a restaurant website?"
@@ -138,6 +139,7 @@ call, a visit, or an order.
 
 We are a Brampton-based studio building [restaurant and cafe
 websites](/restaurant-website-design) for businesses across the GTA, with in-person
-meetings available. If your current site hides the menu or loads slowly on a phone,
+meetings available. Restaurant work also sits under our
+[web design in Brampton](/web-design-brampton) hub. If your current site hides the menu or loads slowly on a phone,
 [tell us about your restaurant](/contact) and we will suggest the smallest set of
 changes that will bring in more diners.

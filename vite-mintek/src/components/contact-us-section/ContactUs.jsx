@@ -85,7 +85,7 @@ const inputSx = {
 
 const labelSx = { display: "block", mb: 1, fontWeight: 600 };
 
-const ContactUs = ({ defaultService = "" }) => {
+const ContactUs = ({ defaultService = "", showIntro = true }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [projectType, setProjectType] = useState(
     projectTypeForService(defaultService)
@@ -237,60 +237,64 @@ const ContactUs = ({ defaultService = "" }) => {
       }}
     >
       <Container maxWidth="lg">
-        <Typography
-          variant="overline"
-          sx={{
-            color: "primary.main",
-            fontWeight: 600,
-            letterSpacing: 2,
-            mb: 2,
-            display: "block",
-            textAlign: "center",
-          }}
-        >
-          {contactContent.overline}
-        </Typography>
-        <Typography
-          variant="h3"
-          component="h2"
-          sx={{
-            textAlign: "center",
-            mb: 2,
-            fontWeight: "bold",
-            background: "linear-gradient(45deg, #6C55F9, #8875fa)",
-            backgroundClip: "text",
-            color: "transparent",
-          }}
-        >
-          {contactContent.title}
-        </Typography>
-        <Typography
-          variant="h6"
-          component="p"
-          color="text.secondary"
-          sx={{ textAlign: "center", maxWidth: 720, mx: "auto", mb: 4 }}
-        >
-          {contactContent.subtitle}
-        </Typography>
-
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={2}
-          justifyContent="center"
-          sx={{ mb: 8 }}
-        >
-          {enquiryLinks.map((link) => (
-            <Button
-              key={link.service}
-              component={RouterLink}
-              to={`/contact?service=${link.service}`}
-              variant="outlined"
-              color="primary"
+        {showIntro && (
+          <>
+            <Typography
+              variant="overline"
+              sx={{
+                color: "primary.main",
+                fontWeight: 600,
+                letterSpacing: 2,
+                mb: 2,
+                display: "block",
+                textAlign: "center",
+              }}
             >
-              {link.label}
-            </Button>
-          ))}
-        </Stack>
+              {contactContent.overline}
+            </Typography>
+            <Typography
+              variant="h3"
+              component="h2"
+              sx={{
+                textAlign: "center",
+                mb: 2,
+                fontWeight: "bold",
+                background: "linear-gradient(45deg, #6C55F9, #8875fa)",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              {contactContent.title}
+            </Typography>
+            <Typography
+              variant="h6"
+              component="p"
+              color="text.secondary"
+              sx={{ textAlign: "center", maxWidth: 720, mx: "auto", mb: 4 }}
+            >
+              {contactContent.subtitle}
+            </Typography>
+
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={2}
+              justifyContent="center"
+              sx={{ mb: 8 }}
+            >
+              {enquiryLinks.map((link) => (
+                <Button
+                  key={link.service}
+                  component={RouterLink}
+                  to={`/contact?service=${link.service}`}
+                  variant="outlined"
+                  color="primary"
+                >
+                  {link.label}
+                </Button>
+              ))}
+            </Stack>
+          </>
+        )}
 
         <Grid container spacing={6}>
           {/* Contact Information */}
