@@ -28,8 +28,7 @@ const Footer = () => {
           </Typography>
           <Stack spacing={0.5}>
             <Typography variant="body2" color="text.secondary">
-              {site.address.locality}, {site.address.regionName},{" "}
-              {site.address.countryName}
+              {site.address.formatted}
             </Typography>
             <Link
               href={`mailto:${site.email}`}

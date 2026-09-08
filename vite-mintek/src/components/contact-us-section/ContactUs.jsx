@@ -41,9 +41,9 @@ const contactContent = {
     title: "Contact Information",
     items: [
       {
-        icon: <LocationOnIcon />,
-        title: "Our Location",
-        text: `${site.address.locality}, ${site.address.regionName}, ${site.address.countryName}`,
+        icon: <PhoneIcon />,
+        title: "Phone Number",
+        text: site.phone,
       },
       {
         icon: <EmailIcon />,
@@ -51,20 +51,13 @@ const contactContent = {
         text: site.email,
       },
       {
-        icon: <PhoneIcon />,
-        title: "Phone Number",
-        text: site.phone,
+        icon: <LocationOnIcon />,
+        title: "Our Location",
+        text: site.address.formatted,
       },
     ],
   },
 };
-
-// Quick-start enquiry links (crawlable) that prefill the form's project type.
-const enquiryLinks = [
-  { label: "Custom software", service: "custom-software-development" },
-  { label: "Automation", service: "business-automation" },
-  { label: "Website estimate", service: "website-development" },
-];
 
 const inputSx = {
   width: "100%",
@@ -85,7 +78,7 @@ const inputSx = {
 
 const labelSx = { display: "block", mb: 1, fontWeight: 600 };
 
-const ContactUs = ({ defaultService = "", showIntro = true }) => {
+const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [projectType, setProjectType] = useState(
     projectTypeForService(defaultService)
@@ -227,23 +220,35 @@ const ContactUs = ({ defaultService = "", showIntro = true }) => {
         py: { xs: 8, md: 16 },
         position: "relative",
         overflow: "hidden",
-        backgroundImage: `
-              radial-gradient(#B4B2C5 1px, transparent 1px), 
-              radial-gradient(#B4B2C5 1px, transparent 1px)
-            `,
-        backgroundSize: "20px 20px",
-        backgroundPosition: "0 0, 20px 20px",
-        backgroundRepeat: "repeat",
       }}
     >
-      <Container maxWidth="lg">
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          backgroundImage: `
+            radial-gradient(#B4B2C5 1px, transparent 1px),
+            radial-gradient(#B4B2C5 1px, transparent 1px)
+          `,
+          backgroundSize: "20px 20px",
+          backgroundPosition: "0 0, 10px 10px",
+          opacity: 0.22,
+          maskImage:
+            "radial-gradient(ellipse 75% 55% at 50% 22%, transparent 0%, #000 72%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 75% 55% at 50% 22%, transparent 0%, #000 72%)",
+        }}
+      />
+      <Container maxWidth="lg" sx={{ position: "relative" }}>
         {showIntro && (
           <>
             <Typography
               variant="overline"
               sx={{
                 color: "primary.main",
-                fontWeight: 600,
+                fontWeight: 700,
                 letterSpacing: 2,
                 mb: 2,
                 display: "block",
@@ -259,9 +264,7 @@ const ContactUs = ({ defaultService = "", showIntro = true }) => {
                 textAlign: "center",
                 mb: 2,
                 fontWeight: "bold",
-                background: "linear-gradient(45deg, #6C55F9, #8875fa)",
-                backgroundClip: "text",
-                color: "transparent",
+                color: "text.primary",
               }}
             >
               {contactContent.title}
@@ -269,89 +272,111 @@ const ContactUs = ({ defaultService = "", showIntro = true }) => {
             <Typography
               variant="h6"
               component="p"
-              color="text.secondary"
-              sx={{ textAlign: "center", maxWidth: 720, mx: "auto", mb: 4 }}
+              sx={{
+                textAlign: "center",
+                maxWidth: 720,
+                mx: "auto",
+                mb: 4,
+                color: "text.primary",
+                opacity: 0.82,
+                lineHeight: 1.6,
+              }}
             >
               {contactContent.subtitle}
             </Typography>
-
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={2}
-              justifyContent="center"
-              sx={{ mb: 8 }}
-            >
-              {enquiryLinks.map((link) => (
-                <Button
-                  key={link.service}
-                  component={RouterLink}
-                  to={`/contact?service=${link.service}`}
-                  variant="outlined"
-                  color="primary"
-                >
-                  {link.label}
-                </Button>
-              ))}
-            </Stack>
           </>
         )}
 
-        <Grid container spacing={6}>
-          {/* Contact Information */}
-          <Grid item xs={12} md={5}>
-            <Box
-              sx={{
-                p: 4,
-                bgcolor: "white",
-                borderRadius: 2,
-                boxShadow: "0 8px 24px -4px rgba(108, 85, 249, 0.1)",
-                height: "100%",
-              }}
-            >
-              <Typography
-                variant="h5"
-                component="h3"
-                sx={{ fontWeight: "bold", mb: 4, color: "text.primary" }}
+        <Grid container spacing={6} alignItems="stretch">
+          <Grid item xs={12} md={5} sx={{ display: "flex" }}>
+            <Stack spacing={3} sx={{ width: "100%", height: "100%" }}>
+              <Box
+                sx={{
+                  p: 4,
+                  bgcolor: "white",
+                  borderRadius: 2,
+                  boxShadow: "0 8px 24px -4px rgba(108, 85, 249, 0.1)",
+                  ...(showMap ? {} : { flex: 1 }),
+                }}
               >
-                {contactContent.contactInfo.title}
-              </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                {contactContent.contactInfo.items.map((item, index) => (
-                  <Box
-                    key={index}
-                    sx={{ display: "flex", alignItems: "center", gap: 2 }}
-                  >
+                <Typography
+                  variant="h5"
+                  component="h3"
+                  sx={{ fontWeight: "bold", mb: 4, color: "text.primary" }}
+                >
+                  {contactContent.contactInfo.title}
+                </Typography>
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                  {contactContent.contactInfo.items.map((item, index) => (
                     <Box
-                      aria-hidden="true"
-                      sx={{
-                        minWidth: 48,
-                        minHeight: 48,
-                        borderRadius: 2,
-                        bgcolor: "primary.main",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "white",
-                      }}
+                      key={index}
+                      sx={{ display: "flex", alignItems: "center", gap: 2 }}
                     >
-                      {item.icon}
+                      <Box
+                        aria-hidden="true"
+                        sx={{
+                          minWidth: 48,
+                          minHeight: 48,
+                          borderRadius: 2,
+                          bgcolor: "primary.main",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "white",
+                        }}
+                      >
+                        {item.icon}
+                      </Box>
+                      <Box>
+                        <Typography variant="subtitle2" component="p" sx={{ mb: 0.5 }}>
+                          {item.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {item.text}
+                        </Typography>
+                      </Box>
                     </Box>
-                    <Box>
-                      <Typography variant="subtitle2" component="p" sx={{ mb: 0.5 }}>
-                        {item.title}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {item.text}
-                      </Typography>
-                    </Box>
-                  </Box>
-                ))}
+                  ))}
+                </Box>
               </Box>
-            </Box>
+              {showMap && (
+                <Box
+                  sx={{
+                    flex: 1,
+                    minHeight: { xs: 240, md: 0 },
+                    borderRadius: 2,
+                    overflow: "hidden",
+                    border: "1px solid",
+                    borderColor: "divider",
+                    bgcolor: "white",
+                    boxShadow: "0 8px 24px -4px rgba(108, 85, 249, 0.1)",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Box
+                    component="iframe"
+                    title="Google Maps listing for Mintek Software, Brampton"
+                    src={site.mapsEmbedSrc}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    sx={{
+                      border: 0,
+                      width: "100%",
+                      height: "100%",
+                      flex: 1,
+                      minHeight: 0,
+                      display: "block",
+                    }}
+                  />
+                </Box>
+              )}
+            </Stack>
           </Grid>
 
           {/* Contact Form */}
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={7} sx={{ display: "flex" }}>
             <Box
               component="form"
               noValidate
@@ -363,6 +388,10 @@ const ContactUs = ({ defaultService = "", showIntro = true }) => {
                 bgcolor: "white",
                 borderRadius: 2,
                 boxShadow: "0 8px 24px -4px rgba(108, 85, 249, 0.1)",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <Grid container spacing={3}>

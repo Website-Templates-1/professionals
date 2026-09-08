@@ -48,7 +48,6 @@ const Contact = () => {
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
   ];
-  const napLine = `${site.brand}, ${site.address.locality}, ${site.address.regionName}, ${site.address.countryName}`;
 
   return (
     <>
@@ -79,20 +78,19 @@ const Contact = () => {
             <strong>Name:</strong> {site.brand}
           </Typography>
           <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
-            <strong>Address:</strong> {site.address.locality}, {site.address.regionName},{" "}
-            {site.address.countryName}
-          </Typography>
-          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
-            <strong>Phone:</strong>{" "}
-            <Link href={`tel:${site.phone.replace(/[^+\d]/g, "")}`} underline="hover">
-              {site.phone}
-            </Link>
+            <strong>Address:</strong> {site.address.formatted}
           </Typography>
           <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 3 }}>
             <strong>Email:</strong>{" "}
             <Link href={`mailto:${site.email}`} underline="hover">
               {site.email}
             </Link>
+          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
+            <strong>Phone:</strong>{" "}
+            <Link href={`tel:${site.phone.replace(/[^+\d]/g, "")}`} underline="hover">
+              {site.phone}
+            </Link>
+          </Typography>
           </Typography>
         </Container>
       </Box>
@@ -130,55 +128,9 @@ const Contact = () => {
             );
           })}
         </Grid>
-
-        <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
-          Find Mintek Software on Google Maps
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
-          This is our Google Business listing in Brampton, not a generic city pin.{" "}
-          <Link href={site.mapsUrl} target="_blank" rel="noopener noreferrer" underline="hover">
-            Open Mintek Software in Google Maps
-          </Link>
-          .
-        </Typography>
-        <Box
-          sx={{
-            borderRadius: 2,
-            overflow: "hidden",
-            border: "1px solid",
-            borderColor: "divider",
-            height: { xs: 280, md: 380 },
-            mb: 2,
-          }}
-        >
-          <Box
-            component="iframe"
-            title="Google Maps listing for Mintek Software, Brampton"
-            src={site.mapsEmbedSrc}
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="no-referrer-when-downgrade"
-            sx={{ border: 0, width: "100%", height: "100%", display: "block" }}
-          />
-        </Box>
       </Container>
 
-      <Box sx={{ pb: { xs: 2, md: 4 } }}>
-        <Container maxWidth="md">
-          <Typography
-            variant="h2"
-            sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}
-          >
-            Send a project note
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
-            Tell us the problem, the kind of site or software you need, and a
-            rough timeline. We reply to the email you provide.
-          </Typography>
-        </Container>
-      </Box>
-
-      <ContactUs defaultService={service} showIntro={false} />
+      <ContactUs defaultService={service} showMap />
     </>
   );
 };

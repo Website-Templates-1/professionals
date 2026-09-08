@@ -1,5 +1,5 @@
 import { Head } from "vite-react-ssg";
-import { site, canonical, absoluteUrl } from "../../config/siteConfig";
+import { site, canonical, absoluteUrl, postalAddressSchema } from "../../config/siteConfig";
 
 // Emits one or more JSON-LD blocks into <head>.
 const JsonLd = ({ data }) => (
@@ -26,12 +26,7 @@ export const OrganizationSchema = () => (
       email: site.email,
       telephone: site.phone,
       foundingDate: String(site.foundingYear),
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: site.address.locality,
-        addressRegion: site.address.region,
-        addressCountry: site.address.country,
-      },
+      address: postalAddressSchema(),
       contactPoint: {
         "@type": "ContactPoint",
         telephone: site.phone,
@@ -68,12 +63,7 @@ export const LocalBusinessSchema = () => (
       email: site.email,
       telephone: site.phone,
       priceRange: "$$",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: site.address.locality,
-        addressRegion: site.address.region,
-        addressCountry: site.address.country,
-      },
+      address: postalAddressSchema(),
       areaServed: site.areaServed.map((name) => ({
         "@type": "Place",
         name,
@@ -135,12 +125,7 @@ export const ServiceSchema = ({ service }) => {
           url: site.domain,
           telephone: site.phone,
           email: site.email,
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: site.address.locality,
-            addressRegion: site.address.region,
-            addressCountry: site.address.country,
-          },
+          address: postalAddressSchema(),
           areaServed,
         },
         areaServed,

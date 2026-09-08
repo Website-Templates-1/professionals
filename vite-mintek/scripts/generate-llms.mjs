@@ -69,7 +69,11 @@ const guideLines = [
 const companyLines = [
   link("Home", "/", oneLine(site.tagline)),
   link("About", "/about", "Who Mintek Software is and how we work."),
-  link("Contact", "/contact", "Start a project or ask a question."),
+  link(
+    "Contact",
+    "/contact",
+    `${site.address.formatted}. ${site.phone}. ${site.email}. Start a project or ask a question.`
+  ),
 ];
 
 // --- Assemble ---------------------------------------------------------------

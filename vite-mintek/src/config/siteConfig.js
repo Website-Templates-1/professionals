@@ -29,11 +29,15 @@ export const site = {
   logo: "/og-image.webp",
   ogImage: "/og-image.webp",
   address: {
+    // Must match Google Business Profile / Maps exactly (NAP).
+    street: "233 Mountainberry Rd",
     locality: "Brampton",
     region: "ON",
     regionName: "Ontario",
+    postalCode: "L6R 1W3",
     country: "CA",
     countryName: "Canada",
+    formatted: "233 Mountainberry Rd, Brampton, ON L6R 1W3",
   },
   areaServed: [
     "Brampton",
@@ -72,6 +76,15 @@ export const absoluteUrl = (path = "/") => {
   if (/^https?:\/\//.test(path)) return path;
   return `${site.domain}${path.startsWith("/") ? path : `/${path}`}`;
 };
+
+export const postalAddressSchema = () => ({
+  "@type": "PostalAddress",
+  streetAddress: site.address.street,
+  addressLocality: site.address.locality,
+  addressRegion: site.address.region,
+  postalCode: site.address.postalCode,
+  addressCountry: site.address.country,
+});
 
 // ---------------------------------------------------------------------------
 // Commercial model: public project stages + budget ranges (used on service
