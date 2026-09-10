@@ -1448,6 +1448,8 @@ const companyLinks = [
   { name: "Contact", path: "/contact" },
   { name: "About", path: "/about" },
   { name: "Blog", path: "/blog" },
+  { name: "Privacy Policy", path: "/privacy" },
+  { name: "Terms of Service", path: "/terms" },
 ];
 
 // Drawer navigation: concise labels, grouped by meaning, local-first order.

@@ -9,7 +9,7 @@ import { readBlogPosts, isPublished } from "./blog-posts.mjs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = join(__dirname, "..", "public");
 
-const staticPaths = ["/", "/services", "/case-studies", "/blog", "/about", "/contact"];
+const staticPaths = ["/", "/services", "/case-studies", "/blog", "/about", "/contact", "/privacy", "/terms"];
 // Exclude hidden/deferred service pages (e.g. noindex location pages).
 const servicePaths = services.filter((s) => !s.hidden).map((s) => `/${s.slug}`);
 const caseStudyPaths = caseStudies.map((c) => `/case-studies/${c.slug}`);

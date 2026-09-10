@@ -13,6 +13,8 @@ const BlogIndex = lazy(() => import("./pages/BlogIndex"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 import { services, caseStudies, caseStudyRedirects } from "./config/siteConfig";
 import { getAllPosts } from "./config/blog";
@@ -45,6 +47,8 @@ export const routes = [
 
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
+      { path: "privacy", element: <Privacy /> },
+      { path: "terms", element: <Terms /> },
 
       // Legacy path -> canonical case studies URL.
       { path: "past-work", element: <Navigate to="/case-studies" replace /> },
