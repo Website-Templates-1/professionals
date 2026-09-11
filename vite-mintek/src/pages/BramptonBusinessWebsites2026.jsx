@@ -57,6 +57,13 @@ const related = [
   },
   {
     type: "Article",
+    key: "a-slow",
+    title: "Why are Brampton business websites so slow?",
+    description: "What 76 mobile Lighthouse runs showed about LCP, page weight, and what to fix first.",
+    to: "/blog/why-are-brampton-business-websites-so-slow",
+  },
+  {
+    type: "Article",
     key: "a-check",
     title: "Brampton small business website checklist",
     description: "A practical checklist for local marketing sites.",
