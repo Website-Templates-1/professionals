@@ -53,7 +53,7 @@ const ResearchIndex = () => {
           </Typography>
           <Typography variant="h6" component="p" color="text.secondary" sx={{ mb: 6, maxWidth: 700, fontWeight: 400 }}>
             Measurement studies and technical reports. These are not client
-            testimonials and not search-ranking claims.
+            testimonials and not search ranking claims.
           </Typography>
 
           {reports.map((report) => (

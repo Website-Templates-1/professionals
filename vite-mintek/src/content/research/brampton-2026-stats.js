@@ -399,43 +399,43 @@ export default {
   ],
   "hist": [
     {
-      "label": "0–9",
+      "label": "0 to 9",
       "n": 0
     },
     {
-      "label": "10–19",
+      "label": "10 to 19",
       "n": 0
     },
     {
-      "label": "20–29",
+      "label": "20 to 29",
       "n": 5
     },
     {
-      "label": "30–39",
+      "label": "30 to 39",
       "n": 11
     },
     {
-      "label": "40–49",
+      "label": "40 to 49",
       "n": 9
     },
     {
-      "label": "50–59",
+      "label": "50 to 59",
       "n": 15
     },
     {
-      "label": "60–69",
+      "label": "60 to 69",
       "n": 15
     },
     {
-      "label": "70–79",
+      "label": "70 to 79",
       "n": 8
     },
     {
-      "label": "80–89",
+      "label": "80 to 89",
       "n": 5
     },
     {
-      "label": "90–100",
+      "label": "90 to 100",
       "n": 8
     }
   ],

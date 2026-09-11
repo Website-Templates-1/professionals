@@ -23,7 +23,7 @@ const ResearchTeaser = () => {
                 The State of Brampton Business Websites: 2026
               </Typography>
               <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
-                An original lab study of independently operated local-business
+                An original lab study of independently operated local business
                 homepages. Median mobile Lighthouse performance {stats.perf.median};
                 median LCP {stats.lcp.median} seconds.
               </Typography>

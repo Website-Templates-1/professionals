@@ -87,7 +87,7 @@ export function IndustryBars({ rows, caption }) {
 }
 
 export function Histogram({ bins, caption }) {
-  const visible = bins.filter((b) => b.n > 0 || !["0–9", "10–19"].includes(b.label));
+  const visible = bins.filter((b) => b.n > 0 || !["0 to 9", "10 to 19"].includes(b.label));
   const max = Math.max(...visible.map((b) => b.n), 1);
   return (
     <Box component="figure" sx={{ m: 0 }}>

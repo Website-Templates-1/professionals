@@ -45,20 +45,20 @@ const related = [
     type: "Service",
     key: "s-wd",
     title: "Web design in Brampton",
-    description: "Fast, mobile-friendly marketing websites for Brampton businesses.",
+    description: "Fast, mobile friendly marketing websites for Brampton businesses.",
     to: "/web-design-brampton",
   },
   {
     type: "Service",
     key: "s-seo",
     title: "Local SEO in the GTA",
-    description: "On-page and technical local search work for service businesses.",
+    description: "On page and technical local search work for service businesses.",
     to: "/local-seo-gta",
   },
   {
     type: "Article",
     key: "a-check",
-    title: "Brampton small-business website checklist",
+    title: "Brampton small business website checklist",
     description: "A practical checklist for local marketing sites.",
     to: "/blog/brampton-small-business-website-checklist",
   },
@@ -80,7 +80,7 @@ const related = [
     type: "Service",
     key: "s-dev",
     title: "Website development",
-    description: "Engineering-led websites built around performance and conversion.",
+    description: "Engineering led websites built around performance and conversion.",
     to: "/website-development",
   },
 ];
@@ -135,7 +135,7 @@ const ResearchReportSchema = () => (
         name: "The State of Brampton Business Websites: 2026",
         headline: "The State of Brampton Business Websites: 2026",
         description:
-          "An original measurement study of independently operated small- and medium-sized business websites serving Brampton, Ontario.",
+          "An original measurement study of independently operated small and medium sized business websites serving Brampton, Ontario.",
         url: canonical(PATH),
         datePublished: "2026-09-11",
         dateModified: "2026-09-11",
@@ -181,11 +181,11 @@ const BramptonBusinessWebsites2026 = () => {
     { label: "XML sitemap present", ...sig.sitemap },
     { label: "Brampton mentioned on homepage", ...sig.brampton },
     { label: "Primary CTA phrase", ...sig.cta },
-    { label: "Click-to-call (tel: link)", ...sig.clickToCall },
-    { label: "Any JSON-LD / schema.org", ...sig.schema },
+    { label: "Click to call (tel: link)", ...sig.clickToCall },
+    { label: "Any JSON LD / schema.org", ...sig.schema },
     { label: "Contact form element", ...sig.form },
-    { label: "Service-section links", ...sig.servicePages },
-    { label: "LocalBusiness-like schema", ...sig.localbiz },
+    { label: "Service section links", ...sig.servicePages },
+    { label: "LocalBusiness style schema", ...sig.localbiz },
     { label: "Review / testimonial pattern", ...sig.reviews },
   ];
 
@@ -218,8 +218,8 @@ const BramptonBusinessWebsites2026 = () => {
             The State of Brampton Business Websites: 2026
           </Typography>
           <Typography variant="h6" component="p" color="text.secondary" sx={{ mb: 3, fontWeight: 400, lineHeight: 1.6 }}>
-            An original measurement study of independently operated small- and
-            medium-sized business websites serving Brampton, Ontario.
+            An original measurement study of independently operated small and
+            medium sized business websites serving Brampton, Ontario.
           </Typography>
           <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
             <Chip label={`${stats.sample} businesses in final sample`} />
@@ -237,9 +237,9 @@ const BramptonBusinessWebsites2026 = () => {
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
             On 11 September 2026 we measured publicly accessible homepages for
             Brampton businesses discovered through Google Places searches across
-            twelve industry groups. After quality control — removing national
+            twelve industry groups. After quality control we removed national
             chains, a municipal facility, a dead domain, a national HVAC brand,
-            and a listing whose listed website was a TikTok profile —{" "}
+            and a listing whose listed website was a TikTok profile.{" "}
             <strong>{stats.sample}</strong> independently operated sites remained.
             We fetched HTML for <strong>{stats.html}</strong> of those homepages.
             Google PageSpeed Insights completed a mobile Lighthouse run for{" "}
@@ -249,13 +249,13 @@ const BramptonBusinessWebsites2026 = () => {
             Among scored homepages, median mobile Lighthouse performance was{" "}
             <strong>{perf.median}</strong>. Median Largest Contentful Paint was{" "}
             <strong>{lcp.median} seconds</strong>, and {fmt(lcp.over25)} exceeded
-            Google’s 2.5-second “good” LCP threshold for that metric. Most fetched
-            homepages used HTTPS and mentioned Brampton. LocalBusiness-like
-            structured data and click-to-call were less consistent.
+            Google’s 2.5 second “good” LCP threshold for that metric. Most fetched
+            homepages used HTTPS and mentioned Brampton. LocalBusiness style
+            structured data and click to call were less consistent.
           </Typography>
           <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
             These are lab observations from one PSI mobile run per URL plus
-            pattern-matching on public HTML. They are not Google search rankings,
+            pattern matching on public HTML. They are not Google search rankings,
             not WCAG certification, and not a judgement of how well a company
             serves customers offline. Businesses were not contacted and did not
             participate in or endorse this study.
@@ -284,8 +284,8 @@ const BramptonBusinessWebsites2026 = () => {
               { value: `${page.medianMb} MB`, label: "Median homepage transfer size", denom: `${stats.scored} scored homepages` },
               { value: String(page.medianRequests), label: "Median network requests", denom: `${stats.scored} scored homepages` },
               { value: `${sig.https.pct}%`, label: "HTTPS on fetched homepages", denom: `${sig.https.n} of ${sig.https.d} fetched` },
-              { value: `${sig.localbiz.pct}%`, label: "LocalBusiness-like structured data", denom: `${sig.localbiz.n} of ${sig.localbiz.d} fetched` },
-              { value: `${sig.clickToCall.pct}%`, label: "Click-to-call (tel: link)", denom: `${sig.clickToCall.n} of ${sig.clickToCall.d} fetched` },
+              { value: `${sig.localbiz.pct}%`, label: "LocalBusiness style structured data", denom: `${sig.localbiz.n} of ${sig.localbiz.d} fetched` },
+              { value: `${sig.clickToCall.pct}%`, label: "Click to call (tel: link)", denom: `${sig.clickToCall.n} of ${sig.clickToCall.d} fetched` },
               { value: `${sig.form.pct}%`, label: "Homepage form element", denom: `${sig.form.n} of ${sig.form.d} fetched` },
               { value: `${sig.brampton.pct}%`, label: "Brampton mentioned on homepage", denom: `${sig.brampton.n} of ${sig.brampton.d} fetched` },
               { value: `${sig.sitemap.pct}%`, label: "XML sitemap responded", denom: `${sig.sitemap.n} of ${sig.sitemap.d} fetched` },
@@ -325,15 +325,15 @@ const BramptonBusinessWebsites2026 = () => {
               </Typography>
               <Typography variant="h6" component="p" color="text.secondary" sx={{ fontWeight: 400 }}>
                 {lcp.over25.n} of {lcp.over25.d} scored homepages ({lcp.over25.pct}%)
-                exceeded Google’s 2.5-second “good” threshold for Largest
+                exceeded Google’s 2.5 second “good” threshold for Largest
                 Contentful Paint.
               </Typography>
             </CardContent>
           </Card>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
             LCP is the time until the largest content element in the viewport
-            finishes rendering. The 2.5-second threshold is Google’s published
-            “good” lab/field guidance for that metric. This study used a single
+            finishes rendering. The 2.5 second threshold is Google’s published
+            “good” lab or field guidance for that metric. This study used a single
             PageSpeed Insights API v5 run with <code>strategy=mobile</code> on 11
             September 2026. It is not Chrome User Experience Report field data,
             and it is not a statement that Google penalized these businesses.
@@ -389,7 +389,7 @@ const BramptonBusinessWebsites2026 = () => {
             </Table>
           </TableContainer>
           <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 1.5 }}>
-            Fitness independent-site coverage collapsed after removing gym chains
+            Fitness independent site coverage collapsed after removing gym chains
             and a municipal facility, so that median is not used for comparison.
           </Typography>
         </Container>
@@ -436,12 +436,12 @@ const BramptonBusinessWebsites2026 = () => {
             points={stats.scatter}
             xLabel="Homepage transfer size (MB)"
             yLabel="Lighthouse performance"
-            caption={`Each point is one scored homepage (n = ${corr.n}). Source: PSI total-byte-weight and performance category, 11 September 2026.`}
+            caption={`Each point is one scored homepage (n = ${corr.n}). Source: PSI total byte weight and performance category, 11 September 2026.`}
           />
           <Typography color="text.secondary" sx={{ mt: 3, lineHeight: 1.8 }}>
             Additional lab medians on scored homepages: FCP {stats.fcp.median}s;
             TBT {stats.tbt.median} ms; CLS {stats.cls.median} ({fmt(stats.cls.over01)}{" "}
-            above 0.1). Median Lighthouse best-practices score was {stats.bp.median}.
+            above 0.1). Median Lighthouse best practices score was {stats.bp.median}.
           </Typography>
         </Container>
       </Box>
@@ -460,11 +460,11 @@ const BramptonBusinessWebsites2026 = () => {
             An H1: {fmt(sig.h1)}.
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
-            JSON-LD or other schema.org blocks were detected on {fmt(sig.schema)}.
+            JSON LD or other schema.org blocks were detected on {fmt(sig.schema)}.
             Types consistent with LocalBusiness, Organization, or common
-            professional subtypes appeared on {fmt(sig.localbiz)}. Service-section
-            links: {fmt(sig.servicePages)}. Hours-like language: {fmt(sig.hours)}.
-            Address-like patterns: {fmt(sig.address)}.
+            professional subtypes appeared on {fmt(sig.localbiz)}. Service section
+            links: {fmt(sig.servicePages)}. Hours like language: {fmt(sig.hours)}.
+            Address like patterns: {fmt(sig.address)}.
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
             Median Lighthouse SEO category score was {stats.seo.median}. That lab
@@ -489,10 +489,10 @@ const BramptonBusinessWebsites2026 = () => {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
             A listed primary CTA phrase (for example “call now”, “contact us”,
-            “book now”) appeared on {fmt(sig.cta)}. Click-to-call{" "}
+            “book now”) appeared on {fmt(sig.cta)}. Click to call{" "}
             <code>tel:</code> links: {fmt(sig.clickToCall)}. A <code>&lt;form&gt;</code>{" "}
-            element: {fmt(sig.form)} — that may include newsletter or site-search
-            forms, not only enquiry forms. Booking-related third-party scripts or
+            element: {fmt(sig.form)}. That may include newsletter or site search
+            forms, not only enquiry forms. Booking related third party scripts or
             “book/schedule” language: {fmt(sig.booking)}. Homepage testimonial or
             review wording: {fmt(sig.reviews)}.
           </Typography>
@@ -549,11 +549,11 @@ const BramptonBusinessWebsites2026 = () => {
             </Table>
           </TableContainer>
           <Typography color="text.secondary" sx={{ mt: 2, lineHeight: 1.8 }}>
-            One homepage also matched a Hostinger website-builder generator tag.
+            One homepage also matched a Hostinger website builder generator tag.
             HTTP/2 versus HTTP/3 was not reliably recorded. CDN detection from
             HTML is incomplete. Script signatures matching gtag/GA4 were common (
             {fmt(sig.ga4)}); treat that as “a matching script was detected,” not as
-            proof of a well-configured GA4 property. Google Tag Manager: {fmt(sig.gtm)}.
+            proof of a well configured GA4 property. Google Tag Manager: {fmt(sig.gtm)}.
           </Typography>
         </Container>
       </Box>
@@ -571,17 +571,17 @@ const BramptonBusinessWebsites2026 = () => {
             {examples.high.map((ex) => (
               <Typography key={ex.url} color="text.secondary" sx={{ lineHeight: 1.7 }}>
                 <ExampleLink href={ex.url}>{ex.name}</ExampleLink>
-                {" — "}
+                {": "}
                 Lighthouse performance {ex.perf}
                 {ex.seo === 100 ? ", SEO 100" : ""}
                 {typeof ex.a11y === "number" ? `, accessibility ${ex.a11y}` : ""}
-                {ex.localbiz ? "; LocalBusiness-like schema detected" : ""}.
+                {ex.localbiz ? "; LocalBusiness style schema detected" : ""}.
               </Typography>
             ))}
             {examples.mixed.map((ex) => (
               <Typography key={ex.url} color="text.secondary" sx={{ lineHeight: 1.7 }}>
                 <ExampleLink href={ex.url}>{ex.name}</ExampleLink>
-                {" — "}
+                {": "}
                 performance {ex.perf}, LCP {ex.lcp}s
                 {ex.call && ex.form ? "; tel link and form present" : ""}.
               </Typography>
@@ -589,7 +589,7 @@ const BramptonBusinessWebsites2026 = () => {
             {examples.heavy.map((ex) => (
               <Typography key={ex.url} color="text.secondary" sx={{ lineHeight: 1.7 }}>
                 <ExampleLink href={ex.url}>{ex.name}</ExampleLink>
-                {" — "}
+                {": "}
                 performance {ex.perf}
                 {ex.mb != null ? `, about ${ex.mb} MB` : ""}
                 {typeof ex.requests === "number" ? `, ${ex.requests} requests` : ""}
@@ -613,8 +613,8 @@ const BramptonBusinessWebsites2026 = () => {
             those searches. Keep rules before measurement: the formatted address
             contained “Brampton”; the listing was operational; the site was not
             Facebook, Instagram, Linktree, or Google’s free builders; hostnames
-            were unique in the sample; names did not match a national QSR / big-box
-            denylist; per-search caps prevented one category from dominating.
+            were unique in the sample; names did not match a national QSR / big box
+            denylist; per search caps prevented one category from dominating.
             Within each search, eligible businesses were ordered by Google review
             count, then the cap was applied. We did not sample only weak websites.
           </Typography>
@@ -626,15 +626,15 @@ const BramptonBusinessWebsites2026 = () => {
             102. Analysis sample: {stats.sample}. HTML succeeded: {stats.html} of{" "}
             {stats.sample}. PageSpeed succeeded: {stats.scored} of {stats.sample}.
             Remaining Lighthouse gaps ({stats.lighthouseMissing} sites) are{" "}
-            <em>not available</em> — timeouts, 403 bot blocks, or document-load
+            <em>not available</em>: timeouts, 403 bot blocks, or document load
             failures. They were not imputed.
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
             HTML inspection used GET on the homepage, <code>/robots.txt</code>, and
             a sitemap URL from robots or <code>/sitemap.xml</code>, with a research
-            User-Agent. Performance used PageSpeed Insights API v5, mobile
-            strategy, categories performance, accessibility, best-practices, and
-            SEO. One run per URL — not a median of three lab runs. PSI executes in
+            user agent. Performance used PageSpeed Insights API v5, mobile
+            strategy, categories performance, accessibility, best practices, and
+            SEO. One run per URL, not a median of three lab runs. PSI executes in
             Google’s infrastructure; HTML fetch ran from the researcher’s machine.
             No businesses were contacted. No forms were submitted. No accounts were
             created. No purchases were made.
@@ -646,7 +646,7 @@ const BramptonBusinessWebsites2026 = () => {
             Single PSI runs vary by day. Some WAFs return 403 to our crawler while
             still serving humans (and sometimes still serving PSI). Fitness
             coverage is too thin to compare. CMS, analytics, schema, and CTA
-            detection can false-positive or false-negative. Correlation is not
+            detection can false positive or false negative. Correlation is not
             causation. Automated accessibility scores are not WCAG certification.
           </Typography>
         </Container>
@@ -672,10 +672,10 @@ const BramptonBusinessWebsites2026 = () => {
             </li>
             <li>
               Add a <code>tel:</code> link if the business takes phone leads
-              (missing on about one-third of fetched homepages).
+              (missing on about one third of fetched homepages).
             </li>
             <li>
-              Publish LocalBusiness or Organization JSON-LD with name, address,
+              Publish LocalBusiness or Organization JSON LD with name, address,
               telephone, and opening hours when those facts are public.
             </li>
             <li>
@@ -701,11 +701,11 @@ const BramptonBusinessWebsites2026 = () => {
             </Link>
             ,{" "}
             <Link component={RouterLink} to="/small-business-website-design-brampton" underline="hover">
-              small-business website design
+              small business website design
             </Link>
             , and the{" "}
             <Link component={RouterLink} to="/blog/brampton-small-business-website-checklist" underline="hover">
-              Brampton small-business website checklist
+              Brampton small business website checklist
             </Link>
             .
           </Typography>
@@ -719,10 +719,10 @@ const BramptonBusinessWebsites2026 = () => {
           </Typography>
           <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
             The study was conducted from a structured research dataset built from
-            public webpages and the Places API. We are not publishing the row-level
+            public webpages and the Places API. We are not publishing the row level
             file: it includes Place IDs, phone numbers, and map URLs that are not
             needed to evaluate the findings. The statistics on this page were
-            recalculated from the final quality-controlled sample of {stats.sample}{" "}
+            recalculated from the final quality controlled sample of {stats.sample}{" "}
             sites on the fieldwork date above.
           </Typography>
         </Container>
@@ -737,7 +737,7 @@ const BramptonBusinessWebsites2026 = () => {
             In this lab sample, Brampton SMB homepages usually had HTTPS, a title,
             and often a sitemap. They were “online enough” on paper. The strongest
             recurring measurable weaknesses were mobile Largest Contentful Paint
-            and incomplete machine-readable local business data.
+            and incomplete machine readable local business data.
           </Typography>
           <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
             Those measurements describe website properties. They do not describe
@@ -752,7 +752,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <CTASection
         title="Want to know how your website compares?"
-        subtitle="Mintek builds and maintains high-performance websites for businesses in Brampton and the GTA. If you would like a technical look at your current site, get in touch. This study is independent research, not a review of any client."
+        subtitle="Mintek builds and maintains high performance websites for businesses in Brampton and the GTA. If you would like a technical look at your current site, get in touch. This study is independent research, not a review of any client."
         primaryLabel="Get in touch"
         primaryTo="/contact"
         secondaryLabel="Web design in Brampton"
