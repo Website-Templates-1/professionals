@@ -46,6 +46,11 @@ Mintek Software builds custom software, business automation and high-performing 
 - [How to Get Your Team to Actually Use New Software](https://minteksoftware.com/blog/how-to-get-your-team-to-actually-use-new-software): New software fails when nobody uses it. Practical steps to get a small-business team on board: involve them early, start small, train lightly, and measure what sticks.
 - [Brampton Small-Business Website Checklist](https://minteksoftware.com/blog/brampton-small-business-website-checklist): A practical Brampton small business website checklist: the foundations, local SEO, content and technical must-haves that turn visitors into local customers.
 
+## Research
+
+- [Research](https://minteksoftware.com/research): Original measurement studies from Mintek Software.
+- [The State of Brampton Business Websites: 2026](https://minteksoftware.com/research/brampton-business-websites-2026): Lab study of independently operated Brampton SMB homepages: performance, LCP, local SEO signals, conversion markup.
+
 ## Company
 
 - [Home](https://minteksoftware.com/): Custom software, automation and websites for growing businesses

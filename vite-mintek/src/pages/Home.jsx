@@ -4,6 +4,7 @@ import OurServices from "../components/our-service-section/OurServices";
 import LocalServices from "../components/local-services-section/LocalServices";
 import PortfolioSection from "../components/portfolio-section/PortfolioSection";
 import ContactUs from "../components/contact-us-section/ContactUs";
+import ResearchTeaser from "../components/home/ResearchTeaser";
 import Seo from "../components/seo/Seo";
 import Faq from "../components/common/Faq";
 import Testimonials from "../components/common/Testimonials";
@@ -18,6 +19,7 @@ const Home = () => {
         path="/"
       />
       <Hero />
+      <ResearchTeaser />
       <OurServices />
       <LocalServices />
       <PortfolioSection />

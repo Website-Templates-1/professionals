@@ -66,6 +66,15 @@ const guideLines = [
   ),
 ];
 
+const researchLines = [
+  link("Research", "/research", "Original measurement studies from Mintek Software."),
+  link(
+    "The State of Brampton Business Websites: 2026",
+    "/research/brampton-business-websites-2026",
+    "Lab study of independently operated Brampton SMB homepages: performance, LCP, local SEO signals, conversion markup."
+  ),
+];
+
 const companyLines = [
   link("Home", "/", oneLine(site.tagline)),
   link("About", "/about", "Who Mintek Software is and how we work."),
@@ -100,6 +109,10 @@ const sections = [
   ``,
   guideLines.join("\n"),
   ``,
+  `## Research`,
+  ``,
+  researchLines.join("\n"),
+  ``,
   `## Company`,
   ``,
   companyLines.join("\n"),
@@ -108,7 +121,7 @@ const sections = [
 
 const output = sections.join("\n");
 
-const linkCount = [serviceLines, caseStudyLines, guideLines, companyLines].reduce(
+const linkCount = [serviceLines, caseStudyLines, guideLines, researchLines, companyLines].reduce(
   (sum, list) => sum + list.length,
   0
 );

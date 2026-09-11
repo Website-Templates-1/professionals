@@ -11,6 +11,10 @@ const CaseStudiesIndex = lazy(() => import("./pages/CaseStudiesIndex"));
 const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
 const BlogIndex = lazy(() => import("./pages/BlogIndex"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const ResearchIndex = lazy(() => import("./pages/ResearchIndex"));
+const BramptonBusinessWebsites2026 = lazy(
+  () => import("./pages/BramptonBusinessWebsites2026")
+);
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
@@ -44,6 +48,12 @@ export const routes = [
         path: `blog/${post.slug}`,
         element: <BlogPost slug={post.slug} />,
       })),
+
+      { path: "research", element: <ResearchIndex /> },
+      {
+        path: "research/brampton-business-websites-2026",
+        element: <BramptonBusinessWebsites2026 />,
+      },
 
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },

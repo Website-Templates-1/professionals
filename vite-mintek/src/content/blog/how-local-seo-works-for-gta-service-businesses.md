@@ -150,7 +150,9 @@ the rest.
 If you are a GTA service business trying to get found nearby, the priorities in
 order are usually: claim and complete your Google Business Profile, fix any
 inconsistent contact details, make sure your website is fast and clear on mobile,
-and build a steady habit of asking for reviews. If you would rather have it handled,
+and build a steady habit of asking for reviews. For measured local signals on
+Brampton homepages, see
+[The State of Brampton Business Websites: 2026](/research/brampton-business-websites-2026). If you would rather have it handled,
 our [GTA local SEO services](/local-seo-gta) cover the audit, on-page and technical
 fixes, Google Business Profile optimisation and reporting. For a sense of what the
 website side involves and costs, our guide on

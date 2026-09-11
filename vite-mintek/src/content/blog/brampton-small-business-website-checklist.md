@@ -168,6 +168,9 @@ A good website is not luck, it is a checklist done properly: fast, mobile-first,
 locally optimised, honest about what you offer, and built to be measured and
 owned. Work through the list above with whoever builds your site, and you will
 avoid the mistakes that quietly cost Brampton businesses customers every day.
+For measured homepage speed and local markup across independently operated
+Brampton sites, see
+[The State of Brampton Business Websites: 2026](/research/brampton-business-websites-2026).
 
 If you would like a local team based right here in Brampton to handle the whole
 list for you, start with [web design in Brampton](/web-design-brampton) or

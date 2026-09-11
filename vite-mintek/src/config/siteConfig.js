@@ -1448,6 +1448,7 @@ const companyLinks = [
   { name: "Contact", path: "/contact" },
   { name: "About", path: "/about" },
   { name: "Blog", path: "/blog" },
+  { name: "Research", path: "/research" },
   { name: "Privacy Policy", path: "/privacy" },
   { name: "Terms of Service", path: "/terms" },
 ];
