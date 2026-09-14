@@ -1,11 +1,15 @@
-import { AppBar, Toolbar, Typography, Box, IconButton, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, IconButton, Button, Stack } from "@mui/material";
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import RightFullPageDrawer from "./RightFullPageDrawer";
 import NavLinks from "./NavLinks";
 import MenuIcon from "@mui/icons-material/Menu";
+import PhoneIcon from "@mui/icons-material/Phone";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import logo from "../assets/logo2-nav.png";
 import { navGroups, site } from "../config/siteConfig";
+
+const telHref = `tel:${site.phone.replace(/[^+\d]/g, "")}`;
 
 function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -34,6 +38,7 @@ function Navbar() {
               display: "flex",
               alignItems: "center",
               flexGrow: 1,
+              minWidth: 0,
               gap: 0.5,
               cursor: "pointer",
               textDecoration: "none",
@@ -56,6 +61,9 @@ function Navbar() {
               sx={{
                 fontWeight: "bold",
                 color: "text.primary",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
               }}
             >
               {site.brand}
@@ -65,14 +73,31 @@ function Navbar() {
           <Box
             sx={{
               display: "flex",
-              gap: 2,
+              gap: 0.5,
               ml: "auto",
               alignItems: "center",
+              flexShrink: 0,
             }}
           >
+            <Button
+              href={telHref}
+              variant="contained"
+              color="primary"
+              size="small"
+              startIcon={<PhoneIcon />}
+              aria-label={`Call us at ${site.phone}`}
+              sx={{
+                py: 0.5,
+                px: 1.75,
+                fontSize: "0.875rem",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Call us
+            </Button>
             <IconButton
               color="primary"
-              aria-label="open drawer"
+              aria-label="open menu"
               edge="end"
               onClick={handleDrawerOpen}
             >
@@ -88,17 +113,31 @@ function Navbar() {
         drawerTitle="Menu"
         allowOverflow={true}
         footer={
-          <Button
-            component={RouterLink}
-            to="/contact"
-            variant="contained"
-            color="primary"
-            fullWidth
-            size="large"
-            onClick={handleDrawerClose}
-          >
-            Request a consultation
-          </Button>
+          <Stack spacing={1.5}>
+            <Button
+              href={telHref}
+              variant="contained"
+              color="primary"
+              fullWidth
+              size="large"
+              startIcon={<PhoneIcon />}
+              aria-label={`Call us at ${site.phone}`}
+            >
+              Call us
+            </Button>
+            <Button
+              component={RouterLink}
+              to="/contact"
+              variant="outlined"
+              color="primary"
+              fullWidth
+              size="large"
+              startIcon={<EventAvailableIcon />}
+              onClick={handleDrawerClose}
+            >
+              Free consult
+            </Button>
+          </Stack>
         }
       >
         <NavLinks

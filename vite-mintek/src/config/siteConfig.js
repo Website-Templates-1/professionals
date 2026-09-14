@@ -612,6 +612,7 @@ export const services = [
     budgetType: "website",
     layout: "commercial",
     hideTech: true,
+    hideOutcome: true,
     proofPlacement: "early",
     pricing: "Small-business website projects start at CAD $1,500.",
     offersFrom: 1500,
@@ -635,12 +636,12 @@ export const services = [
       "Mount Pleasant", "Castlemore", "Fletcher's Meadow", "Sandalwood",
     ],
     problem:
-      "A Brampton small business does not lose customers because it lacks a logo. It loses them in the two seconds after someone nearby searches on a phone: a slow page, a buried phone number, hours that do not match Google, or a template that looks like every other contractor in Peel. Trades, clinics, daycares, independent restaurants and professional-service firms here compete on trust and convenience, not on having a website for its own sake. Many owners already paid once for a builder site that is painful to update and invisible for the searches that actually matter — “near me,” a neighbourhood name, or a service plus Brampton.",
+      "A Brampton small business can lose a potential customer in the seconds after someone searches on a phone: a slow page, a buried phone number, hours that do not match Google, or a template that looks like every other website in Peel. Trades, clinics, daycares, independent restaurants and professional-service firms here compete on trust and convenience, not on having a website for its own sake. Many owners already paid once for a builder site that is painful to update and invisible for the searches that actually matter — “near me,” a neighbourhood name, or a service plus Brampton.",
     solution:
       "We are based in Brampton, so the work starts with how local customers actually decide: tap to call, get directions, join a waitlist, check a menu, or send a catering enquiry. We design and build fast, mobile-first sites with clear next steps, on-page local SEO (titles, headings, NAP consistency, crawlable pages) and analytics. You own the site when it is paid for. In-person meetings are available across the city. Because we also build software, the same team can later add booking, ordering or other integrations if the business actually needs them — without starting over with a new vendor. For the long-tail searches people use when they are ready to hire, see our pages on small business website design in Brampton, web design services in Brampton, and website hosting in Brampton — they sit under this hub rather than repeating it.",
     process: [
-      "Strategy: name the local audience, the one action the site must produce, and the pages that earn their keep.",
-      "Design: mobile-first layouts that put calls, forms and directions where thumbs actually land.",
+      "Strategy: name the local audience, the pages that earn their keep, and how we will know the first version is done.",
+      "Design: mobile-first layouts, with the primary action where a thumb actually lands.",
       "Build: fast, accessible, SEO-ready code with analytics — not a bloated page-builder export.",
       "Launch: Google Business Profile alignment, handover, and optional hosting and support so the site stays yours.",
     ],
@@ -650,7 +651,7 @@ export const services = [
     proofOverline: "WORK",
     proofTitle: "Websites we have actually built",
     proofIntro:
-      "These are named businesses. We only repeat what is already published on the case-study pages. PawPals and Doaba Junction are marketing sites; Airport Sweets is the example of a restaurant that needed custom ordering software, not only a brochure.",
+      "A few examples of work we've built for local businesses, from focused marketing sites to custom ordering software.",
     differentiatorOverline: "WHY MINTEK",
     differentiatorTitle: "Not just another Brampton web design company",
     differentiatorIntro:
@@ -666,7 +667,7 @@ export const services = [
       },
       {
         title: "SEO foundations, not keyword stuffing",
-        body: "Titles, headings, crawlable pages, consistent name-address-phone details, and a structure search engines can read. We do not promise rankings.",
+        body: "Titles, headings, crawlable pages, consistent name-address-phone details, and a structure search engines can read.",
       },
       {
         title: "Analytics, integrations and a longer path",
@@ -676,23 +677,23 @@ export const services = [
     outcomesOverline: "OUTCOMES",
     outcomesTitle: "What the website should do for the business",
     outcomesIntro:
-      "The technical work exists to produce a result a Brampton owner can recognise. We do not promise leads, rankings or revenue unless a named case study already shows that number.",
+      "A Brampton website is doing its job when a nearby customer can take the next step without hunting for it.",
     customerOutcomes: [
       {
         title: "Calls, bookings and enquiries",
-        body: "Click-to-call, waitlists, catering forms and clear next steps on a phone. PawPals needed a waitlist funnel; trades usually need the number and services within a thumb-reach.",
+        body: "Click-to-call, waitlists, forms and a clear next step on a phone — the number, the list, or the request, within a thumb-reach.",
       },
       {
         title: "Ordering when a brochure is not enough",
-        body: "A restaurant site can stop at menu, hours and directions, as with Doaba Junction. When third-party commissions actually hurt, we can build ordering and payments as software — Airport Sweets is the published example.",
+        body: "A marketing site can stop at menu, hours and directions. When third-party ordering adds friction or commissions, we can build ordering and payments into the website as a separate, scoped piece of software.",
       },
       {
         title: "Credibility and easier management",
-        body: "A fast, specific site looks like a real business. We also plan how you will update hours, menus or services without calling a developer for every sentence.",
+        body: "A fast, specific site looks like a real business. Sensible content management means you should not need a developer for routine hours, menu or service updates.",
       },
       {
-        title: "Local visibility, without ranking guarantees",
-        body: "On-page local SEO and a site that search engines can crawl give you a fair starting point for Brampton searches. Rankings still depend on competition, reviews and the rest of your presence.",
+        title: "Local visibility",
+        body: "A crawlable site with solid local SEO foundations gives a Brampton business a strong starting point in search. Rankings still depend on competition, reviews and the rest of your online presence.",
       },
     ],
     enquiryOverline: "NEXT STEPS",
@@ -706,7 +707,7 @@ export const services = [
       },
       {
         title: "We review the current situation",
-        body: "If there is an existing site we look at structure, speed, content and what is actually converting. If there is not, we start from the job the first version must do.",
+        body: "If there is an existing site we look at structure, speed and content. If there is not, we start from the job the first version must do.",
       },
       {
         title: "We recommend what you actually need",
@@ -718,7 +719,7 @@ export const services = [
       },
       {
         title: "Build, launch and optional support",
-        body: "We design, build, launch with HTTPS, and hand over the accounts. Ongoing updates and hosting support are available; they are not required to keep the site.",
+        body: "Once you approve the scope, we build, launch with HTTPS, and hand over the accounts. Ongoing updates and hosting support are available; they are not required to keep the site.",
       },
     ],
     pricingNote:
@@ -743,12 +744,18 @@ export const services = [
         secondaryTo: "/case-studies",
       },
       afterWhy: {
-        title: "Ready to talk about your website?",
-        body: "Answer a few questions about your business and we'll come back with a recommendation and a clear price for that scope. No detailed audit is promised before we talk — just enough for us to understand what you need.",
+        title: "Want this approach on your site?",
+        body: "Answer a few questions about your business and we'll come back with a recommendation and a clear price for that scope.",
         primaryLabel: "Tell us about your project",
         primaryTo: "/start-a-project",
         secondaryLabel: "Read the Brampton Website Study",
         secondaryTo: "/research/brampton-business-websites-2026",
+      },
+      afterNext: {
+        title: "Ready to talk about your website?",
+        body: "Tell us what your business needs the website to accomplish. We'll review what you have today, understand what you're trying to build, and recommend the right starting point.",
+        primaryLabel: "Tell us about your project",
+        primaryTo: "/start-a-project",
       },
     },
     researchTeaser: {
@@ -759,9 +766,9 @@ export const services = [
       ctaLabel: "Read the Brampton Website Study",
       to: "/research/brampton-business-websites-2026",
     },
-    ctaTitle: "Tell us about your project",
+    ctaTitle: "Ready to talk about your website?",
     ctaSubtitle:
-      "Tell us what the business needs the site to do. We will come back with a recommendation and a clear price for that scope.",
+      "Tell us what your business needs the website to accomplish. We'll review what you have today and recommend the right starting point.",
     ctaPrimaryLabel: "Tell us about your project",
     ctaPrimaryTo: "/start-a-project",
     ctaSecondaryLabel: "See our work",
@@ -851,6 +858,8 @@ export const services = [
     ],
     relatedCaseStudies: ["pawpals", "doaba-junction", "restaurant-online-ordering-system"],
     relatedPosts: [
+      "how-much-does-a-brampton-business-website-need-to-load",
+      "why-are-brampton-business-websites-so-slow",
       "comparing-web-design-companies-in-brampton",
       "how-to-choose-a-web-designer-in-brampton",
       "how-local-seo-works-for-gta-service-businesses",

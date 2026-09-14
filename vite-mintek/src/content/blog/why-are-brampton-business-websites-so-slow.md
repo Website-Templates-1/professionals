@@ -2,6 +2,7 @@
 title: "Why Are Brampton Business Websites So Slow? We Analyzed 76"
 metaDescription: "Among 76 Brampton homepages, median mobile LCP was 8.3 seconds. What that lab finding means, what it does not, and what we would fix first."
 date: "2026-09-11"
+updated: "2026-09-14"
 author: "Mintek Software"
 tags: ["websites", "local seo", "small business"]
 category: "Research"
@@ -164,4 +165,4 @@ The 2026 Brampton homepage study did not discover that “speed is important.”
 
 If you run a Brampton or GTA business, the useful question is not “is my Lighthouse number embarrassing?” It is “what is the largest thing on my first screen, and how many other systems have to boot before a customer can call?” That is an engineering question. It has a finite answer.
 
-The full methodology, charts, and dataset notes live in [The State of Brampton Business Websites: 2026](/research/brampton-business-websites-2026). If you want a technical look at your own homepage, [get in touch](/contact). We will tell you what the lab is actually measuring — and what we would change first — without pretending a score is a ranking.
+The full methodology, charts, and dataset notes live in [The State of Brampton Business Websites: 2026](/research/brampton-business-websites-2026). For what those megabytes and requests are *for* — and when video, animation, and widgets earn them — see [How Much Does a Brampton Business Website Actually Need to Load?](/blog/how-much-does-a-brampton-business-website-need-to-load). If you want a technical look at your own homepage, [get in touch](/contact). We will tell you what the lab is actually measuring — and what we would change first — without pretending a score is a ranking.
