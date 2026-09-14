@@ -858,6 +858,8 @@ export const services = [
     ],
     relatedCaseStudies: ["pawpals", "doaba-junction", "restaurant-online-ordering-system"],
     relatedPosts: [
+      "how-much-does-a-brampton-business-website-need-to-load",
+      "why-are-brampton-business-websites-so-slow",
       "comparing-web-design-companies-in-brampton",
       "how-to-choose-a-web-designer-in-brampton",
       "how-local-seo-works-for-gta-service-businesses",

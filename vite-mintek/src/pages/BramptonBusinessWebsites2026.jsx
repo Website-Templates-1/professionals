@@ -64,6 +64,13 @@ const related = [
   },
   {
     type: "Article",
+    key: "a-weight",
+    title: "How much does a Brampton business website actually need to load?",
+    description: "Page weight, request count, and when video, animation, and widgets earn their keep.",
+    to: "/blog/how-much-does-a-brampton-business-website-need-to-load",
+  },
+  {
+    type: "Article",
     key: "a-check",
     title: "Brampton small business website checklist",
     description: "A practical checklist for local marketing sites.",
