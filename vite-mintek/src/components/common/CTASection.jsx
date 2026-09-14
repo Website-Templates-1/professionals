@@ -8,6 +8,8 @@ const CTASection = ({
   primaryTo = "/contact",
   secondaryLabel = "See our work",
   secondaryTo = "/case-studies",
+  onPrimaryClick,
+  onSecondaryClick,
 }) => {
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "background.default" }}>
@@ -31,6 +33,7 @@ const CTASection = ({
           <Button
             component={RouterLink}
             to={primaryTo}
+            onClick={onPrimaryClick}
             variant="contained"
             size="large"
             color="primary"
@@ -41,6 +44,7 @@ const CTASection = ({
             <Button
               component={RouterLink}
               to={secondaryTo}
+              onClick={onSecondaryClick}
               variant="outlined"
               size="large"
               color="primary"

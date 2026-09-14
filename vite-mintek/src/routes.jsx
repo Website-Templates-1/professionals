@@ -15,6 +15,7 @@ const ResearchIndex = lazy(() => import("./pages/ResearchIndex"));
 const BramptonBusinessWebsites2026 = lazy(
   () => import("./pages/BramptonBusinessWebsites2026")
 );
+const StartProject = lazy(() => import("./pages/StartProject"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
@@ -54,6 +55,8 @@ export const routes = [
         path: "research/brampton-business-websites-2026",
         element: <BramptonBusinessWebsites2026 />,
       },
+
+      { path: "start-a-project", element: <StartProject /> },
 
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },

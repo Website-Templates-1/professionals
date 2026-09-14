@@ -66,6 +66,54 @@ export const site = {
   foundingYear: 2022,
 };
 
+// ---------------------------------------------------------------------------
+// Client onboarding funnel.
+//
+// The onboarding app is a SEPARATE, already-deployed static site that collects
+// the details we need to design and launch a client's website. It sits AFTER
+// trust is built on this marketing site: Google -> /web-design-brampton ->
+// trust content -> "Tell us about your project" (/start-a-project) -> the
+// matching external onboarding form -> we review -> discovery call.
+//
+// We do NOT embed these forms. /start-a-project is a Mintek-branded transition
+// page that routes an owner to the right form. The `blurb` copy for each
+// industry is drawn from what the forms actually collect (see the onboarding
+// app's assets/industries/*.js) so nothing is invented.
+export const onboarding = {
+  // Selector/hub that lists every form (fallback for "not sure").
+  selectorUrl: "https://mintek-client-onboarding.onrender.com/",
+  industries: [
+    {
+      id: "law",
+      label: "Law firm",
+      to: "https://mintek-client-onboarding.onrender.com/law/",
+      blurb:
+        "Firm details and practice areas, per-lawyer profiles (LSO directory listing, year called, bio, languages), booking and Clio links, and a short LSO advertising-compliance check.",
+    },
+    {
+      id: "accounting",
+      label: "Accounting / CPA firm",
+      to: "https://mintek-client-onboarding.onrender.com/accounting/",
+      blurb:
+        "Firm and services, team credentials (CPA designations and CPA Ontario profile), your client portal and accounting software, brand direction, and a CPA Ontario compliance note.",
+    },
+    {
+      id: "dental",
+      label: "Dental practice",
+      to: "https://mintek-client-onboarding.onrender.com/dental/",
+      blurb:
+        "Practice and treatments, whether you're accepting new patients, insurance and payment, team listings (RCDSO, specialty), online booking software, and RCDSO advertising compliance.",
+    },
+    {
+      id: "general",
+      label: "Other business",
+      to: "https://mintek-client-onboarding.onrender.com/general/",
+      blurb:
+        "A lighter starting point for any local or professional business: what you do, your services and team, brand direction, files, and access. The right choice when the others don't fit.",
+    },
+  ],
+};
+
 // Canonical URL helper. Pass a route path such as "/about".
 export const canonical = (path = "/") => {
   const clean = path === "/" ? "" : path.replace(/\/$/, "");
@@ -562,6 +610,9 @@ export const services = [
     color: "#FF3D85",
     group: "local",
     budgetType: "website",
+    layout: "commercial",
+    hideTech: true,
+    proofPlacement: "early",
     pricing: "Small-business website projects start at CAD $1,500.",
     offersFrom: 1500,
     title: "Web Design Brampton",
@@ -571,8 +622,12 @@ export const services = [
     metaDescription:
       "Web design in Brampton for small businesses. Fast, mobile-first sites with local SEO foundations, clear packages from CAD $1,500, and real Brampton work including PawPals and Doaba Junction.",
     short:
-      "Fast, mobile-friendly, lead-generating websites for Brampton businesses.",
+      "Mintek is a Brampton software company that builds business websites. The work covers how the site looks, how it performs, how it gets found, and what happens when you need it to do more later.",
     hero: "Web design in Brampton for small businesses",
+    heroCtas: [
+      { label: "Tell us about your project", to: "/start-a-project", variant: "contained" },
+      { label: "See our work", to: "#work", variant: "outlined" },
+    ],
     schemaTypes: ["ProfessionalService"],
     schemaAreaServed: ["Brampton"],
     localAreas: [
@@ -582,7 +637,7 @@ export const services = [
     problem:
       "A Brampton small business does not lose customers because it lacks a logo. It loses them in the two seconds after someone nearby searches on a phone: a slow page, a buried phone number, hours that do not match Google, or a template that looks like every other contractor in Peel. Trades, clinics, daycares, independent restaurants and professional-service firms here compete on trust and convenience, not on having a website for its own sake. Many owners already paid once for a builder site that is painful to update and invisible for the searches that actually matter — “near me,” a neighbourhood name, or a service plus Brampton.",
     solution:
-      "We are based in Brampton, so the work starts with how local customers actually decide: tap to call, get directions, join a waitlist, check a menu, or send a catering enquiry. We design and build fast, mobile-first sites with clear next steps, on-page local SEO (titles, headings, NAP consistency, crawlable pages) and analytics. You own the site when it is paid for. In-person meetings are available across the city. For the long-tail searches people use when they are ready to hire, see our pages on small business website design in Brampton, web design services in Brampton, and website hosting in Brampton — they sit under this hub rather than repeating it.",
+      "We are based in Brampton, so the work starts with how local customers actually decide: tap to call, get directions, join a waitlist, check a menu, or send a catering enquiry. We design and build fast, mobile-first sites with clear next steps, on-page local SEO (titles, headings, NAP consistency, crawlable pages) and analytics. You own the site when it is paid for. In-person meetings are available across the city. Because we also build software, the same team can later add booking, ordering or other integrations if the business actually needs them — without starting over with a new vendor. For the long-tail searches people use when they are ready to hire, see our pages on small business website design in Brampton, web design services in Brampton, and website hosting in Brampton — they sit under this hub rather than repeating it.",
     process: [
       "Strategy: name the local audience, the one action the site must produce, and the pages that earn their keep.",
       "Design: mobile-first layouts that put calls, forms and directions where thumbs actually land.",
@@ -591,7 +646,126 @@ export const services = [
     ],
     tech: ["React", "Vite", "Analytics"],
     outcome:
-      "A professional, fast Brampton website that turns local searches into enquiries, with a local team you can meet in person.",
+      "A professional, fast Brampton website that turns local searches into enquiries, with a local team you can meet in person and a technical owner if the site needs to grow.",
+    proofOverline: "WORK",
+    proofTitle: "Websites we have actually built",
+    proofIntro:
+      "These are named businesses. We only repeat what is already published on the case-study pages. PawPals and Doaba Junction are marketing sites; Airport Sweets is the example of a restaurant that needed custom ordering software, not only a brochure.",
+    differentiatorOverline: "WHY MINTEK",
+    differentiatorTitle: "Not just another Brampton web design company",
+    differentiatorIntro:
+      "Our engineering background changes how we approach a website. Visual design still matters, but so do performance, structure, search foundations, analytics, and whether you can keep the site without being locked to a page builder.",
+    differentiators: [
+      {
+        title: "Performance customers can feel",
+        body: "A site that takes too long on a phone loses the visit before the offer lands. We treat load time and mobile layout as part of the design, not a later cleanup.",
+      },
+      {
+        title: "Technical quality you own",
+        body: "You get a site built to be handed over: code, hosting accounts and a clear way to update it. You are not renting a template you cannot take with you.",
+      },
+      {
+        title: "SEO foundations, not keyword stuffing",
+        body: "Titles, headings, crawlable pages, consistent name-address-phone details, and a structure search engines can read. We do not promise rankings.",
+      },
+      {
+        title: "Analytics, integrations and a longer path",
+        body: "We install analytics so you can see whether calls and forms actually happen. If you later need booking, ordering or a connection to existing software, that is the same kind of work we already do.",
+      },
+    ],
+    outcomesOverline: "OUTCOMES",
+    outcomesTitle: "What the website should do for the business",
+    outcomesIntro:
+      "The technical work exists to produce a result a Brampton owner can recognise. We do not promise leads, rankings or revenue unless a named case study already shows that number.",
+    customerOutcomes: [
+      {
+        title: "Calls, bookings and enquiries",
+        body: "Click-to-call, waitlists, catering forms and clear next steps on a phone. PawPals needed a waitlist funnel; trades usually need the number and services within a thumb-reach.",
+      },
+      {
+        title: "Ordering when a brochure is not enough",
+        body: "A restaurant site can stop at menu, hours and directions, as with Doaba Junction. When third-party commissions actually hurt, we can build ordering and payments as software — Airport Sweets is the published example.",
+      },
+      {
+        title: "Credibility and easier management",
+        body: "A fast, specific site looks like a real business. We also plan how you will update hours, menus or services without calling a developer for every sentence.",
+      },
+      {
+        title: "Local visibility, without ranking guarantees",
+        body: "On-page local SEO and a site that search engines can crawl give you a fair starting point for Brampton searches. Rankings still depend on competition, reviews and the rest of your presence.",
+      },
+    ],
+    enquiryOverline: "NEXT STEPS",
+    enquiryTitle: "What happens after you contact us",
+    enquiryIntro:
+      "Starting a conversation is a scoping step, not a purchase. We confirm what you need and what it will cost before any build starts.",
+    enquirySteps: [
+      {
+        title: "Tell us about your business",
+        body: "What you do, who you serve in Brampton or nearby, and whether you already have a site.",
+      },
+      {
+        title: "We review the current situation",
+        body: "If there is an existing site we look at structure, speed, content and what is actually converting. If there is not, we start from the job the first version must do.",
+      },
+      {
+        title: "We recommend what you actually need",
+        body: "A focused marketing site, a rebuild, or software such as booking or ordering. We will say so if a cheaper, smaller first version is enough.",
+      },
+      {
+        title: "Clear scope and price",
+        body: "You get a written scope and a fixed quote for that version, including what sits outside it.",
+      },
+      {
+        title: "Build, launch and optional support",
+        body: "We design, build, launch with HTTPS, and hand over the accounts. Ongoing updates and hosting support are available; they are not required to keep the site.",
+      },
+    ],
+    pricingNote:
+      "The starting price is for a focused marketing site. Projects cost more when the work is larger. These are the usual drivers — we quote the actual scope after a short conversation.",
+    pricingDrivers: [
+      "Number of pages and how much unique content they need",
+      "Custom design versus a tighter, reusable layout",
+      "Booking, ordering, logins or other custom functionality",
+      "Integrations with existing software or payment tools",
+      "Who writes and supplies photos versus copy we help structure",
+      "Depth of on-page SEO and local content",
+      "Ongoing support after launch",
+    ],
+    pricingCtaLabel: "See how we'd approach your website",
+    inlineCtas: {
+      afterProof: {
+        title: "See yourself in this work?",
+        body: "If your business looks like one of these, the next step is a short conversation about what your site needs to do. It's a scoping step, not a purchase.",
+        primaryLabel: "Tell us about your project",
+        primaryTo: "/start-a-project",
+        secondaryLabel: "See more of our work",
+        secondaryTo: "/case-studies",
+      },
+      afterWhy: {
+        title: "Ready to talk about your website?",
+        body: "Answer a few questions about your business and we'll come back with a recommendation and a clear price for that scope. No detailed audit is promised before we talk — just enough for us to understand what you need.",
+        primaryLabel: "Tell us about your project",
+        primaryTo: "/start-a-project",
+        secondaryLabel: "Read the Brampton Website Study",
+        secondaryTo: "/research/brampton-business-websites-2026",
+      },
+    },
+    researchTeaser: {
+      overline: "RESEARCH",
+      title: "We studied 93 Brampton business websites",
+      body:
+        "In 2026 we measured independently operated Brampton business homepages in the lab so we could talk about local websites from evidence: speed, mobile experience, and whether basic local markup is even present. The figures below are from that study, not from a ranking report.",
+      ctaLabel: "Read the Brampton Website Study",
+      to: "/research/brampton-business-websites-2026",
+    },
+    ctaTitle: "Tell us about your project",
+    ctaSubtitle:
+      "Tell us what the business needs the site to do. We will come back with a recommendation and a clear price for that scope.",
+    ctaPrimaryLabel: "Tell us about your project",
+    ctaPrimaryTo: "/start-a-project",
+    ctaSecondaryLabel: "See our work",
+    ctaSecondaryTo: "/case-studies",
     audiences: [
       {
         title: "Trades and home services",
@@ -1225,8 +1399,8 @@ export const caseStudies = [
     ],
     techStack: ["React", "Vite", "Google Maps"],
     status: "Live",
-    liveUrl: "https://v0-restaurant-website-mvp-mu.vercel.app/",
-    previewUrl: null,
+    liveUrl: null,
+    previewUrl: "https://v0-restaurant-website-mvp-mu.vercel.app/",
     githubUrl: null,
   },
   {
@@ -1831,6 +2005,22 @@ export const serviceFaqs = {
     {
       q: "Do you host the website after launch?",
       a: "We deploy the site, enable HTTPS, and hand over the hosting and domain details so you control the accounts. Hosting is a running cost (domain plus hosting), not a hidden platform fee, and you are not required to keep us as the only people who can log in. See our website hosting in Brampton page for the practical details.",
+    },
+    {
+      q: "Can you redesign my existing website?",
+      a: "Yes. We can rebuild a dated or slow site on a faster, mobile-first foundation while keeping the pages, offers and content that already work. If the current site is technically sound and only needs clearer calls to action or local SEO, we will say so instead of selling a full rebuild.",
+    },
+    {
+      q: "Can you maintain the site after launch?",
+      a: "Yes. Ongoing support and content updates are optional and scoped separately from the build. You own the site once it is paid for, so you can also update it yourself or take it to another developer. You are not required to keep a retainer to keep the site online.",
+    },
+    {
+      q: "Can you integrate booking, ordering or other software?",
+      a: "Yes, when the business actually needs it. A first marketing site often stops at calls, forms and menus. Booking, online ordering, payments or connections to tools you already use are quoted as extra functionality or as software, not hidden inside the CAD $1,500 starting price. The Airport Sweets case study is an example of custom ordering rather than a brochure upgrade.",
+    },
+    {
+      q: "Do you work with businesses outside Brampton?",
+      a: "Yes. Mintek is based in Brampton and also works with businesses across Mississauga, Toronto, Vaughan and the rest of the GTA. In-person meetings are available; we also work over video and email when that is easier.",
     },
   ],
   "small-business-website-design-brampton": [

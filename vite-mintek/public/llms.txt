@@ -17,7 +17,7 @@ Mintek Software builds custom software, business automation and high-performing 
 - [Mobile App Development](https://minteksoftware.com/mobile-app-development): Cross-platform mobile apps that deliver a great experience on iOS and Android.
 - [Custom Software Development Toronto](https://minteksoftware.com/custom-software-development-toronto): Custom applications and internal tools for Toronto and GTA businesses.
 - [Business Automation Toronto](https://minteksoftware.com/business-automation-toronto): Automate manual workflows for Toronto and GTA businesses.
-- [Web Design Brampton](https://minteksoftware.com/web-design-brampton): Fast, mobile-friendly, lead-generating websites for Brampton businesses.
+- [Web Design Brampton](https://minteksoftware.com/web-design-brampton): Mintek is a Brampton software company that builds business websites. The work covers how the site looks, how it performs, how it gets found, and what happens when you need it to do more later.
 - [Small Business Website Design Brampton](https://minteksoftware.com/small-business-website-design-brampton): Focused first websites for Brampton small businesses — built to convert local searches, not to look like a template.
 - [Web Design Services Brampton](https://minteksoftware.com/web-design-services-brampton): The specific web design jobs we do for Brampton businesses — not a vague “full service” menu.
 - [Website Hosting Brampton](https://minteksoftware.com/website-hosting-brampton): How we host and launch Brampton business websites — deployment, HTTPS and accounts you control.
@@ -40,11 +40,11 @@ Mintek Software builds custom software, business automation and high-performing 
 
 - [Blog](https://minteksoftware.com/blog): Practical guides for GTA businesses on software, automation and websites.
 - [How Much Does a Business Website Cost in the GTA?](https://minteksoftware.com/blog/how-much-does-a-business-website-cost-in-the-gta): A clear, no-nonsense guide to business website costs in the Greater Toronto Area: typical price ranges, what drives the price up or down, and how to budget with confidence.
+- [Why Are Brampton Business Websites So Slow? We Analyzed 76](https://minteksoftware.com/blog/why-are-brampton-business-websites-so-slow): Among 76 Brampton homepages, median mobile LCP was 8.3 seconds. What that lab finding means, what it does not, and what we would fix first.
 - [Comparing Web Design Companies in Brampton](https://minteksoftware.com/blog/comparing-web-design-companies-in-brampton): A fair comparison of the web design companies Brampton businesses actually find: template shops, WordPress agencies, GTA firms and a local studio, and the gaps that matter.
 - [Should You Redesign or Rebuild Your Business Website?](https://minteksoftware.com/blog/should-you-redesign-or-rebuild-your-website): Redesign or rebuild? A plain-English guide to when a refresh is enough, when a full rebuild is smarter, and how GTA small businesses can decide without wasting budget.
 - [How Much Does Business Automation Cost?](https://minteksoftware.com/blog/how-much-does-business-automation-cost): What business automation really costs for a GTA small business: starting prices, realistic budget bands, what drives the price, and how to judge whether the payback is there.
 - [How to Get Your Team to Actually Use New Software](https://minteksoftware.com/blog/how-to-get-your-team-to-actually-use-new-software): New software fails when nobody uses it. Practical steps to get a small-business team on board: involve them early, start small, train lightly, and measure what sticks.
-- [Brampton Small-Business Website Checklist](https://minteksoftware.com/blog/brampton-small-business-website-checklist): A practical Brampton small business website checklist: the foundations, local SEO, content and technical must-haves that turn visitors into local customers.
 
 ## Research
 
