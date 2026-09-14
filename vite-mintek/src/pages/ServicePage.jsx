@@ -583,9 +583,14 @@ const ServicePage = ({ slug }) => {
             {!service.customerOutcomes?.length && <AudiencesSection service={service} />}
             <ProcessSection service={service} />
             <EnquiryStepsSection service={service} />
+            {service.inlineCtas?.afterNext && (
+              <InlineCta
+                {...withInlineTracking(service.inlineCtas.afterNext, "service_after_next")}
+              />
+            )}
             <StagesSection service={service} />
             {!service.hideTech && <TechSection service={service} />}
-            <OutcomeSection service={service} />
+            {!service.hideOutcome && <OutcomeSection service={service} />}
             <PricingSection service={service} contactPath={contactPath} />
             <PackagesSection service={service} />
             <ServiceResearchTeaser teaser={service.researchTeaser} />
