@@ -6,6 +6,7 @@ author: "Mintek Software"
 tags: ["restaurants", "websites", "small business"]
 relatedServices: ["restaurant-website-design", "web-design-brampton"]
 category: "Guides"
+scopeTool: true
 faqs:
   - q: "What is the most important part of a restaurant website?"
     a: >-

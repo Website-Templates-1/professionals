@@ -5,6 +5,7 @@ date: "2026-09-14"
 author: "Mintek Software"
 tags: ["websites", "local seo", "small business"]
 category: "Research"
+scopeTool: true
 relatedServices: ["web-design-brampton", "website-development"]
 faqs:
   - q: "How heavy were Brampton business homepages in Mintek’s 2026 study?"

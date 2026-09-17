@@ -7,6 +7,7 @@ author: "Mintek Software"
 tags: ["websites", "pricing", "small business"]
 relatedServices: ["web-design-brampton", "website-development"]
 category: "Guides"
+scopeTool: true
 featured: true
 faqs:
   - q: "How much does a small business website cost in Toronto or the GTA?"

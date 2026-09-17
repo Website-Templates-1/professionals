@@ -5,6 +5,7 @@ date: "2026-09-08"
 author: "Mintek Software"
 tags: ["websites", "local seo", "small business"]
 category: "Guides"
+scopeTool: true
 relatedServices: ["web-design-brampton", "web-design-services-brampton", "website-development"]
 relatedCaseStudies: ["pawpals"]
 faqs:

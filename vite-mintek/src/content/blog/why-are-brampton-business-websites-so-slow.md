@@ -6,6 +6,7 @@ updated: "2026-09-14"
 author: "Mintek Software"
 tags: ["websites", "local seo", "small business"]
 category: "Research"
+scopeTool: true
 relatedServices: ["web-design-brampton", "website-development"]
 faqs:
   - q: "How slow were Brampton business websites in Mintek’s 2026 study?"

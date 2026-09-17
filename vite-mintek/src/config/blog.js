@@ -64,6 +64,9 @@ const buildPost = (path, raw) => {
       ? data.relatedCaseStudies
       : [],
     coverImage: data.coverImage || null,
+    // Opt-in: render the "Scope your site" tool below the article body. Set on
+    // website-planning posts where a scoping recommendation fits reader intent.
+    scopeTool: Boolean(data.scopeTool),
     featured: Boolean(data.featured),
     draft: Boolean(data.draft),
     faqs,

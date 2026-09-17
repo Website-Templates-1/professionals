@@ -220,6 +220,33 @@ export const projectTypeForService = (slug) => {
   return "other";
 };
 
+// Canonical GTA website cost bands. Single source of truth shared by the
+// web-design-brampton "Packages at a glance" section and the "Scope your site"
+// tool's recommendation, so the published ranges never drift apart.
+export const websitePricingBands = [
+  {
+    name: "Starter site",
+    price: "CAD $1,500 – $3,000",
+    fit: "New or small Brampton businesses that need a proper first site.",
+    includes:
+      "Homepage, services, about and a working contact path; mobile-first layout; click-to-call; on-page SEO foundations; analytics. Content and photos usually supplied by you.",
+  },
+  {
+    name: "Established presence",
+    price: "CAD $3,000 – $6,000",
+    fit: "Businesses that need more pages, stronger local content, or a redesign that is still a marketing site.",
+    includes:
+      "More templates (services, locations, proof), richer on-page SEO, a blog if you will actually use it, and a more tailored design. Same ownership and handover.",
+  },
+  {
+    name: "Custom or hospitality-led",
+    price: "CAD $6,000+",
+    fit: "Menus and location-heavy restaurant sites, booking-style flows, or sites that start behaving like applications.",
+    includes:
+      "Scoped after a short conversation. Restaurant sites start at CAD $1,500 when they stay menu-and-enquiry focused; online ordering, logins or marketplaces are quoted as software, not as a brochure upgrade.",
+  },
+];
+
 // ---------------------------------------------------------------------------
 // Services (each becomes /<slug> with a dedicated, indexable page)
 // group: software | data | website | local
@@ -354,6 +381,7 @@ export const services = [
   },
   {
     slug: "website-development",
+    scopeTool: true,
     icon: "Language",
     color: "#FF3D85",
     group: "website",
@@ -614,6 +642,9 @@ export const services = [
     hideTech: true,
     hideOutcome: true,
     proofPlacement: "early",
+    // Renders the interactive "Scope your site" tapthrough mid-page (see
+    // ScopeToolSection). Opt-in so it only appears on this hub, not every service.
+    scopeTool: true,
     pricing: "Small-business website projects start at CAD $1,500.",
     offersFrom: 1500,
     title: "Web Design Brampton",
@@ -791,29 +822,7 @@ export const services = [
         body: "Diners decide on phones. Menu, hours, maps and catering have to work in one thumb-reach. Doaba Junction is the restaurant example; a custom ordering system is a separate, larger project when commissions actually hurt.",
       },
     ],
-    packages: [
-      {
-        name: "Starter site",
-        price: "CAD $1,500 – $3,000",
-        fit: "New or small Brampton businesses that need a proper first site.",
-        includes:
-          "Homepage, services, about and a working contact path; mobile-first layout; click-to-call; on-page SEO foundations; analytics. Content and photos usually supplied by you.",
-      },
-      {
-        name: "Established presence",
-        price: "CAD $3,000 – $6,000",
-        fit: "Businesses that need more pages, stronger local content, or a redesign that is still a marketing site.",
-        includes:
-          "More templates (services, locations, proof), richer on-page SEO, a blog if you will actually use it, and a more tailored design. Same ownership and handover.",
-      },
-      {
-        name: "Custom or hospitality-led",
-        price: "CAD $6,000+",
-        fit: "Menus and location-heavy restaurant sites, booking-style flows, or sites that start behaving like applications.",
-        includes:
-          "Scoped after a short conversation. Restaurant sites start at CAD $1,500 when they stay menu-and-enquiry focused; online ordering, logins or marketplaces are quoted as software, not as a brochure upgrade.",
-      },
-    ],
+    packages: websitePricingBands,
     extraSections: [
       {
         overline: "LONG-TAIL",
@@ -869,6 +878,7 @@ export const services = [
   },
   {
     slug: "small-business-website-design-brampton",
+    scopeTool: true,
     icon: "Language",
     color: "#FF3D85",
     group: "local",
@@ -914,6 +924,7 @@ export const services = [
   },
   {
     slug: "web-design-services-brampton",
+    scopeTool: true,
     icon: "Language",
     color: "#FF3D85",
     group: "local",
@@ -1019,6 +1030,7 @@ export const services = [
   },
   {
     slug: "web-design-mississauga",
+    scopeTool: true,
     icon: "Language",
     color: "#FF3D85",
     group: "local",
@@ -1056,6 +1068,7 @@ export const services = [
   },
   {
     slug: "restaurant-website-design",
+    scopeTool: true,
     icon: "Restaurant",
     color: "#FF3D85",
     group: "local",
@@ -1094,6 +1107,7 @@ export const services = [
   },
   {
     slug: "web-design-toronto",
+    scopeTool: true,
     icon: "Language",
     color: "#FF3D85",
     group: "local",
@@ -1126,6 +1140,7 @@ export const services = [
   },
   {
     slug: "web-design-vaughan",
+    scopeTool: true,
     icon: "Language",
     color: "#FF3D85",
     group: "local",

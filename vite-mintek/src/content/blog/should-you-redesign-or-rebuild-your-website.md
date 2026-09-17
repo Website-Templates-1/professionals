@@ -5,6 +5,7 @@ date: "2026-09-08"
 author: "Mintek Software"
 tags: ["websites", "small business", "strategy"]
 category: "Guides"
+scopeTool: true
 faqs:
   - q: "What is the difference between a website redesign and a rebuild?"
     a: >-

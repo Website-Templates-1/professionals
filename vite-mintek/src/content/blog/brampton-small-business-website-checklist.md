@@ -4,6 +4,7 @@ metaDescription: "A practical Brampton small business website checklist: the fou
 date: "2026-08-20"
 author: "Mintek Software"
 category: "Guides"
+scopeTool: true
 tags: ["websites", "local seo", "small business"]
 featured: false
 draft: false

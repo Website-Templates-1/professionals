@@ -4,6 +4,7 @@ metaDescription: "How to choose a web designer in Brampton: compare local design
 date: "2026-08-20"
 author: "Mintek Software"
 category: "Guides"
+scopeTool: true
 tags: ["websites", "local seo", "small business"]
 featured: false
 draft: false

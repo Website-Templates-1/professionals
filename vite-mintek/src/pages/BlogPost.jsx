@@ -15,6 +15,7 @@ import Breadcrumbs from "../components/common/Breadcrumbs";
 import CTASection from "../components/common/CTASection";
 import Faq from "../components/common/Faq";
 import RelatedContent from "../components/common/RelatedContent";
+import ScopeToolSection from "../components/service/ScopeToolSection";
 import { BreadcrumbSchema, ArticleSchema } from "../components/seo/StructuredData";
 import { markdownComponents } from "../components/blog/markdownComponents";
 import { getPost } from "../config/blog";
@@ -163,6 +164,13 @@ const BlogPost = ({ slug }) => {
             {post.content}
           </ReactMarkdown>
         </Box>
+
+        {post.scopeTool && (
+          <>
+            <Divider sx={{ my: 5 }} />
+            <ScopeToolSection slug={`blog/${post.slug}`} />
+          </>
+        )}
 
         {post.faqs.length > 0 && (
           <>

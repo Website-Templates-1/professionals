@@ -20,6 +20,7 @@ import ServiceSection from "../components/service/ServiceSection";
 import ProofStudies from "../components/service/ProofStudies";
 import InlineCta from "../components/service/InlineCta";
 import ServiceResearchTeaser from "../components/service/ServiceResearchTeaser";
+import ScopeToolSection from "../components/service/ScopeToolSection";
 import {
   ServiceSchema,
   BreadcrumbSchema,
@@ -588,6 +589,7 @@ const ServicePage = ({ slug }) => {
                 {...withInlineTracking(service.inlineCtas.afterNext, "service_after_next")}
               />
             )}
+            {service.scopeTool && <ScopeToolSection service={service} />}
             <StagesSection service={service} />
             {!service.hideTech && <TechSection service={service} />}
             {!service.hideOutcome && <OutcomeSection service={service} />}
@@ -605,6 +607,7 @@ const ServicePage = ({ slug }) => {
             <ApproachSection service={service} />
             <AudiencesSection service={service} />
             <ProcessSection service={service} />
+            {service.scopeTool && <ScopeToolSection service={service} />}
             <StagesSection service={service} />
             <TechSection service={service} />
             <OutcomeSection service={service} />
