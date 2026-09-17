@@ -15,6 +15,12 @@ const ScopeTool = lazy(() => import("./ScopeTool"));
 // `service` is passed on service pages; blog posts pass `slug` (and no service)
 // directly. Bands come from an explicit `bands` prop, else the service's own
 // packages, else the shared canonical bands.
+// Reserved height for the slot before/while the tool mounts. Sized to roughly
+// match the mounted tool's intro card so swapping placeholder -> spinner ->
+// card doesn't shift the content below. Shared by all three states so there's
+// no intermediate jump (taller on xs where the copy wraps to more lines).
+const RESERVED_SLOT_MIN_HEIGHT = { xs: 460, md: 380 };
+
 const ScopeToolSection = ({ service, slug, bands }) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -65,7 +71,14 @@ const ScopeToolSection = ({ service, slug, bands }) => {
         {visible ? (
           <Suspense
             fallback={
-              <Box sx={{ display: "flex", justifyContent: "center", py: 6 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: RESERVED_SLOT_MIN_HEIGHT,
+                }}
+              >
                 <CircularProgress size={28} />
               </Box>
             }
@@ -73,8 +86,9 @@ const ScopeToolSection = ({ service, slug, bands }) => {
             <ScopeTool bands={resolvedBands} slug={resolvedSlug} />
           </Suspense>
         ) : (
-          // Reserve height to avoid layout shift when the tool mounts.
-          <Box sx={{ minHeight: 240 }} aria-hidden="true" />
+          // Reserve height (matching the spinner + mounted card) to avoid layout
+          // shift when the tool mounts.
+          <Box sx={{ minHeight: RESERVED_SLOT_MIN_HEIGHT }} aria-hidden="true" />
         )}
       </Box>
     </ServiceSection>

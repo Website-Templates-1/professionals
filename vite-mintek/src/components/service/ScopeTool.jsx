@@ -12,6 +12,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { trackEvent, trackLead } from "../../utils/analytics";
+import ScopeDesigns from "./ScopeDesigns";
 
 // Existing enquiry backend (same one the main contact form posts to). Reused so
 // scoped leads land in the same inbox, pre-qualified. Never put answers or
@@ -19,8 +20,8 @@ import { trackEvent, trackLead } from "../../utils/analytics";
 const EMAIL_SERVICE_URL = import.meta.env.VITE_EMAIL_SERVICE_URL;
 const CONTACT_FORM_ID = import.meta.env.VITE_CONTACT_FORM_ID;
 
-// The five questions. Each option auto-advances on select, so the whole flow is
-// literally five taps. `value` is what we store/report; `label` is what's shown.
+// The three questions. Each option auto-advances on select, so the whole flow is
+// literally three taps. `value` is what we store/report; `label` is what's shown.
 const QUESTIONS = [
   {
     key: "businessType",
@@ -44,34 +45,14 @@ const QUESTIONS = [
     ],
   },
   {
-    key: "mainJob",
-    title: "What's the main job for the site?",
+    key: "goal",
+    title: "What should the site mainly do?",
     options: [
       { value: "calls", label: "Get calls & enquiries" },
       { value: "bookings", label: "Take bookings or a waitlist" },
-      { value: "info", label: "Show menu, hours, directions" },
-      { value: "showcase", label: "Showcase past work" },
+      { value: "info", label: "Show menu, hours & directions" },
+      { value: "showcase", label: "Showcase your work" },
       { value: "sell", label: "Sell or take orders online" },
-    ],
-  },
-  {
-    key: "mustHave",
-    title: "The one must-have feature?",
-    options: [
-      { value: "call", label: "Click-to-call" },
-      { value: "booking", label: "Online booking or waitlist" },
-      { value: "gallery", label: "Photo gallery" },
-      { value: "ordering", label: "Online ordering & payments" },
-      { value: "form", label: "Contact form" },
-    ],
-  },
-  {
-    key: "timeline",
-    title: "When do you want this live?",
-    options: [
-      { value: "asap", label: "As soon as possible" },
-      { value: "soon", label: "Next month or two" },
-      { value: "exploring", label: "Just exploring" },
     ],
   },
 ];
@@ -83,7 +64,7 @@ const labelFor = (key, value) => {
 };
 
 // Fragments used to assemble the tailored "what the first version should focus
-// on" sentence from their goal + must-have. Kept in Mintek's plain voice.
+// on" sentence from their main goal. Kept in Mintek's plain voice.
 const GOAL_PHRASES = {
   calls: "making it effortless to call or send an enquiry",
   bookings: "letting people book or join a waitlist without friction",
@@ -92,26 +73,18 @@ const GOAL_PHRASES = {
   sell: "letting customers order and pay online",
 };
 
-const MUSTHAVE_PHRASES = {
-  call: "a click-to-call button that works on a phone",
-  booking: "an online booking or waitlist flow",
-  gallery: "a clean photo gallery of your work",
-  ordering: "online ordering and payments built in",
-  form: "a simple, reliable contact form",
-};
-
 // Map answers -> package band. Bands (index 0/1/2) come from the page's own
 // published packages config, so the price ranges never drift from the site.
 // Rules (highest wins):
 //   default            -> Starter (0)
-//   bookings / booking  -> Established (1)
+//   goal = bookings     -> Established (1)
 //   rebuild / refresh   -> at least Established (1)
-//   sell / ordering     -> Custom / software (2)
+//   goal = sell/orders  -> Custom / software (2)
 const recommendBandIndex = (answers) => {
   let level = 0;
-  if (answers.mainJob === "bookings" || answers.mustHave === "booking") level = Math.max(level, 1);
+  if (answers.goal === "bookings") level = Math.max(level, 1);
   if (answers.currentSite === "rebuild" || answers.currentSite === "refresh") level = Math.max(level, 1);
-  if (answers.mainJob === "sell" || answers.mustHave === "ordering") level = Math.max(level, 2);
+  if (answers.goal === "sell") level = Math.max(level, 2);
   return level;
 };
 
@@ -161,8 +134,8 @@ const inputSx = {
 
 const labelSx = { display: "block", mb: 1, fontWeight: 600 };
 
-// 5-segment progress indicator. `current` is 0-based index of the active step
-// (-1 on the intro screen, 5 on the result/lead screens).
+// Progress indicator, one segment per question. `current` is the 0-based index
+// of the active step (-1 on the intro screen, QUESTIONS.length on result/lead).
 const Progress = ({ current }) => (
   <Box aria-hidden="true" sx={{ display: "flex", gap: 0.75, mb: 3 }}>
     {QUESTIONS.map((q, i) => (
@@ -199,6 +172,10 @@ const ScopeTool = ({ bands = [], slug }) => {
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
   const headingRef = useRef(null);
   const shownBandRef = useRef(null);
+  // The tool hydrates while still ~300px below the viewport, so the very first
+  // focus() would scroll it into view and yank the page. Skip that initial
+  // mount; only move focus on genuine, user-driven screen transitions.
+  const didMountRef = useRef(false);
 
   // The interactive tool has scrolled into view and hydrated: that's a genuine
   // engagement signal, so fire tool_start once on mount.
@@ -207,9 +184,15 @@ const ScopeTool = ({ bands = [], slug }) => {
   }, [slug]);
 
   // Move keyboard focus to the new screen's heading on each transition so
-  // screen-reader and keyboard users follow the flow.
+  // screen-reader and keyboard users follow the flow. `preventScroll` keeps the
+  // browser from scrolling the heading into view (which would jump the page),
+  // and we skip the initial mount entirely so hydration never moves the page.
   useEffect(() => {
-    if (headingRef.current) headingRef.current.focus();
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+      return;
+    }
+    if (headingRef.current) headingRef.current.focus({ preventScroll: true });
   }, [screen]);
 
   const bandIndex = useMemo(() => recommendBandIndex(answers), [answers]);
@@ -267,11 +250,7 @@ const ScopeTool = ({ bands = [], slug }) => {
   }, [screen, band, slug]);
 
   const tailoredSentence = () => {
-    const goal = GOAL_PHRASES[answers.mainJob];
-    const must = MUSTHAVE_PHRASES[answers.mustHave];
-    if (goal && must) {
-      return `The first version should focus on ${goal}, with ${must} — and nothing you don't need yet.`;
-    }
+    const goal = GOAL_PHRASES[answers.goal];
     if (goal) return `The first version should focus on ${goal} — and nothing you don't need yet.`;
     return "The first version should focus on the one job that earns enquiries — and nothing you don't need yet.";
   };
@@ -318,9 +297,7 @@ const ScopeTool = ({ bands = [], slug }) => {
       businessName: trimmedName || "Not provided",
       businessType: labelFor("businessType", answers.businessType),
       currentSite: labelFor("currentSite", answers.currentSite),
-      mainJob: labelFor("mainJob", answers.mainJob),
-      mustHave: labelFor("mustHave", answers.mustHave),
-      timeline: labelFor("timeline", answers.timeline),
+      goal: labelFor("goal", answers.goal),
       recommendedBand: band?.name || "Unspecified",
       priceRange: band?.price || "Unspecified",
       phone: phone || "Not provided",
@@ -332,9 +309,7 @@ const ScopeTool = ({ bands = [], slug }) => {
       trimmedName ? `Business: ${trimmedName}` : null,
       `Business type: ${structuredFields.businessType}`,
       `Current site: ${structuredFields.currentSite}`,
-      `Main job: ${structuredFields.mainJob}`,
-      `Must-have: ${structuredFields.mustHave}`,
-      `Timeline: ${structuredFields.timeline}`,
+      `Main goal: ${structuredFields.goal}`,
       `Recommended band: ${structuredFields.recommendedBand} (${structuredFields.priceRange})`,
       phone ? `Phone: ${phone}` : null,
       `Best time to call: ${structuredFields.bestTimeToCall}`,
@@ -401,10 +376,10 @@ const ScopeTool = ({ bands = [], slug }) => {
         component="h3"
         sx={{ fontWeight: "bold", mb: 1.5, outline: "none" }}
       >
-        Scope your site in five taps
+        Scope your site in three taps
       </Typography>
       <Typography variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
-        Answer five quick questions and we'll suggest the right first version and
+        Answer three quick questions and we'll suggest the right first version and
         a realistic price range — no pressure, no template picker. If a smaller,
         cheaper version is enough, we'll say so.
       </Typography>
@@ -503,7 +478,7 @@ const ScopeTool = ({ bands = [], slug }) => {
         starting point, not a final quote.
       </Typography>
 
-      {/* Recap of the five answers */}
+      {/* Recap of their answers */}
       <Box sx={{ mb: 3, p: 2.5, borderRadius: 2, bgcolor: "background.default", border: "1px solid", borderColor: "divider" }}>
         <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>
           Your answers
@@ -521,6 +496,10 @@ const ScopeTool = ({ bands = [], slug }) => {
           ))}
         </Stack>
       </Box>
+
+      {/* Personalized design directions (progressive enhancement; renders
+          nothing when the preview backend is unset or answers are incomplete). */}
+      <ScopeDesigns answers={answers} band={band} businessName={businessName} slug={slug} />
 
       <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
         <Button variant="contained" color="primary" size="large" onClick={() => setScreen("lead")}>
