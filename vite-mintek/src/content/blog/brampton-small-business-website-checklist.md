@@ -2,6 +2,7 @@
 title: "Brampton Small-Business Website Checklist"
 metaDescription: "A practical Brampton small business website checklist: the foundations, local SEO, content and technical must-haves that turn visitors into local customers."
 date: "2026-08-20"
+updated: "2026-09-17"
 author: "Mintek Software"
 category: "Guides"
 scopeTool: true
@@ -103,6 +104,9 @@ The groundwork that keeps the site findable, measurable and yours.
 
 - [ ] **SEO foundations.** Sensible page structure, descriptive page titles, and
   correct local signals built in from day one. Foundations, not ranking promises.
+  If you add LocalBusiness-style structured data, it should match the address and
+  phone already on the page — see
+  [how many Brampton sites actually use it](/blog/localbusiness-schema-brampton-websites).
 - [ ] **Analytics installed.** You cannot improve what you cannot measure. Basic
   analytics tell you where visitors come from and what they do.
 - [ ] **Ownership of code and content.** Confirm you own the domain, the content
