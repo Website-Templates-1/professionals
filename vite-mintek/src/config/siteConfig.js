@@ -777,12 +777,6 @@ export const services = [
     ],
     pricingCtaLabel: "Get a website estimate",
     inlineCtas: {
-      afterProof: {
-        title: "See yourself in this work?",
-        body: "If your business looks like one of these, the next step is a short conversation about what your site needs to do. It's a scoping step, not a purchase.",
-        primaryLabel: "Get a website estimate",
-        primaryType: "estimate",
-      },
       afterWhy: {
         title: "Want this approach on your site?",
         body: "Send a short project brief and we'll come back with a recommendation and a clear price for that scope.",

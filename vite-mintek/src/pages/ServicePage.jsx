@@ -569,12 +569,8 @@ const ServicePage = ({ slug }) => {
         {commercial ? (
           <>
             {proofEarly && proof}
-            {proofEarly && service.inlineCtas?.afterProof && (
-              <InlineCta
-                {...service.inlineCtas.afterProof}
-                placement="service_after_proof"
-                service={service}
-              />
+            {proofEarly && service.scopeTool && (
+              <ScopeToolSection service={service} />
             )}
             <DifferentiatorSection service={service} />
             {service.inlineCtas?.afterWhy && (
@@ -597,7 +593,9 @@ const ServicePage = ({ slug }) => {
                 service={service}
               />
             )}
-            {service.scopeTool && <ScopeToolSection service={service} />}
+            {!proofEarly && service.scopeTool && (
+              <ScopeToolSection service={service} />
+            )}
             <StagesSection service={service} />
             {!service.hideTech && <TechSection service={service} />}
             {!service.hideOutcome && <OutcomeSection service={service} />}
