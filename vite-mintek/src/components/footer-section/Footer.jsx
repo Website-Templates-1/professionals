@@ -4,6 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { site, footerNav } from "../../config/siteConfig";
 import { resolveCta } from "../../config/cta";
 import { trackCta } from "../../utils/analytics";
+import { WHATSAPP } from "../common/whatsappButtonSx";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -59,10 +60,10 @@ const Footer = () => {
             <Link
               href={resolveCta("whatsapp", { placement: "footer" }).to}
               variant="body2"
-              color="text.secondary"
               underline="hover"
               target="_blank"
               rel="noopener noreferrer"
+              sx={{ color: WHATSAPP.green, "&:hover": { color: WHATSAPP.hover } }}
               onClick={() => {
                 const cta = resolveCta("whatsapp", { placement: "footer" });
                 trackCta({

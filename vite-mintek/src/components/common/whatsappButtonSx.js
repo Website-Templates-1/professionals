@@ -1,7 +1,9 @@
+// Leaf teal-emerald sampled from the Mintek mark — deeper than WhatsApp neon
+// so the channel still reads as green without competing with the logo.
 export const WHATSAPP = {
-  green: "#25D366",
-  hover: "#1EBE57",
-  dark: "#128C7E",
+  green: "#0D8166",
+  hover: "#0A6B55",
+  dark: "#085445",
 };
 
 export const whatsappContainedSx = {

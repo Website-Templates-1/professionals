@@ -5,6 +5,7 @@ import { site, websitePricingBands } from "../../config/siteConfig";
 import { LABELS } from "../../config/cta";
 import { contactHrefs, hasChannel, whatsappPrefill } from "../../utils/contactHrefs";
 import { trackCta } from "../../utils/analytics";
+import { WHATSAPP } from "../common/whatsappButtonSx";
 
 const hrefs = contactHrefs(site.phone, { text: whatsappPrefill() });
 
@@ -99,7 +100,11 @@ const ScopeToolSection = ({ service, slug, bands }) => {
                 href={ch.href}
                 target={ch.external ? "_blank" : undefined}
                 rel={ch.external ? "noopener noreferrer" : undefined}
-                sx={{ fontWeight: 600 }}
+                sx={{
+                  fontWeight: 600,
+                  color: ch.id === "whatsapp" ? WHATSAPP.green : undefined,
+                  "&:hover": ch.id === "whatsapp" ? { color: WHATSAPP.hover } : undefined,
+                }}
                 onClick={() =>
                   ch.type &&
                   trackCta({

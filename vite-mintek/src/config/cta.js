@@ -13,8 +13,6 @@ export const LABELS = {
   estimate: "Get a website estimate",
 };
 
-export const MOBILE_CTA_BAR_HEIGHT = 64;
-
 export const bookingUrl = ({ placement } = {}) => {
   const url = new URL(BOOKING_URL);
   url.searchParams.set("utm_source", "mintek");

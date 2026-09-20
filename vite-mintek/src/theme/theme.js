@@ -83,6 +83,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: {
+        html: {
+          scrollPaddingTop: 72,
+        },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {

@@ -537,9 +537,9 @@ const ServicePage = ({ slug }) => {
       <ServiceSchema service={service} />
       <BreadcrumbSchema items={breadcrumbItems} />
 
-      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 6, md: 8 } }}>
+      <Box sx={{ pt: { xs: 3, md: 8 }, pb: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Breadcrumbs items={breadcrumbItems} />
+          <Breadcrumbs items={breadcrumbItems} sx={{ mb: { xs: 1.5, md: 3 } }} />
           <Typography
             variant="overline"
             sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}
@@ -549,7 +549,12 @@ const ServicePage = ({ slug }) => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 3, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{
+              fontWeight: "bold",
+              mb: { xs: 2, md: 3 },
+              fontSize: { xs: "1.875rem", md: "3rem" },
+              lineHeight: { xs: 1.2, md: 1.167 },
+            }}
           >
             {service.hero}
           </Typography>

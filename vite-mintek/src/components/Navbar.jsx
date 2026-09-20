@@ -19,6 +19,7 @@ function Navbar() {
   const call = resolveCta("call", { placement: "header" });
   const whatsapp = resolveCta("whatsapp", { placement: "header" });
   const book = resolveCta("book", { placement: "header" });
+  const shortBrand = site.brand.split(" ")[0];
 
   const handleDrawerClose = () => {
     setDrawerOpen(false);
@@ -43,7 +44,18 @@ function Navbar() {
   return (
     <>
       <AppBar position="fixed" color="inherit">
-        <Toolbar>
+        <Toolbar
+          sx={{
+            gap: 0.5,
+            flexWrap: "nowrap",
+            width: "100%",
+            maxWidth: "100%",
+            minWidth: 0,
+            boxSizing: "border-box",
+            overflow: "hidden",
+            px: { xs: 1, sm: 2 },
+          }}
+        >
           <Box
             component={RouterLink}
             to="/"
@@ -51,8 +63,9 @@ function Navbar() {
             sx={{
               display: "flex",
               alignItems: "center",
-              flexGrow: 1,
+              flex: "1 1 auto",
               minWidth: 0,
+              overflow: "hidden",
               gap: 0.5,
               cursor: "pointer",
               textDecoration: "none",
@@ -67,6 +80,7 @@ function Navbar() {
                 height: 24,
                 width: "auto",
                 display: "block",
+                flexShrink: 0,
               }}
             />
             <Typography
@@ -75,20 +89,26 @@ function Navbar() {
               sx={{
                 fontWeight: "bold",
                 color: "text.primary",
+                minWidth: 0,
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
               }}
             >
-              {site.brand}
+              <Box component="span" sx={{ display: { sm: "none" } }}>
+                {shortBrand}
+              </Box>
+              <Box component="span" sx={{ display: { xs: "none", sm: "inline" } }}>
+                {site.brand}
+              </Box>
             </Typography>
           </Box>
 
           <Box
             sx={{
               display: "flex",
-              gap: 0.5,
-              ml: "auto",
+              gap: { xs: 0, sm: 0.5 },
+              ml: 0.5,
               alignItems: "center",
               flexShrink: 0,
             }}
@@ -98,7 +118,7 @@ function Navbar() {
               onClick={trackHeader(call)}
               color="primary"
               aria-label={`${LABELS.call} at ${site.phone}`}
-              sx={{ display: { xs: "none", md: "inline-flex" } }}
+              sx={{ p: { xs: 1, md: 1.25 } }}
             >
               <PhoneIcon />
             </IconButton>
@@ -108,7 +128,11 @@ function Navbar() {
               aria-label={LABELS.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              sx={{ display: { xs: "none", md: "inline-flex" }, color: WHATSAPP.green }}
+              sx={{
+                color: WHATSAPP.green,
+                p: { xs: 1, md: 1.25 },
+                "&:hover": { color: WHATSAPP.hover },
+              }}
             >
               <WhatsAppIcon />
             </IconButton>
@@ -135,8 +159,8 @@ function Navbar() {
             <IconButton
               color="primary"
               aria-label="open menu"
-              edge="end"
               onClick={handleDrawerOpen}
+              sx={{ p: { xs: 1, md: 1.25 } }}
             >
               <MenuIcon />
             </IconButton>

@@ -7,8 +7,6 @@ import theme from "./theme/theme";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer-section/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import MobileCtaBar from "./components/common/MobileCtaBar";
-import { MOBILE_CTA_BAR_HEIGHT } from "./config/cta";
 import {
   OrganizationSchema,
   WebSiteSchema,
@@ -29,10 +27,6 @@ const Layout = () => {
           display: "flex",
           flexDirection: "column",
           minHeight: "100vh",
-          pb: {
-            xs: `calc(${MOBILE_CTA_BAR_HEIGHT}px + env(safe-area-inset-bottom))`,
-            md: 0,
-          },
         }}
       >
         <Navbar />
@@ -43,7 +37,6 @@ const Layout = () => {
         </Box>
         <Footer />
       </Box>
-      <MobileCtaBar />
     </ThemeProvider>
   );
 };
