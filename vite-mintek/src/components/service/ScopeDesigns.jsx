@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Typography, Link } from "@mui/material";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { trackEvent } from "../../utils/analytics";
@@ -32,7 +32,7 @@ const pickTemplates = (all, businessType) => {
   return Array.from({ length: SHOW }, (_, i) => pool[(start + i) % pool.length]);
 };
 
-const ScopeDesigns = ({ answers, band, businessName, slug }) => {
+const ScopeDesigns = ({ answers, band, slug }) => {
   const businessType = answers?.businessType || null;
 
   const [templates, setTemplates] = useState([]);
@@ -78,16 +78,9 @@ const ScopeDesigns = ({ answers, band, businessName, slug }) => {
     });
   }, [templates, businessType, band?.name, slug]);
 
-  const trimmedName = (businessName || "").trim();
-  const intro = useMemo(
-    () =>
-      trimmedName
-        ? `A few ways ${trimmedName}'s first version could feel.`
-        : "A few ways your first version could feel.",
-    [trimmedName]
-  );
-
   if (!baseUrl || !businessType || templates.length === 0) return null;
+
+  const multiple = templates.length > 1;
 
   const handleOpen = (t) => {
     trackEvent("design_opened", {
@@ -100,21 +93,26 @@ const ScopeDesigns = ({ answers, band, businessName, slug }) => {
   };
 
   return (
-    <Box sx={{ mb: 3 }}>
-      <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
-        A few directions we'd explore
-      </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
-        {intro} We design custom — every build starts from scratch, so these are
-        just starting points to make the conversation concrete, not templates to
+    <Box sx={{ mb: { xs: 2, md: 3 } }}>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: { xs: 1.25, md: 2 }, lineHeight: { xs: 1.5, md: 1.7 } }}>
+        A few directions to get ideas flowing. We build every site custom, so
+        yours starts from scratch. These are starting points, not templates to
         pick from.
       </Typography>
 
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", sm: `repeat(${SHOW}, 1fr)` },
-          gap: 1.5,
+          display: { xs: "flex", sm: "grid" },
+          gridTemplateColumns: { sm: `repeat(${Math.min(SHOW, templates.length)}, 1fr)` },
+          gap: { xs: 1, sm: 1.5 },
+          overflowX: { xs: multiple ? "auto" : "visible", sm: "visible" },
+          scrollSnapType: { xs: multiple ? "x mandatory" : "none", sm: "none" },
+          mx: { xs: multiple ? -0.5 : 0, sm: 0 },
+          px: { xs: multiple ? 0.5 : 0, sm: 0 },
+          pb: { xs: multiple ? 0.5 : 0, sm: 0 },
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: { xs: "none", sm: "auto" },
+          "&::-webkit-scrollbar": { display: { xs: "none", sm: "unset" } },
         }}
       >
         {templates.map((t) => {
@@ -135,6 +133,9 @@ const ScopeDesigns = ({ answers, band, businessName, slug }) => {
                 display: "block",
                 color: "text.primary",
                 borderRadius: 2,
+                flex: { xs: multiple ? "0 0 78%" : "1 1 auto", sm: "unset" },
+                scrollSnapAlign: { xs: multiple ? "start" : "unset", sm: "unset" },
+                minWidth: 0,
                 "&:focus-visible": {
                   outline: "2px solid",
                   outlineColor: "primary.main",
@@ -176,11 +177,11 @@ const ScopeDesigns = ({ answers, band, businessName, slug }) => {
                 )}
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, mt: 0.75 }}>
-                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: { xs: "0.8125rem", sm: "0.875rem" } }}>
                   {t.label}
                 </Typography>
                 <OpenInNewIcon sx={{ fontSize: 15, color: "text.secondary" }} />
-                <Typography variant="caption" color="text.secondary" sx={{ ml: "auto" }}>
+                <Typography variant="caption" color="text.secondary" sx={{ ml: "auto", display: { xs: "none", sm: "inline" } }}>
                   Live preview
                 </Typography>
               </Box>

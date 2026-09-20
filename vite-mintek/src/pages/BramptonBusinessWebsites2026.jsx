@@ -766,11 +766,9 @@ const BramptonBusinessWebsites2026 = () => {
 
       <CTASection
         title="Want to know how your website compares?"
-        subtitle="Mintek builds and maintains high performance websites for businesses in Brampton and the GTA. If you would like a technical look at your current site, get in touch. This study is independent research, not a review of any client."
-        primaryLabel="Get in touch"
-        primaryTo="/contact"
-        secondaryLabel="Web design in Brampton"
-        secondaryTo="/web-design-brampton"
+        subtitle="Mintek builds and maintains high performance websites for businesses in Brampton and the GTA. If you would like a technical look at your current site, get a website estimate. This study is independent research, not a review of any client."
+        intent="website"
+        placement="research_cta"
       />
     </>
   );

@@ -302,7 +302,12 @@ const CaseStudyDetail = ({ slug }) => {
         <Faq items={faqs} title="Project FAQs" disableGutters={false} />
       )}
 
-      <CTASection title="Have a project like this in mind?" />
+      <CTASection
+        title="Planning something similar? Book a discovery call."
+        subtitle="Pick a time that works. We'll use the call to understand the project and suggest a sensible first version."
+        intent="caseStudy"
+        placement="case_study_cta"
+      />
     </>
   );
 };

@@ -1,30 +1,19 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-
-const ButtonLink = ({ to, ...props }) => {
-  if (!to) return null;
-  if (to.startsWith("http")) {
-    return (
-      <Button
-        href={to}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...props}
-      />
-    );
-  }
-  return <Button component={RouterLink} to={to} {...props} />;
-};
+import { Box, Stack, Typography } from "@mui/material";
+import CtaButton from "../common/CtaButton";
 
 const InlineCta = ({
   title,
   body,
   primaryLabel,
   primaryTo,
+  primaryType,
   secondaryLabel,
   secondaryTo,
+  secondaryType,
   onPrimaryClick,
   onSecondaryClick,
+  placement = "inline_cta",
+  service,
 }) => {
   if (!primaryLabel && !secondaryLabel) return null;
 
@@ -51,14 +40,28 @@ const InlineCta = ({
       )}
       <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
         {primaryLabel && (
-          <ButtonLink to={primaryTo} onClick={onPrimaryClick} variant="contained" color="primary">
-            {primaryLabel}
-          </ButtonLink>
+          <CtaButton
+            type={primaryType}
+            to={primaryTo}
+            label={primaryLabel}
+            placement={placement}
+            service={service}
+            onClick={onPrimaryClick}
+            variant="contained"
+            color="primary"
+          />
         )}
         {secondaryLabel && (
-          <ButtonLink to={secondaryTo} onClick={onSecondaryClick} variant="outlined" color="primary">
-            {secondaryLabel}
-          </ButtonLink>
+          <CtaButton
+            type={secondaryType}
+            to={secondaryTo}
+            label={secondaryLabel}
+            placement={placement}
+            service={service}
+            onClick={onSecondaryClick}
+            variant="outlined"
+            color="primary"
+          />
         )}
       </Stack>
     </Box>

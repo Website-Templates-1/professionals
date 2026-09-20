@@ -1,16 +1,40 @@
-import { Box, Container, Typography, Button, Stack } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import CtaButton from "./CtaButton";
+import { resolveCta } from "../../config/cta";
+
+const INTENT = {
+  software: { primary: "book" },
+  website: { primary: "estimate" },
+  caseStudy: { primary: "book" },
+  general: { primary: "book" },
+};
 
 const CTASection = ({
   title = "Ready to build something that works?",
-  subtitle = "Tell us about your project and we'll show you how we can help.",
-  primaryLabel = "Request a consultation",
-  primaryTo = "/contact",
-  secondaryLabel = "See our work",
-  secondaryTo = "/case-studies",
+  subtitle = "Book a discovery call and we'll talk through what you need.",
+  intent = "general",
+  primaryLabel,
+  primaryTo,
+  primaryType,
+  secondaryLabel,
+  secondaryTo,
+  secondaryType,
   onPrimaryClick,
   onSecondaryClick,
+  placement = "footer_cta",
+  service,
 }) => {
+  const preset = INTENT[intent] || INTENT.general;
+  const primaryKind = primaryType || preset.primary;
+  const primary = primaryKind
+    ? resolveCta(primaryKind, { service, placement })
+    : null;
+  const showSecondary = Boolean(secondaryType || secondaryTo);
+  const secondary = secondaryType
+    ? resolveCta(secondaryType, { service, placement })
+    : null;
+
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "background.default" }}>
       <Container maxWidth="md" sx={{ textAlign: "center" }}>
@@ -30,27 +54,30 @@ const CTASection = ({
           spacing={2}
           justifyContent="center"
         >
-          <Button
-            component={RouterLink}
-            to={primaryTo}
+          <CtaButton
+            type={primaryKind}
+            to={primaryTo || primary?.to}
+            label={primaryLabel || primary?.label}
+            placement={placement}
+            service={service}
             onClick={onPrimaryClick}
             variant="contained"
             size="large"
             color="primary"
-          >
-            {primaryLabel}
-          </Button>
-          {secondaryTo && (
-            <Button
-              component={RouterLink}
-              to={secondaryTo}
+            startIcon={primaryKind === "book" ? <EventAvailableIcon /> : undefined}
+          />
+          {showSecondary && (
+            <CtaButton
+              type={secondaryType}
+              to={secondaryTo || secondary?.to}
+              label={secondaryLabel || secondary?.label}
+              placement={placement}
+              service={service}
               onClick={onSecondaryClick}
               variant="outlined"
               size="large"
               color="primary"
-            >
-              {secondaryLabel}
-            </Button>
+            />
           )}
         </Stack>
       </Container>

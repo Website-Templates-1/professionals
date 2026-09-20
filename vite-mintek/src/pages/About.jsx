@@ -291,7 +291,11 @@ const About = () => {
         </Stack>
       </Container>
 
-      <CTASection title="Let's build something that works for your business" />
+      <CTASection
+        title="Let's build something that works for your business"
+        intent="general"
+        placement="about_cta"
+      />
     </>
   );
 };

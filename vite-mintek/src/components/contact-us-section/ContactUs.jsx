@@ -10,7 +10,7 @@ import {
   Alert,
   CircularProgress,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -20,7 +20,8 @@ import {
   budgetPresets,
   projectTypeForService,
 } from "../../config/siteConfig";
-import { trackEvent, trackLead } from "../../utils/analytics";
+import { LABELS } from "../../config/cta";
+import { trackEvent, trackFormStart, trackFormSubmit } from "../../utils/analytics";
 
 // Public config (safe to ship in browser code — same trust model as the old
 // EmailJS public key). The formId can only submit this one form to a fixed inbox.
@@ -34,7 +35,7 @@ if (!EMAIL_SERVICE_URL || !CONTACT_FORM_ID) {
 
 const contactContent = {
   overline: "GET IN TOUCH",
-  title: "Tell Us What You Want to Build or Automate",
+  title: "Send a project brief",
   subtitle:
     "Share the business problem, current process or website you want to improve. We will review the request and recommend a practical next step.",
   contactInfo: {
@@ -78,10 +79,18 @@ const inputSx = {
 
 const labelSx = { display: "block", mb: 1, fontWeight: 600 };
 
-const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) => {
+const ContactUs = ({
+  defaultService = "",
+  defaultProjectType = "",
+  showIntro = true,
+  showMap = false,
+  formOnly = false,
+  formTitle,
+}) => {
+  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [projectType, setProjectType] = useState(
-    projectTypeForService(defaultService)
+    defaultProjectType || projectTypeForService(defaultService)
   );
   const [budget, setBudget] = useState("");
   const [errors, setErrors] = useState({});
@@ -92,12 +101,16 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
     severity: "success",
   });
 
-  // Prefill (or update) the project type when arriving via ?service=<slug>.
+  // Prefill (or update) the project type from ?projectType= or ?service=<slug>.
   useEffect(() => {
+    if (defaultProjectType) {
+      setProjectType(defaultProjectType);
+      return;
+    }
     if (defaultService) {
       setProjectType(projectTypeForService(defaultService));
     }
-  }, [defaultService]);
+  }, [defaultService, defaultProjectType]);
 
   // Reset budget when the project type changes, since the ranges differ. This
   // also prevents submitting a stale budget belonging to another project type.
@@ -108,6 +121,8 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
   const budgetType =
     projectTypes.find((t) => t.value === projectType)?.budgetType || "general";
   const budgetOptions = budgetPresets[budgetType] || budgetPresets.general;
+  const sourceCta = searchParams.get("cta") || "";
+  const sourcePlacement = searchParams.get("placement") || "";
 
   const handleCloseSnackbar = () => {
     setSnackbar((prev) => ({ ...prev, open: false }));
@@ -117,7 +132,12 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
   const handleFormStart = () => {
     if (!startedRef.current) {
       startedRef.current = true;
-      trackEvent("form_start", { form: "contact" });
+      trackFormStart({
+        project_type: projectType || "",
+        cta: sourceCta,
+        placement: sourcePlacement,
+        service: defaultService || "",
+      });
     }
   };
 
@@ -175,6 +195,10 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
                   projectTypes.find((t) => t.value === projectType)?.label ||
                   "Unspecified",
                 budget: budget || "Unspecified",
+                page: typeof window === "undefined" ? "" : window.location.pathname,
+                cta: sourceCta || "brief",
+                placement: sourcePlacement || "",
+                service: defaultService || "",
               },
               _gotcha: form.elements._gotcha?.value || "",
             }),
@@ -185,20 +209,25 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
       }
       if (!res.ok) throw new Error(`Submit failed: ${res.status}`);
 
-      trackLead({
-        project_type:
-          projectTypes.find((t) => t.value === projectType)?.label || "Unspecified",
+      const projectTypeLabel =
+        projectTypes.find((t) => t.value === projectType)?.label || "Unspecified";
+      trackFormSubmit({
+        project_type: projectTypeLabel,
         budget: budget || "Unspecified",
+        cta: sourceCta || "brief",
+        placement: sourcePlacement || "",
+        service: defaultService || "",
       });
 
       setSnackbar({
         open: true,
-        message: "Thank you for your message. We will get back to you shortly.",
+        message:
+          "Thanks — we received your project brief. We'll review it and follow up with questions or a suggested next step.",
         severity: "success",
       });
       form.reset();
       startedRef.current = false;
-      setProjectType(projectTypeForService(defaultService));
+      setProjectType(defaultProjectType || projectTypeForService(defaultService));
       setBudget("");
     } catch (error) {
       console.error("Failed to send email:", error);
@@ -217,7 +246,7 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
     <Box
       sx={{
         bgcolor: "background.paper",
-        py: { xs: 8, md: 16 },
+        py: formOnly ? { xs: 4, md: 6 } : { xs: 8, md: 16 },
         position: "relative",
         overflow: "hidden",
       }}
@@ -287,7 +316,23 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
           </>
         )}
 
+        {formTitle && (
+          <Typography
+            variant="h3"
+            component="h2"
+            sx={{
+              textAlign: formOnly ? "left" : "center",
+              mb: 3,
+              fontWeight: "bold",
+              color: "text.primary",
+            }}
+          >
+            {formTitle}
+          </Typography>
+        )}
+
         <Grid container spacing={6} alignItems="stretch">
+          {!formOnly && (
           <Grid item xs={12} md={5} sx={{ display: "flex" }}>
             <Stack spacing={3} sx={{ width: "100%", height: "100%" }}>
               <Box
@@ -374,10 +419,12 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
               )}
             </Stack>
           </Grid>
+          )}
 
           {/* Contact Form */}
-          <Grid item xs={12} md={7} sx={{ display: "flex" }}>
+          <Grid item xs={12} md={formOnly ? 12 : 7} sx={{ display: "flex" }}>
             <Box
+              id="project-brief"
               component="form"
               noValidate
               onSubmit={handleFormSubmission}
@@ -392,6 +439,7 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
+                scrollMarginTop: { xs: 96, md: 112 },
               }}
             >
               <Grid container spacing={3}>
@@ -562,7 +610,7 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
                         <span>Sending...</span>
                       </Box>
                     ) : (
-                      "Send Message"
+                      LABELS.brief
                     )}
                   </Button>
                 </Grid>
@@ -574,9 +622,10 @@ const ContactUs = ({ defaultService = "", showIntro = true, showMap = false }) =
 
       <Snackbar
         open={snackbar.open}
-        autoHideDuration={6000}
+        autoHideDuration={8000}
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        sx={{ mb: { xs: 8, md: 0 } }}
       >
         <Alert
           onClose={handleCloseSnackbar}

@@ -1,5 +1,6 @@
-import { Box, Container, Typography, Button, Stack, Link } from "@mui/material";
+import { Box, Container, Typography, Stack, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import CtaButton from "../common/CtaButton";
 
 const Hero = () => {
   return (
@@ -132,26 +133,22 @@ const Hero = () => {
           alignItems="center"
           sx={{ position: "relative", zIndex: 5, px: { xs: 2, sm: 0 } }}
         >
-          <Button
-            component={RouterLink}
-            to="/contact?service=custom-software-development"
+          <CtaButton
+            type="book"
+            placement="home_hero"
             variant="contained"
             size="large"
             color="primary"
             sx={{ width: { xs: "100%", sm: "auto" } }}
-          >
-            Discuss Your Software Project
-          </Button>
-          <Button
-            component={RouterLink}
-            to="/contact?service=website-development"
+          />
+          <CtaButton
+            type="estimate"
+            placement="home_hero"
             variant="outlined"
             size="large"
             color="primary"
             sx={{ width: { xs: "100%", sm: "auto" } }}
-          >
-            Get a Website Estimate
-          </Button>
+          />
         </Stack>
       </Container>
 

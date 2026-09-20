@@ -26,6 +26,9 @@ export const site = {
     "Based in Brampton and serving businesses across Toronto, Mississauga, Vaughan and the Greater Toronto Area. In-person meetings are available.",
   email: "minteksoftware@gmail.com",
   phone: "+1-647-470-4180",
+  // Public scheduler for discovery calls. All "Book a discovery call" CTAs
+  // point here — never invent a second booking destination.
+  bookingUrl: "https://bookme-web.onrender.com/mintek-software",
   logo: "/og-image.webp",
   ogImage: "/og-image.webp",
   address: {
@@ -639,6 +642,15 @@ export const services = [
     group: "local",
     budgetType: "website",
     layout: "commercial",
+    // Brampton-only, config-driven contact for the scope tool. First person and
+    // plain on purpose (the founder is Brampton-local and speaks these
+    // languages) — reword these to taste; they render only on this page.
+    // Channels drive both the intro line and the result-screen CTAs. Numbers
+    // come from site.phone. Add "sms" later to surface an SMS link.
+    scopeContact: {
+      note: "I'm local to Brampton and happy to talk it through in Punjabi, Hindi or English.",
+      channels: ["whatsapp", "call"],
+    },
     hideTech: true,
     hideOutcome: true,
     proofPlacement: "early",
@@ -657,8 +669,7 @@ export const services = [
       "Mintek is a Brampton software company that builds business websites. The work covers how the site looks, how it performs, how it gets found, and what happens when you need it to do more later.",
     hero: "Web design in Brampton for small businesses",
     heroCtas: [
-      { label: "Tell us about your project", to: "/start-a-project", variant: "contained" },
-      { label: "See our work", to: "#work", variant: "outlined" },
+      { type: "estimate", variant: "contained" },
     ],
     schemaTypes: ["ProfessionalService"],
     schemaAreaServed: ["Brampton"],
@@ -764,29 +775,25 @@ export const services = [
       "Depth of on-page SEO and local content",
       "Ongoing support after launch",
     ],
-    pricingCtaLabel: "See how we'd approach your website",
+    pricingCtaLabel: "Get a website estimate",
     inlineCtas: {
       afterProof: {
         title: "See yourself in this work?",
         body: "If your business looks like one of these, the next step is a short conversation about what your site needs to do. It's a scoping step, not a purchase.",
-        primaryLabel: "Tell us about your project",
-        primaryTo: "/start-a-project",
-        secondaryLabel: "See more of our work",
-        secondaryTo: "/case-studies",
+        primaryLabel: "Get a website estimate",
+        primaryType: "estimate",
       },
       afterWhy: {
         title: "Want this approach on your site?",
-        body: "Answer a few questions about your business and we'll come back with a recommendation and a clear price for that scope.",
-        primaryLabel: "Tell us about your project",
-        primaryTo: "/start-a-project",
-        secondaryLabel: "Read the Brampton Website Study",
-        secondaryTo: "/research/brampton-business-websites-2026",
+        body: "Send a short project brief and we'll come back with a recommendation and a clear price for that scope.",
+        primaryLabel: "Get a website estimate",
+        primaryType: "estimate",
       },
       afterNext: {
         title: "Ready to talk about your website?",
-        body: "Tell us what your business needs the website to accomplish. We'll review what you have today, understand what you're trying to build, and recommend the right starting point.",
-        primaryLabel: "Tell us about your project",
-        primaryTo: "/start-a-project",
+        body: "Get a website estimate and we'll recommend a clear first version.",
+        primaryLabel: "Get a website estimate",
+        primaryType: "estimate",
       },
     },
     researchTeaser: {
@@ -799,11 +806,7 @@ export const services = [
     },
     ctaTitle: "Ready to talk about your website?",
     ctaSubtitle:
-      "Tell us what your business needs the website to accomplish. We'll review what you have today and recommend the right starting point.",
-    ctaPrimaryLabel: "Tell us about your project",
-    ctaPrimaryTo: "/start-a-project",
-    ctaSecondaryLabel: "See our work",
-    ctaSecondaryTo: "/case-studies",
+      "Get a website estimate and we'll recommend a clear first version.",
     audiences: [
       {
         title: "Trades and home services",
@@ -1767,7 +1770,7 @@ export const homeFaqs = [
   },
   {
     q: "How do I get a project estimate?",
-    a: "The fastest way is to send a short description of your project through our contact form: the problem you are trying to solve, roughly what you have in mind, and your timeline. We follow up with questions and suggested next steps. For custom software and automation we usually recommend a short discovery call so the estimate reflects your real requirements. Website projects can often be scoped more quickly.",
+    a: "Book a discovery call, or send a short project brief through the contact form: the problem you are trying to solve, roughly what you have in mind, and your timeline. You can also call or WhatsApp us from the header or the mobile bar. We follow up with questions and suggested next steps. For custom software and automation we usually recommend a short discovery call so the estimate reflects your real requirements. Website projects can often be scoped from a written brief.",
   },
 ];
 

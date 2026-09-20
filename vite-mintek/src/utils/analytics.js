@@ -25,5 +25,49 @@ export const trackEvent = (name, params = {}) => {
   }
 };
 
+const pagePath = () =>
+  typeof window === "undefined" ? "" : window.location.pathname;
+
+// CTA clicks: type (book/call/whatsapp/brief/estimate), placement, and page
+// so we can judge qualified conversations — not just raw clicks.
+export const trackCta = ({
+  type,
+  placement,
+  to,
+  label,
+  service,
+  page,
+} = {}) => {
+  const resolvedPage = page || pagePath();
+  trackEvent("cta_click", {
+    cta_type: type || "other",
+    placement: placement || "",
+    page: resolvedPage,
+    to: to || "",
+    cta: label || "",
+    service: service || "",
+  });
+  if (type === "book") {
+    trackEvent("scheduler_click", {
+      placement: placement || "",
+      page: resolvedPage,
+      to: to || "",
+      service: service || "",
+    });
+  }
+};
+
+export const trackFormStart = (params = {}) =>
+  trackEvent("form_start", { form: "contact", page: pagePath(), ...params });
+
+export const trackFormSubmit = (params = {}) => {
+  const payload = { form: "contact", page: pagePath(), ...params };
+  trackEvent("form_submit", payload);
+  trackEvent("generate_lead", payload);
+};
+
+export const trackBookingComplete = (params = {}) =>
+  trackEvent("booking_complete", params);
+
 // Fired on a successful contact-form submission.
 export const trackLead = (params = {}) => trackEvent("generate_lead", params);

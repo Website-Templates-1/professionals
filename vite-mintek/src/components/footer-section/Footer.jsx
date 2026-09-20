@@ -2,6 +2,8 @@ import { Box, Container, Typography, Grid, Link, Stack } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
 import { Link as RouterLink } from "react-router-dom";
 import { site, footerNav } from "../../config/siteConfig";
+import { resolveCta } from "../../config/cta";
+import { trackCta } from "../../utils/analytics";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -39,12 +41,39 @@ const Footer = () => {
               {site.email}
             </Link>
             <Link
-              href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}
+              href={resolveCta("call", { placement: "footer" }).to}
               variant="body2"
               color="text.secondary"
               underline="hover"
+              onClick={() =>
+                trackCta({
+                  type: "call",
+                  placement: "footer",
+                  to: resolveCta("call", { placement: "footer" }).to,
+                  label: site.phone,
+                })
+              }
             >
               {site.phone}
+            </Link>
+            <Link
+              href={resolveCta("whatsapp", { placement: "footer" }).to}
+              variant="body2"
+              color="text.secondary"
+              underline="hover"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                const cta = resolveCta("whatsapp", { placement: "footer" });
+                trackCta({
+                  type: "whatsapp",
+                  placement: "footer",
+                  to: cta.to,
+                  label: cta.label,
+                });
+              }}
+            >
+              WhatsApp
             </Link>
           </Stack>
         </Box>

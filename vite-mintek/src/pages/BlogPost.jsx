@@ -182,7 +182,7 @@ const BlogPost = ({ slug }) => {
         <RelatedContent items={related} />
       </Container>
 
-      <CTASection title="Ready to put these ideas to work?" />
+      <CTASection title="Ready to put these ideas to work?" intent="general" placement="blog_post_cta" />
     </>
   );
 };

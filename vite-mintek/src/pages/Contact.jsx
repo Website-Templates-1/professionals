@@ -1,10 +1,12 @@
 import { Box, Container, Typography, Grid, Stack, Link, Chip } from "@mui/material";
 import { Link as RouterLink, useSearchParams } from "react-router-dom";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import Seo from "../components/seo/Seo";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import ContactUs from "../components/contact-us-section/ContactUs";
+import CtaButton from "../components/common/CtaButton";
 import { BreadcrumbSchema, ContactPageSchema } from "../components/seo/StructuredData";
-import { site, getService } from "../config/siteConfig";
+import { site, getService, projectTypes } from "../config/siteConfig";
 
 const serviceLinks = [
   {
@@ -44,6 +46,10 @@ const serviceLinks = [
 const Contact = () => {
   const [searchParams] = useSearchParams();
   const service = searchParams.get("service") || "";
+  const projectTypeParam = searchParams.get("projectType") || "";
+  const defaultProjectType = projectTypes.some((t) => t.value === projectTypeParam)
+    ? projectTypeParam
+    : "";
   const breadcrumbItems = [
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
@@ -53,13 +59,13 @@ const Contact = () => {
     <>
       <Seo
         title={`Contact | ${site.brand}`}
-        description="Contact Mintek Software in Brampton, Ontario. Serving Brampton and the GTA with web design, custom software and automation. Phone, email and a city map — not a copy of the homepage form."
+        description="Book a discovery call with Mintek Software in Brampton, or send a written project brief."
         path="/contact"
       />
       <BreadcrumbSchema items={breadcrumbItems} />
       <ContactPageSchema />
 
-      <Box sx={{ pt: { xs: 12, md: 16 } }}>
+      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 2, md: 4 } }}>
         <Container maxWidth="md">
           <Breadcrumbs items={breadcrumbItems} />
           <Typography
@@ -67,35 +73,53 @@ const Contact = () => {
             component="h1"
             sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2.25rem", md: "3rem" } }}
           >
-            Contact a Brampton studio serving the GTA
+            Choose how you'd like to start
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720, lineHeight: 1.9, mb: 3 }}>
-            Mintek Software is based in Brampton and works with businesses across
-            the Greater Toronto Area: Toronto, Mississauga, Vaughan and nearby
-            cities.
+            Book a discovery call, or send a written project brief below.
           </Typography>
-          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
-            <strong>Name:</strong> {site.brand}
-          </Typography>
-          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
-            <strong>Address:</strong> {site.address.formatted}
-          </Typography>
-          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 3 }}>
-            <strong>Email:</strong>{" "}
-            <Link href={`mailto:${site.email}`} underline="hover">
-              {site.email}
-            </Link>
-          <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
-            <strong>Phone:</strong>{" "}
-            <Link href={`tel:${site.phone.replace(/[^+\d]/g, "")}`} underline="hover">
-              {site.phone}
-            </Link>
-          </Typography>
-          </Typography>
+          <CtaButton
+            type="book"
+            placement="contact_page"
+            variant="contained"
+            color="primary"
+            size="large"
+            startIcon={<EventAvailableIcon />}
+          />
         </Container>
       </Box>
 
-      <Container maxWidth="md" sx={{ pb: { xs: 4, md: 6 } }}>
+      <ContactUs
+        defaultService={service}
+        defaultProjectType={defaultProjectType}
+        showIntro={false}
+        formOnly
+        formTitle="Send a project brief"
+      />
+
+      <Container maxWidth="md" sx={{ pb: { xs: 6, md: 10 } }}>
+        <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
+          Studio details
+        </Typography>
+        <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
+          <strong>Name:</strong> {site.brand}
+        </Typography>
+        <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
+          <strong>Address:</strong> {site.address.formatted}
+        </Typography>
+        <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
+          <strong>Email:</strong>{" "}
+          <Link href={`mailto:${site.email}`} underline="hover">
+            {site.email}
+          </Link>
+        </Typography>
+        <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 3 }}>
+          <strong>Phone:</strong>{" "}
+          <Link href={`tel:${site.phone.replace(/[^+\d]/g, "")}`} underline="hover">
+            {site.phone}
+          </Link>
+        </Typography>
+
         <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
           Service area
         </Typography>
@@ -128,9 +152,33 @@ const Contact = () => {
             );
           })}
         </Grid>
-      </Container>
 
-      <ContactUs defaultService={service} showMap />
+        <Box
+          sx={{
+            minHeight: { xs: 240, md: 360 },
+            borderRadius: 2,
+            overflow: "hidden",
+            border: "1px solid",
+            borderColor: "divider",
+            bgcolor: "white",
+          }}
+        >
+          <Box
+            component="iframe"
+            title="Google Maps listing for Mintek Software, Brampton"
+            src={site.mapsEmbedSrc}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            sx={{
+              border: 0,
+              width: "100%",
+              height: { xs: 240, md: 360 },
+              display: "block",
+            }}
+          />
+        </Box>
+      </Container>
     </>
   );
 };

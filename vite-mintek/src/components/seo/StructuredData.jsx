@@ -93,7 +93,7 @@ export const ContactPageSchema = () => (
       name: `Contact ${site.brand}`,
       url: canonical("/contact"),
       description:
-        "Contact Mintek Software in Brampton, Ontario. Serving Brampton and the Greater Toronto Area.",
+        "Book a discovery call with Mintek Software in Brampton, or send a written project brief.",
       mainEntity: { "@id": `${site.domain}/#localbusiness` },
     }}
   />

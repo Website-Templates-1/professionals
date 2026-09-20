@@ -1,7 +1,18 @@
 import { Suspense, lazy, useEffect, useRef, useState } from "react";
-import { Box, Typography, CircularProgress } from "@mui/material";
+import { Box, Typography, CircularProgress, Link } from "@mui/material";
 import ServiceSection from "./ServiceSection";
-import { websitePricingBands } from "../../config/siteConfig";
+import { site, websitePricingBands } from "../../config/siteConfig";
+import { LABELS } from "../../config/cta";
+import { contactHrefs, hasChannel, whatsappPrefill } from "../../utils/contactHrefs";
+import { trackCta } from "../../utils/analytics";
+
+const hrefs = contactHrefs(site.phone, { text: whatsappPrefill() });
+
+// Intro links follow the result-screen WhatsApp path so the sentence stays
+// a single talk option, not a channel list.
+const INTRO_CHANNELS = [
+  { id: "whatsapp", type: "whatsapp", label: LABELS.whatsapp, href: hrefs.wa, external: true },
+];
 
 // Code-split so the tool's JS never ships in the initial route bundle. The
 // dynamic import only runs once the section is near the viewport, so it can't
@@ -16,10 +27,10 @@ const ScopeTool = lazy(() => import("./ScopeTool"));
 // directly. Bands come from an explicit `bands` prop, else the service's own
 // packages, else the shared canonical bands.
 // Reserved height for the slot before/while the tool mounts. Sized to roughly
-// match the mounted tool's intro card so swapping placeholder -> spinner ->
+// match the mounted question card so swapping placeholder -> spinner ->
 // card doesn't shift the content below. Shared by all three states so there's
-// no intermediate jump (taller on xs where the copy wraps to more lines).
-const RESERVED_SLOT_MIN_HEIGHT = { xs: 460, md: 380 };
+// no intermediate jump.
+const RESERVED_SLOT_MIN_HEIGHT = { xs: 360, md: 380 };
 
 const ScopeToolSection = ({ service, slug, bands }) => {
   const ref = useRef(null);
@@ -30,6 +41,8 @@ const ScopeToolSection = ({ service, slug, bands }) => {
     ? service.packages
     : websitePricingBands;
   const resolvedSlug = slug || service?.slug;
+  const contact = service?.scopeContact;
+  const introLinks = INTRO_CHANNELS.filter((ch) => hasChannel(contact, ch.id));
 
   useEffect(() => {
     if (visible) return;
@@ -60,13 +73,50 @@ const ScopeToolSection = ({ service, slug, bands }) => {
       id="scope-your-site"
       overline="NOT SURE WHERE TO START?"
       title="Scope your site"
+      titleSx={{ fontSize: { xs: "1.5rem", md: "2.125rem" }, mb: { xs: 1, md: 2 } }}
     >
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8, maxWidth: 640 }}>
-        Not ready to fill in the full project form? Answer five quick questions
-        and we'll suggest the right first version for your business and a
-        realistic price range. It's a scoping tool, not a template picker — and
-        if a smaller, cheaper version is enough, we'll say so.
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{ mb: { xs: 1.5, md: 3 }, lineHeight: { xs: 1.55, md: 1.8 }, maxWidth: 640 }}
+      >
+        Two quick taps and you'll see what your site could look like, with a
+        realistic price. No forms, no pressure. It's not a template picker, and
+        if you don't need the bigger version, we'll tell you.
       </Typography>
+      {contact?.note && (
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ mb: { xs: 1.5, md: 3 }, lineHeight: { xs: 1.55, md: 1.8 }, maxWidth: 640 }}
+        >
+          {contact.note}
+          {introLinks.length > 0 && " "}
+          {introLinks.map((ch, i) => (
+            <span key={ch.id}>
+              {i > 0 && " · "}
+              <Link
+                href={ch.href}
+                target={ch.external ? "_blank" : undefined}
+                rel={ch.external ? "noopener noreferrer" : undefined}
+                sx={{ fontWeight: 600 }}
+                onClick={() =>
+                  ch.type &&
+                  trackCta({
+                    type: ch.type,
+                    placement: "scope_tool_intro",
+                    to: ch.href,
+                    label: ch.label,
+                    service: resolvedSlug,
+                  })
+                }
+              >
+                {ch.label}
+              </Link>
+            </span>
+          ))}
+        </Typography>
+      )}
       <Box ref={ref}>
         {visible ? (
           <Suspense
@@ -83,7 +133,7 @@ const ScopeToolSection = ({ service, slug, bands }) => {
               </Box>
             }
           >
-            <ScopeTool bands={resolvedBands} slug={resolvedSlug} />
+            <ScopeTool bands={resolvedBands} slug={resolvedSlug} contact={contact} />
           </Suspense>
         ) : (
           // Reserve height (matching the spinner + mounted card) to avoid layout

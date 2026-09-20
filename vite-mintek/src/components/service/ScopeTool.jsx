@@ -11,7 +11,23 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import { trackEvent, trackLead } from "../../utils/analytics";
+import SpaIcon from "@mui/icons-material/Spa";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import { trackEvent, trackCta, trackFormSubmit, trackLead } from "../../utils/analytics";
+import { contactHrefs, hasChannel, whatsappPrefill } from "../../utils/contactHrefs";
+import { site } from "../../config/siteConfig";
+import { LABELS } from "../../config/cta";
+import WhatsAppIcon from "../common/WhatsAppIcon";
+import { whatsappContainedSx } from "../common/whatsappButtonSx";
 import ScopeDesigns from "./ScopeDesigns";
 
 // Existing enquiry backend (same one the main contact form posts to). Reused so
@@ -20,39 +36,31 @@ import ScopeDesigns from "./ScopeDesigns";
 const EMAIL_SERVICE_URL = import.meta.env.VITE_EMAIL_SERVICE_URL;
 const CONTACT_FORM_ID = import.meta.env.VITE_CONTACT_FORM_ID;
 
-// The three questions. Each option auto-advances on select, so the whole flow is
-// literally three taps. `value` is what we store/report; `label` is what's shown.
+// The questions. Each option auto-advances on select, so the whole flow is just
+// a couple of taps. `value` is what we store/report; `label` is what's shown;
+// `icon` is a MUI icon component prefixed on the button.
 const QUESTIONS = [
   {
     key: "businessType",
-    title: "What kind of business is this?",
+    title: "What kind of business do you run?",
     options: [
-      { value: "salon", label: "Salon & wellness" },
-      { value: "trades", label: "Trades & home services" },
-      { value: "restaurant", label: "Restaurant or food" },
-      { value: "clinic", label: "Clinic or practice" },
-      { value: "professional", label: "Professional services" },
-      { value: "other", label: "Something else" },
-    ],
-  },
-  {
-    key: "currentSite",
-    title: "What do you have today?",
-    options: [
-      { value: "none", label: "No site yet" },
-      { value: "rebuild", label: "Have one, but it's old or slow" },
-      { value: "refresh", label: "Have one, just needs a refresh" },
+      { value: "salon", label: "Salon & wellness", icon: SpaIcon },
+      { value: "trades", label: "Trades & home services", icon: HandymanIcon },
+      { value: "restaurant", label: "Restaurant or food", icon: RestaurantIcon },
+      { value: "clinic", label: "Clinic or practice", icon: MedicalServicesIcon },
+      { value: "professional", label: "Professional services", icon: WorkOutlineIcon },
+      { value: "other", label: "Something else", icon: MoreHorizIcon },
     ],
   },
   {
     key: "goal",
-    title: "What should the site mainly do?",
+    title: "What should the site mainly do for you?",
     options: [
-      { value: "calls", label: "Get calls & enquiries" },
-      { value: "bookings", label: "Take bookings or a waitlist" },
-      { value: "info", label: "Show menu, hours & directions" },
-      { value: "showcase", label: "Showcase your work" },
-      { value: "sell", label: "Sell or take orders online" },
+      { value: "calls", label: "Get calls & enquiries", icon: PhoneInTalkIcon },
+      { value: "bookings", label: "Take bookings or a waitlist", icon: EventAvailableIcon },
+      { value: "info", label: "Show menu, hours & directions", icon: MenuBookIcon },
+      { value: "showcase", label: "Showcase your work", icon: PhotoLibraryIcon },
+      { value: "sell", label: "Sell or take orders online", icon: StorefrontIcon },
     ],
   },
 ];
@@ -66,9 +74,9 @@ const labelFor = (key, value) => {
 // Fragments used to assemble the tailored "what the first version should focus
 // on" sentence from their main goal. Kept in Mintek's plain voice.
 const GOAL_PHRASES = {
-  calls: "making it effortless to call or send an enquiry",
-  bookings: "letting people book or join a waitlist without friction",
-  info: "putting your menu, hours and directions one thumb-reach away",
+  calls: "making it easy to call or send an enquiry",
+  bookings: "letting people book or join a waitlist without the back-and-forth",
+  info: "making your menu, hours and directions easy to find on a phone",
   showcase: "showing your past work so new customers trust you quickly",
   sell: "letting customers order and pay online",
 };
@@ -78,31 +86,44 @@ const GOAL_PHRASES = {
 // Rules (highest wins):
 //   default            -> Starter (0)
 //   goal = bookings     -> Established (1)
-//   rebuild / refresh   -> at least Established (1)
 //   goal = sell/orders  -> Custom / software (2)
 const recommendBandIndex = (answers) => {
   let level = 0;
   if (answers.goal === "bookings") level = Math.max(level, 1);
-  if (answers.currentSite === "rebuild" || answers.currentSite === "refresh") level = Math.max(level, 1);
   if (answers.goal === "sell") level = Math.max(level, 2);
   return level;
 };
 
+const whatsappPrefillFromAnswers = (answers) =>
+  whatsappPrefill({
+    helpWith: "a website",
+    business: labelFor("businessType", answers.businessType).toLowerCase(),
+    discuss: labelFor("goal", answers.goal).toLowerCase(),
+  });
+
 const optionButtonSx = {
-  justifyContent: "flex-start",
-  textAlign: "left",
+  justifyContent: { xs: "center", sm: "flex-start" },
+  alignItems: "center",
+  flexDirection: { xs: "column", sm: "row" },
+  textAlign: { xs: "center", sm: "left" },
   width: "100%",
-  minHeight: 56, // thumb-reachable target
-  px: 2.5,
-  py: 1.5,
-  borderRadius: 2,
+  height: "100%",
+  minHeight: { xs: 72, sm: 56 }, // thumb-reachable; 2-col on xs so the card stays short
+  px: { xs: 1, sm: 2.5 },
+  py: { xs: 1, sm: 1.5 },
+  columnGap: { xs: 0, sm: 1.5 },
+  rowGap: { xs: 0.5, sm: 0 },
+  borderRadius: { xs: "12px", sm: 2 },
   borderColor: "divider",
   color: "text.primary",
   fontWeight: 600,
-  fontSize: "1rem",
+  fontSize: { xs: "0.8125rem", sm: "1rem" },
+  lineHeight: 1.25,
+  whiteSpace: "normal",
   bgcolor: "background.paper",
   transition: "border-color 0.15s ease, background-color 0.15s ease",
   "@media (prefers-reduced-motion: reduce)": { transition: "none" },
+  "& .MuiButton-startIcon": { mr: 0, ml: 0 },
   "&:hover": { borderColor: "primary.main", bgcolor: "background.paper" },
   "&:focus-visible": {
     outline: "2px solid",
@@ -137,12 +158,12 @@ const labelSx = { display: "block", mb: 1, fontWeight: 600 };
 // Progress indicator, one segment per question. `current` is the 0-based index
 // of the active step (-1 on the intro screen, QUESTIONS.length on result/lead).
 const Progress = ({ current }) => (
-  <Box aria-hidden="true" sx={{ display: "flex", gap: 0.75, mb: 3 }}>
+  <Box aria-hidden="true" sx={{ display: "flex", gap: 0.75, mb: { xs: 1.5, md: 3 } }}>
     {QUESTIONS.map((q, i) => (
       <Box
         key={q.key}
         sx={{
-          height: 6,
+          height: { xs: 4, md: 6 },
           flex: 1,
           borderRadius: 3,
           bgcolor: i <= current ? "primary.main" : "rgba(108, 85, 249, 0.15)",
@@ -155,17 +176,17 @@ const Progress = ({ current }) => (
 );
 
 const cardWrapSx = {
-  p: { xs: 3, md: 4 },
-  borderRadius: 3,
+  p: { xs: 2, md: 4 },
+  borderRadius: { xs: 2, md: 3 },
   border: "1px solid",
   borderColor: "divider",
   bgcolor: "background.paper",
 };
 
-const ScopeTool = ({ bands = [], slug }) => {
-  // Screens: "intro" -> 0..4 (questions) -> "result" -> "lead".
-  const [screen, setScreen] = useState("intro");
-  const [businessName, setBusinessName] = useState("");
+const ScopeTool = ({ bands = [], slug, contact }) => {
+  // Screens: 0..N-1 (questions) -> "result" -> "lead". Opens straight on the
+  // first question — no intro screen — to keep the flow to a couple of taps.
+  const [screen, setScreen] = useState(0);
   const [answers, setAnswers] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -198,13 +219,6 @@ const ScopeTool = ({ bands = [], slug }) => {
   const bandIndex = useMemo(() => recommendBandIndex(answers), [answers]);
   const band = bands[bandIndex] || bands[0];
 
-  const trimmedName = businessName.trim();
-  const resultHeader = trimmedName
-    ? `Here's the right first version for ${trimmedName}`
-    : "Here's the right first version for your site";
-
-  const startQuestions = () => setScreen(0);
-
   const selectOption = (stepIndex, value) => {
     const q = QUESTIONS[stepIndex];
     const next = { ...answers, [q.key]: value };
@@ -223,8 +237,7 @@ const ScopeTool = ({ bands = [], slug }) => {
   };
 
   const goBack = () => {
-    if (screen === 0) setScreen("intro");
-    else if (typeof screen === "number") setScreen(screen - 1);
+    if (typeof screen === "number") setScreen(Math.max(0, screen - 1));
     else if (screen === "result") setScreen(QUESTIONS.length - 1);
     else if (screen === "lead") setScreen("result");
   };
@@ -233,7 +246,7 @@ const ScopeTool = ({ bands = [], slug }) => {
     setAnswers({});
     setErrors({});
     shownBandRef.current = null;
-    setScreen("intro");
+    setScreen(0);
   };
 
   // Fire recommendation_shown once per distinct band the user reaches.
@@ -251,8 +264,8 @@ const ScopeTool = ({ bands = [], slug }) => {
 
   const tailoredSentence = () => {
     const goal = GOAL_PHRASES[answers.goal];
-    if (goal) return `The first version should focus on ${goal} — and nothing you don't need yet.`;
-    return "The first version should focus on the one job that earns enquiries — and nothing you don't need yet.";
+    if (goal) return `Your first version focuses on ${goal}, and nothing you don't need yet.`;
+    return "Your first version focuses on the one job that brings in customers, and nothing you don't need yet.";
   };
 
   const handleCloseSnackbar = () => setSnackbar((prev) => ({ ...prev, open: false }));
@@ -294,9 +307,7 @@ const ScopeTool = ({ bands = [], slug }) => {
     const structuredFields = {
       source: "Scope your site tool",
       page: slug || "web-design-brampton",
-      businessName: trimmedName || "Not provided",
       businessType: labelFor("businessType", answers.businessType),
-      currentSite: labelFor("currentSite", answers.currentSite),
       goal: labelFor("goal", answers.goal),
       recommendedBand: band?.name || "Unspecified",
       priceRange: band?.price || "Unspecified",
@@ -306,9 +317,7 @@ const ScopeTool = ({ bands = [], slug }) => {
 
     const message = [
       `Pre-qualified enquiry from the "Scope your site" tool.`,
-      trimmedName ? `Business: ${trimmedName}` : null,
       `Business type: ${structuredFields.businessType}`,
-      `Current site: ${structuredFields.currentSite}`,
       `Main goal: ${structuredFields.goal}`,
       `Recommended band: ${structuredFields.recommendedBand} (${structuredFields.priceRange})`,
       phone ? `Phone: ${phone}` : null,
@@ -350,6 +359,12 @@ const ScopeTool = ({ bands = [], slug }) => {
       });
       // Also feed the site's existing lead metric so this path shows up in the
       // same funnel as the main contact form.
+      trackFormSubmit({
+        form: "scope_your_site",
+        project_type: "Website development",
+        band: band?.name,
+        service: slug || "",
+      });
       trackLead({ project_type: "Website development", band: band?.name, source: "scope_tool" });
 
       setScreen("done");
@@ -357,7 +372,7 @@ const ScopeTool = ({ bands = [], slug }) => {
       console.error("Scope tool submit failed:", error);
       setSnackbar({
         open: true,
-        message: "An error occurred. Please email or call us directly — we'll pick it up.",
+        message: "Something went wrong. Please email or call us directly and we'll pick it up.",
         severity: "error",
       });
     } finally {
@@ -366,43 +381,6 @@ const ScopeTool = ({ bands = [], slug }) => {
   };
 
   // ---- Screen renderers -------------------------------------------------
-
-  const renderIntro = () => (
-    <Box>
-      <Typography
-        ref={headingRef}
-        tabIndex={-1}
-        variant="h5"
-        component="h3"
-        sx={{ fontWeight: "bold", mb: 1.5, outline: "none" }}
-      >
-        Scope your site in three taps
-      </Typography>
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
-        Answer three quick questions and we'll suggest the right first version and
-        a realistic price range — no pressure, no template picker. If a smaller,
-        cheaper version is enough, we'll say so.
-      </Typography>
-      <Box component="label" htmlFor="scope-business-name" sx={labelSx}>
-        Business name{" "}
-        <Box component="span" sx={{ color: "text.secondary", fontWeight: 400 }}>
-          (optional)
-        </Box>
-      </Box>
-      <Box
-        component="input"
-        id="scope-business-name"
-        type="text"
-        value={businessName}
-        onChange={(e) => setBusinessName(e.target.value)}
-        placeholder="e.g. Bella's Salon"
-        sx={{ ...inputSx, mb: 3 }}
-      />
-      <Button variant="contained" color="primary" size="large" onClick={startQuestions}>
-        Start
-      </Button>
-    </Box>
-  );
 
   const renderQuestion = (stepIndex) => {
     const q = QUESTIONS[stepIndex];
@@ -420,97 +398,187 @@ const ScopeTool = ({ bands = [], slug }) => {
           id={headingId}
           variant="h5"
           component="h3"
-          sx={{ fontWeight: "bold", mt: 0.5, mb: 3, outline: "none" }}
+          sx={{
+            fontWeight: "bold",
+            mt: 0.5,
+            mb: { xs: 1.5, md: 3 },
+            outline: "none",
+            fontSize: { xs: "1.125rem", md: "1.5rem" },
+            lineHeight: 1.3,
+          }}
         >
           {q.title}
         </Typography>
-        <Stack spacing={1.5} role="group" aria-labelledby={headingId}>
-          {q.options.map((opt) => (
-            <Button
-              key={opt.value}
-              variant="outlined"
-              disableElevation
-              aria-pressed={selected === opt.value}
-              onClick={() => selectOption(stepIndex, opt.value)}
-              sx={optionButtonSx}
-            >
-              {opt.label}
-            </Button>
-          ))}
-        </Stack>
-        <Button
-          onClick={goBack}
-          startIcon={<ArrowBackIcon />}
-          sx={{ mt: 3, px: 0, color: "text.secondary" }}
+        <Box
+          role="group"
+          aria-labelledby={headingId}
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: { xs: 1, md: 1.5 },
+          }}
         >
-          Back
-        </Button>
+          {q.options.map((opt, i) => {
+            const Icon = opt.icon;
+            const lastOdd = q.options.length % 2 === 1 && i === q.options.length - 1;
+            return (
+              <Button
+                key={opt.value}
+                variant="outlined"
+                disableElevation
+                aria-pressed={selected === opt.value}
+                onClick={() => selectOption(stepIndex, opt.value)}
+                startIcon={Icon ? <Icon sx={{ fontSize: { xs: 20, sm: 22 } }} color="action" /> : undefined}
+                sx={[
+                  optionButtonSx,
+                  lastOdd && {
+                    gridColumn: { xs: "1 / -1", sm: "auto" },
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    textAlign: "left",
+                    minHeight: { xs: 48, sm: 56 },
+                    px: { xs: 2, sm: 2.5 },
+                  },
+                ]}
+              >
+                {opt.label}
+              </Button>
+            );
+          })}
+        </Box>
+        {stepIndex > 0 && (
+          <Button
+            onClick={goBack}
+            startIcon={<ArrowBackIcon />}
+            sx={{ mt: { xs: 1.5, md: 3 }, px: 0, color: "text.secondary" }}
+          >
+            Back
+          </Button>
+        )}
       </Box>
     );
   };
 
-  const renderResult = () => (
-    <Box>
-      <Progress current={QUESTIONS.length} />
-      <Typography variant="overline" sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}>
-        {band?.name}
-      </Typography>
-      <Typography
-        ref={headingRef}
-        tabIndex={-1}
-        variant="h5"
-        component="h3"
-        sx={{ fontWeight: "bold", mt: 0.5, mb: 1, outline: "none" }}
-      >
-        {resultHeader}
-      </Typography>
-      <Typography variant="h6" component="p" sx={{ fontWeight: 700, color: "primary.main", mb: 2 }}>
-        {band?.price}
-      </Typography>
+  const renderResult = () => {
+    const showWhatsApp = hasChannel(contact, "whatsapp");
+    const showSms = hasChannel(contact, "sms");
+    const showDirect = showWhatsApp || showSms;
+    const hrefs = contactHrefs(site.phone, { text: whatsappPrefillFromAnswers(answers) });
+    const trackDirect = (type, to, label) =>
+      trackCta({
+        type,
+        placement: "scope_tool_result",
+        to,
+        label,
+        service: slug,
+      });
 
-      <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 2 }}>
-        {tailoredSentence()}
-      </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8, mb: 2 }}>
-        Every version we build is mobile-first, ships with local SEO foundations,
-        and includes analytics so you can see whether calls and enquiries actually
-        happen. If a smaller, cheaper version is enough, we'll say so — this is a
-        starting point, not a final quote.
-      </Typography>
-
-      {/* Recap of their answers */}
-      <Box sx={{ mb: 3, p: 2.5, borderRadius: 2, bgcolor: "background.default", border: "1px solid", borderColor: "divider" }}>
-        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>
-          Your answers
+    return (
+      <Box>
+        <Progress current={QUESTIONS.length} />
+        <Typography
+          ref={headingRef}
+          tabIndex={-1}
+          variant="h5"
+          component="h3"
+          sx={{
+            fontWeight: "bold",
+            mb: { xs: 1.25, md: 2 },
+            outline: "none",
+            fontSize: { xs: "1.125rem", md: "1.5rem" },
+            lineHeight: 1.3,
+          }}
+        >
+          Here's what your site could look like
         </Typography>
-        <Stack spacing={0.75}>
-          {QUESTIONS.map((q) => (
-            <Box key={q.key} sx={{ display: "flex", gap: 2, justifyContent: "space-between" }}>
-              <Typography variant="body2" color="text.secondary">
-                {q.title.replace(/\?$/, "")}
-              </Typography>
-              <Typography variant="body2" sx={{ fontWeight: 600, textAlign: "right" }}>
-                {labelFor(q.key, answers[q.key])}
-              </Typography>
-            </Box>
-          ))}
+
+        {/* Designs first: the visual payoff, then the price and the plan.
+            Renders nothing when the preview backend is unset. */}
+        <ScopeDesigns answers={answers} band={band} slug={slug} />
+
+        {/* Price + plan */}
+        <Typography variant="overline" sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}>
+          {band?.name}
+        </Typography>
+        <Typography variant="h6" component="p" sx={{ fontWeight: 700, color: "primary.main", mb: { xs: 1.25, md: 2 }, fontSize: { xs: "1.05rem", md: "1.25rem" } }}>
+          {band?.price}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ lineHeight: { xs: 1.55, md: 1.8 }, mb: { xs: 1.25, md: 2 }, fontSize: { xs: "0.9375rem", md: "1rem" } }}>
+          {tailoredSentence()}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ lineHeight: { xs: 1.55, md: 1.8 }, mb: { xs: 2, md: 3 } }}>
+          Every site we build loads fast on a phone, helps you show up in local
+          searches, and comes with analytics so you can see the calls and enquiries
+          come in. If a smaller, cheaper version does the job, we'll tell you. This
+          is a starting point, not a final quote.
+        </Typography>
+
+        {/* Recap of their answers */}
+        <Box sx={{ mb: { xs: 2, md: 3 }, p: { xs: 1.5, md: 2.5 }, borderRadius: 2, bgcolor: "background.default", border: "1px solid", borderColor: "divider" }}>
+          <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>
+            Your answers
+          </Typography>
+          <Stack spacing={0.75}>
+            {QUESTIONS.map((q) => (
+              <Box key={q.key} sx={{ display: "flex", gap: 2, justifyContent: "space-between" }}>
+                <Typography variant="body2" color="text.secondary">
+                  {q.title.replace(/\?$/, "")}
+                </Typography>
+                <Typography variant="body2" sx={{ fontWeight: 600, textAlign: "right" }}>
+                  {labelFor(q.key, answers[q.key])}
+                </Typography>
+              </Box>
+            ))}
+          </Stack>
+        </Box>
+
+        <Stack spacing={1.5}>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={() => setScreen("lead")}
+              sx={showWhatsApp ? { flex: 1 } : undefined}
+            >
+              Get your price in writing
+            </Button>
+            {showWhatsApp && (
+              <Button
+                variant="contained"
+                size="large"
+                href={hrefs.wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<WhatsAppIcon />}
+                onClick={() => trackDirect("whatsapp", hrefs.wa, LABELS.whatsapp)}
+                sx={[whatsappContainedSx, { flex: 1 }]}
+              >
+                {LABELS.whatsapp}
+              </Button>
+            )}
+            {!showDirect && (
+              <Button variant="text" color="primary" startIcon={<RestartAltIcon />} onClick={startOver}>
+                Start over
+              </Button>
+            )}
+          </Stack>
+          {showDirect && (
+            <Stack direction="row" spacing={1.5} alignItems="center" flexWrap="wrap">
+              {showSms && (
+                <Button variant="text" color="primary" href={hrefs.sms} onClick={() => trackDirect("other", hrefs.sms, "SMS")}>
+                  SMS
+                </Button>
+              )}
+              <Button variant="text" color="primary" startIcon={<RestartAltIcon />} onClick={startOver}>
+                Start over
+              </Button>
+            </Stack>
+          )}
         </Stack>
       </Box>
-
-      {/* Personalized design directions (progressive enhancement; renders
-          nothing when the preview backend is unset or answers are incomplete). */}
-      <ScopeDesigns answers={answers} band={band} businessName={businessName} slug={slug} />
-
-      <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
-        <Button variant="contained" color="primary" size="large" onClick={() => setScreen("lead")}>
-          Get this scoped — talk to us
-        </Button>
-        <Button variant="text" color="primary" startIcon={<RestartAltIcon />} onClick={startOver}>
-          Start over
-        </Button>
-      </Stack>
-    </Box>
-  );
+    );
+  };
 
   const renderLead = () => (
     <Box component="form" noValidate onSubmit={handleLeadSubmit}>
@@ -519,14 +587,19 @@ const ScopeTool = ({ bands = [], slug }) => {
         tabIndex={-1}
         variant="h5"
         component="h3"
-        sx={{ fontWeight: "bold", mb: 1, outline: "none" }}
+        sx={{
+          fontWeight: "bold",
+          mb: 1,
+          outline: "none",
+          fontSize: { xs: "1.125rem", md: "1.5rem" },
+          lineHeight: 1.3,
+        }}
       >
         Where should we send the recommendation?
       </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
-        We'll follow up with the {band?.name?.toLowerCase()} scope for
-        {trimmedName ? ` ${trimmedName}` : " your business"}. No obligation — it's
-        a scoping conversation, not a purchase.
+      <Typography variant="body2" color="text.secondary" sx={{ mb: { xs: 2, md: 3 }, lineHeight: { xs: 1.55, md: 1.8 } }}>
+        We'll send you the {band?.name?.toLowerCase()} price and a plan for your
+        first version. No obligation. It's just a conversation, not a purchase.
       </Typography>
 
       {/* Honeypot */}
@@ -595,7 +668,7 @@ const ScopeTool = ({ bands = [], slug }) => {
       <Box component="label" htmlFor="scope-best-time" sx={labelSx}>
         Best time to call
       </Box>
-      <Box component="select" id="scope-best-time" name="best_time" defaultValue="" sx={{ ...inputSx, mb: 3 }}>
+      <Box component="select" id="scope-best-time" name="best_time" defaultValue="" sx={{ ...inputSx, mb: { xs: 2, md: 3 } }}>
         <option value="">No preference</option>
         <option value="Morning">Morning</option>
         <option value="Afternoon">Afternoon</option>
@@ -623,19 +696,18 @@ const ScopeTool = ({ bands = [], slug }) => {
   const renderDone = () => (
     <Box sx={{ textAlign: "center", py: 2 }}>
       <CheckCircleOutlineIcon color="success" sx={{ fontSize: 48, mb: 1.5 }} />
-      <Typography ref={headingRef} tabIndex={-1} variant="h5" component="h3" sx={{ fontWeight: "bold", mb: 1, outline: "none" }}>
-        Thanks — we've got it
+      <Typography ref={headingRef} tabIndex={-1} variant="h5" component="h3" sx={{ fontWeight: "bold", mb: 1, outline: "none", fontSize: { xs: "1.125rem", md: "1.5rem" } }}>
+        Thanks, we've got it
       </Typography>
       <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, maxWidth: 460, mx: "auto" }}>
-        We'll review your answers and follow up with the {band?.name?.toLowerCase()}{" "}
-        scope and a clear next step. Talk soon.
+        We'll review what you sent and follow up with the suggested price and a
+        clear next step.
       </Typography>
     </Box>
   );
 
   let content;
-  if (screen === "intro") content = renderIntro();
-  else if (typeof screen === "number") content = renderQuestion(screen);
+  if (typeof screen === "number") content = renderQuestion(screen);
   else if (screen === "result") content = renderResult();
   else if (screen === "lead") content = renderLead();
   else content = renderDone();

@@ -171,7 +171,9 @@ const BlogIndex = () => {
 
       <CTASection
         title="Have a project in mind?"
-        subtitle="Tell us what you're trying to improve and we'll suggest an approach."
+        subtitle="Book a discovery call and we'll talk through what you need."
+        intent="general"
+        placement="blog_index_cta"
       />
     </>
   );

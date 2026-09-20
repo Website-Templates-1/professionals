@@ -153,7 +153,9 @@ const ServicesIndex = () => {
 
       <CTASection
         title="Not sure which service fits?"
-        subtitle="Tell us what you're trying to improve and we'll suggest an approach."
+        subtitle="Book a discovery call and we'll suggest an approach."
+        intent="general"
+        placement="services_index_cta"
       />
     </>
   );

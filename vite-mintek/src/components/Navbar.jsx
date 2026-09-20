@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Box, IconButton, Button, Stack } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, IconButton, Button } from "@mui/material";
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import RightFullPageDrawer from "./RightFullPageDrawer";
@@ -8,11 +8,17 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import logo from "../assets/logo2-nav.png";
 import { navGroups, site } from "../config/siteConfig";
-
-const telHref = `tel:${site.phone.replace(/[^+\d]/g, "")}`;
+import { LABELS, resolveCta } from "../config/cta";
+import { trackCta } from "../utils/analytics";
+import WhatsAppIcon from "./common/WhatsAppIcon";
+import { WHATSAPP } from "./common/whatsappButtonSx";
+import CtaButton from "./common/CtaButton";
 
 function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const call = resolveCta("call", { placement: "header" });
+  const whatsapp = resolveCta("whatsapp", { placement: "header" });
+  const book = resolveCta("book", { placement: "header" });
 
   const handleDrawerClose = () => {
     setDrawerOpen(false);
@@ -25,6 +31,14 @@ function Navbar() {
   const handleNavLinkClick = () => {
     handleDrawerClose();
   };
+
+  const trackHeader = (cta) => () =>
+    trackCta({
+      type: cta.type,
+      placement: "header",
+      to: cta.to,
+      label: cta.label,
+    });
 
   return (
     <>
@@ -79,21 +93,44 @@ function Navbar() {
               flexShrink: 0,
             }}
           >
+            <IconButton
+              href={call.to}
+              onClick={trackHeader(call)}
+              color="primary"
+              aria-label={`${LABELS.call} at ${site.phone}`}
+              sx={{ display: { xs: "none", md: "inline-flex" } }}
+            >
+              <PhoneIcon />
+            </IconButton>
+            <IconButton
+              href={whatsapp.to}
+              onClick={trackHeader(whatsapp)}
+              aria-label={LABELS.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ display: { xs: "none", md: "inline-flex" }, color: WHATSAPP.green }}
+            >
+              <WhatsAppIcon />
+            </IconButton>
             <Button
-              href={telHref}
+              href={book.to}
+              onClick={trackHeader(book)}
               variant="contained"
               color="primary"
               size="small"
-              startIcon={<PhoneIcon />}
-              aria-label={`Call us at ${site.phone}`}
+              startIcon={<EventAvailableIcon />}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={LABELS.book}
               sx={{
+                display: { xs: "none", md: "inline-flex" },
                 py: 0.5,
                 px: 1.75,
                 fontSize: "0.875rem",
                 whiteSpace: "nowrap",
               }}
             >
-              Call us
+              {LABELS.book}
             </Button>
             <IconButton
               color="primary"
@@ -113,31 +150,16 @@ function Navbar() {
         drawerTitle="Menu"
         allowOverflow={true}
         footer={
-          <Stack spacing={1.5}>
-            <Button
-              href={telHref}
-              variant="contained"
-              color="primary"
-              fullWidth
-              size="large"
-              startIcon={<PhoneIcon />}
-              aria-label={`Call us at ${site.phone}`}
-            >
-              Call us
-            </Button>
-            <Button
-              component={RouterLink}
-              to="/contact"
-              variant="outlined"
-              color="primary"
-              fullWidth
-              size="large"
-              startIcon={<EventAvailableIcon />}
-              onClick={handleDrawerClose}
-            >
-              Free consult
-            </Button>
-          </Stack>
+          <CtaButton
+            type="book"
+            placement="nav_drawer"
+            variant="contained"
+            color="primary"
+            fullWidth
+            size="large"
+            startIcon={<EventAvailableIcon />}
+            onClick={handleDrawerClose}
+          />
         }
       >
         <NavLinks

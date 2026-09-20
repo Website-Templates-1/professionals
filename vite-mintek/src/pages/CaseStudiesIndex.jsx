@@ -90,9 +90,10 @@ const CaseStudiesIndex = () => {
       </Container>
 
       <CTASection
-        title="Want results like these?"
-        subtitle="Tell us what you're trying to improve and we'll suggest an approach."
-        secondaryTo=""
+        title="Planning something similar? Book a discovery call."
+        subtitle="Pick a time that works. We'll use the call to understand the project and suggest a sensible first version."
+        intent="caseStudy"
+        placement="case_studies_index_cta"
       />
     </>
   );

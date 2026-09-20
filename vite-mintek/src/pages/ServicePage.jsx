@@ -5,7 +5,6 @@ import {
   Grid,
   Chip,
   Stack,
-  Button,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -32,7 +31,8 @@ import {
   projectStages,
 } from "../config/siteConfig";
 import { getServiceRelated } from "../config/relatedContent";
-import { trackEvent } from "../utils/analytics";
+import { resolveCta, serviceCtas } from "../config/cta";
+import CtaButton from "../components/common/CtaButton";
 import NotFound from "./NotFound";
 
 const testimonialTagForService = (service) => {
@@ -70,27 +70,27 @@ const InfoCardGrid = ({ items, sm = 6 }) => (
   </Grid>
 );
 
-const HeroCtas = ({ items }) => {
+const HeroCtas = ({ items, service, placement = "service_hero" }) => {
   if (!items?.length) return null;
   return (
-    <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ mt: 4 }}>
-      {items.map((cta) => {
-        const hashLink = cta.to?.startsWith("#");
-        return (
-          <Button
-            key={cta.label}
-            {...(hashLink
-              ? { href: cta.to }
-              : { component: RouterLink, to: cta.to })}
-            onClick={cta.onClick}
-            variant={cta.variant || "contained"}
-            color="primary"
-            size="large"
-          >
-            {cta.label}
-          </Button>
-        );
-      })}
+    <Stack
+      direction={{ xs: "column", sm: "row" }}
+      spacing={1.5}
+      sx={{ mt: 4 }}
+    >
+      {items.map((cta) => (
+        <CtaButton
+          key={cta.label || cta.type}
+          type={cta.type}
+          to={cta.to}
+          label={cta.label}
+          placement={placement}
+          service={service}
+          variant={cta.variant || "contained"}
+          color="primary"
+          size="large"
+        />
+      ))}
     </Stack>
   );
 };
@@ -255,8 +255,12 @@ const LocalAreasSection = ({ service }) => {
   );
 };
 
-const PricingSection = ({ service, contactPath }) => {
+const PricingSection = ({ service, intent }) => {
   if (!service.pricing) return null;
+  const pricingCta = resolveCta(intent.pricingType, {
+    service,
+    placement: "service_pricing",
+  });
   return (
     <Box
       sx={{
@@ -296,9 +300,15 @@ const PricingSection = ({ service, contactPath }) => {
           ))}
         </Box>
       )}
-      <Button component={RouterLink} to={contactPath} variant="contained" color="primary">
-        {service.pricingCtaLabel || "Request a quote"}
-      </Button>
+      <CtaButton
+        type={intent.pricingType}
+        to={pricingCta.to}
+        label={service.pricingCtaLabel || pricingCta.label}
+        placement="service_pricing"
+        service={service}
+        variant="contained"
+        color="primary"
+      />
     </Box>
   );
 };
@@ -484,7 +494,7 @@ const ServicePage = ({ slug }) => {
 
   const commercial = service.layout === "commercial";
   const path = `/${service.slug}`;
-  const contactPath = `/contact?service=${service.slug}`;
+  const intent = serviceCtas(service);
   const breadcrumbItems = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
@@ -500,24 +510,11 @@ const ServicePage = ({ slug }) => {
   const related = getServiceRelated(service.slug);
   const proofEarly = commercial && service.proofPlacement === "early";
 
-  // CTA-click tracking (Amplitude / GA4). `location` identifies which decision
-  // point on the page was clicked so the funnel to /start-a-project is legible.
-  const trackCta = (label, location, to) => () =>
-    trackEvent("cta_click", { cta: label, location, to, service: service.slug });
-
-  const heroCtas = (service.heroCtas || []).map((cta) => ({
-    ...cta,
-    onClick: trackCta(cta.label, "service_hero", cta.to),
-  }));
-
-  const withInlineTracking = (block, location) => {
-    if (!block) return block;
-    return {
-      ...block,
-      onPrimaryClick: trackCta(block.primaryLabel, location, block.primaryTo),
-      onSecondaryClick: trackCta(block.secondaryLabel, location, block.secondaryTo),
-    };
-  };
+  const heroCtas = (service.heroCtas || intent.hero).map((cta) =>
+    cta.type
+      ? { ...resolveCta(cta.type, { service, placement: "service_hero" }), ...cta }
+      : cta
+  );
 
   const proof = (
     <ProofStudies
@@ -559,7 +556,7 @@ const ServicePage = ({ slug }) => {
           <Typography variant="h6" component="p" color="text.secondary">
             {service.short}
           </Typography>
-          <HeroCtas items={heroCtas} />
+          <HeroCtas items={heroCtas} service={service} />
         </Container>
       </Box>
 
@@ -569,13 +566,17 @@ const ServicePage = ({ slug }) => {
             {proofEarly && proof}
             {proofEarly && service.inlineCtas?.afterProof && (
               <InlineCta
-                {...withInlineTracking(service.inlineCtas.afterProof, "service_after_proof")}
+                {...service.inlineCtas.afterProof}
+                placement="service_after_proof"
+                service={service}
               />
             )}
             <DifferentiatorSection service={service} />
             {service.inlineCtas?.afterWhy && (
               <InlineCta
-                {...withInlineTracking(service.inlineCtas.afterWhy, "service_after_why")}
+                {...service.inlineCtas.afterWhy}
+                placement="service_after_why"
+                service={service}
               />
             )}
             <ProblemSection service={service} />
@@ -586,14 +587,16 @@ const ServicePage = ({ slug }) => {
             <EnquiryStepsSection service={service} />
             {service.inlineCtas?.afterNext && (
               <InlineCta
-                {...withInlineTracking(service.inlineCtas.afterNext, "service_after_next")}
+                {...service.inlineCtas.afterNext}
+                placement="service_after_next"
+                service={service}
               />
             )}
             {service.scopeTool && <ScopeToolSection service={service} />}
             <StagesSection service={service} />
             {!service.hideTech && <TechSection service={service} />}
             {!service.hideOutcome && <OutcomeSection service={service} />}
-            <PricingSection service={service} contactPath={contactPath} />
+            <PricingSection service={service} intent={intent} />
             <PackagesSection service={service} />
             <ServiceResearchTeaser teaser={service.researchTeaser} />
             <ExtraSections service={service} />
@@ -612,7 +615,7 @@ const ServicePage = ({ slug }) => {
             <TechSection service={service} />
             <OutcomeSection service={service} />
             <LocalAreasSection service={service} />
-            <PricingSection service={service} contactPath={contactPath} />
+            <PricingSection service={service} intent={intent} />
             <PackagesSection service={service} />
             <ExtraSections service={service} />
             {proof}
@@ -635,21 +638,15 @@ const ServicePage = ({ slug }) => {
         title={
           service.ctaTitle || `Let's talk about your ${service.title.toLowerCase()} project`
         }
-        subtitle={service.ctaSubtitle}
-        primaryLabel={service.ctaPrimaryLabel}
-        primaryTo={service.ctaPrimaryTo || contactPath}
-        secondaryLabel={service.ctaSecondaryLabel}
-        secondaryTo={service.ctaSecondaryTo}
-        onPrimaryClick={trackCta(
-          service.ctaPrimaryLabel || "primary",
-          "service_footer_cta",
-          service.ctaPrimaryTo || contactPath
-        )}
-        onSecondaryClick={trackCta(
-          service.ctaSecondaryLabel || "secondary",
-          "service_footer_cta",
-          service.ctaSecondaryTo
-        )}
+        subtitle={
+          service.ctaSubtitle ||
+          (intent.intent === "website"
+            ? "Get a website estimate and we'll recommend a clear first version."
+            : "Book a discovery call and we'll talk through what you need.")
+        }
+        intent={intent.intent}
+        placement="service_footer_cta"
+        service={service}
       />
     </>
   );
