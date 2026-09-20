@@ -3,7 +3,11 @@ import { Box, Typography, CircularProgress, Link } from "@mui/material";
 import ServiceSection from "./ServiceSection";
 import { site, websitePricingBands } from "../../config/siteConfig";
 import { LABELS } from "../../config/cta";
-import { contactHrefs, hasChannel, whatsappPrefill } from "../../utils/contactHrefs";
+import {
+  contactHrefs,
+  hasChannel,
+  whatsappPrefill,
+} from "../../utils/contactHrefs";
 import { trackCta } from "../../utils/analytics";
 import { WHATSAPP } from "../common/whatsappButtonSx";
 
@@ -12,7 +16,13 @@ const hrefs = contactHrefs(site.phone, { text: whatsappPrefill() });
 // Intro links follow the result-screen WhatsApp path so the sentence stays
 // a single talk option, not a channel list.
 const INTRO_CHANNELS = [
-  { id: "whatsapp", type: "whatsapp", label: LABELS.whatsapp, href: hrefs.wa, external: true },
+  {
+    id: "whatsapp",
+    type: "whatsapp",
+    label: LABELS.whatsapp,
+    href: hrefs.wa,
+    external: true,
+  },
 ];
 
 // Code-split so the tool's JS never ships in the initial route bundle. The
@@ -47,7 +57,10 @@ const ScopeToolSection = ({ service, slug, bands }) => {
 
   useEffect(() => {
     if (visible) return;
-    if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
+    if (
+      typeof window === "undefined" ||
+      typeof IntersectionObserver === "undefined"
+    ) {
       // No IO support: fall back to mounting on idle so the tool still works.
       setVisible(true);
       return;
@@ -63,7 +76,7 @@ const ScopeToolSection = ({ service, slug, bands }) => {
       },
       // Start loading a bit before it's on screen so it's ready by the time the
       // user reaches it, without loading up front.
-      { rootMargin: "300px 0px" }
+      { rootMargin: "300px 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -74,12 +87,11 @@ const ScopeToolSection = ({ service, slug, bands }) => {
       id="scope-your-site"
       overline="NOT SURE WHERE TO START?"
       title="Scope your site"
-      titleSx={{ fontSize: { xs: "1.5rem", md: "2.125rem" }, mb: { xs: 1, md: 2 } }}
     >
       <Typography
-        variant="body2"
+        variant="body1"
         color="text.secondary"
-        sx={{ mb: { xs: 1.5, md: 3 }, lineHeight: { xs: 1.55, md: 1.8 }, maxWidth: 640 }}
+        sx={{ mb: 3, lineHeight: 1.9 }}
       >
         Two quick taps and you'll see what your site could look like, with a
         realistic price. No forms, no pressure. It's not a template picker, and
@@ -89,7 +101,7 @@ const ScopeToolSection = ({ service, slug, bands }) => {
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ mb: { xs: 1.5, md: 3 }, lineHeight: { xs: 1.55, md: 1.8 }, maxWidth: 640 }}
+          sx={{ mb: 3, lineHeight: 1.8 }}
         >
           {contact.note}
           {introLinks.length > 0 && " "}
@@ -103,7 +115,10 @@ const ScopeToolSection = ({ service, slug, bands }) => {
                 sx={{
                   fontWeight: 600,
                   color: ch.id === "whatsapp" ? WHATSAPP.green : undefined,
-                  "&:hover": ch.id === "whatsapp" ? { color: WHATSAPP.hover } : undefined,
+                  "&:hover":
+                    ch.id === "whatsapp"
+                      ? { color: WHATSAPP.hover }
+                      : undefined,
                 }}
                 onClick={() =>
                   ch.type &&
@@ -138,12 +153,19 @@ const ScopeToolSection = ({ service, slug, bands }) => {
               </Box>
             }
           >
-            <ScopeTool bands={resolvedBands} slug={resolvedSlug} contact={contact} />
+            <ScopeTool
+              bands={resolvedBands}
+              slug={resolvedSlug}
+              contact={contact}
+            />
           </Suspense>
         ) : (
           // Reserve height (matching the spinner + mounted card) to avoid layout
           // shift when the tool mounts.
-          <Box sx={{ minHeight: RESERVED_SLOT_MIN_HEIGHT }} aria-hidden="true" />
+          <Box
+            sx={{ minHeight: RESERVED_SLOT_MIN_HEIGHT }}
+            aria-hidden="true"
+          />
         )}
       </Box>
     </ServiceSection>

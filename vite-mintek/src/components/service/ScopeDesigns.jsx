@@ -94,7 +94,7 @@ const ScopeDesigns = ({ answers, band, slug }) => {
 
   return (
     <Box sx={{ mb: { xs: 2, md: 3 } }}>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: { xs: 1.25, md: 2 }, lineHeight: { xs: 1.5, md: 1.7 } }}>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: { xs: 1.25, md: 2 }, lineHeight: 1.8 }}>
         A few directions to get ideas flowing. We build every site custom, so
         yours starts from scratch. These are starting points, not templates to
         pick from.

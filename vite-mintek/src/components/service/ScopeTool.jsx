@@ -409,8 +409,6 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
             mt: 0.5,
             mb: { xs: 1.5, md: 3 },
             outline: "none",
-            fontSize: { xs: "1.125rem", md: "1.5rem" },
-            lineHeight: 1.3,
           }}
         >
           {q.title}
@@ -491,8 +489,6 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
             fontWeight: "bold",
             mb: { xs: 1.25, md: 2 },
             outline: "none",
-            fontSize: { xs: "1.125rem", md: "1.5rem" },
-            lineHeight: 1.3,
           }}
         >
           Here's what your site could look like
@@ -506,13 +502,13 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
         <Typography variant="overline" sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}>
           {band?.name}
         </Typography>
-        <Typography variant="h6" component="p" sx={{ fontWeight: 700, color: "primary.main", mb: { xs: 1.25, md: 2 }, fontSize: { xs: "1.05rem", md: "1.25rem" } }}>
+        <Typography variant="h6" component="p" sx={{ fontWeight: 700, color: "primary.main", mb: { xs: 1.25, md: 2 } }}>
           {band?.price}
         </Typography>
-        <Typography variant="body1" color="text.secondary" sx={{ lineHeight: { xs: 1.55, md: 1.8 }, mb: { xs: 1.25, md: 2 }, fontSize: { xs: "0.9375rem", md: "1rem" } }}>
+        <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.9, mb: { xs: 1.25, md: 2 } }}>
           {tailoredSentence()}
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ lineHeight: { xs: 1.55, md: 1.8 }, mb: { xs: 2, md: 3 } }}>
+        <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8, mb: { xs: 2, md: 3 } }}>
           Every site we build loads fast on a phone, helps you show up in local
           searches, and comes with analytics so you can see the calls and enquiries
           come in. If a smaller, cheaper version does the job, we'll tell you. This
@@ -597,13 +593,11 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
           fontWeight: "bold",
           mb: 1,
           outline: "none",
-          fontSize: { xs: "1.125rem", md: "1.5rem" },
-          lineHeight: 1.3,
         }}
       >
         Where should we send the recommendation?
       </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: { xs: 2, md: 3 }, lineHeight: { xs: 1.55, md: 1.8 } }}>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: { xs: 2, md: 3 }, lineHeight: 1.8 }}>
         We'll send you the {band?.name?.toLowerCase()} price and a plan for your
         first version. No obligation. It's just a conversation, not a purchase.
       </Typography>
@@ -702,10 +696,10 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
   const renderDone = () => (
     <Box sx={{ textAlign: "center", py: 2 }}>
       <CheckCircleOutlineIcon color="success" sx={{ fontSize: 48, mb: 1.5 }} />
-      <Typography ref={headingRef} tabIndex={-1} variant="h5" component="h3" sx={{ fontWeight: "bold", mb: 1, outline: "none", fontSize: { xs: "1.125rem", md: "1.5rem" } }}>
+      <Typography ref={headingRef} tabIndex={-1} variant="h5" component="h3" sx={{ fontWeight: "bold", mb: 1, outline: "none" }}>
         Thanks, we've got it
       </Typography>
-      <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, maxWidth: 460, mx: "auto" }}>
+      <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.9, maxWidth: 460, mx: "auto" }}>
         We'll review what you sent and follow up with the suggested price and a
         clear next step.
       </Typography>
