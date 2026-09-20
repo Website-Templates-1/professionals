@@ -176,14 +176,41 @@ const ScopeDesigns = ({ answers, band, slug }) => {
                   />
                 )}
               </Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, mt: 0.75 }}>
-                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: { xs: "0.8125rem", sm: "0.875rem" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 0.75,
+                  mt: 0.75,
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    flex: 1,
+                    minWidth: 0,
+                    fontWeight: 600,
+                    fontSize: { xs: "0.8125rem", sm: "0.875rem" },
+                    lineHeight: 1.3,
+                  }}
+                >
                   {t.label}
                 </Typography>
-                <OpenInNewIcon sx={{ fontSize: 15, color: "text.secondary" }} />
-                <Typography variant="caption" color="text.secondary" sx={{ ml: "auto", display: { xs: "none", sm: "inline" } }}>
-                  Live preview
-                </Typography>
+                <Box
+                  sx={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 0.5,
+                    flexShrink: 0,
+                    whiteSpace: "nowrap",
+                    pt: 0.15,
+                  }}
+                >
+                  <OpenInNewIcon sx={{ fontSize: 15, color: "text.secondary" }} />
+                  <Typography variant="caption" color="text.secondary" sx={{ display: { xs: "none", sm: "inline" } }}>
+                    Live preview
+                  </Typography>
+                </Box>
               </Box>
             </Link>
           );
