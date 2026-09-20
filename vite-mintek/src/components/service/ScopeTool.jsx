@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -181,6 +181,7 @@ const cardWrapSx = {
   border: "1px solid",
   borderColor: "divider",
   bgcolor: "background.paper",
+  scrollMarginTop: { xs: 88, md: 96 },
 };
 
 const ScopeTool = ({ bands = [], slug, contact }) => {
@@ -192,6 +193,7 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
   const [errors, setErrors] = useState({});
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
   const headingRef = useRef(null);
+  const cardRef = useRef(null);
   const shownBandRef = useRef(null);
   // The tool hydrates while still ~300px below the viewport, so the very first
   // focus() would scroll it into view and yank the page. Skip that initial
@@ -205,15 +207,19 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
   }, [slug]);
 
   // Move keyboard focus to the new screen's heading on each transition so
-  // screen-reader and keyboard users follow the flow. `preventScroll` keeps the
-  // browser from scrolling the heading into view (which would jump the page),
-  // and we skip the initial mount entirely so hydration never moves the page.
-  useEffect(() => {
+  // screen-reader and keyboard users follow the flow. `preventScroll` stops
+  // focus itself from moving the page; we then pin the card to the top of the
+  // viewport so every step (questions, result, lead, done, start over, back)
+  // lands on the heading instead of wherever the previous, taller screen sat.
+  useLayoutEffect(() => {
     if (!didMountRef.current) {
       didMountRef.current = true;
       return;
     }
     if (headingRef.current) headingRef.current.focus({ preventScroll: true });
+    if (cardRef.current) {
+      cardRef.current.scrollIntoView({ behavior: "auto", block: "start" });
+    }
   }, [screen]);
 
   const bandIndex = useMemo(() => recommendBandIndex(answers), [answers]);
@@ -713,7 +719,7 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
   else content = renderDone();
 
   return (
-    <Box sx={cardWrapSx}>
+    <Box ref={cardRef} sx={cardWrapSx}>
       {content}
       <Snackbar
         open={snackbar.open}
