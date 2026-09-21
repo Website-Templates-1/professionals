@@ -2,6 +2,7 @@
 title: "LocalBusiness Schema: How Many Brampton Websites Actually Use It?"
 metaDescription: "Among 87 fetched Brampton homepages, JSON-LD was detected on 62.1%; LocalBusiness-style types on 41.4%. What that measurement is — and is not."
 date: "2026-09-17"
+updated: "2026-09-20"
 author: "Mintek Software"
 tags: ["websites", "local seo", "small business"]
 category: "Research"
@@ -168,7 +169,7 @@ The companion measurements make the same point from another angle. [Why Are Bram
 
 ## How we’d approach schema on a real business website
 
-If we were handed a Brampton or GTA site tomorrow, schema would not be the first conversation. The first conversation is still: is the Google Business Profile claimed and accurate, do name, address, and phone match everywhere, and can someone on a phone tap Call? That order matches both [local SEO for GTA service businesses](/local-seo-gta) and the [Brampton small-business website checklist](/blog/brampton-small-business-website-checklist).
+If we were handed a Brampton or GTA site tomorrow, schema would not be the first conversation. The first conversation is still: is the Google Business Profile claimed and accurate, do name, address, and phone match everywhere, and can someone on a phone tap Call? How often that tap was even possible in this sample is the subject of [How Many Brampton Business Websites Make It Easy to Call?](/blog/how-many-brampton-business-websites-make-it-easy-to-call). That order matches both [local SEO for GTA service businesses](/local-seo-gta) and the [Brampton small-business website checklist](/blog/brampton-small-business-website-checklist).
 
 When we do put structured data on the site, the approach is boring on purpose.
 

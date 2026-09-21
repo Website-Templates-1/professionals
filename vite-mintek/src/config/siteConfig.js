@@ -864,6 +864,7 @@ export const services = [
     ],
     relatedCaseStudies: ["aloe-accounting", "restaurant-online-ordering-system", "pawpals"],
     relatedPosts: [
+      "how-many-brampton-business-websites-make-it-easy-to-call",
       "how-much-does-a-brampton-business-website-need-to-load",
       "why-are-brampton-business-websites-so-slow",
       "comparing-web-design-companies-in-brampton",

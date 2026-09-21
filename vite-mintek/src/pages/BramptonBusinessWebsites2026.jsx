@@ -71,6 +71,13 @@ const related = [
   },
   {
     type: "Article",
+    key: "a-call",
+    title: "How many Brampton business websites make it easy to call?",
+    description: "Click-to-call tel: links on 58 of 87 fetched homepages, and why a visible number is not the same thing.",
+    to: "/blog/how-many-brampton-business-websites-make-it-easy-to-call",
+  },
+  {
+    type: "Article",
     key: "a-check",
     title: "Brampton small business website checklist",
     description: "A practical checklist for local marketing sites.",
@@ -514,6 +521,16 @@ const BramptonBusinessWebsites2026 = () => {
             A restaurant reasonably needs a menu or order path; an accounting firm
             more often needs a consultation request. This study does not score
             businesses down for missing functionality that does not fit the model.
+            What the <code>tel:</code> detection actually measured — and what it
+            did not — is unpacked in{" "}
+            <Link
+              component={RouterLink}
+              to="/blog/how-many-brampton-business-websites-make-it-easy-to-call"
+              underline="hover"
+            >
+              How Many Brampton Business Websites Make It Easy to Call?
+            </Link>
+            .
           </Typography>
           <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
             Among scored sites that we also fetched, those with a detected CTA
