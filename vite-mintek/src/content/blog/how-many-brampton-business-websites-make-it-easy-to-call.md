@@ -2,6 +2,7 @@
 title: "How Many Brampton Business Websites Make It Easy to Call?"
 metaDescription: "Among 87 fetched Brampton homepages, a click-to-call tel: link was on 58 (66.7%). What that measures — and why a visible number is not the same thing."
 date: "2026-09-20"
+updated: "2026-09-23"
 author: "Mintek Software"
 tags: ["websites", "local seo", "small business"]
 category: "Research"
@@ -107,7 +108,7 @@ None of this means the owner hid the number on purpose. It usually means the the
 Click-to-call sat beside other homepage conversion signals in the same 87-page inspect. They are not substitutes for each other.
 
 - A visible CTA phrase (for example “call now”, “contact us”, “book now”) appeared on **71 of 87 (81.6%)**.
-- A `<form>` element appeared on **47 of 87 (54.0%)**. That may include newsletter or site-search forms, not only enquiry forms.
+- A `<form>` element appeared on **47 of 87 (54.0%)**. That may include newsletter or site-search forms, not only enquiry forms. What that detection is — and what it is not — is in [Do Brampton Business Websites Actually Have Contact Forms?](/blog/do-brampton-business-websites-actually-have-contact-forms).
 - Homepage testimonials or review wording matching our text patterns appeared on **17 of 87 (19.5%)**.
 
 **81.6% with CTA language and 66.7% with `tel:` is the gap that matters here.** A headline can say “Call now” while the phone number is unlinked, elsewhere, or absent. Tikka Junction’s snapshot is the illustration: CTA phrase present, `tel:` not detected. That is a measurement of markup, not of whether a diner could still phone the restaurant from Google.

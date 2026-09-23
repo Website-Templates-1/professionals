@@ -78,6 +78,13 @@ const related = [
   },
   {
     type: "Article",
+    key: "a-form",
+    title: "Do Brampton business websites actually have contact forms?",
+    description: "A form element on 47 of 87 fetched homepages, and why that tag is not a working enquiry.",
+    to: "/blog/do-brampton-business-websites-actually-have-contact-forms",
+  },
+  {
+    type: "Article",
     key: "a-check",
     title: "Brampton small business website checklist",
     description: "A practical checklist for local marketing sites.",
@@ -529,6 +536,15 @@ const BramptonBusinessWebsites2026 = () => {
               underline="hover"
             >
               How Many Brampton Business Websites Make It Easy to Call?
+            </Link>
+            . What the <code>&lt;form&gt;</code> detection measured — a tag, not a
+            submitted enquiry — is unpacked in{" "}
+            <Link
+              component={RouterLink}
+              to="/blog/do-brampton-business-websites-actually-have-contact-forms"
+              underline="hover"
+            >
+              Do Brampton Business Websites Actually Have Contact Forms?
             </Link>
             .
           </Typography>
