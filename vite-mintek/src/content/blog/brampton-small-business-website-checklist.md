@@ -9,7 +9,7 @@ scopeTool: true
 tags: ["websites", "local seo", "small business"]
 featured: false
 draft: false
-relatedServices: ["web-design-brampton", "website-development"]
+relatedServices: ["web-design-brampton", "website-development", "small-business-website-design-brampton"]
 faqs:
   - q: "What should a Brampton small-business website include?"
     a: >-
