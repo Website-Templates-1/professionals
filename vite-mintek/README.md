@@ -47,8 +47,10 @@ Files whose names start with `_` (like the template) are ignored.
 ### Validation
 
 `npm run validate:blog` checks every post for required/valid frontmatter and
-unique, kebab-case slugs. It runs automatically as part of `prebuild`, so a
-malformed post fails the build before it can ship.
+unique, kebab-case slugs. `npm run validate:related` checks topic-map slugs,
+related links on posts and pages, and root-relative internal links. Both run
+automatically as part of `prebuild`, so a broken link fails the build before
+it can ship.
 
 ### Autonomous content
 

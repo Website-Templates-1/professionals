@@ -217,7 +217,7 @@ would break its URL and lose SEO); if a rename is truly needed, add a redirect i
 
 ```bash
 npm run validate:blog     # checks frontmatter (incl. faqs shape) + unique kebab-case slugs
-npm run validate:related  # checks topic-map slugs resolve; warns on unmapped tags
+npm run validate:related  # checks topic-map, related slugs, and internal links on posts and pages; warns on unmapped tags
 npm run dev               # preview (drafts + future-dated posts ARE visible here)
 npm run build             # SSG build; prebuild runs both validators + sitemap; drafts/future hidden
 npm run lint              # must pass with 0 warnings

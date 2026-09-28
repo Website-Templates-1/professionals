@@ -1,74 +1,220 @@
-// Validates the "People also search for" topic map against real content so a
-// stale slug fails the build early rather than shipping a dead or wrong link.
+// Validates internal links across blog posts, service pages, and case studies
+// so a stale slug fails the build early rather than shipping a dead link.
 // Runs before build via `prebuild`.
 //
 // Checks:
 //   (a) every TOPIC_MAP service/case-study slug resolves to a real entry, and no
 //       service slug points at a hidden (noindex) service — FAIL on any miss.
-//   (b) any blog tag used across posts that has no TOPIC_MAP entry (and is not
+//   (b) service, case-study, and blog related-slug overrides resolve. Blog
+//       overrides must not point at a hidden service.
+//   (c) root-relative links in page copy, FAQs, nav, and footer resolve to a
+//       real route, and do not target a hidden service.
+//   (d) any blog tag used across posts that has no TOPIC_MAP entry (and is not
 //       intentionally ignored) — WARN, so new topics don't silently produce
 //       empty related sections.
 import { TOPIC_MAP, IGNORED_TAGS } from "../src/config/topicMap.js";
-import { services, caseStudies } from "../src/config/siteConfig.js";
+import {
+  services,
+  caseStudies,
+  caseStudyRedirects,
+  navGroups,
+  footerNav,
+  homeFaqs,
+  serviceFaqs,
+  caseStudyFaqs,
+} from "../src/config/siteConfig.js";
 import { readBlogPosts } from "./blog-posts.mjs";
 
 const serviceBySlug = new Map(services.map((s) => [s.slug, s]));
 const caseStudySlugs = new Set(caseStudies.map((c) => c.slug));
+const posts = readBlogPosts();
+const blogSlugs = new Set(posts.map(({ slug }) => slug));
 
 const errors = [];
 
+const requireService = (where, slug, { allowHidden = false } = {}) => {
+  const service = serviceBySlug.get(slug);
+  if (!service) {
+    errors.push(`${where}: unknown service "${slug}"`);
+  } else if (service.hidden && !allowHidden) {
+    errors.push(
+      `${where}: "${slug}" is a hidden (noindex) service and must not be linked`
+    );
+  }
+};
+
+const requireCaseStudy = (where, slug) => {
+  if (!caseStudySlugs.has(slug)) {
+    errors.push(`${where}: unknown case study "${slug}"`);
+  }
+};
+
+const requirePost = (where, slug) => {
+  if (!blogSlugs.has(slug)) {
+    errors.push(`${where}: unknown blog post "${slug}"`);
+  }
+};
+
 for (const [tag, entry] of Object.entries(TOPIC_MAP)) {
   for (const slug of entry.services || []) {
-    const service = serviceBySlug.get(slug);
-    if (!service) {
-      errors.push(`TOPIC_MAP["${tag}"].services: unknown service "${slug}"`);
-    } else if (service.hidden) {
-      errors.push(
-        `TOPIC_MAP["${tag}"].services: "${slug}" is a hidden (noindex) service and must not be linked`
-      );
-    }
+    requireService(`TOPIC_MAP["${tag}"].services`, slug);
   }
   for (const slug of entry.caseStudies || []) {
-    if (!caseStudySlugs.has(slug)) {
-      errors.push(`TOPIC_MAP["${tag}"].caseStudies: unknown case study "${slug}"`);
-    }
+    requireCaseStudy(`TOPIC_MAP["${tag}"].caseStudies`, slug);
   }
 }
 
-// Every service's explicit related overrides must resolve to real content. The
-// render path (toServiceItem) drops hidden services, so hidden relatedServices
-// refs are legal here and must not error.
-const blogSlugs = new Set(readBlogPosts().map(({ slug }) => slug));
-
+// Service related overrides. The render path drops hidden services, so a hidden
+// relatedServices ref is legal here and must not error.
 for (const service of services) {
+  const where = `services["${service.slug}"]`;
   for (const slug of service.relatedServices || []) {
-    if (!serviceBySlug.has(slug)) {
-      errors.push(
-        `services["${service.slug}"].relatedServices: unknown service "${slug}"`
-      );
-    }
+    requireService(`${where}.relatedServices`, slug, { allowHidden: true });
   }
   for (const slug of service.relatedCaseStudies || []) {
-    if (!caseStudySlugs.has(slug)) {
-      errors.push(
-        `services["${service.slug}"].relatedCaseStudies: unknown case study "${slug}"`
-      );
-    }
+    requireCaseStudy(`${where}.relatedCaseStudies`, slug);
   }
   for (const slug of service.relatedPosts || []) {
-    if (!blogSlugs.has(slug)) {
-      errors.push(
-        `services["${service.slug}"].relatedPosts: unknown blog post "${slug}"`
-      );
-    }
+    requirePost(`${where}.relatedPosts`, slug);
   }
 }
+
+for (const study of caseStudies) {
+  const where = `caseStudies["${study.slug}"]`;
+  for (const slug of study.services || []) {
+    requireService(`${where}.services`, slug, { allowHidden: true });
+  }
+  for (const slug of study.relatedServices || []) {
+    requireService(`${where}.relatedServices`, slug, { allowHidden: true });
+  }
+  for (const slug of study.relatedCaseStudies || []) {
+    requireCaseStudy(`${where}.relatedCaseStudies`, slug);
+  }
+  for (const slug of study.relatedPosts || []) {
+    requirePost(`${where}.relatedPosts`, slug);
+  }
+}
+
+for (const { slug, data } of posts) {
+  const where = `blog/${slug}`;
+  for (const serviceSlug of data.relatedServices || []) {
+    requireService(`${where}.relatedServices`, serviceSlug);
+  }
+  for (const studySlug of data.relatedCaseStudies || []) {
+    requireCaseStudy(`${where}.relatedCaseStudies`, studySlug);
+  }
+}
+
+for (const slug of Object.keys(serviceFaqs)) {
+  if (!serviceBySlug.has(slug)) {
+    errors.push(`serviceFaqs: unknown service "${slug}"`);
+  }
+}
+for (const slug of Object.keys(caseStudyFaqs)) {
+  if (!caseStudySlugs.has(slug)) {
+    errors.push(`caseStudyFaqs: unknown case study "${slug}"`);
+  }
+}
+
+// Root-relative links in copy, FAQs, and navigation.
+const STATIC_PATHS = new Set([
+  "/",
+  "/services",
+  "/case-studies",
+  "/blog",
+  "/research",
+  "/research/brampton-business-websites-2026",
+  "/start-a-project",
+  "/about",
+  "/contact",
+  "/privacy",
+  "/terms",
+  "/past-work",
+  ...caseStudyRedirects.map((r) => `/case-studies/${r.from}`),
+]);
+
+const normalizePath = (path) => {
+  const bare = path.split("#")[0].split("?")[0];
+  if (bare.length > 1 && bare.endsWith("/")) return bare.slice(0, -1);
+  return bare;
+};
+
+const checkPath = (where, path) => {
+  const clean = normalizePath(path);
+  if (STATIC_PATHS.has(clean)) return;
+  if (clean.startsWith("/blog/")) {
+    requirePost(where, clean.slice("/blog/".length));
+    return;
+  }
+  if (clean.startsWith("/case-studies/")) {
+    requireCaseStudy(where, clean.slice("/case-studies/".length));
+    return;
+  }
+  const slug = clean.replace(/^\//, "");
+  if (!slug) return;
+  requireService(where, slug);
+};
+
+const LINK_RE = /\[[^\]]*\]\(([^)]+)\)/g;
+const ABSOLUTE_INTERNAL_RE =
+  /https?:\/\/(?:www\.)?minteksoftware\.com([^)\s]*)/g;
+
+const checkMarkdown = (where, text) => {
+  if (typeof text !== "string") return;
+  for (const match of text.matchAll(LINK_RE)) {
+    const href = match[1].trim();
+    if (/^(https?:|mailto:|#)/.test(href)) continue;
+    if (!href.startsWith("/")) {
+      errors.push(`${where}: internal link must be root-relative, got "${href}"`);
+      continue;
+    }
+    checkPath(where, href);
+  }
+  for (const match of text.matchAll(ABSOLUTE_INTERNAL_RE)) {
+    errors.push(
+      `${where}: use a root-relative path instead of "${match[0]}"`
+    );
+  }
+};
+
+const walk = (where, value) => {
+  if (typeof value === "string") {
+    checkMarkdown(where, value);
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, i) => walk(`${where}[${i}]`, item));
+    return;
+  }
+  if (!value || typeof value !== "object") return;
+  for (const [key, child] of Object.entries(value)) {
+    if ((key === "to" || key === "path") && typeof child === "string" && child.startsWith("/")) {
+      checkPath(`${where}.${key}`, child);
+    }
+    walk(`${where}.${key}`, child);
+  }
+};
+
+for (const post of posts) {
+  checkMarkdown(`blog/${post.slug}`, post.content);
+  (post.data.faqs || []).forEach((faq, i) => {
+    checkMarkdown(`blog/${post.slug} faqs[${i}]`, faq?.a);
+  });
+}
+
+for (const service of services) walk(`services["${service.slug}"]`, service);
+for (const study of caseStudies) walk(`caseStudies["${study.slug}"]`, study);
+walk("navGroups", navGroups);
+walk("footerNav", footerNav);
+walk("homeFaqs", homeFaqs);
+walk("serviceFaqs", serviceFaqs);
+walk("caseStudyFaqs", caseStudyFaqs);
 
 if (errors.length > 0) {
   console.error(`\nRelated-content validation failed (${errors.length} issue(s)):`);
   for (const e of errors) console.error(`  - ${e}`);
   console.error(
-    "\nFix the slug(s) in src/config/topicMap.js to match src/config/siteConfig.js.\n"
+    "\nFix the slug or link so it matches a real page in src/config/siteConfig.js or src/content/blog/.\n"
   );
   process.exit(1);
 }
@@ -78,7 +224,7 @@ const ignored = new Set(IGNORED_TAGS);
 const mappedTags = new Set(Object.keys(TOPIC_MAP));
 const unmapped = new Map();
 
-for (const { data } of readBlogPosts()) {
+for (const { data } of posts) {
   const tags = Array.isArray(data.tags) ? data.tags : [];
   for (const tag of tags) {
     if (ignored.has(tag) || mappedTags.has(tag)) continue;
@@ -100,7 +246,5 @@ if (unmapped.size > 0) {
 }
 
 console.log(
-  `Related-content validation passed (topic map: ${
-    Object.keys(TOPIC_MAP).length
-  } tag(s), ${caseStudies.length} case studies, ${services.length} services).`
+  `Related-content validation passed (${posts.length} posts, ${services.length} services, ${caseStudies.length} case studies, ${Object.keys(TOPIC_MAP).length} topic-map tags).`
 );
