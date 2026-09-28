@@ -581,7 +581,7 @@ export const services = [
     navLabel: "Custom Software (Toronto)",
     metaTitle: "Custom Software Development Toronto | Mintek Software",
     metaDescription:
-      "Custom software development for Toronto and GTA businesses. Mintek Software builds tailored applications, dashboards and internal tools, based in Brampton with in-person meetings available.",
+      "Toronto custom software development for growing businesses. Mintek Software designs, builds, and supports scalable web apps and systems. Get a free quote today.",
     short:
       "Custom applications and internal tools for Toronto and GTA businesses.",
     hero: "Custom software development for Toronto businesses.",
