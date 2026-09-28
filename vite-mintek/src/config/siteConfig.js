@@ -664,7 +664,7 @@ export const services = [
     anchorText: "Web design in Brampton",
     metaTitle: "Web Design Brampton | Mintek Software",
     metaDescription:
-      "Web design in Brampton for small businesses. Fast, mobile-first sites with local SEO foundations, clear packages from CAD $1,500, and real Brampton work including PawPals and Doaba Junction.",
+      "Web Design Brampton for GTA businesses. Mintek Software delivers practical, results-focused work — get a clear, fixed-scope quote.",
     short:
       "Mintek is a Brampton software company that builds business websites. The work covers how the site looks, how it performs, how it gets found, and what happens when you need it to do more later.",
     hero: "Web design in Brampton for small businesses",
