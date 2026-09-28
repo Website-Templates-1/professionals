@@ -41,11 +41,11 @@ Mintek Software builds custom software, business automation and high-performing 
 
 - [Blog](https://minteksoftware.com/blog): Practical guides for GTA businesses on software, automation and websites.
 - [How Much Does a Business Website Cost in the GTA?](https://minteksoftware.com/blog/how-much-does-a-business-website-cost-in-the-gta): A clear, no-nonsense guide to business website costs in the Greater Toronto Area: typical price ranges, what drives the price up or down, and how to budget with confidence.
+- [Custom Web Development in Brampton: What It Actually Means (and When You Need It)](https://minteksoftware.com/blog/custom-web-development-brampton): Custom web development in Brampton: how it differs from a template site, when a small business needs it, and what Mintek's published starting prices cover.
 - [Do Brampton Business Websites Actually Have Contact Forms?](https://minteksoftware.com/blog/do-brampton-business-websites-actually-have-contact-forms): Among 87 fetched Brampton homepages, a form element appeared on 47 (54.0%). What that tag measures — and why it is not a working contact form.
 - [How Many Brampton Business Websites Make It Easy to Call?](https://minteksoftware.com/blog/how-many-brampton-business-websites-make-it-easy-to-call): Among 87 fetched Brampton homepages, a click-to-call tel: link was on 58 (66.7%). What that measures — and why a visible number is not the same thing.
 - [LocalBusiness Schema: How Many Brampton Websites Actually Use It?](https://minteksoftware.com/blog/localbusiness-schema-brampton-websites): Among 87 fetched Brampton homepages, JSON-LD was detected on 62.1%; LocalBusiness-style types on 41.4%. What that measurement is — and is not.
 - [How Much Does a Brampton Business Website Actually Need to Load?](https://minteksoftware.com/blog/how-much-does-a-brampton-business-website-need-to-load): Brampton homepages median 3.3 MB and 86 requests. What page weight costs, when video and widgets earn their keep, and why every homepage element has a cost.
-- [Why Are Brampton Business Websites So Slow? We Analyzed 76](https://minteksoftware.com/blog/why-are-brampton-business-websites-so-slow): Among 76 Brampton homepages, median mobile LCP was 8.3 seconds. What that lab finding means, what it does not, and what we would fix first.
 
 ## Research
 
