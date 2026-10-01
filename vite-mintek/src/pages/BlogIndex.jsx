@@ -47,7 +47,7 @@ const BlogIndex = () => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{ mb: 2 }}
           >
             Blog
           </Typography>
@@ -136,7 +136,7 @@ const BlogIndex = () => {
                           {formatPostDate(post.date)} &middot; {post.readingTime} min
                           read
                         </Typography>
-                        <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
+                        <Typography variant="h5" sx={{ mb: 2 }}>
                           {post.title}
                         </Typography>
                         <Typography

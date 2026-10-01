@@ -51,7 +51,7 @@ const ServiceResearchTeaser = ({ teaser }) => {
                 bgcolor: "background.paper",
               }}
             >
-              <Typography variant="h4" sx={{ fontWeight: "bold", color: "primary.main" }}>
+              <Typography variant="h4" sx={{ color: "primary.main" }}>
                 {item.value}
               </Typography>
               <Typography variant="body2" sx={{ fontWeight: 600, mt: 0.5 }}>

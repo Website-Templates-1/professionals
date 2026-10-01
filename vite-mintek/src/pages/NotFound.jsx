@@ -8,7 +8,7 @@ const NotFound = () => {
       <Seo title="Page not found | Mintek Software" path="/404" noindex />
       <Container maxWidth="md" sx={{ py: { xs: 16, md: 24 }, textAlign: "center" }}>
         <Box>
-          <Typography variant="h1" component="h1" sx={{ fontWeight: "bold", mb: 2 }}>
+          <Typography variant="h1" component="h1" sx={{ mb: 2 }}>
             404
           </Typography>
           <Typography variant="h5" component="p" color="text.secondary" sx={{ mb: 4 }}>

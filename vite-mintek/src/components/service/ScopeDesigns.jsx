@@ -185,12 +185,11 @@ const ScopeDesigns = ({ answers, band, slug }) => {
                 }}
               >
                 <Typography
-                  variant="body2"
+                  variant="caption"
                   sx={{
                     flex: 1,
                     minWidth: 0,
                     fontWeight: 600,
-                    fontSize: { xs: "0.8125rem", sm: "0.875rem" },
                     lineHeight: 1.3,
                   }}
                 >

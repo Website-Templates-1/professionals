@@ -32,9 +32,9 @@ const LegalPage = ({ title, description, path, lastUpdated, intro, sections }) =
         <Container maxWidth="md">
           <Breadcrumbs items={breadcrumbItems} />
           <Typography
-            variant="h1"
+            variant="h2"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2rem", md: "2.75rem" } }}
+            sx={{ mb: 2 }}
           >
             {title}
           </Typography>
@@ -61,7 +61,7 @@ const LegalPage = ({ title, description, path, lastUpdated, intro, sections }) =
               <Typography
                 variant="h5"
                 component="h2"
-                sx={{ fontWeight: "bold", mb: 2 }}
+                sx={{ mb: 2 }}
               >
                 {section.heading}
               </Typography>

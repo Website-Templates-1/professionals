@@ -130,10 +130,8 @@ const StatCard = ({ value, label, denom, tone }) => (
         variant="h3"
         component="p"
         sx={{
-          fontWeight: 800,
           color: tone === "alert" ? "error.main" : "primary.main",
           mb: 1,
-          fontSize: { xs: "2rem", md: "2.35rem" },
         }}
       >
         {value}
@@ -241,11 +239,11 @@ const BramptonBusinessWebsites2026 = () => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: 800, mb: 2, fontSize: { xs: "2.1rem", md: "3.1rem" }, lineHeight: 1.15 }}
+            sx={{ mb: 2 }}
           >
             The State of Brampton Business Websites: 2026
           </Typography>
-          <Typography variant="h6" component="p" color="text.secondary" sx={{ mb: 3, fontWeight: 400, lineHeight: 1.6 }}>
+          <Typography variant="h6" component="p" color="text.secondary" sx={{ mb: 3, lineHeight: 1.6 }}>
             An original measurement study of independently operated small and
             medium sized business websites serving Brampton, Ontario.
           </Typography>
@@ -259,7 +257,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Executive summary
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
@@ -294,7 +292,7 @@ const BramptonBusinessWebsites2026 = () => {
       <Box component="section" sx={{ py: { xs: 6, md: 8 }, bgcolor: "background.paper" }}>
         <Container maxWidth="lg">
           <Container maxWidth="md" disableGutters sx={{ mb: 4 }}>
-            <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 1, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+            <Typography variant="h2" component="h2" sx={{ mb: 1 }}>
               Key findings
             </Typography>
             <Typography color="text.secondary">
@@ -332,7 +330,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             The big finding: mobile LCP
           </Typography>
           <Card
@@ -345,13 +343,13 @@ const BramptonBusinessWebsites2026 = () => {
             }}
           >
             <CardContent sx={{ p: { xs: 3, md: 4 } }}>
-              <Typography variant="overline" color="error.main" sx={{ fontWeight: 700, letterSpacing: 1.2 }}>
+              <Typography variant="overline" color="error.main">
                 Lab measurement · one PSI mobile run
               </Typography>
-              <Typography variant="h3" component="p" sx={{ fontWeight: 800, my: 1 }}>
+              <Typography variant="h3" component="p" sx={{ my: 1 }}>
                 Median LCP {lcp.median} seconds
               </Typography>
-              <Typography variant="h6" component="p" color="text.secondary" sx={{ fontWeight: 400 }}>
+              <Typography variant="h6" component="p" color="text.secondary">
                 {lcp.over25.n} of {lcp.over25.d} scored homepages ({lcp.over25.pct}%)
                 exceeded Google’s 2.5 second “good” threshold for Largest
                 Contentful Paint.
@@ -377,7 +375,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 }, bgcolor: "background.paper" }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Industry breakdown
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
@@ -425,7 +423,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Homepage signals
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
@@ -441,7 +439,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 }, bgcolor: "background.paper" }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Performance analysis
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
@@ -476,7 +474,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Local SEO analysis
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
@@ -512,7 +510,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 }, bgcolor: "background.paper" }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Conversion analysis
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
@@ -561,7 +559,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Technical analysis
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
@@ -607,7 +605,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 }, bgcolor: "background.paper" }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Interesting examples
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
@@ -649,7 +647,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Methodology
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
@@ -701,7 +699,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 }, bgcolor: "background.paper" }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             What a typical Brampton SMB website can learn
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
@@ -761,7 +759,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Data
           </Typography>
           <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
@@ -777,7 +775,7 @@ const BramptonBusinessWebsites2026 = () => {
 
       <Box component="section" sx={{ py: { xs: 6, md: 8 }, bgcolor: "background.paper" }}>
         <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 2, fontSize: { xs: "1.75rem", md: "2.1rem" } }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
             Conclusion
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>

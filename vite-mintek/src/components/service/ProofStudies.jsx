@@ -63,7 +63,7 @@ const ProofStudies = ({
                   <Typography variant="overline" color="text.secondary">
                     {study.client} · {study.label} · {study.year}
                   </Typography>
-                  <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                  <Typography variant="h6" sx={{ mb: 1 }}>
                     {study.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>

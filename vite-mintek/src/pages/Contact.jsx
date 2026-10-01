@@ -71,7 +71,7 @@ const Contact = () => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{ mb: 2 }}
           >
             Choose how you'd like to start
           </Typography>
@@ -98,7 +98,7 @@ const Contact = () => {
       />
 
       <Container maxWidth="md" sx={{ pb: { xs: 6, md: 10 } }}>
-        <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
+        <Typography variant="h4" component="h2" sx={{ mb: 1 }}>
           Studio details
         </Typography>
         <Typography variant="body1" sx={{ lineHeight: 1.9, mb: 1 }}>
@@ -120,7 +120,7 @@ const Contact = () => {
           </Link>
         </Typography>
 
-        <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
+        <Typography variant="h4" component="h2" sx={{ mb: 1 }}>
           Service area
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
@@ -132,7 +132,7 @@ const Contact = () => {
           ))}
         </Stack>
 
-        <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "1.5rem", md: "1.75rem" } }}>
+        <Typography variant="h4" component="h2" sx={{ mb: 1 }}>
           What to contact us about
         </Typography>
         <Grid container spacing={1.5} sx={{ mb: 5 }}>

@@ -8,7 +8,7 @@ const ResearchTeaser = () => {
       <Container maxWidth="md">
         <Typography
           variant="overline"
-          sx={{ color: "primary.main", fontWeight: 700, letterSpacing: 1.6, display: "block", mb: 1 }}
+          sx={{ color: "primary.main", display: "block", mb: 1 }}
         >
           Research
         </Typography>
@@ -19,7 +19,7 @@ const ResearchTeaser = () => {
                 <Chip label="2026 study" size="small" color="primary" variant="outlined" />
                 <Chip label={`${stats.sample} Brampton businesses`} size="small" variant="outlined" />
               </Stack>
-              <Typography variant="h5" component="h2" sx={{ fontWeight: 700, mb: 1 }}>
+              <Typography variant="h5" component="h2" sx={{ mb: 1 }}>
                 The State of Brampton Business Websites: 2026
               </Typography>
               <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>

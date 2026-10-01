@@ -116,7 +116,6 @@ const optionButtonSx = {
   borderRadius: { xs: "12px", sm: 2 },
   borderColor: "divider",
   color: "text.primary",
-  fontWeight: 600,
   fontSize: { xs: "0.8125rem", sm: "1rem" },
   lineHeight: 1.25,
   whiteSpace: "normal",
@@ -405,7 +404,6 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
           variant="h5"
           component="h3"
           sx={{
-            fontWeight: "bold",
             mt: 0.5,
             mb: { xs: 1.5, md: 3 },
             outline: "none",
@@ -486,7 +484,6 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
           variant="h5"
           component="h3"
           sx={{
-            fontWeight: "bold",
             mb: { xs: 1.25, md: 2 },
             outline: "none",
           }}
@@ -499,7 +496,7 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
         <ScopeDesigns answers={answers} band={band} slug={slug} />
 
         {/* Price + plan */}
-        <Typography variant="overline" sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}>
+        <Typography variant="overline" sx={{ color: "primary.main" }}>
           {band?.name}
         </Typography>
         <Typography variant="h6" component="p" sx={{ fontWeight: 700, color: "primary.main", mb: { xs: 1.25, md: 2 } }}>
@@ -517,7 +514,7 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
 
         {/* Recap of their answers */}
         <Box sx={{ mb: { xs: 2, md: 3 }, p: { xs: 1.5, md: 2.5 }, borderRadius: 2, bgcolor: "background.default", border: "1px solid", borderColor: "divider" }}>
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>
+          <Typography variant="subtitle2" sx={{ mb: 1.5 }}>
             Your answers
           </Typography>
           <Stack spacing={0.75}>
@@ -590,7 +587,6 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
         variant="h5"
         component="h3"
         sx={{
-          fontWeight: "bold",
           mb: 1,
           outline: "none",
         }}
@@ -696,7 +692,7 @@ const ScopeTool = ({ bands = [], slug, contact }) => {
   const renderDone = () => (
     <Box sx={{ textAlign: "center", py: 2 }}>
       <CheckCircleOutlineIcon color="success" sx={{ fontSize: 48, mb: 1.5 }} />
-      <Typography ref={headingRef} tabIndex={-1} variant="h5" component="h3" sx={{ fontWeight: "bold", mb: 1, outline: "none" }}>
+      <Typography ref={headingRef} tabIndex={-1} variant="h5" component="h3" sx={{ mb: 1, outline: "none" }}>
         Thanks, we've got it
       </Typography>
       <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.9, maxWidth: 460, mx: "auto" }}>

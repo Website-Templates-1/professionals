@@ -58,7 +58,7 @@ const InfoCardGrid = ({ items, sm = 6 }) => (
     {items.map((item) => (
       <Grid item xs={12} sm={sm} key={item.title}>
         <Box sx={cardSx}>
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
             {item.title}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
@@ -157,7 +157,7 @@ const ProcessSection = ({ service }) => (
               variant="h6"
               component="span"
               aria-hidden="true"
-              sx={{ color: "primary.main", fontWeight: "bold", mb: 1, display: "block" }}
+              sx={{ color: "primary.main", mb: 1, display: "block" }}
             >
               {String(index + 1).padStart(2, "0")}
             </Typography>
@@ -193,14 +193,14 @@ const StagesSection = ({ service }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontWeight: "bold",
+                fontWeight: 700,
                 fontSize: "0.9rem",
               }}
             >
               {index + 1}
             </Box>
             <Box>
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                 {stage.title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -274,11 +274,11 @@ const PricingSection = ({ service, intent }) => {
     >
       <Typography
         variant="overline"
-        sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}
+        sx={{ color: "primary.main" }}
       >
         PRICING
       </Typography>
-      <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1.5 }}>
+      <Typography variant="h5" sx={{ mb: 1.5 }}>
         {service.pricing}
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: service.pricingDrivers?.length ? 2 : 3 }}>
@@ -326,10 +326,10 @@ const PackagesSection = ({ service }) => {
         {service.packages.map((pkg) => (
           <Grid item xs={12} md={4} key={pkg.name}>
             <Box sx={{ ...cardSx, display: "flex", flexDirection: "column" }}>
-              <Typography variant="overline" color="primary.main" sx={{ fontWeight: 600 }}>
+              <Typography variant="overline" color="primary.main">
                 {pkg.price}
               </Typography>
-              <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+              <Typography variant="h6" sx={{ mb: 1 }}>
                 {pkg.name}
               </Typography>
               <Typography variant="body2" sx={{ fontWeight: 600, mb: 1.5 }}>
@@ -459,7 +459,7 @@ const EnquiryStepsSection = ({ service }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontWeight: "bold",
+                fontWeight: 700,
                 fontSize: "0.9rem",
               }}
             >
@@ -472,7 +472,7 @@ const EnquiryStepsSection = ({ service }) => {
                 </Typography>
               ) : (
                 <>
-                  <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                     {step.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -542,7 +542,7 @@ const ServicePage = ({ slug }) => {
           <Breadcrumbs items={breadcrumbItems} sx={{ mb: { xs: 1.5, md: 3 } }} />
           <Typography
             variant="overline"
-            sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}
+            sx={{ color: "primary.main" }}
           >
             {service.title}
           </Typography>
@@ -550,10 +550,7 @@ const ServicePage = ({ slug }) => {
             variant="h1"
             component="h1"
             sx={{
-              fontWeight: "bold",
               mb: { xs: 2, md: 3 },
-              fontSize: { xs: "1.875rem", md: "3rem" },
-              lineHeight: { xs: 1.2, md: 1.167 },
             }}
           >
             {service.hero}

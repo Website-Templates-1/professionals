@@ -47,11 +47,11 @@ const ResearchIndex = () => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{ mb: 2 }}
           >
             Research
           </Typography>
-          <Typography variant="h6" component="p" color="text.secondary" sx={{ mb: 6, maxWidth: 700, fontWeight: 400 }}>
+          <Typography variant="h6" component="p" color="text.secondary" sx={{ mb: 6, maxWidth: 700 }}>
             Measurement studies and technical reports. These are not client
             testimonials and not search ranking claims.
           </Typography>
@@ -64,7 +64,7 @@ const ResearchIndex = () => {
                     <Chip label="Research" color="primary" size="small" />
                     <Chip label={report.date} variant="outlined" size="small" />
                   </Stack>
-                  <Typography variant="h4" component="h2" sx={{ fontWeight: 700, mb: 1.5, fontSize: { xs: "1.4rem", md: "1.75rem" } }}>
+                  <Typography variant="h4" component="h2" sx={{ mb: 1.5 }}>
                     {report.title}
                   </Typography>
                   <Typography color="text.secondary" sx={{ mb: 1.5, lineHeight: 1.7 }}>

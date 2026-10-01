@@ -98,7 +98,7 @@ const CaseStudyDetail = ({ slug }) => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 3, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{ mb: 3 }}
           >
             {study.title}
           </Typography>
@@ -148,7 +148,7 @@ const CaseStudyDetail = ({ slug }) => {
                     borderColor: "divider",
                   }}
                 >
-                  <Typography variant="h4" sx={{ fontWeight: "bold", color: "primary.main" }}>
+                  <Typography variant="h4" sx={{ color: "primary.main" }}>
                     {metric.value}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -276,7 +276,7 @@ const CaseStudyDetail = ({ slug }) => {
                       sx={{ height: "100%" }}
                     >
                       <CardContent sx={{ p: 3 }}>
-                        <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                        <Typography variant="h6" sx={{ mb: 1 }}>
                           {service.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">

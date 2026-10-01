@@ -99,8 +99,6 @@ const About = () => {
             variant="overline"
             sx={{
               color: "primary.main",
-              fontWeight: 600,
-              letterSpacing: 2,
               mb: 2,
               display: "block",
             }}
@@ -110,7 +108,7 @@ const About = () => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 3, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{ mb: 3 }}
           >
             Software built for how your business works
           </Typography>
@@ -153,7 +151,7 @@ const About = () => {
                 <Typography
                   variant="h3"
                   component="div"
-                  sx={{ fontWeight: "bold", color: "primary.main", mb: 0.5 }}
+                  sx={{ color: "primary.main", mb: 0.5 }}
                 >
                   {stat.number}
                 </Typography>
@@ -207,15 +205,13 @@ const About = () => {
               variant="overline"
               sx={{
                 color: "primary.main",
-                fontWeight: 600,
-                letterSpacing: 2,
                 mb: 1,
                 display: "block",
               }}
             >
               MEET THE FOUNDER
             </Typography>
-            <Typography variant="h4" component="h2" sx={{ fontWeight: "bold", mb: 0.5 }}>
+            <Typography variant="h4" component="h2" sx={{ mb: 0.5 }}>
               {founder.name}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 3 }}>
@@ -235,7 +231,7 @@ const About = () => {
         </Grid>
 
         {/* Values */}
-        <Typography variant="h4" component="h2" sx={{ fontWeight: "bold", mb: 4 }}>
+        <Typography variant="h4" component="h2" sx={{ mb: 4 }}>
           How we work
         </Typography>
         <Grid container spacing={3} sx={{ mb: { xs: 8, md: 12 } }}>
@@ -256,7 +252,7 @@ const About = () => {
                   },
                 }}
               >
-                <Typography variant="h6" component="h3" sx={{ fontWeight: "bold", mb: 1 }}>
+                <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
                   {value.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -268,7 +264,7 @@ const About = () => {
         </Grid>
 
         {/* Where we work */}
-        <Typography variant="h4" component="h2" sx={{ fontWeight: "bold", mb: 2 }}>
+        <Typography variant="h4" component="h2" sx={{ mb: 2 }}>
           Where we work
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.9 }}>

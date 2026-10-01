@@ -1,6 +1,11 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-const theme = createTheme({
+// Single source of truth for typography.
+// Font weights — use these tokens, never the string "bold" or stray numbers.
+const FONT_FAMILY = '"Roboto", "Helvetica", "Arial", sans-serif';
+const WEIGHT = { regular: 400, medium: 500, semibold: 600, bold: 700 };
+
+let theme = createTheme({
   shape: {
     borderRadius: 16,
   },
@@ -39,28 +44,81 @@ const theme = createTheme({
       paper: '#ffffff',
     },
   },
+  // A modular type scale (~1.25 ratio, 16px base). Desktop sizes are declared
+  // here; responsiveFontSizes() below auto-generates the smaller breakpoints,
+  // so pages should NOT set fontSize inline — pick the right variant instead.
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: FONT_FAMILY,
     h1: {
       fontSize: '3.5rem',
-      fontWeight: 700,
-      '@media (max-width:600px)': {
-        fontSize: '2.5rem',
-      },
+      fontWeight: WEIGHT.bold,
+      lineHeight: 1.1,
+      letterSpacing: '-0.02em',
     },
     h2: {
       fontSize: '2.5rem',
-      fontWeight: 600,
-      '@media (max-width:600px)': {
-        fontSize: '2rem',
-      },
+      fontWeight: WEIGHT.bold,
+      lineHeight: 1.15,
+      letterSpacing: '-0.015em',
     },
     h3: {
       fontSize: '2rem',
-      fontWeight: 600,
-      '@media (max-width:600px)': {
-        fontSize: '1.75rem',
-      },
+      fontWeight: WEIGHT.bold,
+      lineHeight: 1.2,
+      letterSpacing: '-0.01em',
+    },
+    h4: {
+      fontSize: '1.5rem',
+      fontWeight: WEIGHT.bold,
+      lineHeight: 1.3,
+    },
+    h5: {
+      fontSize: '1.25rem',
+      fontWeight: WEIGHT.semibold,
+      lineHeight: 1.4,
+    },
+    h6: {
+      fontSize: '1.0625rem',
+      fontWeight: WEIGHT.semibold,
+      lineHeight: 1.45,
+    },
+    subtitle1: {
+      fontSize: '1.125rem',
+      fontWeight: WEIGHT.regular,
+      lineHeight: 1.6,
+    },
+    subtitle2: {
+      fontSize: '0.9375rem',
+      fontWeight: WEIGHT.semibold,
+      lineHeight: 1.5,
+    },
+    body1: {
+      fontSize: '1rem',
+      fontWeight: WEIGHT.regular,
+      lineHeight: 1.7,
+    },
+    body2: {
+      fontSize: '0.9375rem',
+      fontWeight: WEIGHT.regular,
+      lineHeight: 1.65,
+    },
+    button: {
+      fontSize: '1rem',
+      fontWeight: WEIGHT.semibold,
+      lineHeight: 1.75,
+      textTransform: 'none',
+    },
+    caption: {
+      fontSize: '0.8125rem',
+      fontWeight: WEIGHT.regular,
+      lineHeight: 1.5,
+    },
+    overline: {
+      fontSize: '0.75rem',
+      fontWeight: WEIGHT.bold,
+      lineHeight: 2,
+      letterSpacing: '0.08em',
+      textTransform: 'uppercase',
     },
   },
   components: {
@@ -102,5 +160,9 @@ const theme = createTheme({
     },
   },
 });
+
+// Auto-scale every text variant down at sm/xs so headings stay readable on
+// mobile without per-page media queries or inline { xs, md } fontSize objects.
+theme = responsiveFontSizes(theme, { factor: 2.2 });
 
 export default theme; 

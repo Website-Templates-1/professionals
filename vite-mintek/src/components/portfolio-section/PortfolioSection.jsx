@@ -21,14 +21,14 @@ const PortfolioSection = () => {
         <Box sx={{ textAlign: "center", mb: { xs: 5, md: 8 } }}>
           <Typography
             variant="overline"
-            sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2, display: "block", mb: 2 }}
+            sx={{ color: "primary.main", display: "block", mb: 2 }}
           >
             OUR WORK
           </Typography>
           <Typography
             variant="h3"
             component="h2"
-            sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "1.8rem", md: "2.5rem" } }}
+            sx={{ mb: 2 }}
           >
             Custom Software, Automation and Websites Built for Real Businesses
           </Typography>
@@ -83,7 +83,7 @@ const PortfolioSection = () => {
                         <Chip label="Concept" size="small" color="warning" />
                       )}
                     </Stack>
-                    <Typography variant="h6" component="h3" sx={{ fontWeight: "bold", mb: 1 }}>
+                    <Typography variant="h6" component="h3" sx={{ mb: 1 }}>
                       {study.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: highlight ? 2 : 0 }}>

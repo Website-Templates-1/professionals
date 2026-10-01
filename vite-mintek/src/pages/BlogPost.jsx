@@ -126,7 +126,7 @@ const BlogPost = ({ slug }) => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{ mb: 2 }}
           >
             {post.title}
           </Typography>

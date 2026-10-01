@@ -9,7 +9,7 @@ const heading = (variant, component) => ({ children }) => (
   <Typography
     variant={variant}
     component={component}
-    sx={{ fontWeight: "bold", mt: 5, mb: 2, scrollMarginTop: "96px" }}
+    sx={{ mt: 5, mb: 2, scrollMarginTop: "96px" }}
   >
     {children}
   </Typography>

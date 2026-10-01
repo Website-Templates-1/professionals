@@ -35,7 +35,7 @@ const CaseStudiesIndex = () => {
       <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 4, md: 6 } }}>
         <Container>
           <Breadcrumbs items={breadcrumbItems} />
-          <Typography variant="h1" component="h1" sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2.25rem", md: "3rem" } }}>
+          <Typography variant="h1" component="h1" sx={{ mb: 2 }}>
             Case Studies
           </Typography>
           <Typography variant="h6" component="p" color="text.secondary" sx={{ maxWidth: 700 }}>
@@ -69,7 +69,7 @@ const CaseStudiesIndex = () => {
                       <Typography variant="overline" color="text.secondary">
                         {study.client} &middot; {study.year}
                       </Typography>
-                      <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
+                      <Typography variant="h5" sx={{ mb: 2 }}>
                         {study.title}
                       </Typography>
                       <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>

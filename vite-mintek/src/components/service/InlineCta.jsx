@@ -29,7 +29,7 @@ const InlineCta = ({
       }}
     >
       {title && (
-        <Typography variant="h6" sx={{ fontWeight: "bold", mb: body ? 1 : 2 }}>
+        <Typography variant="h6" sx={{ mb: body ? 1 : 2 }}>
           {title}
         </Typography>
       )}

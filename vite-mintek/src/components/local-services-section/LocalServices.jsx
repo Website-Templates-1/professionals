@@ -49,8 +49,6 @@ const LocalServices = () => {
             variant="overline"
             sx={{
               color: "primary.main",
-              fontWeight: 600,
-              letterSpacing: 2,
               mb: 2,
               display: "block",
             }}
@@ -61,7 +59,6 @@ const LocalServices = () => {
             variant="h3"
             component="h2"
             sx={{
-              fontWeight: "bold",
               mb: 2,
               background: "linear-gradient(45deg, #6C55F9, #8875fa)",
               backgroundClip: "text",
@@ -138,7 +135,6 @@ const LocalServices = () => {
                         component="h3"
                         sx={{
                           mb: 2,
-                          fontWeight: "bold",
                           color: "text.primary",
                         }}
                       >

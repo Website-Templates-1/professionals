@@ -41,7 +41,7 @@ const RelatedContent = ({
   return (
     <Box component="section">
       {divider && <Divider sx={{ my: 5 }} />}
-      <Typography variant="h5" component="h2" sx={{ fontWeight: "bold", mb: 3 }}>
+      <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
         {title}
       </Typography>
       <Grid container spacing={3}>
@@ -61,7 +61,7 @@ const RelatedContent = ({
                     color={CHIP_COLOR[item.type] || "default"}
                     sx={{ mb: 1.5 }}
                   />
-                  <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                  <Typography variant="h6" sx={{ mb: 1 }}>
                     {item.title}
                   </Typography>
                   {item.description && (

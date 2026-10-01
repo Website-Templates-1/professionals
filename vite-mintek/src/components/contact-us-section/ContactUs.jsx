@@ -277,8 +277,6 @@ const ContactUs = ({
               variant="overline"
               sx={{
                 color: "primary.main",
-                fontWeight: 700,
-                letterSpacing: 2,
                 mb: 2,
                 display: "block",
                 textAlign: "center",
@@ -292,7 +290,6 @@ const ContactUs = ({
               sx={{
                 textAlign: "center",
                 mb: 2,
-                fontWeight: "bold",
                 color: "text.primary",
               }}
             >
@@ -323,7 +320,6 @@ const ContactUs = ({
             sx={{
               textAlign: formOnly ? "left" : "center",
               mb: 3,
-              fontWeight: "bold",
               color: "text.primary",
             }}
           >
@@ -347,7 +343,7 @@ const ContactUs = ({
                 <Typography
                   variant="h5"
                   component="h3"
-                  sx={{ fontWeight: "bold", mb: 4, color: "text.primary" }}
+                  sx={{ mb: 4, color: "text.primary" }}
                 >
                   {contactContent.contactInfo.title}
                 </Typography>

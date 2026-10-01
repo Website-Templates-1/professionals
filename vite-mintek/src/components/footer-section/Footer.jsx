@@ -23,7 +23,7 @@ const Footer = () => {
       <Container>
         {/* Brand + contact block */}
         <Box sx={{ mb: 6, maxWidth: 420 }}>
-          <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: 1 }}>
+          <Typography variant="h6" component="p" sx={{ fontWeight: 700, mb: 1 }}>
             {site.brand}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
@@ -90,7 +90,7 @@ const Footer = () => {
                 <Typography
                   variant="subtitle2"
                   component="p"
-                  sx={{ fontWeight: "bold", mb: 2 }}
+                  sx={{ mb: 2 }}
                 >
                   {group.heading}
                 </Typography>

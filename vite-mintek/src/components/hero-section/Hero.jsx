@@ -75,12 +75,9 @@ const Hero = () => {
           component="h1"
           sx={{
             mb: { xs: 3.5, md: 3 },
-            fontWeight: "bold",
             color: "text.primary",
             textAlign: "center",
             position: "relative",
-            fontSize: { xs: "1.9rem", sm: "2.6rem", md: "3.5rem" },
-            lineHeight: { xs: 1.25, md: 1.167 },
             px: { xs: 1, md: 0 },
             "&::before": {
               content: '""',
@@ -108,8 +105,7 @@ const Hero = () => {
             maxWidth: "760px",
             mx: "auto",
             px: { xs: 1, md: 0 },
-            fontSize: { xs: "1rem", md: "1.5rem" },
-            lineHeight: 1.6,
+            lineHeight: 1.6, // deliberate: looser than h5 default for a paragraph
           }}
         >
           Mintek Software builds web applications, internal tools and automated
@@ -187,15 +183,7 @@ const Hero = () => {
           });
         }}
       >
-        <Typography
-          variant="body2"
-          sx={{
-            color: "text.secondary",
-            fontSize: "0.9rem",
-            letterSpacing: "1px",
-            textTransform: "uppercase",
-          }}
-        >
+        <Typography variant="overline" sx={{ color: "text.secondary" }}>
           Scroll
         </Typography>
         <Box

@@ -28,7 +28,7 @@ const Faq = ({
         <Typography
           variant="h4"
           component="h2"
-          sx={{ fontWeight: "bold", mb: subtitle ? 1 : 3, textAlign: align }}
+          sx={{ mb: subtitle ? 1 : 3, textAlign: align }}
         >
           {title}
         </Typography>

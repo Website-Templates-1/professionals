@@ -77,7 +77,7 @@ const IndustryCard = ({ industry }) => (
         justifyContent="space-between"
         sx={{ mb: 1 }}
       >
-        <Typography variant="h6" component="h2" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h6" component="h2">
           {industry.label}
         </Typography>
         <ArrowForwardIcon color="primary" fontSize="small" />
@@ -118,14 +118,14 @@ const StartProject = () => {
           <Breadcrumbs items={breadcrumbItems} />
           <Typography
             variant="overline"
-            sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}
+            sx={{ color: "primary.main" }}
           >
             START A PROJECT
           </Typography>
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 3, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{ mb: 3 }}
           >
             Tell us about your project
           </Typography>
@@ -177,11 +177,11 @@ const StartProject = () => {
         <Container maxWidth="md">
           <Typography
             variant="overline"
-            sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}
+            sx={{ color: "primary.main" }}
           >
             WHAT HAPPENS NEXT
           </Typography>
-          <Typography variant="h3" component="h2" sx={{ fontWeight: "bold", mb: 4 }}>
+          <Typography variant="h3" component="h2" sx={{ mb: 4 }}>
             A few minutes now saves a long first call
           </Typography>
           <Stack spacing={2.5}>
@@ -198,14 +198,14 @@ const StartProject = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontWeight: "bold",
+                    fontWeight: 700,
                     fontSize: "0.9rem",
                   }}
                 >
                   {index + 1}
                 </Box>
                 <Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                     {step.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>

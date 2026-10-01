@@ -66,7 +66,7 @@ const ServicesIndex = () => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: "bold", mb: 2, fontSize: { xs: "2.25rem", md: "3rem" } }}
+            sx={{ mb: 2 }}
           >
             Services
           </Typography>
@@ -96,14 +96,14 @@ const ServicesIndex = () => {
             <Box key={group.key} sx={{ mb: { xs: 5, md: 7 } }}>
               <Typography
                 variant="overline"
-                sx={{ color: "primary.main", fontWeight: 600, letterSpacing: 2 }}
+                sx={{ color: "primary.main" }}
               >
                 {group.heading}
               </Typography>
               <Typography
                 variant="h4"
                 component="h2"
-                sx={{ fontWeight: "bold", mb: 1 }}
+                sx={{ mb: 1 }}
               >
                 {group.heading}
               </Typography>
@@ -133,7 +133,7 @@ const ServicesIndex = () => {
                         >
                           <Typography
                             variant="h5"
-                            sx={{ fontWeight: "bold", mb: 2 }}
+                            sx={{ mb: 2 }}
                           >
                             {service.title}
                           </Typography>

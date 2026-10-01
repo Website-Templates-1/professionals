@@ -61,8 +61,6 @@ const AboutUs = () => {
             variant="overline"
             sx={{
               color: "primary.main",
-              fontWeight: 600,
-              letterSpacing: 2,
               mb: 2,
               display: "block",
             }}
@@ -73,7 +71,6 @@ const AboutUs = () => {
             variant="h3"
             component="h2"
             sx={{
-              fontWeight: "bold",
               mb: 4,
               background: "linear-gradient(45deg, #6C55F9, #8875fa)",
               backgroundClip: "text",
@@ -99,7 +96,6 @@ const AboutUs = () => {
                   variant="h4"
                   component="div"
                   sx={{
-                    fontWeight: "bold",
                     color: "primary.main",
                     mb: 1,
                   }}
@@ -136,7 +132,6 @@ const AboutUs = () => {
                     variant="h6"
                     component="h3"
                     sx={{
-                      fontWeight: "bold",
                       mb: 1,
                       color: "text.primary",
                     }}

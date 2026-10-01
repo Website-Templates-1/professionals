@@ -38,7 +38,7 @@ const CTASection = ({
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "background.default" }}>
       <Container maxWidth="md" sx={{ textAlign: "center" }}>
-        <Typography variant="h3" component="h2" sx={{ fontWeight: "bold", mb: 2 }}>
+        <Typography variant="h3" component="h2" sx={{ mb: 2 }}>
           {title}
         </Typography>
         <Typography

@@ -87,7 +87,7 @@ function Navbar() {
               variant="h6"
               component="span"
               sx={{
-                fontWeight: "bold",
+                fontWeight: 700, // brand wordmark: deliberately bolder than h6
                 color: "text.primary",
                 minWidth: 0,
                 overflow: "hidden",

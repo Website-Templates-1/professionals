@@ -9,7 +9,7 @@ const linkSx = {
   px: 1.5,
   py: 1,
   color: "text.primary",
-  fontSize: "0.95rem",
+  typography: "body2",
   "&:hover": {
     bgcolor: "action.hover",
     color: "primary.main",
@@ -32,8 +32,6 @@ const NavLinks = ({ groups, handleNavLinkClick }) => {
                 px: 1.5,
                 mb: 0.5,
                 color: "text.secondary",
-                fontWeight: 700,
-                letterSpacing: 1.2,
               }}
             >
               {group.heading}
