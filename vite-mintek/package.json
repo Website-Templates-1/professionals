@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/validate-blog.mjs && node scripts/validate-related.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
+    "prebuild": "node scripts/fetch-google-reviews.mjs && node scripts/validate-blog.mjs && node scripts/validate-related.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
     "build": "vite-react-ssg build",
+    "reviews": "node scripts/fetch-google-reviews.mjs",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "llms": "node scripts/generate-llms.mjs",
     "validate:blog": "node scripts/validate-blog.mjs",

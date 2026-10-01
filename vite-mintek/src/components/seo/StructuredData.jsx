@@ -317,6 +317,7 @@ export const AboutPageSchema = ({ founder }) => (
 // not rich snippets.
 export const ReviewSchema = ({ testimonial }) => {
   if (!testimonial || typeof testimonial.rating !== "number") return null;
+  const source = testimonial.reviewSource || testimonial.source;
   return (
     <JsonLd
       data={{
@@ -332,17 +333,16 @@ export const ReviewSchema = ({ testimonial }) => {
         author: {
           "@type": "Person",
           name: testimonial.name,
+          ...(testimonial.authorUri ? { url: testimonial.authorUri } : {}),
           ...(testimonial.business
             ? { worksFor: { "@type": "Organization", name: testimonial.business } }
             : {}),
         },
-        ...(testimonial.reviewSource
-          ? {
-              publisher: {
-                "@type": "Organization",
-                name: testimonial.reviewSource,
-              },
-            }
+        ...(testimonial.publishTime
+          ? { datePublished: testimonial.publishTime }
+          : {}),
+        ...(source
+          ? { publisher: { "@type": "Organization", name: source } }
           : {}),
         itemReviewed: {
           "@type": "Organization",

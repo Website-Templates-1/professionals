@@ -14,6 +14,8 @@
 // - Internal estimating range is CAD $100-125/hr. This is for the owner only and must
 //   NOT be rendered anywhere on the site. Sell fixed outcomes and project stages.
 
+import googleReviewsData from "../content/google-reviews.js";
+
 export const site = {
   brand: "Mintek Software",
   legalName: "Mintek Software",
@@ -2287,12 +2289,18 @@ export const getServiceFaqs = (slug) => serviceFaqs[slug] || [];
 export const getCaseStudyFaqs = (slug) => caseStudyFaqs[slug] || [];
 
 // ---------------------------------------------------------------------------
-// Testimonials
-// INTEGRITY: `testimonials` holds only real, client-approved quotes. It is
-// empty until approved wording is provided, so production never shows a
-// fabricated endorsement. `sampleTestimonials` are obviously-fictional design
-// placeholders (NOT real clients) shown only when the preview flag is set.
+// Testimonials & Google reviews
+// INTEGRITY: every review shown on the site is REAL. They are sourced live from
+// the business's Google Business Profile at build time
+// (scripts/fetch-google-reviews.mjs -> src/content/google-reviews.json) and shown
+// with Google attribution and the reviewer's own name, photo and star rating.
+// The curated `testimonials` list is only a fallback for when the Google feed is
+// empty, and `reviewEnrichment` adds truthful extra context (case-study link,
+// business name) to a recognised reviewer. `sampleTestimonials` are obviously
+// fictional design placeholders shown only when the preview flag is set.
 // ---------------------------------------------------------------------------
+
+// Fallback used only when the live Google feed returns nothing.
 export const testimonials = [
   {
     id: "aloe-accounting",
@@ -2308,6 +2316,51 @@ export const testimonials = [
     reviewSource: "Google",
   },
 ];
+
+// Truthful context attached to a live Google review when we recognise the
+// reviewer (keyed by a lowercase substring of their Google display name). This
+// review is posted from the ALOE business Google account, so Google's author
+// name is the business; we present it as the owner (who wrote it) with the
+// business beneath and link the related case study.
+const reviewEnrichment = {
+  aloe: {
+    name: "Khushpreet Sran, CPA",
+    role: "Owner",
+    business: "ALOE Accounting and Tax Professional Corporation",
+    caseStudySlug: "aloe-accounting",
+  },
+};
+
+const enrichReview = (name = "") => {
+  const key = Object.keys(reviewEnrichment).find((k) =>
+    name.toLowerCase().includes(k)
+  );
+  return key ? reviewEnrichment[key] : {};
+};
+
+// Live Google reviews mapped to the testimonial-card shape. Only reviews that
+// carry text reach this list (enforced in the fetch script).
+export const googleReviews = {
+  rating:
+    typeof googleReviewsData.rating === "number" ? googleReviewsData.rating : null,
+  count:
+    typeof googleReviewsData.userRatingCount === "number"
+      ? googleReviewsData.userRatingCount
+      : null,
+  url: googleReviewsData.googleMapsUri || site.mapsUrl || "",
+  items: (googleReviewsData.reviews || []).map((r) => ({
+    id: `google-${r.id || r.author}`,
+    source: "Google",
+    quote: r.text,
+    name: r.author,
+    authorUri: r.authorUri || "",
+    photo: r.photo || "",
+    rating: typeof r.rating === "number" ? r.rating : null,
+    relativeTime: r.relativeTime || "",
+    publishTime: r.publishTime || "",
+    ...enrichReview(r.author),
+  })),
+};
 
 // Fictional personas for local design preview only. Never presented as real
 // clients and never included in a normal production build.
@@ -2349,14 +2402,18 @@ const showSampleTestimonials =
   import.meta.env &&
   import.meta.env.VITE_SHOW_SAMPLE_TESTIMONIALS === "true";
 
-// Returns approved testimonials (optionally filtered by tag). Falls back to
-// fictional samples only when the preview flag is explicitly enabled.
+// Returns real reviews for display. Prefers the live Google feed, falls back to
+// the curated list, and only uses fictional samples when the preview flag is set.
+// Google reviews carry no service tag, so a tag filter keeps untagged (Google)
+// items eligible rather than hiding all social proof on service pages.
 export const getTestimonials = ({ tag, limit } = {}) => {
-  const source = testimonials.length
-    ? testimonials
-    : showSampleTestimonials
-      ? sampleTestimonials
-      : [];
-  const filtered = tag ? source.filter((t) => t.tag === tag) : source;
+  const source = googleReviews.items.length
+    ? googleReviews.items
+    : testimonials.length
+      ? testimonials
+      : showSampleTestimonials
+        ? sampleTestimonials
+        : [];
+  const filtered = tag ? source.filter((t) => !t.tag || t.tag === tag) : source;
   return typeof limit === "number" ? filtered.slice(0, limit) : filtered;
 };
