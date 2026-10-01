@@ -8,9 +8,11 @@ import ResearchTeaser from "../components/home/ResearchTeaser";
 import Seo from "../components/seo/Seo";
 import Faq from "../components/common/Faq";
 import Testimonials from "../components/common/Testimonials";
-import { site, homeFaqs } from "../config/siteConfig";
+import { ReviewSchema } from "../components/seo/StructuredData";
+import { site, homeFaqs, getTestimonials } from "../config/siteConfig";
 
 const Home = () => {
+  const reviews = getTestimonials({ limit: 3 });
   return (
     <>
       <Seo
@@ -18,6 +20,9 @@ const Home = () => {
         description="Mintek Software builds custom business software, web applications and automated workflows for companies across Brampton and the GTA. Website projects start at $1,500."
         path="/"
       />
+      {reviews.map((review) => (
+        <ReviewSchema key={review.id} testimonial={review} />
+      ))}
       <Hero />
       <ResearchTeaser />
       <OurServices />

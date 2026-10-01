@@ -2293,7 +2293,21 @@ export const getCaseStudyFaqs = (slug) => caseStudyFaqs[slug] || [];
 // fabricated endorsement. `sampleTestimonials` are obviously-fictional design
 // placeholders (NOT real clients) shown only when the preview flag is set.
 // ---------------------------------------------------------------------------
-export const testimonials = [];
+export const testimonials = [
+  {
+    id: "aloe-accounting",
+    tag: "website",
+    kind: "client",
+    quote:
+      "Saksham was wonderful to work with. He understood what type of website my business needed and ensured it was also SEO optimized. The recommendations he gave definitely helped improve my website and business visibility and the overall appearance of my website is both professional and fresh. I highly recommend Mintek Software to anyone looking for software and website development!",
+    name: "Khushpreet Sran, CPA",
+    role: "Owner",
+    business: "ALOE Accounting and Tax Professional Corporation",
+    caseStudySlug: "aloe-accounting",
+    rating: 5,
+    reviewSource: "Google",
+  },
+];
 
 // Fictional personas for local design preview only. Never presented as real
 // clients and never included in a normal production build.

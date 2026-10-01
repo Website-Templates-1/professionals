@@ -309,6 +309,52 @@ export const AboutPageSchema = ({ founder }) => (
   />
 );
 
+// A single real, client-approved Review attached to the Organization. Emits
+// nothing unless the testimonial carries a genuine numeric `rating`, so we never
+// publish a review node without a truthful star value. Note: Google does not
+// show star rich results for first-party ("self-serving") reviews hosted on the
+// reviewed business's own site; this markup is for honest entity understanding,
+// not rich snippets.
+export const ReviewSchema = ({ testimonial }) => {
+  if (!testimonial || typeof testimonial.rating !== "number") return null;
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "Review",
+        reviewBody: testimonial.quote,
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: testimonial.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        author: {
+          "@type": "Person",
+          name: testimonial.name,
+          ...(testimonial.business
+            ? { worksFor: { "@type": "Organization", name: testimonial.business } }
+            : {}),
+        },
+        ...(testimonial.reviewSource
+          ? {
+              publisher: {
+                "@type": "Organization",
+                name: testimonial.reviewSource,
+              },
+            }
+          : {}),
+        itemReviewed: {
+          "@type": "Organization",
+          "@id": `${site.domain}/#localbusiness`,
+          name: site.brand,
+          url: site.domain,
+        },
+      }}
+    />
+  );
+};
+
 // items: [{ name, path }]
 export const BreadcrumbSchema = ({ items }) => (
   <JsonLd
