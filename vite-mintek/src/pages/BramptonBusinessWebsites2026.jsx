@@ -85,6 +85,20 @@ const related = [
   },
   {
     type: "Article",
+    key: "a-cta",
+    title: "Most Brampton homepages ask you to act. Fewer make the next step obvious.",
+    description: "A primary CTA phrase on 71 of 87 fetched homepages, and why the phrase is not the path.",
+    to: "/blog/most-brampton-homepages-ask-you-to-act",
+  },
+  {
+    type: "Article",
+    key: "a-reviews",
+    title: "How few Brampton homepages show reviews or testimonials?",
+    description: "Testimonial or review wording on 17 of 87 fetched homepages, and why that is not a Google review count.",
+    to: "/blog/how-few-brampton-homepages-show-reviews-or-testimonials",
+  },
+  {
+    type: "Article",
     key: "a-check",
     title: "Brampton small business website checklist",
     description: "A practical checklist for local marketing sites.",
@@ -543,6 +557,25 @@ const BramptonBusinessWebsites2026 = () => {
               underline="hover"
             >
               Do Brampton Business Websites Actually Have Contact Forms?
+            </Link>
+            . What the CTA phrase measured — a listed action, not an obvious next
+            step — is unpacked in{" "}
+            <Link
+              component={RouterLink}
+              to="/blog/most-brampton-homepages-ask-you-to-act"
+              underline="hover"
+            >
+              Most Brampton Homepages Ask You to Act. Fewer Make the Next Step
+              Obvious.
+            </Link>
+            . What the review wording measured — a homepage phrase, not a Google
+            rating — is unpacked in{" "}
+            <Link
+              component={RouterLink}
+              to="/blog/how-few-brampton-homepages-show-reviews-or-testimonials"
+              underline="hover"
+            >
+              How Few Brampton Homepages Show Reviews or Testimonials?
             </Link>
             .
           </Typography>
