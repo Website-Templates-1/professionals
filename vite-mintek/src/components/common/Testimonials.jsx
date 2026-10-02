@@ -140,6 +140,14 @@ const Testimonials = ({
   if (!items.length) return null;
 
   const fromGoogle = items.some((item) => item.source === "Google");
+  // An aggregate like "5.0 · 1 Google review" reads as weak social proof. Only
+  // show the summary strip once there are enough reviews to stand on; below that
+  // the individual named cards (each with its own rating) carry the proof.
+  const MIN_AGGREGATE_REVIEWS = 3;
+  const showAggregate =
+    fromGoogle &&
+    typeof googleReviews.count === "number" &&
+    googleReviews.count >= MIN_AGGREGATE_REVIEWS;
   const md = Math.max(1, Math.floor(12 / Math.min(columns, items.length || 1)));
 
   const content = (
@@ -162,7 +170,7 @@ const Testimonials = ({
           {subtitle}
         </Typography>
       )}
-      {fromGoogle && (
+      {showAggregate && (
         <Stack spacing={1} alignItems="center" sx={{ mb: { xs: 5, md: 6 } }}>
           <Stack
             direction="row"

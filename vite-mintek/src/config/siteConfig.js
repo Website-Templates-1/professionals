@@ -650,7 +650,7 @@ export const services = [
     // Channels drive both the intro line and the result-screen CTAs. Numbers
     // come from site.phone. Add "sms" later to surface an SMS link.
     scopeContact: {
-      note: "I'm local to Brampton and happy to talk it through in Punjabi, Hindi or English.",
+      note: "Brampton-based — consultations available in English, Punjabi or Hindi.",
       channels: ["whatsapp", "call"],
     },
     hideTech: true,
@@ -672,6 +672,11 @@ export const services = [
     hero: "Web design in Brampton for small businesses",
     heroCtas: [
       { type: "estimate", variant: "contained" },
+      {
+        to: "#scope-your-site",
+        label: "Scope your site in 60 seconds",
+        variant: "outlined",
+      },
     ],
     schemaTypes: ["ProfessionalService"],
     schemaAreaServed: ["Brampton"],
@@ -1377,7 +1382,9 @@ export const caseStudies = [
     ],
     techStack: ["React", "Vite", "Analytics"],
     status: "Live",
-    liveUrl: "https://pawpals.online/",
+    // Live domain (pawpals.online) was cancelled by the client, so there is no
+    // public URL to link to; the case study page remains.
+    liveUrl: null,
     previewUrl: null,
     githubUrl: null,
   },
@@ -1423,6 +1430,9 @@ export const caseStudies = [
     ],
     techStack: ["React", "Vite", "Google Maps"],
     status: "Live",
+    image: "/case-studies/doaba-junction.jpg",
+    imageAlt:
+      "Homepage of the Doaba Junction restaurant website, a mobile-first menu and ordering site designed by Mintek Software.",
     liveUrl: null,
     previewUrl: "https://v0-restaurant-website-mvp-mu.vercel.app/",
     githubUrl: null,
@@ -1459,6 +1469,9 @@ export const caseStudies = [
     metrics: [],
     techStack: ["React", "Vite"],
     status: "Live",
+    image: "/case-studies/relax-cafe.jpg",
+    imageAlt:
+      "Homepage of the Relax Cafe website, a mobile-first hospitality site designed by Mintek Software for an Australian cafe.",
     liveUrl: "https://cafe-website-australia.vercel.app/",
     previewUrl: null,
     githubUrl: null,
@@ -1508,6 +1521,9 @@ export const caseStudies = [
     ],
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Netlify", "OpenAI API"],
     status: "Live",
+    image: "/case-studies/aloe-accounting.jpg",
+    imageAlt:
+      "Homepage of the ALOE Accounting and Tax website, a Brampton CPA firm site built by Mintek Software.",
     liveUrl: "https://www.aloeaccountingandtax.com",
     previewUrl: null,
     githubUrl: null,
@@ -1612,6 +1628,9 @@ export const caseStudies = [
       "Google Calendar API",
     ],
     status: "Live",
+    image: "/case-studies/bookme-scheduling-platform.jpg",
+    imageAlt:
+      "Homepage of BookMe, a Calendly-style multi-staff scheduling platform designed and built by Mintek Software.",
     liveUrl: "https://bookme-web.onrender.com/",
     previewUrl: null,
     githubUrl: null,

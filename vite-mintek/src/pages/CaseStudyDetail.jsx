@@ -133,6 +133,28 @@ const CaseStudyDetail = ({ slug }) => {
         </Container>
       </Box>
 
+      {study.image && (
+        <Container maxWidth="md" sx={{ pb: { xs: 4, md: 6 } }}>
+          <Box
+            component="img"
+            src={study.image}
+            alt={
+              study.imageAlt ||
+              `${study.client} website — ${study.label} by Mintek Software`
+            }
+            loading="lazy"
+            sx={{
+              width: "100%",
+              display: "block",
+              borderRadius: 2,
+              border: "1px solid",
+              borderColor: "divider",
+              boxShadow: "0 8px 24px -4px rgba(108, 85, 249, 0.12)",
+            }}
+          />
+        </Container>
+      )}
+
       <Container maxWidth="md" sx={{ pb: { xs: 4, md: 8 } }}>
         {shownMetrics.length > 0 && (
           <Grid container spacing={2} sx={{ mb: 5 }}>
