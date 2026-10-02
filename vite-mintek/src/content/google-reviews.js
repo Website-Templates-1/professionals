@@ -4,7 +4,7 @@
 // (not JSON) so it imports cleanly in Node, Vite and ESLint without attributes.
 export default {
   "placeId": "ChIJ6cEXlgKG4aQR3MG_z_YD3X8",
-  "fetchedAt": "2026-10-01T13:50:22.727Z",
+  "fetchedAt": "2026-10-01T15:49:33.488Z",
   "rating": 5,
   "userRatingCount": 1,
   "googleMapsUri": "https://maps.google.com/?cid=9213524771252191708&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
