@@ -64,10 +64,24 @@ const related = [
   },
   {
     type: "Article",
+    key: "a-a11y",
+    title: "Brampton website accessibility scores look fine. That is not a WCAG audit.",
+    description: "Median Lighthouse accessibility was 88.5 on 76 mobile runs. The score is automated checks, not an audit.",
+    to: "/blog/brampton-website-accessibility-scores-are-not-a-wcag-audit",
+  },
+  {
+    type: "Article",
     key: "a-weight",
     title: "How much does a Brampton business website actually need to load?",
     description: "Page weight, request count, and when video, animation, and widgets earn their keep.",
     to: "/blog/how-much-does-a-brampton-business-website-need-to-load",
+  },
+  {
+    type: "Article",
+    key: "a-wp",
+    title: "Almost half the Brampton sample looked like WordPress. That does not explain the slow pages.",
+    description: "WordPress signals on 43 of 87 fetched homepages. Scored WordPress sites sat near the sample performance median.",
+    to: "/blog/almost-half-the-brampton-sample-looked-like-wordpress",
   },
   {
     type: "Article",
@@ -482,6 +496,17 @@ const BramptonBusinessWebsites2026 = () => {
             Additional lab medians on scored homepages: FCP {stats.fcp.median}s;
             TBT {stats.tbt.median} ms; CLS {stats.cls.median} ({fmt(stats.cls.over01)}{" "}
             above 0.1). Median Lighthouse best practices score was {stats.bp.median}.
+            Median accessibility was {stats.a11y.median}, from automated checks
+            only. What that category measures, and why it is not a WCAG audit, is
+            unpacked in{" "}
+            <Link
+              component={RouterLink}
+              to="/blog/brampton-website-accessibility-scores-are-not-a-wcag-audit"
+              underline="hover"
+            >
+              Brampton Website Accessibility Scores Look Fine. That Is Not a WCAG
+              Audit.
+            </Link>
           </Typography>
         </Container>
       </Box>
@@ -598,7 +623,17 @@ const BramptonBusinessWebsites2026 = () => {
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
             CMS detection is HTML pattern matching (<code>wp-content</code>,
             Shopify CDN hosts, Wix/Squarespace/Webflow markers). False positives
-            and unidentified custom stacks are expected.
+            and unidentified custom stacks are expected. Why a WordPress match
+            does not explain the slow pages is unpacked in{" "}
+            <Link
+              component={RouterLink}
+              to="/blog/almost-half-the-brampton-sample-looked-like-wordpress"
+              underline="hover"
+            >
+              Almost Half the Brampton Sample Looked Like WordPress. That Does
+              Not Explain the Slow Pages.
+            </Link>
+            .
           </Typography>
           <TableContainer component={Paper} elevation={0} sx={{ border: "1px solid", borderColor: "divider", borderRadius: 2 }}>
             <Table size="small" aria-label="CMS signals on fetched homepages">
