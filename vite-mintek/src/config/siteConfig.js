@@ -1344,7 +1344,7 @@ export const caseStudies = [
     slug: "pawpals",
     kind: "client",
     label: "Lead-Generation Website",
-    homepageOrder: 5,
+    homepageOrder: 6,
     title: "Creating a Brampton Dog Daycare Website and Waitlist Funnel",
     client: "PawPals",
     year: "2024",
@@ -1392,7 +1392,7 @@ export const caseStudies = [
     slug: "doaba-junction",
     kind: "client",
     label: "Restaurant Website",
-    homepageOrder: 6,
+    homepageOrder: 7,
     title: "Restaurant Website Design for Doaba Junction",
     client: "Doaba Junction",
     year: "2024",
@@ -1441,7 +1441,7 @@ export const caseStudies = [
     slug: "relax-cafe",
     kind: "client",
     label: "Hospitality Website",
-    homepageOrder: 7,
+    homepageOrder: 8,
     title: "Cafe Website Design for an Australian Hospitality Business",
     client: "Relax Cafe",
     year: "2024",
@@ -1530,10 +1530,62 @@ export const caseStudies = [
     relatedCaseStudies: ["pawpals", "doaba-junction"],
   },
   {
+    slug: "kaizen-law",
+    kind: "client",
+    label: "Law Firm Website",
+    homepageOrder: 4,
+    title: "Website and AI Blog Engine for an Ontario Law Firm",
+    client: "Kaizen Law Professional Corporation",
+    year: "2026",
+    metaTitle: "Case Study: Ontario Law Firm Website | Mintek Software",
+    metaDescription:
+      "How Mintek Software built a fast, SEO-first website for Kaizen Law, a boutique Ontario law firm, with seven practice-area pages and an AI-assisted weekly blog the firm approves before publishing.",
+    shortDescription:
+      "A fast, SEO-first website for a boutique Ontario law firm, with seven practice-area pages and an AI-assisted weekly blog pipeline.",
+    summary:
+      "Kaizen Law Professional Corporation is a boutique law firm based in St. Catharines, serving clients across the Greater Toronto Area and Niagara Region. Mintek designed and built a fast, statically rendered website that presents the firm's seven practice areas and its founding lawyers, with strong technical SEO foundations and an AI-assisted blog pipeline the firm controls from its own admin panel. Delivered in about one week.",
+    problem:
+      "A new boutique law firm needed a credible, polished website that explained a broad range of practice areas in plain language, ranked for local searches across the GTA and Niagara, and could keep publishing fresh insights without a developer or agency retainer.",
+    solution:
+      "Mintek built a statically rendered Next.js site where a single configuration file drives every practice page, the navigation, metadata, structured data and the sitemap. Each practice area has its own page with a plain-language overview, scope and common questions. A password-protected admin panel lets the firm queue blog topics; one draft is generated automatically each week, and nothing publishes until the firm reviews and approves it.",
+    services: ["website-development", "business-automation"],
+    features: [
+      "Fast, statically rendered Next.js site with an SEO-first foundation (LegalService JSON-LD, sitemap, canonical URLs, clean metadata)",
+      "Seven practice-area pages, each with a plain-language overview, scope of work and common client questions",
+      "People page presenting the firm's founding lawyers",
+      "AI-assisted weekly blog pipeline: a topic queue drafts one article every Monday for the firm to edit and approve",
+      "Password-protected admin panel with a human approval step before anything publishes",
+      "Mobile-first, accessible design with strong Lighthouse scores",
+      "Contact form with clear confidentiality and lawyer-client relationship notices",
+    ],
+    results: [
+      "Launched a production website for a boutique Ontario law firm in about one week",
+      "Strong Lighthouse scores on mobile and desktop: SEO 100 and Best Practices 100, Accessibility 97, Performance 95",
+      "A weekly insights cadence the firm controls, with no agency retainer",
+    ],
+    metrics: [
+      { label: "Lighthouse SEO", value: "100 / 100" },
+      { label: "Lighthouse Best Practices", value: "100 / 100" },
+      { label: "Lighthouse Accessibility", value: "97 / 100" },
+      { label: "Lighthouse Performance", value: "95 / 100" },
+      { label: "Time to launch", value: "~1 week" },
+    ],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Netlify", "OpenAI API"],
+    status: "Live",
+    image: "/case-studies/kaizen-law.jpg",
+    imageAlt:
+      "Homepage of the Kaizen Law website, a boutique Ontario law firm site built by Mintek Software.",
+    liveUrl: "https://www.kaizenlaw.ca",
+    previewUrl: null,
+    githubUrl: null,
+    // St. Catharines-based: do not use as local proof for Brampton/Mississauga/Vaughan/Toronto.
+    relatedCaseStudies: ["aloe-accounting", "pawpals"],
+  },
+  {
     slug: "restaurant-online-ordering-system",
     kind: "client",
     label: "Custom Software",
-    homepageOrder: 4,
+    homepageOrder: 5,
     title: "Restaurant Online Ordering System",
     client: "Airport Sweets and Tandoori",
     year: "2022",
@@ -2334,13 +2386,27 @@ export const testimonials = [
     rating: 5,
     reviewSource: "Google",
   },
+  {
+    id: "kaizen-law",
+    tag: "website",
+    kind: "client",
+    quote:
+      "Saksham was very informative and quick to respond. Met all our needs in creating the website.\nWould definitely recommend 👍",
+    name: "Gourav Sharma",
+    role: "Founding Partner",
+    business: "Kaizen Law Professional Corporation",
+    caseStudySlug: "kaizen-law",
+    rating: 5,
+    reviewSource: "Google",
+  },
 ];
 
 // Truthful context attached to a live Google review when we recognise the
 // reviewer (keyed by a lowercase substring of their Google display name). This
 // review is posted from the ALOE business Google account, so Google's author
 // name is the business; we present it as the owner (who wrote it) with the
-// business beneath and link the related case study.
+// business beneath and link the related case study. Entries marked `exact` must
+// match the whole display name (short initials would otherwise match strangers).
 const reviewEnrichment = {
   aloe: {
     name: "Khushpreet Sran, CPA",
@@ -2348,13 +2414,24 @@ const reviewEnrichment = {
     business: "ALOE Accounting and Tax Professional Corporation",
     caseStudySlug: "aloe-accounting",
   },
+  "g s": {
+    exact: true,
+    name: "Gourav Sharma",
+    role: "Founding Partner",
+    business: "Kaizen Law Professional Corporation",
+    caseStudySlug: "kaizen-law",
+  },
 };
 
 const enrichReview = (name = "") => {
+  const n = name.trim().toLowerCase();
   const key = Object.keys(reviewEnrichment).find((k) =>
-    name.toLowerCase().includes(k)
+    reviewEnrichment[k].exact ? n === k : n.includes(k)
   );
-  return key ? reviewEnrichment[key] : {};
+  if (!key) return {};
+  // eslint-disable-next-line no-unused-vars
+  const { exact, ...context } = reviewEnrichment[key];
+  return context;
 };
 
 // Live Google reviews mapped to the testimonial-card shape. Only reviews that

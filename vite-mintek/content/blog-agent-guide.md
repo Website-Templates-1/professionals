@@ -174,7 +174,7 @@ would break its URL and lose SEO); if a rename is truly needed, add a redirect i
     `/case-studies/google-sheets-event-discovery-app`,
     `/case-studies/restaurant-online-ordering-system`, `/case-studies/pawpals`,
     `/case-studies/doaba-junction`, `/case-studies/relax-cafe`,
-    `/case-studies/aloe-accounting`.
+    `/case-studies/aloe-accounting`, `/case-studies/kaizen-law`.
   - Cross-link to related posts via `/blog/<slug>` too (all three live posts do
     this) to build topical clusters. Verify the target slug exists.
   - Always verify a slug exists in `siteConfig.js` before linking.
