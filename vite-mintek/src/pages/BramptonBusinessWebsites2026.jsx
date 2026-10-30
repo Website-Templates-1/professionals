@@ -113,6 +113,13 @@ const related = [
   },
   {
     type: "Article",
+    key: "a-city",
+    title: "How many Brampton homepages actually say they are in Brampton?",
+    description: "The word Brampton appeared in the text on 72 of 87 fetched homepages. A missing mention is a missing signal.",
+    to: "/blog/how-many-brampton-homepages-actually-say-they-are-in-brampton",
+  },
+  {
+    type: "Article",
     key: "a-check",
     title: "Brampton small business website checklist",
     description: "A practical checklist for local marketing sites.",
@@ -522,7 +529,15 @@ const BramptonBusinessWebsites2026 = () => {
             text ({fmt(sig.brampton)}), and sitemaps that responded at a robots.txt
             or default URL ({fmt(sig.sitemap)}). robots.txt: {fmt(sig.robots)}.
             Canonical tags: {fmt(sig.canonical)}. Meta description: {fmt(sig.meta)}.
-            An H1: {fmt(sig.h1)}.
+            An H1: {fmt(sig.h1)}. What the Brampton mention measures, and why a
+            missing word was not coded as bad SEO, is unpacked in{" "}
+            <Link
+              component={RouterLink}
+              to="/blog/how-many-brampton-homepages-actually-say-they-are-in-brampton"
+              underline="hover"
+            >
+              How Many Brampton Homepages Actually Say They Are in Brampton?
+            </Link>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
             JSON LD or other schema.org blocks were detected on {fmt(sig.schema)}.
