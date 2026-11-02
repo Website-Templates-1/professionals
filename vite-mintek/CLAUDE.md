@@ -1,3 +1,5 @@
+@AGENTS.md
+
 # CLAUDE.md — vite-mintek
 
 ## "Scope your site" tool & its design previews
