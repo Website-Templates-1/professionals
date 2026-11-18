@@ -829,6 +829,17 @@ export const services = [
     packages: websitePricingBands,
     extraSections: [
       {
+        overline: "ACCOUNTING",
+        title: "What a Brampton accounting firm's website has to do",
+        body: "A CPA firm needs its services named, a consultation a client can start, and a publishing habit the firm actually reviews. We built that for Aloe Accounting and Tax, a licensed Brampton CPA firm. The article is the practical version of this page for that kind of practice.",
+        links: [
+          {
+            to: "/blog/what-a-brampton-accounting-firm-website-has-to-do",
+            label: "What a Brampton accounting firm's website has to do",
+          },
+        ],
+      },
+      {
         overline: "LONG-TAIL",
         title: "Small business website design in Brampton",
         body: "If you are searching that phrase, you are usually comparing a local studio with a builder template. The decision is whether the site will generate enquiries from nearby searches, not whether it has a slider. We build focused first versions from CAD $1,500 and expand only when the extra pages earn their keep.",
