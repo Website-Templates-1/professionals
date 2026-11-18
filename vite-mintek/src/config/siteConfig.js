@@ -871,6 +871,7 @@ export const services = [
     ],
     relatedCaseStudies: ["aloe-accounting", "restaurant-online-ordering-system", "pawpals"],
     relatedPosts: [
+      "what-a-brampton-accounting-firm-website-has-to-do",
       "how-many-brampton-business-websites-make-it-easy-to-call",
       "how-much-does-a-brampton-business-website-need-to-load",
       "why-are-brampton-business-websites-so-slow",
@@ -1527,6 +1528,7 @@ export const caseStudies = [
     liveUrl: "https://www.aloeaccountingandtax.com",
     previewUrl: null,
     githubUrl: null,
+    relatedPosts: ["what-a-brampton-accounting-firm-website-has-to-do"],
     relatedCaseStudies: ["pawpals", "doaba-junction"],
   },
   {
